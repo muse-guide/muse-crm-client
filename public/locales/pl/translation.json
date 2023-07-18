@@ -1,0 +1,38 @@
+{
+    "oops": "Upss",
+    "menu": {
+        "institution": "Instytucja",
+        "exhibitions": "Wystawy",
+        "exhibits": "Eksponaty",
+        "artists": "Artyści",
+        "profile": "Profil",
+        "signOut": "Wyloguj",
+        "dashboard": "Dashboard"
+    },
+    "exhibitPage": {
+        "title": "Eksponat",
+        "subtitle": "Twórz albo edytuj eksponaty, wygeneruj audio oraz kod QR."
+    },
+    "exhibitionPage": {
+        "title": "Wystawa",
+        "subtitle": "Twórz albo edytuj wystawy. Wystawy grupują eksponaty. Na poziomie wystawy definiujesz jakie języki będą dostępne w aplikacji mobilnej dla każdego eskponatu należącego do kolekcji."
+    },
+    "langSelect": {
+        "pl": "Polski",
+        "gb": "Angielski (Wielka Brytania)",
+        "es": "Hiszpanski"
+    },
+    "common": {
+        "yes": "tak",
+        "no": "nie",
+        "select": "wybierz",
+        "add": "dodaj",
+        "close": "zamknij",
+        "cancel": "anuluj"
+    },
+    "validation": {
+        "required": "To pole jest wymagane",
+        "maxLength": "Maksymalna długość: {{length}}",
+        "pattern": "Podana wartość nie pasuje do wzoru: {{pattern}}"
+    }
+}

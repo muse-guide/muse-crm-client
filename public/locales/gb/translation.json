@@ -1,0 +1,38 @@
+{
+    "oops": "Oops",
+    "menu": {
+        "institution": "Institution",
+        "exhibitions": "Exhibitions",
+        "exhibits": "Exhibits",
+        "artists": "Artists",
+        "profile": "Profile",
+        "signOut": "Sing out",
+        "dashboard": "Dashboard"
+    },
+    "exhibitPage": {
+        "title": "Exhibit",
+        "subtitle": "Create or edit exhibits here, generate audio and QR code."
+    },
+    "exhibitionPage": {
+        "title": "Exhibition",
+        "subtitle": "Create or edit exhibitions here. Collections group exhibits."
+    },
+    "langSelect": {
+        "pl": "Polish",
+        "gb": "English (Great Britain",
+        "es": "Spanish"
+    },
+    "common": {
+        "yes": "yes",
+        "no": "no",
+        "select": "select",
+        "add": "add",
+        "close": "close",
+        "cancel": "cancel"
+    },
+    "validation": {
+        "required": "This field is required",
+        "maxLength": "Max length is: {{length}}",
+        "pattern": "Provided value doesn't match pattern: {{pattern}}"
+    }
+}
