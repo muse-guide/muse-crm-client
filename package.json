@@ -2,7 +2,7 @@
   "name": "muse-crm-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://d1awsuikml4m5v.cloudfront.net",
+  "proxy": "https://d38c0hskj64sdw.cloudfront.net",
   "dependencies": {
     "@aws-amplify/ui-react": "^5.0.4",
     "@emotion/react": "^11.11.0",

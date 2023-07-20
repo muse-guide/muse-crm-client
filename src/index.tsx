@@ -10,14 +10,19 @@ import ExhibitionPage from "./routes/exhibition/ExhibitionPage";
 import {SnackbarProvider} from "notistack";
 import {grey} from "@mui/material/colors";
 import {Amplify} from 'aws-amplify';
-import awsExports from './aws-exports';
 
 const config = {
-    ...awsExports, API: {
+    Auth: {
+        // identityPoolId: 'XX-XXXX-X:XXXXXXXX-XXXX-1234-abcd-1234567890ab', // (required) - Amazon Cognito Identity Pool ID
+        region: 'eu-central-1', // (required) - Amazon Cognito Region
+        userPoolId: 'eu-central-1_uXaNOCiBT', // (optional) - Amazon Cognito User Pool ID
+        userPoolWebClientId: 'smt7ofnsbnle7ibbspl6fsfqr' // (optional) - Amazon Cognito Web Client ID (App client secret needs to be disabled)
+    },
+    API: {
         endpoints: [
             {
                 name: "muse-app-api",
-                endpoint: "https://d1awsuikml4m5v.cloudfront.net"
+                endpoint: "https://d38c0hskj64sdw.cloudfront.net"
             }
         ]
     }
