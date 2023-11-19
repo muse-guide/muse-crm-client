@@ -26,7 +26,7 @@ export const AppBreadcrumbs = ({links}: { links: BreadcrumbsLink[] }) => {
             {
                 links.map((link, index) => {
                     if (index === links.length - 1) {
-                        return <Typography key={index} color="text.primary">{link.nameKey}</Typography>
+                        return <Typography key={index} color="text.primary">{t(link.nameKey)}</Typography>
                     }
                     return (
                         <LinkRouter key={index} to={link.path}>

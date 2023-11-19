@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/muse-crm-client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/exhibitions/ExhibitionsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/pl/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/pl/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Breadcrumbs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Breadcrumbs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CheckboxInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/CheckboxInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ConfirmationDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ConfirmationDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomTooltip.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ImagePreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImagePreview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LanguageSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageTitle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Spinner.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TextEditor/TextEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/textEditor/TextEditor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TextEditor/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/textEditor/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/TextInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TextInputWithHint.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/TextInputWithHint.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Exhibition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Exhibition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ExhibitPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ExhibitionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitionService.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2TAOmAewncsOMTtm3UeC5DqFJwa" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "openjdk-17.0.2",
+    "last_opened_file_path": "/Users/michalpacholczyk/workspace/muse/muse-crm-client/src/routes/exhibitions",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3876967",
+    "ts.external.directory.path": "/Users/michalpacholczyk/workspace/muse/muse-crm-client/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/exhibitions" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/form" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/components/form/TextInputWithHint.tsx" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="" />
+      <created>1689964955916</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689964955916</updated>
+      <workItem from="1689964957168" duration="2943000" />
+      <workItem from="1690482576168" duration="48000" />
+      <workItem from="1690483113981" duration="8251000" />
+      <workItem from="1690656842549" duration="2718000" />
+      <workItem from="1690827334107" duration="1053000" />
+      <workItem from="1690913603985" duration="1712000" />
+      <workItem from="1691002281298" duration="2291000" />
+      <workItem from="1691348106594" duration="3757000" />
+      <workItem from="1692816721236" duration="799000" />
+      <workItem from="1695148676383" duration="641000" />
+      <workItem from="1695319512210" duration="3139000" />
+      <workItem from="1695405341024" duration="3843000" />
+      <workItem from="1695666066605" duration="905000" />
+      <workItem from="1695712062932" duration="1000" />
+      <workItem from="1695751455256" duration="1577000" />
+      <workItem from="1696011925658" duration="736000" />
+      <workItem from="1700161035033" duration="3521000" />
+      <workItem from="1700245855478" duration="13652000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -2,7 +2,7 @@ import {FieldError, UseFieldArrayReturn, useFormContext} from "react-hook-form";
 import {Exhibition} from "../../model/Exhibition";
 import React, {useEffect, useState} from "react";
 import {Box, Button, Stack, Tab, Typography, useTheme} from "@mui/material";
-import {LanguageSelectDialog} from "../../components/LanguageSelect";
+import {LanguageSelectDialog} from "../../components/form/LanguageSelect";
 import AddIcon from "@mui/icons-material/Add";
 import ConfirmationDialog from "../../components/ConfirmationDialog";
 import {CircleFlag} from "react-circle-flags";
@@ -12,8 +12,8 @@ import TabList from '@mui/lab/TabList';
 import ErrorIcon from '@mui/icons-material/Error';
 import {useTabContext} from "@mui/lab";
 import Grid from "@mui/material/Unstable_Grid2";
-import TextInput from "../../components/TextInput";
-import TextEditor from "../../components/TextEditor/TextEditor";
+import TextInput from "../../components/form/TextInput";
+import TextEditor from "../../components/textEditor/TextEditor";
 
 export function LanguageTabs(props: { arrayMethods: UseFieldArrayReturn<Exhibition, "langOptions", "id"> }) {
     const [value, setValue] = useState("0");

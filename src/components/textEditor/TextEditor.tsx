@@ -86,7 +86,7 @@ const TextEditor = ({
                          field: {value, onChange, onBlur},
                      }) => (
                 <Stack>
-                    <Typography variant='body2' pb={2} fontWeight='bolder'>{title}</Typography>
+                    <Typography variant='body1' pb={2}>{title}</Typography>
                     <ReactQuill
                         ref={qRef}
                         theme="snow"

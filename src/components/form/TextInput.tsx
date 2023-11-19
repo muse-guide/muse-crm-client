@@ -58,7 +58,7 @@ const TextInput = ({
                          fieldState: {invalid, error},
                      }) => (
                 <Stack>
-                    {title && <Typography variant='body2' fontWeight='bolder'>{`${title} ${required ? "*" : ""}`}</Typography>}
+                    {title && <Typography variant='body2'>{`${title} ${required ? "*" : ""}`}</Typography>}
                     {title && <Typography variant='subtitle2'>{subtitle}</Typography>}
                     <TextField
                         {...rest}

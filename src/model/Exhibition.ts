@@ -8,6 +8,8 @@ export interface Exhibition {
     images: ImageRef[];
 }
 
+export type CreateExhibition = Omit<Exhibition, "id" | "qrCodeUrl">
+
 export interface ExhibitionLang {
     lang: string;
     title: string;

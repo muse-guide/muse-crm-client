@@ -1,4 +1,4 @@
-import {AppBar, Avatar, Button, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, Stack, SvgIcon, Toolbar, Typography, useTheme} from "@mui/material";
+import {AppBar, Avatar, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, Stack, SvgIcon, Toolbar, Typography, useTheme} from "@mui/material";
 import {Link, LinkProps, useLocation, useResolvedPath} from "react-router-dom";
 import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
 import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
@@ -70,11 +70,12 @@ export default function Navigation({drawerWidth}: { drawerWidth: number }) {
                 sx={{
                     display: {xs: 'none', md: 'flex'},
                     '& .MuiDrawer-paper': {
-                        backgroundColor: grey[50],
+                        backgroundColor: "rgba(221,229,248,0.2)",
                         boxSizing: 'border-box',
                         width: drawerWidth,
                         paddingX: 2,
-                        border: "0 1"
+                        border: "0 1",
+                        borderColor: grey[300]
                     },
                 }}
                 open

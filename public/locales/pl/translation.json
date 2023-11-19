@@ -17,6 +17,10 @@
         "title": "Wystawa",
         "subtitle": "Twórz albo edytuj wystawy. Wystawy grupują eksponaty. Na poziomie wystawy definiujesz jakie języki będą dostępne w aplikacji mobilnej dla każdego eskponatu należącego do kolekcji."
     },
+    "exhibitionsPage": {
+        "title": "Wystawy",
+        "subtitle": "Lista Twoich wystaw"
+    },
     "langSelect": {
         "pl": "Polski",
         "gb": "Angielski (Wielka Brytania)",

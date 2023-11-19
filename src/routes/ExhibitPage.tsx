@@ -2,7 +2,7 @@ import React from "react";
 import {Stack} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../components/Breadcrumbs";
-import {PageTitle} from "../components/PageTitle";
+import {PageTitle} from "../components/page";
 
 const ExhibitPage = () => {
     const {t} = useTranslation();
@@ -22,7 +22,7 @@ const ExhibitPage = () => {
                justifyContent={"initial"}
         >
             <AppBreadcrumbs links={links}/>
-            <PageTitle title={t('exhibitPage.title')} subtitle={t('exhibitPage.subtitle') as string} sx={{paddingTop: 5}}/>
+            <PageTitle title={t('exhibitPage.title')} subtitle={t('exhibitPage.subtitle') as string}/>
         </Stack>
     );
 };

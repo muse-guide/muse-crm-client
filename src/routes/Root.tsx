@@ -1,7 +1,7 @@
 import {Outlet} from "react-router-dom";
 import {Box, CssBaseline} from "@mui/material";
 import React from "react";
-import Navigation from "../components/Navigation";
+import Navigation from "../components/navigation";
 import {withAuthenticator} from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 
@@ -32,7 +32,8 @@ const Root = () => {
                      paddingRight: {
                          xs: 3,
                          md: 12,
-                     }
+                     },
+                     backgroundColor: "white"
                  }}
             >
                 <Outlet/>

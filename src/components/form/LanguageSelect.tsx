@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {UseFieldArrayReturn} from "react-hook-form";
-import {Exhibition} from "../model/Exhibition";
+import {Exhibition} from "../../model/Exhibition";
 
 interface LanguageSelectDialogProps {
     open: boolean,
@@ -81,7 +81,7 @@ export const LanguageSelectDialog = (props: LanguageSelectDialogProps) => {
                 </DialogContent>
                 <DialogActions sx={{px: '24px', pb: '20px'}}>
                     <Button variant="text" onClick={handleClose} autoFocus>{t("common.cancel")}</Button>
-                    <Button variant="contained" onClick={handleAdd} autoFocus>{t("common.add")}</Button>
+                    <Button variant="contained" disableElevation onClick={handleAdd} autoFocus>{t("common.add")}</Button>
                 </DialogActions>
             </Dialog>
         </div>

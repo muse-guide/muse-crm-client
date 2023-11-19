@@ -34,7 +34,7 @@ export default function ConfirmationDialog(props: ConfirmationDialogProps) {
                 </DialogContent>
                 <DialogActions sx={{px: '24px', pb: '20px'}}>
                     <Button variant="text" onClick={props.handleClose}>{t("common.no")}</Button>
-                    <Button variant="contained" onClick={props.handleAgree} autoFocus>{t("common.yes")}</Button>
+                    <Button variant="contained" disableElevation onClick={props.handleAgree} autoFocus>{t("common.yes")}</Button>
                 </DialogActions>
             </Dialog>
         </div>

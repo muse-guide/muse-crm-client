@@ -4,7 +4,7 @@ import {Box, Button, IconButton, Link, List, ListItem, ListItemIcon, Stack, Typo
 import CloudUploadRoundedIcon from '@mui/icons-material/CloudUploadRounded';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {UseFieldArrayReturn} from "react-hook-form";
-import {Exhibition} from "../model/Exhibition";
+import {Exhibition} from "../../model/Exhibition";
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import {useTranslation} from "react-i18next";
 import Dialog from "@mui/material/Dialog";
@@ -169,7 +169,7 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                     </List>
                 </DialogContent>
                 <DialogActions sx={{px: '24px', pb: '20px'}}>
-                    <Button variant="contained" onClick={props.handleClose}>{t("common.close")}</Button>
+                    <Button variant="contained" disableElevation onClick={props.handleClose}>{t("common.close")}</Button>
                 </DialogActions>
             </Dialog>
         </div>

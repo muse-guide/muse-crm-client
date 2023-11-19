@@ -17,6 +17,10 @@
         "title": "Exhibition",
         "subtitle": "Create or edit exhibitions here. Collections group exhibits."
     },
+    "exhibitionsPage": {
+        "title": "Exhibitions",
+        "subtitle": "List of your collections."
+    },
     "langSelect": {
         "pl": "Polish",
         "gb": "English (Great Britain",
