@@ -10,8 +10,8 @@ interface TextInputCustomProps {
     control?: Control<any>;
     customValidation?: ControllerProps['rules'];
     maxLength?: number;
-    pattern?: RegExp
-
+    pattern?: RegExp,
+    fullWith?: boolean,
 }
 
 const TextInput = ({
@@ -25,6 +25,7 @@ const TextInput = ({
                        required = undefined,
                        multiline,
                        rows,
+                       fullWidth = true,
                        ...rest
                    }: TextInputCustomProps & TextFieldProps) => {
     const {t} = useTranslation();
@@ -58,7 +59,7 @@ const TextInput = ({
                          fieldState: {invalid, error},
                      }) => (
                 <Stack>
-                    {title && <Typography variant='body2'>{`${title} ${required ? "*" : ""}`}</Typography>}
+                    {title && <Typography variant='body1'>{`${title} ${required ? "*" : ""}`}</Typography>}
                     {title && <Typography variant='subtitle2'>{subtitle}</Typography>}
                     <TextField
                         {...rest}
@@ -70,7 +71,7 @@ const TextInput = ({
                         error={invalid}
                         helperText={error ? error.message : null}
                         size='small'
-                        fullWidth
+                        fullWidth={fullWidth}
                         multiline={multiline}
                         rows={rows}
                         sx={{

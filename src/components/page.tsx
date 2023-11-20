@@ -1,6 +1,10 @@
-import {Grid2Props, Stack, SxProps, Theme, Typography} from "@mui/material";
+import {Button, Grid2Props, Stack, SxProps, TextField, Theme, Typography} from "@mui/material";
 import React from "react";
 import Grid from "@mui/material/Unstable_Grid2";
+import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
 interface PageTitleProps {
     title: string,
@@ -20,6 +24,16 @@ export const PageTitle = (props: PageTitleProps) => {
 export const PageContentContainer = ({children, ...props}: Grid2Props) => {
     return (
         <Grid container spacing={4} {...props}>{children}</Grid>
+    )
+}
+
+export const SinglePageColumn = ({children, ...props}: Grid2Props) => {
+    return (
+        <Grid xs={12} xl={8} minWidth="540px" maxWidth="1100px" width="100%" {...props}>
+            <Stack spacing={4}>
+                {children}
+            </Stack>
+        </Grid>
     )
 }
 

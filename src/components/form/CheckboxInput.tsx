@@ -20,7 +20,7 @@ export const CheckboxInput = (props: { name: string, label: string, defaultCheck
                     )}
                 />
             }
-            label={<Typography variant="body2">
+            label={<Typography variant="body1">
                 {props.label}
             </Typography>}
         />

@@ -25,7 +25,7 @@ const TextInputWithHint = (props: { title?: string, subtitle?: string } & TextFi
     return (
         <Stack>
             <Stack spacing={1} direction="row" alignItems="center">
-                {props.title && <Typography variant='body2' fontWeight='bolder'>{props.title}</Typography>}
+                {props.title && <Typography variant='body1' fontWeight='bolder'>{props.title}</Typography>}
                 <CustomTooltip title={props.subtitle} placement="right">
                     <HelpOutlineRoundedIcon sx={{fontSize: '18px', color: grey[700]}}/>
                 </CustomTooltip>

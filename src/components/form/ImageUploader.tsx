@@ -13,6 +13,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import {ImagePreview} from "./ImagePreview";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Exhibition, "images", "id"> }) => {
     const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
@@ -40,8 +41,8 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Ex
         <Stack pb={0} pt={1}>
             <ImageUploaderDialog arrayMethods={props.arrayMethods} open={uploadDialogOpen} handleClose={handleClose}/>
             <Stack direction="row" spacing={2} alignItems="center">
-                <Box p={0}><Button onClick={handleClickOpen} variant="contained" startIcon={<CloudUploadIcon/>}>Upload</Button></Box>
-                <Typography variant='body2'>Dodaj zdjęcia kolekcji. Pojawią się one w aplikacji mobilnej na stronie wystawy.</Typography>
+                <Box p={0}><Button onClick={handleClickOpen} variant="contained" disableElevation startIcon={<CloudUploadIcon/>}>Upload</Button></Box>
+                <Typography variant='body1'>Dodaj zdjęcia kolekcji. Pojawią się one w aplikacji mobilnej na stronie wystawy.</Typography>
             </Stack>
             <ImagePreview show={imgPrevOpen} close={() => setImgPrevOpen(false)} img={imgPrevUrl} />
             <List sx={{width: '100%', maxWidth: 500, bgcolor: 'background.paper', pb: 0, pt: 2}} dense>
@@ -53,7 +54,7 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Ex
                         <Link
                             component="button"
                             type="button"
-                            variant="body2"
+                            variant="body1"
                             width="100%"
                             display="flex"
                             justifyItems="start"
@@ -62,7 +63,7 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Ex
                             {field.name}
                         </Link>
                         <IconButton onClick={() => removeImage(index)}>
-                            <DeleteForeverOutlinedIcon/>
+                            <DeleteOutlinedIcon/>
                         </IconButton>
                     </ListItem>
                 ))}
@@ -136,7 +137,7 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                                     backgroundColor: theme.palette.grey[50]
                                 }}>
                                     <Stack alignItems="center" spacing={0} p={3} height="100%" justifyContent="center">
-                                        <Typography variant='body2' fontWeight='bolder'>Dodaj zdjęcia wystawy</Typography>
+                                        <Typography variant='body1' fontWeight='bolder'>Dodaj zdjęcia wystawy</Typography>
                                         <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>Przeciągnij zdjęcia tutaj albo wybierz je z dysku</Typography>
                                         <Button startIcon={<CloudUploadRoundedIcon/>} variant="outlined" onClick={onImageUpload}>Wybierz zdjęcia</Button>
                                     </Stack>
@@ -153,7 +154,7 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                                 </ListItemIcon>
                                 <Link
                                     component="button"
-                                    variant="body2"
+                                    variant="body1"
                                     width="100%"
                                     display="flex"
                                     justifyItems="start"

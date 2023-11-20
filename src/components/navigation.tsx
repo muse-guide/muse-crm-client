@@ -12,8 +12,8 @@ import {useTranslation} from "react-i18next";
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useEffect, useState} from "react";
-import {grey} from "@mui/material/colors";
 import {useAuthenticator} from "@aws-amplify/ui-react";
+import {bgColor} from "../index";
 
 export default function Navigation({drawerWidth}: { drawerWidth: number }) {
     const theme = useTheme()
@@ -70,12 +70,12 @@ export default function Navigation({drawerWidth}: { drawerWidth: number }) {
                 sx={{
                     display: {xs: 'none', md: 'flex'},
                     '& .MuiDrawer-paper': {
-                        backgroundColor: "rgba(221,229,248,0.2)",
+                        backgroundColor: bgColor,
                         boxSizing: 'border-box',
                         width: drawerWidth,
                         paddingX: 2,
-                        border: "0 1",
-                        borderColor: grey[300]
+                        border: "0",
+                        // borderColor: borderColor
                     },
                 }}
                 open
@@ -221,7 +221,7 @@ const MuseLogo = () => {
                 paddingBottom: 4,
                 display: 'flex',
                 alignItems: 'center',
-                px: 2.5,
+                pl: 2.3,
                 zIndex: 100
             }}
         >
@@ -263,17 +263,17 @@ const ProfileAvatar = () => {
                    paddingTop: 2,
                    paddingBottom: 3
                }}>
-            <Avatar sx={{bgcolor: theme.palette.secondary.main}}>M</Avatar>
+            <Avatar>{user.attributes?.email!!}</Avatar>
             <Stack>
                 <Typography
-                    variant="body2"
+                    variant="body1"
                     fontWeight='bold'
                     noWrap
                 >
                     {user.attributes?.email}
                 </Typography>
                 <Typography
-                    variant="body2"
+                    variant="body1"
                     fontWeight='normal'
                     noWrap
                 >

@@ -80,14 +80,41 @@ const theme = createTheme({
         fontFamily: ["Public Sans", "sans-serif"].join(",")
     },
     shape: {
-        borderRadius: 4,
+        borderRadius: 8,
+    },
+});
+
+export const bgColor = "rgba(255,255,255,0.01)"
+export const borderColor = grey[500]
+const darkTheme = createTheme({
+    palette: {
+        mode: "light",
+        primary: {
+            main: "#000000",
+            light: "rgb(161,161,161)",
+            dark: "#06245e"
+        },
+        secondary: {
+            main: "rgba(0,0,0,0.46)",
+            light: "#ffd7b0",
+            dark: "#865d03"
+        },
+        background: {
+            default: "rgba(0,0,0,0)"
+        }
+    },
+    typography: {
+        fontFamily: ["Public Sans", "sans-serif"].join(",")
+    },
+    shape: {
+        borderRadius: 8,
     },
 });
 
 root.render(
     <React.StrictMode>
         <React.Suspense fallback="">
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={darkTheme}>
                 <SnackbarProvider>
                     <RouterProvider router={router}/>
                 </SnackbarProvider>
