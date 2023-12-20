@@ -11,14 +11,14 @@ const Image = styled("img")({
 interface ImagePreviewProps {
     show: boolean;
     close: () => void;
-    img: string;
+    img: string | undefined;
 }
 
 export const ImagePreview = (props: ImagePreviewProps) => (
     <Modal
         open={props.show}
         onClose={props.close}
-        closeAfterTransition
+        // closeAfterTransition
         sx={{
             display: "flex",
             alignItems: "center",

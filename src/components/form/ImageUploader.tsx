@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ImageUploading, {ImageListType} from "react-images-uploading";
 import {Box, Button, IconButton, Link, List, ListItem, ListItemIcon, Stack, Typography, useTheme} from "@mui/material";
 import CloudUploadRoundedIcon from '@mui/icons-material/CloudUploadRounded';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {UseFieldArrayReturn} from "react-hook-form";
-import {Exhibition} from "../../model/Exhibition";
+import {Exhibition, ImageRef} from "../../model/exhibition";
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import {useTranslation} from "react-i18next";
 import Dialog from "@mui/material/Dialog";
@@ -13,12 +13,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import {ImagePreview} from "./ImagePreview";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import {getUrl, remove, uploadData} from 'aws-amplify/storage';
+import {normalizeText} from "../ComponentUtils";
+import {v4 as uuidv4} from 'uuid';
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Exhibition, "images", "id"> }) => {
     const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
-    const [imgPrevOpen, setImgPrevOpen] = useState(false);
-    const [imgPrevUrl, setImgPrevUrl] = useState("");
 
     const handleClickOpen = () => {
         setUploadDialogOpen(true);
@@ -28,44 +30,21 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Ex
         setUploadDialogOpen(false);
     };
 
-    const removeImage = (index: number) => {
+    const removeImage = async (index: number) => {
+        await removeImageAsync(props.arrayMethods.fields[index].key)
         props.arrayMethods.remove(index)
-    }
-
-    const onPreview = (url: string) => {
-        setImgPrevUrl(url)
-        setImgPrevOpen(true)
     }
 
     return (
         <Stack pb={0} pt={1}>
-            <ImageUploaderDialog arrayMethods={props.arrayMethods} open={uploadDialogOpen} handleClose={handleClose}/>
+            <ImageUploaderDialog arrayMethods={props.arrayMethods} open={uploadDialogOpen} handleClose={handleClose} removeImage={removeImage}/>
             <Stack direction="row" spacing={2} alignItems="center">
                 <Box p={0}><Button onClick={handleClickOpen} variant="contained" disableElevation startIcon={<CloudUploadIcon/>}>Upload</Button></Box>
                 <Typography variant='body1'>Dodaj zdjęcia kolekcji. Pojawią się one w aplikacji mobilnej na stronie wystawy.</Typography>
             </Stack>
-            <ImagePreview show={imgPrevOpen} close={() => setImgPrevOpen(false)} img={imgPrevUrl} />
             <List sx={{width: '100%', maxWidth: 500, bgcolor: 'background.paper', pb: 0, pt: 2}} dense>
                 {props.arrayMethods.fields.map((field, index) => (
-                    <ListItem key={field.id} sx={{pl: "14px"}}>
-                        <ListItemIcon sx={{minWidth: "44px"}}>
-                            <InsertPhotoOutlinedIcon/>
-                        </ListItemIcon>
-                        <Link
-                            component="button"
-                            type="button"
-                            variant="body1"
-                            width="100%"
-                            display="flex"
-                            justifyItems="start"
-                            onClick={() => onPreview(field.url)}
-                        >
-                            {field.name}
-                        </Link>
-                        <IconButton onClick={() => removeImage(index)}>
-                            <DeleteOutlinedIcon/>
-                        </IconButton>
-                    </ListItem>
+                    <UploadItem key={"main-" + field.id} index={index} item={field} removeImage={removeImage}/>
                 ))}
             </List>
         </Stack>
@@ -75,34 +54,29 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Ex
 interface ImageUploaderDialogProps {
     open: boolean,
     handleClose: () => void,
+    removeImage: (index: number) => void
     arrayMethods: UseFieldArrayReturn<Exhibition, "images", "id">
 }
 
 export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
+    const [uploadInProgress, setUploadInProgress] = useState(false);
     const {t} = useTranslation();
     const theme = useTheme()
-    const [imgPrevOpen, setImgPrevOpen] = useState(false);
-    const [imgPrevUrl, setImgPrevUrl] = useState("");
     const maxNumber = 8;
 
-    const onChange = (
-        imageList: ImageListType,
-    ) => {
+    const onChange = async (imageList: ImageListType,) => {
+        setUploadInProgress(true)
         const lastIndex = imageList.length - 1;
-        props.arrayMethods.append( {
-            name: imageList[lastIndex].file?.name ?? "no",
-            url: imageList[lastIndex].dataURL!!
-        })
+        const image = imageList[lastIndex]
+        if (image.file) {
+            const upload = await uploadDataInBrowser(image.file)
+            if (upload) props.arrayMethods.append({
+                key: upload.key,
+                name: image.file.name!!
+            })
+            setUploadInProgress(false)
+        }
     };
-
-    const removeImage = (index: number) => {
-        props.arrayMethods.remove(index)
-    }
-
-    const onPreview = (url: string) => {
-        setImgPrevUrl(url)
-        setImgPrevOpen(true)
-    }
 
     return (
         <div>
@@ -116,57 +90,47 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                 <DialogContent sx={{minWidth: '600px'}}>
                     <ImageUploading
                         multiple
+                        // acceptType={['png']}
+                        // maxFileSize={1024}
                         value={[props.arrayMethods.fields]}
                         onChange={onChange}
                         maxNumber={maxNumber}
                     >
                         {({
-                              imageList,
                               onImageUpload,
-                              onImageRemove,
-                              isDragging,
                               dragProps
                           }) => (
-                            <Stack>
-                                <Box width={"100%"} {...dragProps} sx={{
-                                    alignItems: "center",
-                                    height: "200px",
-                                    border: 1,
-                                    borderStyle: "dashed",
-                                    borderColor: theme.palette.grey[600],
-                                    backgroundColor: theme.palette.grey[50]
-                                }}>
-                                    <Stack alignItems="center" spacing={0} p={3} height="100%" justifyContent="center">
-                                        <Typography variant='body1' fontWeight='bolder'>Dodaj zdjęcia wystawy</Typography>
-                                        <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>Przeciągnij zdjęcia tutaj albo wybierz je z dysku</Typography>
-                                        <Button startIcon={<CloudUploadRoundedIcon/>} variant="outlined" onClick={onImageUpload}>Wybierz zdjęcia</Button>
-                                    </Stack>
-                                </Box>
-                            </Stack>
+                            <Box width={"100%"} {...dragProps} sx={{
+                                alignItems: "center",
+                                height: "200px",
+                                border: 1,
+                                borderStyle: "dashed",
+                                borderColor: theme.palette.grey[600],
+                                backgroundColor: theme.palette.grey[50]
+                            }}>
+                                <Stack alignItems="center" spacing={0} p={3} height="100%" justifyContent="center">
+                                    <Typography variant='body1' fontWeight='bolder'>Dodaj zdjęcia wystawy</Typography>
+                                    <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>Przeciągnij zdjęcia tutaj albo wybierz je z dysku</Typography>
+                                    <Button startIcon={<CloudUploadRoundedIcon/>} variant="outlined" onClick={onImageUpload}>Wybierz zdjęcia</Button>
+                                </Stack>
+                            </Box>
                         )}
                     </ImageUploading>
-                    <ImagePreview show={imgPrevOpen} close={() => setImgPrevOpen(false)} img={imgPrevUrl} />
                     <List sx={{width: '100%', bgcolor: 'background.paper', pb: 0, pt: 2}} dense>
                         {props.arrayMethods.fields.map((field, index) => (
-                            <ListItem key={field.id} sx={{pl: 0}}>
-                                <ListItemIcon sx={{pr: 2}}>
-                                    <img src={field.url} alt="" style={{objectFit: "contain", height: 60, width: 80}}/>
-                                </ListItemIcon>
-                                <Link
-                                    component="button"
-                                    variant="body1"
-                                    width="100%"
-                                    display="flex"
-                                    justifyItems="start"
-                                    onClick={() => onPreview(field.url)}
-                                >
-                                    {field.name}
-                                </Link>
-                                <IconButton onClick={() => removeImage(index)}>
-                                    <DeleteForeverOutlinedIcon/>
-                                </IconButton>
-                            </ListItem>
+                            <UploadItem key={field.id} index={index} item={field} removeImage={props.removeImage}/>
                         ))}
+                        {uploadInProgress && <ListItem sx={{pl: "14px"}}>
+                            <ListItem sx={{pl: 0, py: 1}}>
+                                <ListItemIcon sx={{minWidth: "44px"}}>
+                                    <InsertPhotoOutlinedIcon/>
+                                </ListItemIcon>
+                                <Box width={'100%'} px={0} mr={3}>
+                                    <LinearProgress variant="indeterminate"/>
+                                </Box>
+                            </ListItem>
+                        </ListItem>
+                        }
                     </List>
                 </DialogContent>
                 <DialogActions sx={{px: '24px', pb: '20px'}}>
@@ -176,3 +140,94 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
         </div>
     );
 }
+
+const UploadItem = ({index, item, removeImage}: {
+    index: number,
+    item: ImageRef,
+    removeImage: (index: number) => void
+}) => {
+    const [imageUrl, setImageUrl] = useState<string | undefined>("");
+    const [imgPrevOpen, setImgPrevOpen] = useState(false);
+
+    useEffect(() => {
+        getImage()
+    }, []);
+
+    const getImage = async () => {
+        const url = await getImageAsync(item.key)
+        setImageUrl(url)
+    }
+
+    const onPreview = () => {
+        setImgPrevOpen(true)
+    }
+
+    return (
+        <>
+            <ImagePreview show={imgPrevOpen} close={() => setImgPrevOpen(false)} img={imageUrl}/>
+            <ListItem sx={{pl: "14px"}}>
+                <ListItemIcon sx={{minWidth: "44px"}}>
+                    <InsertPhotoOutlinedIcon/>
+                </ListItemIcon>
+                <Link
+                    key={item.key}
+                    underline="always"
+                    variant="body1"
+                    width="100%"
+                    display="flex"
+                    justifyItems="start"
+                    onClick={onPreview}
+                >
+                    {normalizeText(36, item.name)}
+                </Link>
+                <IconButton onClick={() => removeImage(index)}>
+                    <DeleteForeverOutlinedIcon/>
+                </IconButton>
+            </ListItem>
+        </>
+    )
+}
+
+
+const uploadDataInBrowser = async (
+    file: File
+) => {
+    try {
+        return await uploadData({
+            key: `exhibitions/images/${uuidv4()}.${file.type.split('/')[1]}`,
+            data: file,
+            options: {
+                accessLevel: 'private'
+            }
+        }).result;
+    } catch (error) {
+        console.log('Upload image error: ', error);
+    }
+};
+
+const getImageAsync = async (key: string) => {
+    try {
+        return (await getUrl({
+            key: key,
+            options: {
+                accessLevel: "private",
+                validateObjectExistence: true,
+            }
+        })).url.toString()
+    } catch (error) {
+        console.log('Get image error: ', error);
+    }
+};
+
+const removeImageAsync = async (key: string) => {
+    try {
+        return (await remove({
+            key: key,
+            options: {
+                accessLevel: "private"
+            }
+        })).key
+    } catch (error) {
+        console.log('Remove image error: ', error);
+    }
+};

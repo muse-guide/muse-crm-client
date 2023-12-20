@@ -1,4 +1,4 @@
-import {Stack, Typography} from "@mui/material";
+import {Box, Stack, Typography} from "@mui/material";
 import React, {useMemo, useRef} from "react";
 import {Control, Controller, ControllerProps} from "react-hook-form";
 import {useTranslation} from "react-i18next";
@@ -6,6 +6,7 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import "./styles.css";
 import Quill from "quill";
+import {borderColor} from "../../index";
 
 interface TextInputCustomProps {
     name: string;
@@ -87,15 +88,17 @@ const TextEditor = ({
                      }) => (
                 <Stack>
                     <Typography variant='body1' pb={2}>{title}</Typography>
-                    <ReactQuill
-                        ref={qRef}
-                        theme="snow"
-                        placeholder="Opis wystawy"
-                        modules={modules}
-                        value={value}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                    />
+                    <Box border={1} borderRadius={2} borderColor={borderColor}>
+                        <ReactQuill
+                            ref={qRef}
+                            theme="snow"
+                            placeholder="Opis wystawy"
+                            modules={modules}
+                            value={value}
+                            onChange={onChange}
+                            onBlur={onBlur}
+                        />
+                    </Box>
                     <input ref={imageInput} type="file" accept="image/*" hidden={true} onChange={uploadImage}/>
                 </Stack>
             )}

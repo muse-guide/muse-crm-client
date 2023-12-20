@@ -1,10 +1,10 @@
 import {FieldError, UseFieldArrayReturn, useFormContext} from "react-hook-form";
-import {Exhibition} from "../../model/Exhibition";
+import {Exhibition} from "../../model/exhibition";
 import React, {useEffect, useState} from "react";
 import {Box, Button, Stack, Tab, Typography, useTheme} from "@mui/material";
 import {LanguageSelectDialog} from "../../components/form/LanguageSelect";
 import AddIcon from "@mui/icons-material/Add";
-import ConfirmationDialog from "../../components/ConfirmationDialog";
+import ConfirmationDialog from "../../components/dialog/ConfirmationDialog";
 import {CircleFlag} from "react-circle-flags";
 import CancelIcon from "@mui/icons-material/Cancel";
 import TabContext from '@mui/lab/TabContext';

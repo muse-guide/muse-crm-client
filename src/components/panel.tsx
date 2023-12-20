@@ -24,7 +24,7 @@ export const BasePanel = ({children, ...props}: PaperProps) => {
 export const Panel = ({children, loading, title, subtitle, skeletonHeight = 400}: PanelProps) => {
     return (
         <React.Fragment>
-            {loading ? <Skeleton variant="rectangular" height={skeletonHeight} sx={{display: 'flex'}}/> :
+            {loading ? <Skeleton variant="rectangular" width={"100%"} height={skeletonHeight} sx={{display: 'flex'}}/> :
                 <BasePanel>
                     <Grid container spacing={3} p={3}>
                         <Grid xs={12}>

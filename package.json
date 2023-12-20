@@ -2,9 +2,9 @@
   "name": "muse-crm-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://d38c0hskj64sdw.cloudfront.net",
+  "proxy": "https://d2i10ug7mxw82h.cloudfront.net",
   "dependencies": {
-    "@aws-amplify/ui-react": "^5.0.4",
+    "@aws-amplify/ui-react": "^6.0.3",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
@@ -14,10 +14,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.31",
-    "@types/react": "^18.2.6",
-    "@types/react-dom": "^18.2.4",
-    "aws-amplify": "^5.3.3",
+    "@types/node": "^18.18.14",
+    "@types/react": "^18.2.39",
+    "@types/react-dom": "^18.2.17",
+    "@types/uuid": "^9.0.7",
+    "aws-amplify": "^6.0.5",
     "axios": "^1.4.0",
     "http-proxy-middleware": "^2.0.6",
     "i18next": "^22.5.0",
@@ -35,7 +36,8 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "uuid": "^9.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

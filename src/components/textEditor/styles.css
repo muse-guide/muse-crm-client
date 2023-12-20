@@ -1,3 +1,16 @@
 .custom-image {
     width: 100px;
 }
+
+.quill {
+    border: 0;
+}
+
+.ql-toolbar.ql-snow {
+    border: 0;
+    border-bottom: 1px;
+}
+
+.ql-container.ql-snow {
+    border: 0;
+}

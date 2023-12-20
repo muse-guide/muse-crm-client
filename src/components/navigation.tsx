@@ -171,7 +171,6 @@ const CustomListItemButton = ({to, title, Icon, ...props}: LinkProps & { title: 
 
     let resolved = useResolvedPath(to);
     let location = useLocation();
-    console.log(location.pathname)
 
     useEffect(() => {
         if (location.pathname.includes(resolved.pathname)) setMatch(true)
@@ -252,7 +251,6 @@ const MuseLogo = () => {
 const ProfileAvatar = () => {
     const theme = useTheme()
     const {user} = useAuthenticator((context) => [context.user]);
-    console.log(user)
     return (
         <Stack direction='row'
                spacing={2}
@@ -263,21 +261,21 @@ const ProfileAvatar = () => {
                    paddingTop: 2,
                    paddingBottom: 3
                }}>
-            <Avatar>{user.attributes?.email!!}</Avatar>
+            <Avatar>{user.signInDetails?.loginId}</Avatar>
             <Stack>
                 <Typography
                     variant="body1"
                     fontWeight='bold'
                     noWrap
                 >
-                    {user.attributes?.email}
+                    {user.username}
                 </Typography>
                 <Typography
                     variant="body1"
                     fontWeight='normal'
                     noWrap
                 >
-                    {normalizeText(user.attributes?.email!!, 24)}
+                    {normalizeText(24, user.username)}
                 </Typography>
             </Stack>
         </Stack>

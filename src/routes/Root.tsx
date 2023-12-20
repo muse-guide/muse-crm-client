@@ -9,14 +9,13 @@ const Root = () => {
     const drawerWidth = 320;
 
     return (
-        <Box display='flex'>
+        <Box display='flex' overflow={"clip"}>
             <CssBaseline/>
             <Navigation drawerWidth={drawerWidth}/>
             <Box component="main"
                  display='flex'
                  flexGrow={1}
                  minWidth="600px"
-                 height="100svh"
                  sx={{
                      marginLeft: {
                          md: `${drawerWidth}px`

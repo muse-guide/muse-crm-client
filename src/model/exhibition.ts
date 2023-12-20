@@ -6,9 +6,10 @@ export interface Exhibition {
     includeInstitutionInfo: boolean;
     langOptions: ExhibitionLang[];
     images: ImageRef[];
+    status: "ACTIVE" | "ERROR"
 }
 
-export type CreateExhibition = Omit<Exhibition, "id" | "qrCodeUrl">
+export type CreateExhibition = Omit<Exhibition, "id" | "qrCodeUrl" | "status">
 
 export interface ExhibitionLang {
     lang: string;
@@ -18,6 +19,6 @@ export interface ExhibitionLang {
 }
 
 export interface ImageRef {
+    key: string;
     name: string;
-    url: string;
 }

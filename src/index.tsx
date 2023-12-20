@@ -14,18 +14,18 @@ import ExhibitionsPage from "./routes/exhibitions/ExhibitionsPage";
 
 const config = {
     Auth: {
-        // identityPoolId: 'XX-XXXX-X:XXXXXXXX-XXXX-1234-abcd-1234567890ab', // (required) - Amazon Cognito Identity Pool ID
-        region: 'eu-central-1', // (required) - Amazon Cognito Region
-        userPoolId: 'eu-central-1_YhPb8TNLP', // (optional) - Amazon Cognito User Pool ID
-        userPoolWebClientId: '60vli1o6ticnsvj89i5e1sj9lb' // (optional) - Amazon Cognito Web Client ID (App client secret needs to be disabled)
+        Cognito: {
+            identityPoolId: 'eu-central-1:b4a2d594-4d5d-4046-b38a-d6edf2dcfb05', // (required) - Amazon Cognito Identity Pool ID
+            userPoolId: 'eu-central-1_YhPb8TNLP', // (optional) - Amazon Cognito User Pool ID
+            userPoolClientId: '60vli1o6ticnsvj89i5e1sj9lb', // (optional) - Amazon Cognito Web Client ID (App client secret needs to be disabled)
+            region: 'eu-central-1',
+        }
     },
-    API: {
-        endpoints: [
-            {
-                name: "muse-app-api",
-                endpoint: "https://d2i10ug7mxw82h.cloudfront.net"
-            }
-        ]
+    Storage: {
+        S3: {
+            region: 'eu-central-1',
+            bucket: 'crm-dev-asset-bucket'
+        }
     }
 }
 
@@ -90,14 +90,10 @@ const darkTheme = createTheme({
     palette: {
         mode: "light",
         primary: {
-            main: "#000000",
-            light: "rgb(161,161,161)",
-            dark: "#06245e"
+            main: "#000000"
         },
         secondary: {
-            main: "rgba(0,0,0,0.46)",
-            light: "#ffd7b0",
-            dark: "#865d03"
+            main: "rgba(0,0,0,0.46)"
         },
         background: {
             default: "rgba(0,0,0,0)"

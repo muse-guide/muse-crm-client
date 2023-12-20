@@ -4,14 +4,7 @@ import TableCell, {TableCellProps} from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow, {TableRowProps} from '@mui/material/TableRow';
 import {BasePanel} from "./panel";
-import {ExhibitionLang} from "../model/Exhibition";
-import {bgColor} from "../index";
-
-export interface ExhibitionRow {
-    id: string;
-    referenceName: string;
-    langOptions: ExhibitionLang[];
-}
+import {grey} from "@mui/material/colors";
 
 export const BaseTable = ({children, ...props}: TableProps) => {
     return (
@@ -25,7 +18,7 @@ export const BaseTable = ({children, ...props}: TableProps) => {
 
 export const TableHeadCell = ({children, ...props}: TableCellProps) => {
     return (
-        <TableCell sx={{backgroundColor: bgColor}} {...props}>
+        <TableCell sx={{backgroundColor: grey[100], fontWeight: "bolder"}} {...props}>
             {children}
         </TableCell>
     )

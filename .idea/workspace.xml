@@ -4,18 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add exhibitions table">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Optimize table">
+      <change afterPath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/http/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/CheckboxInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/CheckboxInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/asset/exhibitions/1000/image/img1-small.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/asset/exhibitions/1000/image/img1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/asset/exhibitions/1000/image/img2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/asset/exhibitions/1000/image/img3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/asset/exhibitions/1000/image/qr.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/v1/exhibitions/1000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ComponentUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ComponentUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ConfirmationDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/ConfirmationDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/ImagePreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImagePreview.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/TextInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/TextInputWithHint.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/TextInputWithHint.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/textEditor/TextEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/textEditor/TextEditor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/textEditor/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/textEditor/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/client.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Exhibition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibitions/ExhibitionsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibitions/ExhibitionsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ExhibitionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitionService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +73,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17.0.2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse/muse-crm-client/src/routes/exhibitions&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse/muse-crm-client/public/v1&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -70,17 +89,21 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/v1" />
       <recent name="$PROJECT_DIR$/src/routes/exhibitions" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/http" />
+      <recent name="$PROJECT_DIR$/src/types" />
+      <recent name="$PROJECT_DIR$/src/components/dialog" />
       <recent name="$PROJECT_DIR$/src/components/form" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="$PROJECT_DIR$/src/components/form/TextInputWithHint.tsx" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.npm start">
+  <component name="RunManager" selected="npm.build">
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -166,7 +189,29 @@
       <workItem from="1696011925658" duration="736000" />
       <workItem from="1700161035033" duration="3521000" />
       <workItem from="1700245855478" duration="15095000" />
-      <workItem from="1700506961021" duration="2861000" />
+      <workItem from="1700506961021" duration="3428000" />
+      <workItem from="1700590660562" duration="4497000" />
+      <workItem from="1700685053700" duration="1260000" />
+      <workItem from="1700725139388" duration="237000" />
+      <workItem from="1700849134544" duration="4799000" />
+      <workItem from="1700937016090" duration="8331000" />
+      <workItem from="1701109752842" duration="741000" />
+      <workItem from="1701156151168" duration="32000" />
+      <workItem from="1701196020739" duration="2540000" />
+      <workItem from="1701198929913" duration="439000" />
+      <workItem from="1701282503396" duration="3299000" />
+      <workItem from="1701328714719" duration="252000" />
+      <workItem from="1701369871883" duration="3354000" />
+      <workItem from="1701454926727" duration="9417000" />
+      <workItem from="1701800152940" duration="3370000" />
+      <workItem from="1701849144486" duration="148000" />
+      <workItem from="1702060229942" duration="11017000" />
+      <workItem from="1702405319382" duration="1930000" />
+      <workItem from="1702492742816" duration="1948000" />
+      <workItem from="1702580038429" duration="1821000" />
+      <workItem from="1702628276316" duration="5000" />
+      <workItem from="1702924927346" duration="1657000" />
+      <workItem from="1703096073368" duration="638000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -176,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700421545666</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Optimize table">
+      <option name="closed" value="true" />
+      <created>1700509975599</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700509975599</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +247,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Add exhibitions table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add exhibitions table" />
+    <MESSAGE value="Optimize table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimize table" />
   </component>
 </project>

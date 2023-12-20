@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {UseFieldArrayReturn} from "react-hook-form";
-import {Exhibition} from "../../model/Exhibition";
+import {Exhibition} from "../../model/exhibition";
 
 interface LanguageSelectDialogProps {
     open: boolean,

@@ -1,38 +1,39 @@
 import React, {useEffect, useState} from "react";
-import {Box, Button, Stack, useTheme} from "@mui/material";
+import {Button, useTheme} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import TextInput from "../../components/form/TextInput";
 import {CheckboxInput} from "../../components/form/CheckboxInput";
 import {ImageUploaderField} from "../../components/form/ImageUploader";
 import {FormProvider, SubmitHandler, useFieldArray, useForm} from "react-hook-form";
-import {Exhibition} from "../../model/Exhibition";
+import {Exhibition} from "../../model/exhibition";
 import {LanguageTabs} from "./ExhibtionLanguageTabs";
 import {useSnackbar} from "notistack";
 import {useNavigate, useParams} from "react-router-dom";
 import {exhibitionService} from "../../services/ExhibitionService";
-import {grey} from "@mui/material/colors";
-import PhotoIcon from '@mui/icons-material/Photo';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import CropIcon from '@mui/icons-material/Crop';
-import QrCode2Icon from '@mui/icons-material/QrCode2';
 import {FullRow, Panel} from "../../components/panel";
-import {Actions, PageContentContainer, PageTitle, PrimaryPageColumn, SecondaryPageColumn} from "../../components/page";
+import {Actions, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
+
+const new_item = "new"
 
 const initialExhibition: Exhibition = {
-    id: "",
+    id: new_item,
     institutionId: "abea222c-adf8-4334-a9ac-7da42a2ed410",
     referenceName: "",
     qrCodeUrl: "",
     includeInstitutionInfo: false,
     images: [],
-    langOptions: []
+    langOptions: [],
+    status: "ACTIVE"
 }
 
 const ExhibitionPage = () => {
     const {exhibitionId} = useParams();
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
+    const [processing, setProcessing] = useState<boolean>(false);
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
     const methods = useForm<Exhibition>({
@@ -51,7 +52,9 @@ const ExhibitionPage = () => {
 
     useEffect(() => {
         methods.reset(initialExhibition)
-        getExhibitionAsync(exhibitionId);
+        if (exhibitionId != new_item) {
+            getExhibitionAsync(exhibitionId);
+        }
     }, [exhibitionId]);
 
     const getExhibitionAsync = async (exhibitionId?: string) => {
@@ -68,23 +71,27 @@ const ExhibitionPage = () => {
     };
 
     const onSubmit: SubmitHandler<Exhibition> = async (data) => {
-        console.log(data);
         if (langOptionMethods.fields.length < 1) {
             snackbar("Your must provide at least one language for collection...", {variant: "error"})
             return
         }
+        setProcessing(true);
         try {
-            if (exhibitionId) {
-                snackbar(`Updating collection ${exhibitionId}`, {variant: "success"})
+            if (exhibitionId && exhibitionId != new_item) {
+                await exhibitionService.updateExhibition(data)
+                methods.reset(initialExhibition);
+                navigate("/exhibitions");
+                snackbar(`Exhibition ${exhibitionId} updated`, {variant: "success"})
             } else {
-                const createdExhibition = await exhibitionService.createExhibition(data)
-                methods.reset(createdExhibition);
+                await exhibitionService.createExhibition(data)
+                methods.reset(initialExhibition);
+                navigate("/exhibitions");
                 snackbar(`New collection created`, {variant: "success"})
             }
         } catch (err) {
             navigate("/error");
         } finally {
-            setLoading(false);
+            setProcessing(false);
         }
     }
 
@@ -102,7 +109,7 @@ const ExhibitionPage = () => {
             path: "/exhibitions"
         },
         {
-            nameKey: `${methods.getValues("referenceName")}`,
+            nameKey: `${exhibitionId == new_item ? "..." : methods.getValues("referenceName")}`,
             path: ""
         },
     ]
@@ -115,7 +122,7 @@ const ExhibitionPage = () => {
                 <AppBreadcrumbs links={links}/>
                 <PageTitle title={t('exhibitionPage.title')}/>
                 <PageContentContainer>
-                    <PrimaryPageColumn>
+                    <SinglePageColumn>
                         <Panel
                             loading={loading}
                             title="Podstawowe informacje"
@@ -151,61 +158,22 @@ const ExhibitionPage = () => {
                                 <LanguageTabs arrayMethods={langOptionMethods}/>
                             </FullRow>
                         </Panel>
-                    </PrimaryPageColumn>
-
-                    <SecondaryPageColumn>
-                        <Panel
-                            loading={loading}
-                            skeletonHeight={570}
-                            title="Kod QR"
-                            subtitle="Unikalny kod QR służący do przeniesienia Zwiedzającego na stronę wystawy. Zostanie wygenerowany po zapisaniu kolekcji. Wybierz jedną z dostępnych opcji aby go wybrukować i umieścić w widocznym miejscu."
-                        >
-                            {
-                                exhibitionId ?
-                                    <FullRow justifyContent="center" display="flex">
-                                        <Box
-                                            component="img"
-                                            sx={{
-                                                width: 280,
-                                                height: 280,
-                                                borderColor: grey[800],
-                                            }}
-                                            alt="Not found..."
-                                            src={methods.getValues("qrCodeUrl")}
-                                        />
-                                    </FullRow>
-                                    :
-                                    <FullRow justifyContent="center" display="flex">
-                                        <Stack
-                                            sx={{
-                                                width: 280,
-                                                height: 280,
-                                                border: 1,
-                                                borderStyle: "dashed",
-                                                borderColor: theme.palette.grey[600],
-                                                backgroundColor: theme.palette.grey[50],
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                display: "flex"
-                                            }}>
-                                            <QrCode2Icon color="disabled" sx={{fontSize: "80px"}}/>
-                                        </Stack>
-                                    </FullRow>
-                            }
-                            <FullRow justifyContent="center" display="flex">
-                                <Stack direction="row" spacing={2} display="flex" justifyContent="end" pb={1}>
-                                    <Button variant="outlined" disabled={!exhibitionId} startIcon={<PhotoIcon fontSize='medium'/>}>png</Button>
-                                    <Button variant="outlined" disabled={!exhibitionId} startIcon={<PictureAsPdfIcon fontSize='medium'/>}>pdf</Button>
-                                    <Button variant="outlined" disabled={!exhibitionId} startIcon={<CropIcon fontSize='medium'/>}>Dopasuj</Button>
-                                </Stack>
-                            </FullRow>
-                        </Panel>
-                    </SecondaryPageColumn>
+                    </SinglePageColumn>
 
                     <Actions>
-                        <Button variant="text">Anuluj</Button>
+                        <Button variant="text" onClick={() => navigate("/exhibitions")}>Anuluj</Button>
                         <Button variant="outlined">Podgląd aplikacji</Button>
-                        <Button variant="contained" disableElevation type={"submit"} onClick={checkErrorsBeforeSubmission}>Zapisz</Button>
+                        <LoadingButton
+                            key="submitButton"
+                            variant="contained"
+                            disableElevation
+                            type="submit"
+                            loading={processing}
+                            loadingPosition="start"
+                            startIcon={<SaveIcon/>}
+                        >
+                            Zapisz
+                        </LoadingButton>
                     </Actions>
 
                 </PageContentContainer>
