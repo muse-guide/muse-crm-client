@@ -4,7 +4,7 @@ import {Box, Button, IconButton, Link, List, ListItem, ListItemIcon, Stack, Typo
 import CloudUploadRoundedIcon from '@mui/icons-material/CloudUploadRounded';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {UseFieldArrayReturn} from "react-hook-form";
-import {Exhibition, ImageRef} from "../../model/exhibition";
+import {Exhibition, ImageRef, nid} from "../../model/exhibition";
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import {useTranslation} from "react-i18next";
 import Dialog from "@mui/material/Dialog";
@@ -15,7 +15,6 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import {ImagePreview} from "./ImagePreview";
 import {getUrl, remove, uploadData} from 'aws-amplify/storage';
 import {normalizeText} from "../ComponentUtils";
-import {v4 as uuidv4} from 'uuid';
 import LinearProgress from '@mui/material/LinearProgress';
 
 
@@ -194,7 +193,7 @@ const uploadDataInBrowser = async (
 ) => {
     try {
         return await uploadData({
-            key: `exhibitions/images/${uuidv4()}.${file.type.split('/')[1]}`,
+            key: `exhibitions/images/${nid()}.${file.type.split('/')[1]}`,
             data: file,
             options: {
                 accessLevel: 'private'

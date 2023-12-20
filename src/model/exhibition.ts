@@ -1,3 +1,7 @@
+import {nanoid} from "nanoid";
+
+export const nid = () => nanoid(8)
+
 export interface Exhibition {
     id: string;
     institutionId: string;
