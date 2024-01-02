@@ -5,6 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow, {TableRowProps} from '@mui/material/TableRow';
 import {BasePanel} from "./panel";
 import {grey} from "@mui/material/colors";
+import {Typography} from "@mui/material";
 
 export const BaseTable = ({children, ...props}: TableProps) => {
     return (
@@ -18,8 +19,8 @@ export const BaseTable = ({children, ...props}: TableProps) => {
 
 export const TableHeadCell = ({children, ...props}: TableCellProps) => {
     return (
-        <TableCell sx={{backgroundColor: grey[100], fontWeight: "bolder"}} {...props}>
-            {children}
+        <TableCell sx={{fontWeight: "bolder"}} {...props}>
+            <Typography variant="overline">{children}</Typography>
         </TableCell>
     )
 }

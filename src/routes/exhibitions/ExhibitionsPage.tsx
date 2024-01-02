@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Avatar, AvatarGroup, Button, Chip, Stack, TextField, Typography, useTheme} from "@mui/material";
+import {Avatar, AvatarGroup, Button, Chip, Stack, Typography, useTheme} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import {EmptyPlaceholder, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
@@ -16,18 +16,18 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
-import InputAdornment from '@mui/material/InputAdornment';
-import SearchIcon from '@mui/icons-material/Search';
 import {exhibitionService} from "../../services/ExhibitionService";
 import {useSnackbar} from "notistack";
 import ConfirmationDialog from "../../components/dialog/ConfirmationDialog";
 import CircularProgress from '@mui/material/CircularProgress';
 import QrCodeDialog from "../../components/dialog/QrCodeDialog";
+import FilterListIcon from '@mui/icons-material/FilterList';
+import {ApiException} from "../../http/types";
 
 
 const ExhibitionsPage = () => {
     const {t} = useTranslation();
-    const navigate = useNavigate();
+    const {enqueueSnackbar: snackbar} = useSnackbar();
     const [exhibitions, setExhibitions] = useState<Exhibition[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -41,12 +41,12 @@ const ExhibitionsPage = () => {
             const exhibitions = await exhibitionService.getExhibitions({});
             setExhibitions(exhibitions);
         } catch (err) {
-            navigate("/error");
+            if (err instanceof ApiException) snackbar(`Creating exhibition failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
+            else snackbar(`Creating exhibition failed.`, {variant: "error"})
         } finally {
             setLoading(false);
         }
     };
-
 
 
     const links = [
@@ -61,7 +61,7 @@ const ExhibitionsPage = () => {
             <AppBreadcrumbs links={links}/>
             <PageTitle title={t('exhibitionsPage.title')} subtitle={t('exhibitionsPage.subtitle') as string}/>
             <PageContentContainer>
-                <SinglePageColumn>{!loading && !exhibitions || exhibitions.length == 0 ? <NoItems/> : <Stack spacing={3} width="100%">
+                <SinglePageColumn>{!loading && !exhibitions || exhibitions.length == 0 ? <NoItems/> : <Stack spacing={2} width="100%">
                     <TableActions reload={getExhibitionsAsync}/>
                     {loading ? <EmptyPlaceholder><CircularProgress/></EmptyPlaceholder> :
                         <BaseTable>
@@ -114,20 +114,9 @@ const TableActions = ({reload}: { reload: () => Promise<void> }) => {
 
     return (
         <Stack direction="row" display="flex" spacing={1} justifyContent="end">
-            <Button variant="outlined" onClick={() => reload()}><RefreshOutlinedIcon/></Button>
-            <Stack direction="row" width="100%" display="flex" flexGrow={1} justifyItems="start">
-                <TextField
-                    size="small"
-                    placeholder="Search"
-                    sx={{minWidth: "340px"}}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <SearchIcon/>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
+            <Stack direction="row" width="100%" spacing={1}  flexGrow={1} justifyItems="start">
+                <Button variant="outlined" onClick={() => reload()} startIcon={<RefreshOutlinedIcon/>}>Refresh</Button>
+                <Button variant="outlined" onClick={() => reload()} disabled startIcon={<FilterListIcon/>}>Filter</Button>
             </Stack>
             <Stack direction="row" spacing={1}>
                 <Button variant="contained" onClick={() => navigate("new")} disableElevation startIcon={<AddOutlinedIcon/>}>Create</Button>

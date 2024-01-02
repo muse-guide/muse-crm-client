@@ -15,12 +15,11 @@ import {FullRow, Panel} from "../../components/panel";
 import {Actions, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
-
-const new_item = "new"
+import {ApiException} from "../../http/types";
 
 const initialExhibition: Exhibition = {
-    id: new_item,
-    institutionId: "abea222c-adf8-4334-a9ac-7da42a2ed410",
+    id: "abea222c",
+    institutionId: "abea222c",
     referenceName: "",
     qrCodeUrl: "",
     includeInstitutionInfo: false,
@@ -52,7 +51,7 @@ const ExhibitionPage = () => {
 
     useEffect(() => {
         methods.reset(initialExhibition)
-        if (exhibitionId != new_item) {
+        if (exhibitionId) {
             getExhibitionAsync(exhibitionId);
         }
     }, [exhibitionId]);
@@ -64,7 +63,8 @@ const ExhibitionPage = () => {
             const exhibition = await exhibitionService.getExhibition(exhibitionId);
             methods.reset(exhibition);
         } catch (err) {
-            navigate("/error");
+            if (err instanceof ApiException) snackbar(`Creating exhibition failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
+            else snackbar(`Creating exhibition failed.`, {variant: "error"})
         } finally {
             setLoading(false);
         }
@@ -77,7 +77,7 @@ const ExhibitionPage = () => {
         }
         setProcessing(true);
         try {
-            if (exhibitionId && exhibitionId != new_item) {
+            if (exhibitionId) {
                 await exhibitionService.updateExhibition(data)
                 methods.reset(initialExhibition);
                 navigate("/exhibitions");
@@ -89,18 +89,11 @@ const ExhibitionPage = () => {
                 snackbar(`New collection created`, {variant: "success"})
             }
         } catch (err) {
-            navigate("/error");
+            if (err instanceof ApiException) snackbar(`Creating exhibition failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
+            else snackbar(`Creating exhibition failed.`, {variant: "error"})
         } finally {
             setProcessing(false);
         }
-    }
-
-    const checkErrorsBeforeSubmission = async () => {
-        methods.trigger().then(r => {
-            if (!methods.formState.isValid) {
-                snackbar("Form contains errors...", {variant: "error"})
-            }
-        })
     }
 
     const links = [
@@ -109,7 +102,7 @@ const ExhibitionPage = () => {
             path: "/exhibitions"
         },
         {
-            nameKey: `${exhibitionId == new_item ? "..." : methods.getValues("referenceName")}`,
+            nameKey: `${exhibitionId ? "..." : methods.getValues("referenceName")}`,
             path: ""
         },
     ]

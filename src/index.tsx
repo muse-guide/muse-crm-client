@@ -52,6 +52,10 @@ const router = createBrowserRouter([
                 element: <ExhibitionsPage/>
             },
             {
+                path: "exhibitions/new",
+                element: <ExhibitionPage/>
+            },
+            {
                 path: "exhibitions/:exhibitionId",
                 element: <ExhibitionPage/>
             }
@@ -103,7 +107,7 @@ const darkTheme = createTheme({
         fontFamily: ["Public Sans", "sans-serif"].join(",")
     },
     shape: {
-        borderRadius: 8,
+        borderRadius: 6,
     },
 });
 

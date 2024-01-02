@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Progress">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Introduce nano id">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/exhibition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibitions/ExhibitionsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibitions/ExhibitionsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ExhibitionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitionService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +85,7 @@
       <recent name="$PROJECT_DIR$/src/components/form/TextInputWithHint.tsx" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.npm start">
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -186,7 +193,12 @@
       <workItem from="1702580038429" duration="1821000" />
       <workItem from="1702628276316" duration="5000" />
       <workItem from="1702924927346" duration="1657000" />
-      <workItem from="1703096073368" duration="1546000" />
+      <workItem from="1703096073368" duration="2250000" />
+      <workItem from="1703183962252" duration="2378000" />
+      <workItem from="1703270287698" duration="1850000" />
+      <workItem from="1703615062269" duration="3438000" />
+      <workItem from="1703960835089" duration="3839000" />
+      <workItem from="1704052463878" duration="5539000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -212,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703098052049</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Introduce nano id">
+      <option name="closed" value="true" />
+      <created>1703100572973</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703100572973</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +255,7 @@
     <MESSAGE value="Add exhibitions table" />
     <MESSAGE value="Optimize table" />
     <MESSAGE value="Progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="Progress" />
+    <MESSAGE value="Introduce nano id" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduce nano id" />
   </component>
 </project>

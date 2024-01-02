@@ -15,7 +15,7 @@ type PanelProps = {
 
 export const BasePanel = ({children, ...props}: PaperProps) => {
     return (
-        <Paper variant={"outlined"} sx={{width: '100%', borderRadius: "8px", borderColor: borderColor}} {...props}>
+        <Paper variant={"outlined"} sx={{width: '100%', borderRadius: "6px", borderColor: borderColor}} {...props}>
             {children}
         </Paper>
     )
