@@ -73,12 +73,12 @@ export const EmptyPlaceholder = ({children}: { children: React.ReactNode }) => {
     return (
         <Box width={"100%"} sx={{
             alignItems: "center",
-            height: "200px",
+            height: "170px",
             border: 1,
             borderStyle: "dashed",
             borderColor: theme.palette.grey[600],
             borderRadius: `${theme.shape.borderRadius}px`,
-            backgroundColor: theme.palette.common.white,
+            backgroundColor: theme.palette.secondary.light,
         }}>
             <Stack alignItems="center" spacing={0} p={3} height="100%" justifyContent="center">
                 {children}

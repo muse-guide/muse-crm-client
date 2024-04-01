@@ -9,17 +9,24 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {UseFieldArrayReturn} from "react-hook-form";
-import {Exhibition} from "../../model/exhibition";
+
+export interface LanguageOptionsHolder {
+    langOptions: {
+        lang: string;
+        title: string;
+        subtitle: string;
+    }[]
+}
 
 interface LanguageSelectDialogProps {
     open: boolean,
     handleClose: () => void
-    arrayMethods: UseFieldArrayReturn<Exhibition, "langOptions", "id">;
+    arrayMethods: UseFieldArrayReturn<LanguageOptionsHolder, "langOptions", "id">;
 }
 
 export const LanguageSelectDialog = (props: LanguageSelectDialogProps) => {
     const {t} = useTranslation();
-    const [lang, setLang] = useState('pl');
+    const [lang, setLang] = useState('pl-PL');
     const [validationError, setValidationError] = useState(false);
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -62,7 +69,7 @@ export const LanguageSelectDialog = (props: LanguageSelectDialogProps) => {
                 }}
                 >
                     <DialogContentText>
-                        Nowy język pojawi się we wszystkich eksponatach należących do kolekcji.
+                        Nowa opcja językowa pojawi się w aplikacji mobilnej.
                     </DialogContentText>
                     <FormControl sx={{paddingTop: 1.5, paddingBottom: 0, width: "100%"}}>
                         <Select
@@ -72,11 +79,11 @@ export const LanguageSelectDialog = (props: LanguageSelectDialogProps) => {
                             size={"small"}
                             sx={{width: "100%"}}
                         >
-                            <MenuItem value={'pl'}><LanguageOption countryCode='pl'/></MenuItem>
-                            <MenuItem value={'gb'}><LanguageOption countryCode='gb'/></MenuItem>
-                            <MenuItem value={'es'}><LanguageOption countryCode='es'/></MenuItem>
+                            <MenuItem value={'pl-PL'}><LanguageOption countryCode='pl'/></MenuItem>
+                            <MenuItem value={'en-GB'}><LanguageOption countryCode='gb'/></MenuItem>
+                            <MenuItem value={'es-ES'}><LanguageOption countryCode='es'/></MenuItem>
                         </Select>
-                        <FormHelperText error={validationError}>{validationError ? "Język już w kolekcji" : null}</FormHelperText>
+                        <FormHelperText error={validationError}>{validationError ? "Wybrany język został już dodany" : null}</FormHelperText>
                     </FormControl>
                 </DialogContent>
                 <DialogActions sx={{px: '24px', pb: '20px'}}>

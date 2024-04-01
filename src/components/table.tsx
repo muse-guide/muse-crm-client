@@ -4,7 +4,6 @@ import TableCell, {TableCellProps} from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow, {TableRowProps} from '@mui/material/TableRow';
 import {BasePanel} from "./panel";
-import {grey} from "@mui/material/colors";
 import {Typography} from "@mui/material";
 
 export const BaseTable = ({children, ...props}: TableProps) => {
@@ -28,7 +27,12 @@ export const TableHeadCell = ({children, ...props}: TableCellProps) => {
 export const BaseTableRow = ({children, ...props}: TableRowProps) => {
     return (
         <TableRow
-            sx={{'&:last-child td, &:last-child th': {border: 0}}}
+            sx={{
+                border: 0,
+                '&:last-child td, &:last-child th': {
+                    border: 0
+                }
+            }}
             {...props}
         >
             {children}

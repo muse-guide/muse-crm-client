@@ -4,18 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Introduce nano id">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add catch">
+      <change afterPath="$PROJECT_DIR$/src/components/langOptions/NoLanguagePlaceholder.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/langOptions/TabTitle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/audio.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/common.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/exhibit.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/exhibit/ArticleDialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/exhibit/AudioGeneratorDialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/AudioPreviewService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/ExhibitService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/pl/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/pl/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/TextInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/TextInputWithHint.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/textEditor/TextEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/textEditor/TextEditor.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/http/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/http/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/exhibition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ExhibitPage.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibitions/ExhibitionsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibitions/ExhibitionsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibitions/ExhibitionsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/ExhibitionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitionService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +56,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;contexts&quot;: [
+    {
+      &quot;name&quot;: &quot;gke_prj-stg-gke-a14c_europe-west4_gke-stg-autopilot-cluster&quot;
+    }
+  ],
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="KubernetesSettings">
+    <option name="contextName" value="gke_prj-stg-gke-a14c_europe-west4_gke-stg-autopilot-cluster" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -48,40 +80,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17.0.2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse/muse-crm-client/public/v1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3876967&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/michalpacholczyk/workspace/muse/muse-crm-client/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "openjdk-17.0.2",
+    "last_opened_file_path": "/Users/michalpacholczyk/workspace/muse/muse-crm-client/src/model",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3876967",
+    "ts.external.directory.path": "/Users/michalpacholczyk/workspace/muse/muse-crm-client/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/model" />
+      <recent name="$PROJECT_DIR$/src/services" />
+      <recent name="$PROJECT_DIR$/src/routes/exhibit" />
       <recent name="$PROJECT_DIR$/public/v1" />
       <recent name="$PROJECT_DIR$/src/routes/exhibitions" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/langOptions" />
+      <recent name="$PROJECT_DIR$/src/routes/exhibition" />
       <recent name="$PROJECT_DIR$/src/http" />
       <recent name="$PROJECT_DIR$/src/types" />
       <recent name="$PROJECT_DIR$/src/components/dialog" />
-      <recent name="$PROJECT_DIR$/src/components/form" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/routes/exhibit/AudioGeneratorDialog.tsx" />
+      <recent name="$PROJECT_DIR$/src/components/TabTitle.tsx" />
+      <recent name="$PROJECT_DIR$/src/components/NoLanguagePlaceholder.tsx" />
+      <recent name="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" />
       <recent name="$PROJECT_DIR$/src/components/form/TextInputWithHint.tsx" />
     </key>
   </component>
@@ -198,7 +237,36 @@
       <workItem from="1703270287698" duration="1850000" />
       <workItem from="1703615062269" duration="3438000" />
       <workItem from="1703960835089" duration="3839000" />
-      <workItem from="1704052463878" duration="5539000" />
+      <workItem from="1704052463878" duration="7964000" />
+      <workItem from="1705604686655" duration="2106000" />
+      <workItem from="1705954196295" duration="1089000" />
+      <workItem from="1706211171044" duration="7000" />
+      <workItem from="1706903699431" duration="791000" />
+      <workItem from="1707852710722" duration="1740000" />
+      <workItem from="1707936564708" duration="475000" />
+      <workItem from="1708115315483" duration="725000" />
+      <workItem from="1708197578919" duration="2446000" />
+      <workItem from="1708284755572" duration="2160000" />
+      <workItem from="1708369910020" duration="1961000" />
+      <workItem from="1708419993785" duration="5000" />
+      <workItem from="1708632346011" duration="633000" />
+      <workItem from="1709324838301" duration="205000" />
+      <workItem from="1710530315499" duration="2900000" />
+      <workItem from="1710704356073" duration="2691000" />
+      <workItem from="1710755468522" duration="153000" />
+      <workItem from="1710788746558" duration="4173000" />
+      <workItem from="1710834534409" duration="173000" />
+      <workItem from="1710962468581" duration="4303000" />
+      <workItem from="1711047595027" duration="4833000" />
+      <workItem from="1711136189077" duration="11039000" />
+      <workItem from="1711352166037" duration="36000" />
+      <workItem from="1711353976336" duration="49000" />
+      <workItem from="1711395177558" duration="3880000" />
+      <workItem from="1711481216450" duration="3751000" />
+      <workItem from="1711526786482" duration="694000" />
+      <workItem from="1711567261787" duration="4071000" />
+      <workItem from="1711654047123" duration="4611000" />
+      <workItem from="1711739615358" duration="11560000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -232,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703100572973</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add catch">
+      <option name="closed" value="true" />
+      <created>1704221620142</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704221620142</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,6 +332,7 @@
     <MESSAGE value="Optimize table" />
     <MESSAGE value="Progress" />
     <MESSAGE value="Introduce nano id" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduce nano id" />
+    <MESSAGE value="Add catch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add catch" />
   </component>
 </project>

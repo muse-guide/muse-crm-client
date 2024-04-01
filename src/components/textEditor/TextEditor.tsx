@@ -88,7 +88,7 @@ const TextEditor = ({
                      }) => (
                 <Stack>
                     <Typography variant='body1' pb={2}>{title}</Typography>
-                    <Box border={1} borderRadius={2} borderColor={borderColor}>
+                    <Box border={1} borderRadius={1} borderColor={borderColor}>
                         <ReactQuill
                             ref={qRef}
                             theme="snow"

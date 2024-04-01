@@ -8,7 +8,6 @@ async function getExhibition(id: string): Promise<Exhibition> {
     return await requestWrapper(async () => {
         const path = `${entityPath}/${id}`;
         const response = await api.get<Exhibition>(path, {...await getAuthHeaders()});
-        console.debug(response.data)
         return response.data;
     })
 }
@@ -16,7 +15,6 @@ async function getExhibition(id: string): Promise<Exhibition> {
 async function getExhibitions(searchParams?: {}): Promise<Exhibition[]> {
     return await requestWrapper(async () => {
         const response = await api.get<PaginatedResults>(entityPath, {...await getAuthHeaders()});
-        console.debug(response.data.items)
         return response.data.items as Exhibition[];
     })
 }
@@ -40,7 +38,6 @@ async function deleteExhibition(id: string) {
     return await requestWrapper(async () => {
         const path = `${entityPath}/${id}`;
         const response = await api.delete<Exhibition>(path, {...await getAuthHeaders()});
-        console.debug(response.data)
     })
 }
 

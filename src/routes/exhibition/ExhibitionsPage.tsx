@@ -24,7 +24,6 @@ import QrCodeDialog from "../../components/dialog/QrCodeDialog";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {ApiException} from "../../http/types";
 
-
 const ExhibitionsPage = () => {
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
@@ -39,6 +38,7 @@ const ExhibitionsPage = () => {
         setLoading(true);
         try {
             const exhibitions = await exhibitionService.getExhibitions({});
+
             setExhibitions(exhibitions);
         } catch (err) {
             if (err instanceof ApiException) snackbar(`Creating exhibition failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
@@ -76,7 +76,12 @@ const ExhibitionsPage = () => {
                             <TableBody>
                                 {exhibitions.map((row, i) => (
                                     <BaseTableRow key={row.id + i}>
-                                        <TableCell component="th" scope="row">{row.referenceName}</TableCell>
+                                        <TableCell component="th" scope="row">
+                                            <Stack spacing={2} direction="row" alignItems={"center"}>
+                                                <Avatar title={row.referenceName}/>
+                                                <Typography>{row.referenceName}</Typography>
+                                            </Stack>
+                                        </TableCell>
                                         <TableCell><Chip label={row.status} size="small" variant="outlined" color="primary"/></TableCell>
                                         <TableCell align="right"><LangList langOptions={row.langOptions}/></TableCell>
                                         <TableCell align="right"><RowActions id={row.id} referenceName={row.referenceName} qrCodeUrl={row.qrCodeUrl} reload={getExhibitionsAsync}/></TableCell>
@@ -114,7 +119,7 @@ const TableActions = ({reload}: { reload: () => Promise<void> }) => {
 
     return (
         <Stack direction="row" display="flex" spacing={1} justifyContent="end">
-            <Stack direction="row" width="100%" spacing={1}  flexGrow={1} justifyItems="start">
+            <Stack direction="row" width="100%" spacing={1} flexGrow={1} justifyItems="start">
                 <Button variant="outlined" onClick={() => reload()} startIcon={<RefreshOutlinedIcon/>}>Refresh</Button>
                 <Button variant="outlined" onClick={() => reload()} disabled startIcon={<FilterListIcon/>}>Filter</Button>
             </Stack>

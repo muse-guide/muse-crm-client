@@ -98,12 +98,12 @@ export function AppDrawer() {
             }}>
                 <MuseLogo/>
                 <CustomListItemButton
-                    to="exhibits"
+                    to="dashboard"
                     title={t("menu.dashboard")}
                     Icon={DashboardOutlinedIcon}
                 />
                 <CustomListItemButton
-                    to="exhibits"
+                    to="institutions"
                     title={t("menu.institution")}
                     Icon={AccountBalanceOutlinedIcon}
                 />
@@ -118,7 +118,7 @@ export function AppDrawer() {
                     Icon={ColorLensOutlinedIcon}
                 />
                 <CustomListItemButton
-                    to="exhibits"
+                    to="artists"
                     title={t("menu.artists")}
                     Icon={PersonOutlinedIcon}
                 />

@@ -32,6 +32,12 @@
         "select": "select",
         "add": "add",
         "close": "close",
+        "save": "save",
+        "listen": "listen",
+        "edit": "edit",
+        "preview": "preview",
+        "audio": "audio",
+        "article": "article",
         "cancel": "cancel"
     },
     "validation": {

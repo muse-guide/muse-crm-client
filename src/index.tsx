@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import Root from "./routes/Root";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ErrorPage from "./routes/ErrorPage";
-import ExhibitPage from "./routes/ExhibitPage";
+import ExhibitPage from "./routes/exhibit/ExhibitPage";
 import {createTheme, ThemeProvider} from "@mui/material";
 import "./translation";
 import ExhibitionPage from "./routes/exhibition/ExhibitionPage";
 import {SnackbarProvider} from "notistack";
 import {grey} from "@mui/material/colors";
 import {Amplify} from 'aws-amplify';
-import ExhibitionsPage from "./routes/exhibitions/ExhibitionsPage";
+import ExhibitionsPage from "./routes/exhibition/ExhibitionsPage";
 
 const config = {
     Auth: {
@@ -89,7 +89,7 @@ const theme = createTheme({
 });
 
 export const bgColor = "rgba(255,255,255,0.01)"
-export const borderColor = grey[500]
+export const borderColor = grey[400]
 const darkTheme = createTheme({
     palette: {
         mode: "light",
@@ -97,7 +97,8 @@ const darkTheme = createTheme({
             main: "#000000"
         },
         secondary: {
-            main: "rgba(0,0,0,0.46)"
+            main: "rgba(0,0,0,0.46)",
+            light: "rgba(145,145,145,0.1)",
         },
         background: {
             default: "rgba(0,0,0,0)"

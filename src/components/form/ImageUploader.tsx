@@ -4,7 +4,7 @@ import {Box, Button, IconButton, Link, List, ListItem, ListItemIcon, Stack, Typo
 import CloudUploadRoundedIcon from '@mui/icons-material/CloudUploadRounded';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {UseFieldArrayReturn} from "react-hook-form";
-import {Exhibition, ImageRef, nid} from "../../model/exhibition";
+import {ImageRef, nid} from "../../model/common";
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import {useTranslation} from "react-i18next";
 import Dialog from "@mui/material/Dialog";
@@ -17,8 +17,11 @@ import {getUrl, remove, uploadData} from 'aws-amplify/storage';
 import {normalizeText} from "../ComponentUtils";
 import LinearProgress from '@mui/material/LinearProgress';
 
+export interface ImageHolder {
+    images: ImageRef[];
+}
 
-export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Exhibition, "images", "id"> }) => {
+export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<ImageHolder, "images", "id"> }) => {
     const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -30,7 +33,7 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Ex
     };
 
     const removeImage = async (index: number) => {
-        await removeImageAsync(props.arrayMethods.fields[index].key)
+        await removeImageAsync(props.arrayMethods.fields[index].id)
         props.arrayMethods.remove(index)
     }
 
@@ -43,7 +46,7 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Ex
             </Stack>
             <List sx={{width: '100%', maxWidth: 500, bgcolor: 'background.paper', pb: 0, pt: 2}} dense>
                 {props.arrayMethods.fields.map((field, index) => (
-                    <UploadItem key={"main-" + field.id} index={index} item={field} removeImage={removeImage}/>
+                    <UploadedItem key={"main-" + field.id} index={index} item={field} removeImage={removeImage}/>
                 ))}
             </List>
         </Stack>
@@ -54,7 +57,7 @@ interface ImageUploaderDialogProps {
     open: boolean,
     handleClose: () => void,
     removeImage: (index: number) => void
-    arrayMethods: UseFieldArrayReturn<Exhibition, "images", "id">
+    arrayMethods: UseFieldArrayReturn<ImageHolder, "images", "id">
 }
 
 export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
@@ -68,9 +71,9 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
         const lastIndex = imageList.length - 1;
         const image = imageList[lastIndex]
         if (image.file) {
-            const upload = await uploadDataInBrowser(image.file)
-            if (upload) props.arrayMethods.append({
-                key: upload.key,
+            const imageId = await uploadDataInBrowser(image.file)
+            if (imageId) props.arrayMethods.append({
+                id: imageId,
                 name: image.file.name!!
             })
             setUploadInProgress(false)
@@ -108,7 +111,7 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                                 backgroundColor: theme.palette.grey[50]
                             }}>
                                 <Stack alignItems="center" spacing={0} p={3} height="100%" justifyContent="center">
-                                    <Typography variant='body1' fontWeight='bolder'>Dodaj zdjęcia wystawy</Typography>
+                                    <Typography variant='body1' fontWeight='bolder'>Dodaj zdjęcia</Typography>
                                     <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>Przeciągnij zdjęcia tutaj albo wybierz je z dysku</Typography>
                                     <Button startIcon={<CloudUploadRoundedIcon/>} variant="outlined" onClick={onImageUpload}>Wybierz zdjęcia</Button>
                                 </Stack>
@@ -117,7 +120,7 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                     </ImageUploading>
                     <List sx={{width: '100%', bgcolor: 'background.paper', pb: 0, pt: 2}} dense>
                         {props.arrayMethods.fields.map((field, index) => (
-                            <UploadItem key={field.id} index={index} item={field} removeImage={props.removeImage}/>
+                            <UploadedItem key={field.id} index={index} item={field} removeImage={props.removeImage}/>
                         ))}
                         {uploadInProgress && <ListItem sx={{pl: "14px"}}>
                             <ListItem sx={{pl: 0, py: 1}}>
@@ -140,24 +143,25 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
     );
 }
 
-const UploadItem = ({index, item, removeImage}: {
+const UploadedItem = ({index, item, removeImage}: {
     index: number,
     item: ImageRef,
     removeImage: (index: number) => void
 }) => {
-    const [imageUrl, setImageUrl] = useState<string | undefined>("");
+    const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
     const [imgPrevOpen, setImgPrevOpen] = useState(false);
 
     useEffect(() => {
-        getImage()
-    }, []);
+        return () => setImageUrl(undefined)
+    }, [])
 
-    const getImage = async () => {
-        const url = await getImageAsync(item.key)
+    const onPreview = async () => {
+        if (imageUrl) {
+            setImgPrevOpen(true)
+            return
+        }
+        const url = await getImageAsync(item.id)
         setImageUrl(url)
-    }
-
-    const onPreview = () => {
         setImgPrevOpen(true)
     }
 
@@ -169,7 +173,7 @@ const UploadItem = ({index, item, removeImage}: {
                     <InsertPhotoOutlinedIcon/>
                 </ListItemIcon>
                 <Link
-                    key={item.key}
+                    key={`images/${item.id}`}
                     underline="always"
                     variant="body1"
                     width="100%"
@@ -187,27 +191,29 @@ const UploadItem = ({index, item, removeImage}: {
     )
 }
 
-
 const uploadDataInBrowser = async (
     file: File
 ) => {
     try {
-        return await uploadData({
-            key: `exhibitions/images/${nid()}.${file.type.split('/')[1]}`,
+        const id = nid()
+        await uploadData({
+            key: `images/${id}`,
             data: file,
             options: {
                 accessLevel: 'private'
             }
         }).result;
+
+        return id;
     } catch (error) {
         console.log('Upload image error: ', error);
     }
 };
 
-const getImageAsync = async (key: string) => {
+const getImageAsync = async (id: string) => {
     try {
         return (await getUrl({
-            key: key,
+            key: `images/${id}`,
             options: {
                 accessLevel: "private",
                 validateObjectExistence: true,

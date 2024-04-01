@@ -1,6 +1,4 @@
-import {nanoid} from "nanoid";
-
-export const nid = () => nanoid(8)
+import {ImageRef, Status} from "./common";
 
 export interface Exhibition {
     id: string;
@@ -10,7 +8,7 @@ export interface Exhibition {
     includeInstitutionInfo: boolean;
     langOptions: ExhibitionLang[];
     images: ImageRef[];
-    status: "ACTIVE" | "ERROR"
+    status: Status
 }
 
 export type CreateExhibition = Omit<Exhibition, "id" | "qrCodeUrl" | "status">
@@ -20,9 +18,4 @@ export interface ExhibitionLang {
     title: string;
     subtitle: string;
     description?: string;
-}
-
-export interface ImageRef {
-    key: string;
-    name: string;
 }
