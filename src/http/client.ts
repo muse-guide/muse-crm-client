@@ -22,7 +22,7 @@ export async function getAuthHeaders() {
 export async function requestWrapper<T>(request: () => Promise<T>) {
     try {
         const response = await request()
-        console.log(JSON.stringify(response, null, 4))
+        // console.log(JSON.stringify(response, null, 4))
         return response
     } catch (error) {
         if (error instanceof AxiosError) {

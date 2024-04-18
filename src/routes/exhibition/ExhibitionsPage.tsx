@@ -61,7 +61,7 @@ const ExhibitionsPage = () => {
             <AppBreadcrumbs links={links}/>
             <PageTitle title={t('exhibitionsPage.title')} subtitle={t('exhibitionsPage.subtitle') as string}/>
             <PageContentContainer>
-                <SinglePageColumn>{!loading && !exhibitions || exhibitions.length == 0 ? <NoItems/> : <Stack spacing={2} width="100%">
+                <SinglePageColumn maxWidth="1100px">{!loading && !exhibitions || exhibitions.length == 0 ? <NoItems/> : <Stack spacing={2} width="100%">
                     <TableActions reload={getExhibitionsAsync}/>
                     {loading ? <EmptyPlaceholder><CircularProgress/></EmptyPlaceholder> :
                         <BaseTable>

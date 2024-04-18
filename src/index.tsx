@@ -11,6 +11,7 @@ import {SnackbarProvider} from "notistack";
 import {grey} from "@mui/material/colors";
 import {Amplify} from 'aws-amplify';
 import ExhibitionsPage from "./routes/exhibition/ExhibitionsPage";
+import ExhibitsPage from './routes/exhibit/ExhibitsPage';
 
 const config = {
     Auth: {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "exhibits",
+                element: <ExhibitsPage/>
+            },
+            {
+                path: "exhibits/new",
                 element: <ExhibitPage/>
             },
             {
@@ -63,31 +68,6 @@ const router = createBrowserRouter([
     }
 ]);
 
-const theme = createTheme({
-    palette: {
-        mode: "light",
-        primary: {
-            main: "#2454b0",
-            light: "rgba(221,229,248,0.69)",
-            dark: "#06245e"
-        },
-        secondary: {
-            main: "#ef9800",
-            light: "#ffd7b0",
-            dark: "#865d03"
-        },
-        background: {
-            default: "rgba(0,0,0,0)"
-        }
-    },
-    typography: {
-        fontFamily: ["Public Sans", "sans-serif"].join(",")
-    },
-    shape: {
-        borderRadius: 8,
-    },
-});
-
 export const bgColor = "rgba(255,255,255,0.01)"
 export const borderColor = grey[400]
 const darkTheme = createTheme({
@@ -102,14 +82,32 @@ const darkTheme = createTheme({
         },
         background: {
             default: "rgba(0,0,0,0)"
-        }
+        },
     },
     typography: {
         fontFamily: ["Public Sans", "sans-serif"].join(",")
     },
     shape: {
-        borderRadius: 6,
+        borderRadius: 4,
     },
+    components: {
+        MuiTextField: {
+            styleOverrides: {
+                root: ({theme}) => ({
+                    "& .MuiOutlinedInput-root": {
+                        backgroundColor: theme.palette.secondary.light
+                    },
+                }),
+            }
+        },
+        MuiTableHead: {
+            styleOverrides: {
+                root: ({theme}) => ({
+                    // backgroundColor: theme.palette.secondary.light,
+                }),
+            }
+        }
+    }
 });
 
 root.render(

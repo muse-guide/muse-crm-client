@@ -26,7 +26,7 @@ const Root = () => {
                      },
                      paddingLeft: {
                          xs: 3,
-                         md: 4,
+                         md: 10,
                      },
                      paddingRight: {
                          xs: 3,

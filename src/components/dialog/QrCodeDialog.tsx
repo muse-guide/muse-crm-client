@@ -22,11 +22,11 @@ interface QrCodeDialogProps {
 
 
 export default function QrCodeDialog(props: QrCodeDialogProps) {
-    const [qrCode, setQrCode] = useState("");
+    const [qrCode, setQrCode] = useState<string | undefined>(undefined);
 
     useEffect(() => {
-        getImageAsync(props.qrCodeUrl)
-    }, []);
+        if (props.open && !qrCode) getImageAsync(props.qrCodeUrl)
+    }, [props.open]);
 
     const getImageAsync = async (key: string) => {
         const qrCode = await getUrl({

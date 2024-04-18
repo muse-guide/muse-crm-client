@@ -1,5 +1,3 @@
-import {Controller, UseFormReturn} from "react-hook-form";
-import {Exhibit} from "../../model/exhibit";
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router-dom";
 import {useSnackbar} from "notistack";
@@ -7,15 +5,15 @@ import React, {useEffect, useState} from "react";
 import {Exhibition} from "../../model/exhibition";
 import {exhibitionService} from "../../services/ExhibitionService";
 import {ApiException} from "../../http/types";
-import {FormControl, FormHelperText, MenuItem, Select, Skeleton, Typography, useTheme} from "@mui/material";
+import {FormControl, MenuItem, Skeleton, TextField, Typography} from "@mui/material";
 
 export const ExhibitionSelect = (props: {
-    methods: UseFormReturn<Exhibit>,
+    value?: string,
+    onChange: (id: string) => void,
     disabled: boolean
 }) => {
     const {t} = useTranslation();
     const navigate = useNavigate();
-    const theme = useTheme();
     const {enqueueSnackbar: snackbar} = useSnackbar();
     const [exhibitions, setExhibitions] = useState<Exhibition[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -29,10 +27,15 @@ export const ExhibitionSelect = (props: {
         try {
             const exhibitions = await exhibitionService.getExhibitions({});
             if (exhibitions.length < 1) {
-                snackbar(`You must have at least one active Exhibition to create Exhibit.`, {variant: "error"})
+                snackbar(`You must have at least one active Exhibition to manage Exhibits.`, {variant: "error"})
                 navigate("/exhibitions");
+                return
             }
             setExhibitions(exhibitions);
+
+            if (!props.value) {
+                props.onChange(exhibitions[0].id)
+            }
         } catch (err) {
             if (err instanceof ApiException) snackbar(`Fetching exhibitions failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
             else snackbar(`Fetching exhibitions failed.`, {variant: "error"})
@@ -44,40 +47,23 @@ export const ExhibitionSelect = (props: {
     return (
         <FormControl size={"small"} fullWidth>
             <Typography variant='body1' pb={1}>Collection *</Typography>
-            {loading ? <Skeleton variant="rectangular" width={"100%"} height={40} sx={{display: 'flex'}}/> :
-                <Controller
-                    rules={{
-                        required: {
-                            value: true,
-                            message: t("validation.required")
-                        }
+            {(loading || exhibitions.length < 1) ? <Skeleton variant="rectangular" width={"100%"} height={40} sx={{display: 'flex'}}/> :
+                <TextField
+                    name={"exhibitionSelect"}
+                    size="small"
+                    value={props.value}
+                    onChange={event => {
+                        props.onChange(event.target.value)
                     }}
-                    render={({
-                                 field: {onChange, value},
-                                 fieldState: {invalid, error},
-                             }) => (
-                        <>
-                            <Select
-                                required
-                                disabled={props.disabled}
-                                defaultValue={exhibitions[0] ? exhibitions[0].id : undefined}
-                                onChange={onChange}
-                                value={value}
-                                error={invalid}
-                                sx={{
-                                    backgroundColor: theme.palette.secondary.light
-                                }}
-                            >
-                                {exhibitions.map((exhibition, index) => (
-                                    <MenuItem key={exhibition.id + index} value={exhibition.id}>{exhibition.referenceName}</MenuItem>
-                                ))}
-                            </Select>
-                            <FormHelperText error>{error ? error.message : null}</FormHelperText>
-                        </>
-                    )}
-                    control={props.methods.control}
-                    name="exhibitionId"
-                />
+                    select
+                    required
+                    disabled={props.disabled}
+                >
+                    {exhibitions.map((exhibition, index) => (
+                        <MenuItem key={exhibition.id + index} value={exhibition.id}>{exhibition.referenceName}</MenuItem>
+                    ))}
+                </TextField>
+
             }
         </FormControl>
     )

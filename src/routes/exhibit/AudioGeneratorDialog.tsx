@@ -11,12 +11,12 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import DialogActions from "@mui/material/DialogActions";
 import SaveIcon from "@mui/icons-material/Save";
 import {langMap} from "../../model/common";
-import {getUrl} from "aws-amplify/storage";
 import PauseIcon from '@mui/icons-material/Pause';
 import LoadingButton from "@mui/lab/LoadingButton";
 import StopIcon from '@mui/icons-material/Stop';
 import {AudioPreviewRequest} from "../../model/audio";
 import {audioService} from "../../services/AudioPreviewService";
+import {assetService} from "../../services/AssetService";
 
 export const AudioGeneratorDialog = (props: {
     input: {
@@ -107,7 +107,7 @@ export const AudioGeneratorDialog = (props: {
             if (props.input.key && props.input.markup === markup) {
                 try {
                     setLoading(true)
-                    const url = await getAudioAsync(props.input.key)
+                    const url = await assetService.getPrivateAudioAsync(props.input.key)
                     setAudioUrl(url)
                     setPlaying(true)
                 } catch (e) {
@@ -241,25 +241,7 @@ export const AudioGeneratorDialog = (props: {
     )
 }
 
-const getAudioAsync = async (key: string) => {
-    return getAssetAsync(`audio/${key}`)
-}
-
 const generateAudioAsync = async (input: AudioPreviewRequest) => {
     const {audio} = await audioService.generateAudioPreview(input)
-    return getAssetAsync(`tmp/audio/${audio.key}`, "guest")
-}
-
-const getAssetAsync = async (key: string, level?: "private" | "guest" | "protected" | undefined) => {
-    try {
-        return (await getUrl({
-            key: key,
-            options: {
-                accessLevel: level ?? "private",
-                validateObjectExistence: true,
-            }
-        })).url.toString()
-    } catch (error) {
-        console.error('Fetching asset failed: ', error);
-    }
+    return await assetService.getTmpAudioAsync(audio.key)
 }

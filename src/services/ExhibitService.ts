@@ -1,6 +1,7 @@
 import {CreateExhibit, Exhibit} from "../model/exhibit";
 import api, {getAuthHeaders, requestWrapper} from "../http/client"
-import {PaginatedResults,} from "../http/types";
+import {PaginatedResults, Pagination,} from "../http/types";
+import {ExhibitsFilter} from "../routes/exhibit/ExhibitsPage";
 
 const entityPath = `/exhibits`;
 
@@ -12,10 +13,23 @@ async function getExhibit(id: string): Promise<Exhibit> {
     })
 }
 
-async function getExhibits(searchParams?: {}): Promise<Exhibit[]> {
+export interface SearchParams {
+    filters: ExhibitsFilter,
+    pagination: Pagination,
+}
+
+async function getExhibits(searchParams?: SearchParams): Promise<PaginatedResults> {
     return await requestWrapper(async () => {
-        const response = await api.get<PaginatedResults>(entityPath, {...await getAuthHeaders()});
-        return response.data.items as Exhibit[];
+        const response = await api.get<PaginatedResults>(entityPath, {
+            ...await getAuthHeaders(),
+            params: {
+                "exhibition-id": normalize(searchParams?.filters.exhibitionId),
+                "reference-name-prefix": normalize(searchParams?.filters.referenceNamePrefix),
+                "page-size": searchParams?.pagination.pageSize,
+                "next-page-key": searchParams?.pagination.nextPageKey
+            }
+        });
+        return response.data;
     })
 }
 
@@ -39,6 +53,10 @@ async function deleteExhibit(id: string) {
         const path = `${entityPath}/${id}`;
         const response = await api.delete<Exhibit>(path, {...await getAuthHeaders()});
     })
+}
+
+function normalize(value: string | undefined): string | undefined {
+    return value === "" ? undefined : value;
 }
 
 export const exhibitService = {

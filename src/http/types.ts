@@ -6,6 +6,11 @@ export interface PaginatedResults {
     nextPageKey?: string | undefined
 }
 
+export interface Pagination {
+    pageSize: number,
+    nextPageKey?: string
+}
+
 export class ApiException extends CustomError {
     statusCode: string;
     message: string;

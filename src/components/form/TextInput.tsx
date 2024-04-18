@@ -1,8 +1,7 @@
-import {Box, Stack, TextField, TextFieldProps, Typography, useTheme} from "@mui/material";
+import {Box, Stack, TextField, TextFieldProps, Typography} from "@mui/material";
 import React from "react";
-import {Control, Controller, ControllerProps, FieldError} from "react-hook-form";
+import {Control, Controller, ControllerProps} from "react-hook-form";
 import {useTranslation} from "react-i18next";
-import {grey} from "@mui/material/colors";
 
 interface TextInputCustomProps {
     name: string;
@@ -14,6 +13,7 @@ interface TextInputCustomProps {
     maxLength?: number;
     pattern?: RegExp,
     fullWith?: boolean,
+    numeric?: boolean,
 }
 
 const TextInput = ({
@@ -22,17 +22,18 @@ const TextInput = ({
                        subtitle,
                        helperText,
                        control,
-                       customValidation = {},
                        maxLength = undefined,
                        pattern = undefined,
                        required = undefined,
+                       numeric = false,
                        multiline,
                        rows,
                        fullWidth = true,
                        ...rest
                    }: TextInputCustomProps & TextFieldProps) => {
     const {t} = useTranslation();
-    const theme = useTheme()
+
+    const customValidation: ControllerProps['rules'] = {};
 
     if (required) {
         customValidation.required = {
@@ -70,7 +71,9 @@ const TextInput = ({
                             {...rest}
                             name={name}
                             value={value || ''}
-                            onChange={onChange}
+                            onChange={(event) => {
+                                numeric ? onChange(+event.target.value) : onChange(event.target.value)
+                            }}
                             onBlur={onBlur}
                             required={required}
                             error={invalid}
@@ -82,7 +85,6 @@ const TextInput = ({
                             rows={rows}
                             sx={{
                                 marginTop: 1.5,
-                                backgroundColor: theme.palette.secondary.light
                             }}
                         />
                     </Box>

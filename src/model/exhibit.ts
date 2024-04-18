@@ -4,6 +4,7 @@ export interface Exhibit {
     id: string;
     exhibitionId: string,
     referenceName: string,
+    number: number,
     qrCodeUrl: string,
     langOptions: ExhibitLang[];
     images: ImageRef[];
@@ -25,6 +26,7 @@ export interface ExhibitLang {
 export interface CreateExhibit {
     exhibitionId: string,
     referenceName: string,
+    number: number,
     langOptions: {
         lang: string;
         title: string;

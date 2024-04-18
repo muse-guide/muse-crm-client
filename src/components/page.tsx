@@ -1,10 +1,14 @@
-import {Box, Button, Grid2Props, Stack, SxProps, TextField, Theme, Typography, useTheme} from "@mui/material";
+import {Box, Grid2Props, Stack, SxProps, Theme, Typography, useTheme} from "@mui/material";
 import React from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
-import InputAdornment from "@mui/material/InputAdornment";
-import SearchIcon from "@mui/icons-material/Search";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+
+export const Page = ({children}: { children: React.ReactNode }) => {
+    return (
+        <Box display="flex" flexDirection="column" flexGrow="1">
+            {children}
+        </Box>
+    )
+}
 
 interface PageTitleProps {
     title: string,
@@ -21,36 +25,28 @@ export const PageTitle = (props: PageTitleProps) => {
     )
 }
 
-export const PageContentContainer = ({children, ...props}: Grid2Props) => {
+export const PageContentContainer = ({children}: { children: React.ReactNode }) => {
     return (
-        <Grid container spacing={4} width="100%" {...props}>{children}</Grid>
+        <Stack
+            spacing={4}
+            width="100%"
+        >
+            {children}
+        </Stack>
     )
 }
 
 export const SinglePageColumn = ({children, ...props}: Grid2Props) => {
     return (
-        <Grid xs={12} xl={8} minWidth="540px" maxWidth="1100px" width={{ xs: "100%", xl: "100%" }} {...props}>
-            <Stack spacing={4} width="100%">
-                {children}
-            </Stack>
-        </Grid>
-    )
-}
-
-export const PrimaryPageColumn = ({children, ...props}: Grid2Props) => {
-    return (
-        <Grid xs={12} xl={6.5} minWidth="540px" maxWidth="900px" width={'100%'}  {...props}>
-            <Stack spacing={4}>
-                {children}
-            </Stack>
-        </Grid>
-    )
-}
-
-export const SecondaryPageColumn = ({children, ...props}: Grid2Props) => {
-    return (
-        <Grid xs={12} xl={4.5} minWidth="200px" maxWidth="900px" {...props}>
-            <Stack spacing={4}>
+        <Grid
+            container
+            xs={12} xl={8}
+            minWidth="540px"
+            maxWidth="840px"
+            width={{xs: "100%", xl: "100%"}}
+            {...props}
+        >
+            <Stack gap={4} width="100%">
                 {children}
             </Stack>
         </Grid>
@@ -59,7 +55,7 @@ export const SecondaryPageColumn = ({children, ...props}: Grid2Props) => {
 
 export const Actions = ({children, ...props}: Grid2Props) => {
     return (
-        <Grid xs={12} xl={8} minWidth="540px" maxWidth="1100px" width={{ xs: "100%", xl: "100%" }} {...props}>
+        <Grid xs={12} xl={8} minWidth="540px" maxWidth="840px" width={{xs: "100%", xl: "100%"}} {...props}>
             <Stack direction="row" spacing={1} display="flex" justifyContent="end" pb={4}>
                 {children}
             </Stack>
