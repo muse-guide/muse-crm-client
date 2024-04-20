@@ -38,6 +38,11 @@ export interface ExhibitsFilter {
     referenceNamePrefix?: string
 }
 
+const links = [{
+    nameKey: "menu.exhibits",
+    path: "/exhibits"
+}]
+
 const ExhibitsPage = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
@@ -81,14 +86,6 @@ const ExhibitsPage = () => {
             setLoading(false);
         }
     };
-
-
-    const links = [
-        {
-            nameKey: "menu.exhibits",
-            path: "/exhibits"
-        }
-    ]
 
     const resetPage = () => {
         setPage(0)
@@ -151,10 +148,11 @@ const ExhibitsPage = () => {
                     <BaseTable size={"small"}>
                         <TableHead>
                             <TableRow>
-                                <TableHeadCell width={"40%"}><Typography variant="overline" fontWeight="bold">Reference name</Typography></TableHeadCell>
+                                <TableHeadCell width={"30%"}><Typography variant="overline" fontWeight="bold">Reference name</Typography></TableHeadCell>
                                 <TableHeadCell align="right"><Typography variant="overline" fontWeight="bold">Number</Typography></TableHeadCell>
                                 <TableHeadCell align="right"><Typography variant="overline" fontWeight="bold">Status</Typography></TableHeadCell>
                                 <TableHeadCell align="right"><Typography variant="overline" fontWeight="bold">Language option</Typography></TableHeadCell>
+                                <TableHeadCell align="right"><Typography variant="overline" fontWeight="bold">Audio</Typography></TableHeadCell>
                                 <TableHeadCell align="right"></TableHeadCell>
                             </TableRow>
                         </TableHead>
@@ -167,7 +165,8 @@ const ExhibitsPage = () => {
                                         </TableCell>
                                         <TableCell align="right">{row.number}</TableCell>
                                         <TableCell align="right"><StatusChip status={row.status}/></TableCell>
-                                        <TableCell align="right"><LangList langOptions={row.langOptions}/></TableCell>
+                                        <TableCell align="right"><LangOptions langOptions={row.langOptions}/></TableCell>
+                                        <TableCell align="right"><AudioOptions langOptions={row.langOptions}/></TableCell>
                                         <TableCell align="right"><RowActions id={row.id} referenceName={row.referenceName} qrCodeUrl={row.qrCodeUrl} reload={onRowDelete}/></TableCell>
                                     </BaseTableRow>
                                 ))}
@@ -219,7 +218,7 @@ const ResourceAvatar = ({referenceName, images, status}: { referenceName: string
     const displayImg = !!(imageId) && status === "ACTIVE"
 
     const getThumbnail = useCallback(async (imageId: string) => {
-        await assetService.getPrivateThumbnailAsync(imageId)
+        await assetService.getPrivateThumbnail(imageId)
             .then(src => setImgSrc(src!!))
     }, []);
 
@@ -243,15 +242,29 @@ const ResourceAvatar = ({referenceName, images, status}: { referenceName: string
     )
 }
 
-const LangList = ({langOptions}: {
+const LangOptions = ({langOptions}: {
     langOptions: { lang: string }[]
 }) => {
-    return <AvatarGroup spacing={"medium"} max={5}>
+    const langs = langOptions.map(opt => opt.lang)
+    return <LangList langs={langs}/>
+}
+
+const AudioOptions = ({langOptions}: {
+    langOptions: { lang: string, audio?: object }[]
+}) => {
+    const langs = langOptions
+        .filter(opt => !!opt.audio)
+        .map(opt => opt.lang)
+    return <LangList langs={langs}/>
+}
+
+const LangList = ({langs}: { langs: string[] }) => {
+    return <AvatarGroup spacing={"small"} max={5}>
         {
-            langOptions.map((opt, i) => {
+            langs.map((lang, i) => {
                 return (
-                    <Avatar key={opt.lang + i} sx={{width: 32, height: 32, backgroundColor: 'white'}}>
-                        <CircleFlag countryCode={langMap.get(opt.lang) ?? ""} height="28"/>
+                    <Avatar key={lang + i} sx={{width: 32, height: 32, backgroundColor: 'transparent'}}>
+                        <CircleFlag countryCode={langMap.get(lang) ?? ""} height="28"/>
                     </Avatar>
                 )
             })
@@ -331,7 +344,7 @@ const Pagination = ({page, pageSize, keys, onNextPage, onPrevPage, onPageSizeCha
 }) => {
     return (
         <TableRow>
-            <TableCell align="right" colSpan={5} sx={{paddingY: 1}}>
+            <TableCell align="right" colSpan={6} sx={{paddingY: 1}}>
                 <Stack direction="row" spacing={1} display="flex" justifyContent="end" alignItems={"center"}>
                     <Typography variant='subtitle2' paddingRight={1}>Rows per page:</Typography>
                     <Select
@@ -372,7 +385,7 @@ const Loading = () => {
     return (
         <TableBody>
             <TableRow>
-                <TableCell align="center" colSpan={5} sx={{paddingY: 8}}>
+                <TableCell align="center" colSpan={6} sx={{paddingY: 8}}>
                     <CircularProgress/>
                 </TableCell>
             </TableRow>
@@ -387,7 +400,7 @@ const NoItems = () => {
 
     return (
         <TableRow>
-            <TableCell align="center" colSpan={5} sx={{paddingY: 8}}>
+            <TableCell align="center" colSpan={6} sx={{paddingY: 8}}>
                 <Typography variant='body1' fontWeight='bolder'>{t('Brak aktywnych wystaw')}</Typography>
                 <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>{t('Nie posiadasz żadnego aktywnego eksponatu. Kliknij aby dodać nowy.')}</Typography>
                 <Button startIcon={<AddOutlinedIcon/>} variant="outlined" onClick={() => navigate("new")}>{t('Dodaj eksponat')}</Button> </TableCell>

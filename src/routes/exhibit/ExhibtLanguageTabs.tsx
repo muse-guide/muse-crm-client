@@ -23,25 +23,26 @@ export function LanguageTabs(props: { arrayMethods: UseFieldArrayReturn<Exhibit,
     const [value, setValue] = useState("0");
     const [selectLangDialogOpen, setSelectLangDialogOpen] = useState(false);
 
+    const handleClose = useCallback(() => {
+        setSelectLangDialogOpen(false);
+    }, []);
+
+    const handleRemoveLang = useCallback((index: number) => {
+        props.arrayMethods.remove(index);
+        setValue('0')
+    }, [props.arrayMethods]);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+        setValue(newValue);
+    };
+
     useEffect(() => {
         if (props.arrayMethods.fields.length === 0) setValue('0')
         else setValue(`${props.arrayMethods.fields.length - 1}`)
     }, [props.arrayMethods.fields]);
+
     const handleClickOpen = () => {
         setSelectLangDialogOpen(true);
-    };
-
-    const handleClose = () => {
-        setSelectLangDialogOpen(false);
-    };
-
-    const handleRemoveLang = (index: number) => {
-        props.arrayMethods.remove(index);
-        setValue('0')
-    };
-
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
     };
 
     return (
@@ -120,9 +121,6 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
         voice: methods.getValues(`langOptions.${props.index}.audio.voice`),
     }
 
-
-    methods.getValues()
-
     return (
         <Box sx={{display: props.index.toString() === value ? 'block' : 'none'}}>
             <AudioGeneratorDialog
@@ -194,24 +192,7 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
                         }
                     </Stack>
                 </Grid>
-                {/*<Grid xs={12} pt={3}>*/}
-                {/*    <TextEditor*/}
-                {/*        name={`langOptions.${props.index}.description`}*/}
-                {/*        control={methods.control}*/}
-                {/*        title="Opcjonalny opis wystawy. W opis możesz wbudować zdjęcia. Dowiedz się więcej"*/}
-                {/*    />*/}
-                {/*</Grid>*/}
             </Grid>
         </Box>
-    )
-}
-
-export const PlayAudioButton = () => {
-    const {t} = useTranslation();
-
-    return (
-        <>
-            <Button variant="contained" startIcon={<PlayArrowIcon/>} disableElevation>{t("common.listen")}</Button>
-        </>
     )
 }

@@ -4,26 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add exhibit page">
-      <change afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/AssetService.ts" afterDir="false" />
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Finishing exhibit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/TextInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/http/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/http/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/common.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/exhibit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibit.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ArticleDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ArticleDialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/AudioGeneratorDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/AudioGeneratorDialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ExhibitService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/AssetService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AssetService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +103,7 @@
       <recent name="$PROJECT_DIR$/src/components/form/TextInputWithHint.tsx" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.npm start">
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -266,7 +259,10 @@
       <workItem from="1713259101596" duration="201000" />
       <workItem from="1713289942697" duration="4145000" />
       <workItem from="1713378382605" duration="3971000" />
-      <workItem from="1713462794499" duration="1018000" />
+      <workItem from="1713462794499" duration="3410000" />
+      <workItem from="1713507739323" duration="564000" />
+      <workItem from="1713550104638" duration="2010000" />
+      <workItem from="1713635623783" duration="1378000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -316,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711998555819</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Finishing exhibit">
+      <option name="closed" value="true" />
+      <created>1713464608618</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1713464608618</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,6 +346,7 @@
     <MESSAGE value="Introduce nano id" />
     <MESSAGE value="Add catch" />
     <MESSAGE value="Add exhibit page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add exhibit page" />
+    <MESSAGE value="Finishing exhibit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finishing exhibit" />
   </component>
 </project>

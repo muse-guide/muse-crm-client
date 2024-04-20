@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useMemo, useState} from "react";
+import React, {ChangeEvent, useCallback, useEffect, useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Button, MenuItem, Stack, TextField, useTheme} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
@@ -38,15 +38,21 @@ export const AudioGeneratorDialog = (props: {
     const {t} = useTranslation();
     const theme = useTheme()
 
-    useEffect(() => {
-        return () => {
-            audio.removeEventListener('ended', setPlayingFalse)
-        }
-    }, [])
+    const setDefaults = useCallback(() => {
+        setError(undefined)
+        setMarkup(props.input.markup ?? "")
+        setVoice(props.input.voice ?? "FEMALE_1")
+        setAudioUrl(undefined)
+        setLoading(false)
+        setPlaying(false)
+    }, [props.input.markup, props.input.voice]);
 
     useEffect(() => {
         setDefaults()
-    }, [])
+        return () => {
+            audio.removeEventListener('ended', setPlayingFalse)
+        }
+    }, [setDefaults])
 
     useEffect(() => {
         if (!playing) {
@@ -56,14 +62,9 @@ export const AudioGeneratorDialog = (props: {
         }
     }, [playing])
 
-    const setDefaults = () => {
-        setError(undefined)
-        setMarkup(props.input.markup ?? "")
-        setVoice(props.input.voice ?? "FEMALE_1")
-        setAudioUrl(undefined)
-        setLoading(false)
+    const setPlayingFalse = useCallback(() => {
         setPlaying(false)
-    }
+    }, []);
 
     const onClose = () => {
         props.handleClose()
@@ -76,10 +77,6 @@ export const AudioGeneratorDialog = (props: {
         [audioUrl]
     )
 
-    const setPlayingFalse = () => {
-        setPlaying(false)
-    }
-
     audio.addEventListener('ended', setPlayingFalse)
 
     const handleMarkupChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -91,15 +88,15 @@ export const AudioGeneratorDialog = (props: {
         setAudioUrl(undefined)
     }
 
-    const handleSaveAudio = () => {
+    const handleSaveAudio = useCallback(() => {
         if (!markup || markup.length === 0) {
             props.handleSave(undefined, undefined)
             return
         }
         props.handleSave(markup, voice)
-    };
+    }, [markup, voice, props]);
 
-    const clickAudioButton = async () => {
+    const clickAudioButton = useCallback(async () => {
         if (audioUrl) {
             if (playing) setPlaying(false)
             else setPlaying(true)
@@ -107,7 +104,7 @@ export const AudioGeneratorDialog = (props: {
             if (props.input.key && props.input.markup === markup) {
                 try {
                     setLoading(true)
-                    const url = await assetService.getPrivateAudioAsync(props.input.key)
+                    const url = await assetService.getPrivateAudio(props.input.key)
                     setAudioUrl(url)
                     setPlaying(true)
                 } catch (e) {
@@ -133,7 +130,15 @@ export const AudioGeneratorDialog = (props: {
                 }
             }
         }
-    }
+    }, [audioUrl, playing, props.input.key, props.input.markup, markup, voice, props.input.lang]);
+
+    const clickReplayAudioButton = useCallback(async () => {
+        if (audioUrl) {
+            setPlaying(false)
+            audio.currentTime = 0;
+            setPlaying(true)
+        }
+    }, [audioUrl]);
 
     const AudioButtonIcon = () => {
         if (playing) {
@@ -152,14 +157,6 @@ export const AudioGeneratorDialog = (props: {
                 {audioUrl ? t("listen") : t("try it")}
             </LoadingButton>
         )
-    }
-
-    const clickReplayAudioButton = async () => {
-        if (audioUrl) {
-            setPlaying(false)
-            audio.currentTime = 0;
-            setPlaying(true)
-        }
     }
 
     const ReplayAudioButton = () => {
@@ -243,5 +240,5 @@ export const AudioGeneratorDialog = (props: {
 
 const generateAudioAsync = async (input: AudioPreviewRequest) => {
     const {audio} = await audioService.generateAudioPreview(input)
-    return await assetService.getTmpAudioAsync(audio.key)
+    return await assetService.getTmpAudio(audio.key)
 }

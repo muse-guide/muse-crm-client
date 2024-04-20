@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router-dom";
 import {useSnackbar} from "notistack";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Exhibition} from "../../model/exhibition";
 import {exhibitionService} from "../../services/ExhibitionService";
 import {ApiException} from "../../http/types";
@@ -18,11 +18,7 @@ export const ExhibitionSelect = (props: {
     const [exhibitions, setExhibitions] = useState<Exhibition[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
-    useEffect(() => {
-        getExhibitionsAsync()
-    }, []);
-
-    const getExhibitionsAsync = async () => {
+    const getExhibitionsAsync = useCallback(async () => {
         setLoading(true);
         try {
             const exhibitions = await exhibitionService.getExhibitions({});
@@ -42,7 +38,11 @@ export const ExhibitionSelect = (props: {
         } finally {
             setLoading(false);
         }
-    };
+    }, [props.value, navigate, snackbar]);
+
+    useEffect(() => {
+        getExhibitionsAsync()
+    }, [getExhibitionsAsync]);
 
     return (
         <FormControl size={"small"} fullWidth>

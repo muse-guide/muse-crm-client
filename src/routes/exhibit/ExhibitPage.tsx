@@ -85,7 +85,6 @@ const ExhibitPage = () => {
         }
         setProcessing(true);
         try {
-            console.log(JSON.stringify(data, null, 4))
             if (exhibitId) {
                 await exhibitService.updateExhibit(data)
                 methods.reset(defaults);
@@ -115,7 +114,6 @@ const ExhibitPage = () => {
             path: ""
         },
     ]
-    imagesMethods.fields.forEach(item => console.log("test", item.id))
 
     return (
         <Page>

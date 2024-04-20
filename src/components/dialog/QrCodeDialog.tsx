@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -11,7 +11,7 @@ import QrCode2Icon from "@mui/icons-material/QrCode2";
 import PhotoIcon from "@mui/icons-material/Photo";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import CropIcon from "@mui/icons-material/Crop";
-import {getUrl} from 'aws-amplify/storage';
+import {assetService} from "../../services/AssetService";
 
 interface QrCodeDialogProps {
     referenceName: string,
@@ -24,21 +24,16 @@ interface QrCodeDialogProps {
 export default function QrCodeDialog(props: QrCodeDialogProps) {
     const [qrCode, setQrCode] = useState<string | undefined>(undefined);
 
-    useEffect(() => {
-        if (props.open && !qrCode) getImageAsync(props.qrCodeUrl)
-    }, [props.open]);
-
-    const getImageAsync = async (key: string) => {
-        const qrCode = await getUrl({
-            key: key,
-            options: {
-                accessLevel: "private",
-                validateObjectExistence: true,
-            }
-        });
-        const url = qrCode.url.toString()
+    const getImageAsync = useCallback(async (key: string) => {
+        const url = await assetService.getQrCode(key)
         setQrCode(url)
-    };
+    }, []);
+
+    useEffect(() => {
+        if (props.open && !qrCode) {
+            getImageAsync(props.qrCodeUrl);
+        }
+    }, [props.open, qrCode, getImageAsync]);
 
     return (
         <Dialog
@@ -65,7 +60,7 @@ export default function QrCodeDialog(props: QrCodeDialogProps) {
                             display: "flex"
                         }}>
                         <img src={qrCode}></img>
-                        <QrCode2Icon color="disabled" sx={{fontSize: "80px"}}/>
+                        {!qrCode && <QrCode2Icon color="disabled" sx={{fontSize: "80px"}}/>}
                     </Box>
                 </Box>
             </DialogContent>

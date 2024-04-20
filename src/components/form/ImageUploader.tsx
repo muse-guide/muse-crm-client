@@ -34,7 +34,7 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Im
 
     const removeImage = async (index: number) => {
         const item = props.arrayMethods.fields[index]
-        if (item.tmp) await assetService.removeTmpImageAsync(item.id)
+        if (item.tmp) await assetService.removeTmpImage(item.id)
         props.arrayMethods.remove(index)
     }
 
@@ -159,8 +159,8 @@ const UploadedItem = ({index, item, removeImage, tmp}: {
     const getImageAsync = async (id: string, tmp?: boolean) => {
         try {
             console.log("tmp", tmp)
-            if (tmp) return await assetService.getTmpImageAsync(id)
-            else return await assetService.getPrivateImageAsync(id)
+            if (tmp) return await assetService.getTmpImage(id)
+            else return await assetService.getPrivateImage(id)
         } catch (error) {
             console.log('Get image error: ', error);
         }

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Button, Stack, TextField, useTheme} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
@@ -25,21 +25,21 @@ export const ArticleDialog = (props: {
         setMarkup(props.markup ?? "")
     }, [props])
 
-    const handleMarkupChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleMarkupChange = useCallback((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setError(undefined)
         if (event.target.value.length > 1000) {
             setError("Provided text must be shorter than 200 characters")
         }
         setMarkup(event.target.value)
-    }
+    }, []);
 
-    const handleSaveArticle = () => {
+    const handleSaveArticle = useCallback(() => {
         if (!markup || markup.length === 0) {
             props.handleSave(undefined)
             return
         }
         props.handleSave(markup)
-    };
+    }, [markup, props]);
 
     return (
         <Dialog
