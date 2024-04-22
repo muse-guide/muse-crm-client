@@ -9,7 +9,6 @@ import TabList from '@mui/lab/TabList';
 import {useTabContext} from "@mui/lab";
 import Grid from "@mui/material/Unstable_Grid2";
 import TextInput from "../../components/form/TextInput";
-import TextEditor from "../../components/textEditor/TextEditor";
 import {NoLanguagePlaceholder} from "../../components/langOptions/NoLanguagePlaceholder";
 import {TabTitle} from "../../components/langOptions/TabTitle";
 
@@ -102,10 +101,11 @@ export const ExhibitionLanguageSpecificForm = (props: ExhibitionLanguageSpecific
                     />
                 </Grid>
                 <Grid xs={12}>
-                    <TextEditor
+                    <TextInput
                         name={`langOptions.${props.index}.description`}
                         control={methods.control}
                         title="Opcjonalny opis wystawy. W opis możesz wbudować zdjęcia. Dowiedz się więcej"
+                        rows={20}
                     />
                 </Grid>
             </Grid>

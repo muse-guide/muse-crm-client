@@ -124,8 +124,8 @@ const ExhibitsPage = () => {
                     />
                 </Stack>
                 <Stack direction="row" spacing={1}>
-                    <Button variant="outlined" size={"small"} onClick={getExhibitsAsync}><RefreshOutlinedIcon/></Button>
-                    <Button variant="contained" size={"small"} onClick={() => navigate("new")} disableElevation startIcon={<AddOutlinedIcon/>}>{t("common.create")}</Button>
+                    <Button variant="outlined" size={"medium"} onClick={getExhibitsAsync} sx={{minWidth: "32px"}}><RefreshOutlinedIcon/></Button>
+                    <Button variant="contained" size={"medium"} onClick={() => navigate("new")} disableElevation startIcon={<AddOutlinedIcon/>}>{t("common.create")}</Button>
                 </Stack>
             </Stack>
             <PageContentContainer>

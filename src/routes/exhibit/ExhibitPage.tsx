@@ -119,7 +119,7 @@ const ExhibitPage = () => {
             <FormProvider {...methods} >
                 <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
                     <AppBreadcrumbs links={links}/>
-                    <PageTitle title={t('page.exhibit.title')}/>
+                    <PageTitle title={t('page.exhibit.title')} subtitle={t('page.exhibit.subtitle')}/>
                     <PageContentContainer>
                         <SinglePageColumn>
                             <Panel

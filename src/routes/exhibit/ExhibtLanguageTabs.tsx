@@ -14,10 +14,10 @@ import {TabTitle} from "../../components/langOptions/TabTitle";
 import {EmptyPlaceholder} from "../../components/page";
 import {useTranslation} from "react-i18next";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import {AudioGeneratorDialog} from "./AudioGeneratorDialog";
+import {AudioGeneratorDialog} from "../../components/dialog/AudioGeneratorDialog";
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import DescriptionIcon from '@mui/icons-material/Description';
-import {ArticleDialog} from "./ArticleDialog";
+import {ArticleDialog} from "../../components/dialog/ArticleDialog";
 
 export function LanguageTabs(props: { arrayMethods: UseFieldArrayReturn<Exhibit, "langOptions", "id"> }) {
     const {t} = useTranslation();

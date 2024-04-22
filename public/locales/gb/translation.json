@@ -17,30 +17,30 @@
   "page": {
     "exhibit": {
       "title": "Exhibit",
-      "subtitle": "Create or edit exhibits here, generate audio and QR code",
+      "subtitle": "Create or edit exhibits here",
       "generalInfoForm": {
         "title": "General info",
-        "subtitle": "Provide basic information about exhibit. You can enrich it with article and audio",
+        "subtitle": "Provide basic information about exhibit. You can enrich it with article and audio.",
         "referenceName": "Reference name",
         "referenceNamePlaceholder": "Amazing exhibit",
         "exhibitNumber": "Exhibit number",
-        "exhibitNumberHelperText": "You can organize exhibits in any order you want. However, you are responsible for providing unique exhibit numbers"
+        "exhibitNumberHelperText": "You can organize exhibits in any order you want. However, you are responsible for providing unique exhibit numbers."
       },
       "languagesForm": {
         "title": "Available languages",
-        "subtitle": "Provide info for exhibit in multiple languages. You can add as many languages as you want. At least one language is required",
+        "subtitle": "Provide info for exhibit in multiple languages. You can add as many languages as you want. At least one language is required.",
         "exhibitTitle": "Exhibit title",
         "exhibitTitlePlaceholder": "Amazing exhibit",
         "exhibitSubtitle": "Exhibit subtitle",
         "exhibitSubtitlePlaceholder": "This exhibit is amazing",
 
-        "audioHelperText": "Click here to listen or to generate new audio for this language",
+        "audioHelperText": "Click here to listen or to generate new audio for this language.",
         "noAudioHelperTextTitle": "Audio missing",
-        "noAudioHelperTextSubtitle": "No audio generated for this language option",
+        "noAudioHelperTextSubtitle": "No audio generated for this language option.",
 
-        "articleHelperText": "Preview description or create new one for this language",
+        "articleHelperText": "Preview description or create new one for this language.",
         "noArticleHelperTextTitle": "Description missing",
-        "noArticleHelperTextSubtitle": "You can enrich your resource with optional description in form of article"
+        "noArticleHelperTextSubtitle": "You can enrich your resource with optional description in form of article."
       },
       "actions": {
         "appPreview": "App preview",
@@ -71,11 +71,11 @@
     },
     "exhibitions": {
       "title": "Exhibits",
-      "subtitle": "List of your collection."
+      "subtitle": "List of your collections"
     },
     "common": {
       "noLanguage": "Add language to this element",
-      "uploadHelperText": "Click and some pictures here. Pictures will be available in mobile app"
+      "uploadHelperText": "Click and some pictures here. Pictures will be available in mobile app."
     }
   },
   "dialog": {
@@ -95,12 +95,12 @@
     },
     "qrCode": {
       "title": "QR code",
-      "description": "Unique QR code used to transfer the Visitor to the resource page. Choose one of the available options to print it and place it in a visible location",
+      "description": "Unique QR code used to transfer the Visitor to the resource page. Choose one of the available options to print it and place it in a visible location.",
       "referenceName": "Resource: {{referenceName}}"
     },
     "languageSelect": {
       "title": "Select language",
-      "description": "Select language option for this element"
+      "description": "Select language option for this element."
     },
     "removeLanguage": {
       "title": "Remove language",
