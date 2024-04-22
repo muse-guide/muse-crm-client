@@ -19,7 +19,7 @@ export const BaseTable = ({children, ...props}: TableProps) => {
 export const TableHeadCell = ({children, ...props}: TableCellProps) => {
     return (
         <TableCell sx={{fontWeight: "bolder"}} {...props}>
-            <Typography variant="overline">{children}</Typography>
+            <Typography variant="subtitle2" fontWeight="bold">{children}</Typography>
         </TableCell>
     )
 }

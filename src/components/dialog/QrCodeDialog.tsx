@@ -6,12 +6,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
-import {Box, Stack} from "@mui/material";
+import {Box, Stack, Typography} from "@mui/material";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
 import PhotoIcon from "@mui/icons-material/Photo";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import CropIcon from "@mui/icons-material/Crop";
 import {assetService} from "../../services/AssetService";
+import {useTranslation} from "react-i18next";
 
 interface QrCodeDialogProps {
     referenceName: string,
@@ -22,6 +23,7 @@ interface QrCodeDialogProps {
 
 
 export default function QrCodeDialog(props: QrCodeDialogProps) {
+    const {t} = useTranslation();
     const [qrCode, setQrCode] = useState<string | undefined>(undefined);
 
     const getImageAsync = useCallback(async (key: string) => {
@@ -41,18 +43,23 @@ export default function QrCodeDialog(props: QrCodeDialogProps) {
             onClose={props.handleClose}
         >
             <DialogTitle fontSize="large" fontWeight="bold" sx={{pt: 3}}>
-                {props.referenceName}
+                {t("dialog.qrCode.title")}
             </DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Unikalny kod QR służący do przeniesienia Zwiedzającego na stronę wystawy. Wybierz jedną z dostępnych opcji aby go wybrukować i umieścić w widocznym miejscu."
+                    {t("dialog.qrCode.description")}
                 </DialogContentText>
+                <Box pt={1}>
+                    <Typography fontWeight={"bold"}>
+                        {t("dialog.qrCode.referenceName", {referenceName: props.referenceName})}
+                    </Typography>
+                </Box>
 
                 <Box justifyContent="center" display="flex" pb={3} pt={4}>
                     <Box
                         sx={{
-                            width: 280,
-                            height: 280,
+                            width: 180,
+                            height: 180,
                             border: 1,
                             borderStyle: "dashed",
                             alignItems: "center",
@@ -68,7 +75,7 @@ export default function QrCodeDialog(props: QrCodeDialogProps) {
                 <Stack direction="row" spacing={2} display="flex" justifyContent="center" pb={1}>
                     <Button variant="outlined" startIcon={<PhotoIcon fontSize='medium'/>}>png</Button>
                     <Button variant="outlined" startIcon={<PictureAsPdfIcon fontSize='medium'/>}>pdf</Button>
-                    <Button variant="outlined" startIcon={<CropIcon fontSize='medium'/>}>Dopasuj</Button>
+                    <Button variant="outlined" startIcon={<CropIcon fontSize='medium'/>}>{t("common.crop")}</Button>
                 </Stack>
             </DialogActions>
         </Dialog>

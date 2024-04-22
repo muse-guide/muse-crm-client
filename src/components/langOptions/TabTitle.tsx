@@ -6,8 +6,10 @@ import ErrorIcon from "@mui/icons-material/Error";
 import {CircleFlag} from "react-circle-flags";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { langMap } from "../../model/common";
+import {useTranslation} from "react-i18next";
 
 export const TabTitle = ({index, countryCode, handleRemoveLang}: { index: number, countryCode: string, handleRemoveLang: (index: number) => void }) => {
+    const {t} = useTranslation();
     const [removeLangDialogOpen, setRemoveLangDialogOpen] = useState(false);
     const [containError, setContainError] = useState(false);
     const {formState: {errors, isSubmitting, isValidating}} = useFormContext()
@@ -34,8 +36,8 @@ export const TabTitle = ({index, countryCode, handleRemoveLang}: { index: number
     return (
         <>
             <ConfirmationDialog
-                title={"Usun język"}
-                description={"Czy jesteś pewien, że chcesz nieodwracalnie usunąć język z wystawy? Spowoduje to usunięcie tego języka ze wszystkich eksponatów należących do tej wystawy."}
+                title={t("dialog.removeLanguage.title")}
+                description={t("dialog.removeLanguage.description")}
                 open={removeLangDialogOpen}
                 handleAgree={handleAgree}
                 handleClose={handleClose}

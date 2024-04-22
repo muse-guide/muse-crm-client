@@ -21,7 +21,6 @@ import {useSnackbar} from "notistack";
 import ConfirmationDialog from "../../components/dialog/ConfirmationDialog";
 import CircularProgress from '@mui/material/CircularProgress';
 import QrCodeDialog from "../../components/dialog/QrCodeDialog";
-import {ApiException} from "../../http/types";
 import {ImageRef, langMap, Status} from "../../model/common";
 import DoneIcon from '@mui/icons-material/Done';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -80,8 +79,7 @@ const ExhibitsPage = () => {
                 setKeys(tmpKeys)
             }
         } catch (err) {
-            if (err instanceof ApiException) snackbar(`Creating exhibit failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
-            else snackbar(`Creating exhibit failed.`, {variant: "error"})
+            snackbar(t("error.fetchingExhibitsFailed"), {variant: "error"})
         } finally {
             setLoading(false);
         }
@@ -120,11 +118,14 @@ const ExhibitsPage = () => {
             <AppBreadcrumbs links={links}/>
             <Stack maxWidth="1100px" direction="row" display="flex" spacing={1} justifyContent="end" alignItems="center">
                 <Stack direction="row" width="100%" spacing={1} flexGrow={1} justifyItems="start">
-                    <PageTitle title={t('Exhibits')} subtitle={t('Manage your exhibits') as string}/>
+                    <PageTitle
+                        title={t('page.exhibits.title')}
+                        subtitle={t('page.exhibits.subtitle') as string}
+                    />
                 </Stack>
                 <Stack direction="row" spacing={1}>
-                    <Button variant="outlined" size={"large"} onClick={getExhibitsAsync}><RefreshOutlinedIcon/></Button>
-                    <Button variant="contained" onClick={() => navigate("new")} disableElevation startIcon={<AddOutlinedIcon/>}>Create</Button>
+                    <Button variant="outlined" size={"small"} onClick={getExhibitsAsync}><RefreshOutlinedIcon/></Button>
+                    <Button variant="contained" size={"small"} onClick={() => navigate("new")} disableElevation startIcon={<AddOutlinedIcon/>}>{t("common.create")}</Button>
                 </Stack>
             </Stack>
             <PageContentContainer>
@@ -148,11 +149,11 @@ const ExhibitsPage = () => {
                     <BaseTable size={"small"}>
                         <TableHead>
                             <TableRow>
-                                <TableHeadCell width={"30%"}><Typography variant="overline" fontWeight="bold">Reference name</Typography></TableHeadCell>
-                                <TableHeadCell align="right"><Typography variant="overline" fontWeight="bold">Number</Typography></TableHeadCell>
-                                <TableHeadCell align="right"><Typography variant="overline" fontWeight="bold">Status</Typography></TableHeadCell>
-                                <TableHeadCell align="right"><Typography variant="overline" fontWeight="bold">Language option</Typography></TableHeadCell>
-                                <TableHeadCell align="right"><Typography variant="overline" fontWeight="bold">Audio</Typography></TableHeadCell>
+                                <TableHeadCell width={"30%"}>{t("page.exhibits.table.referenceName")}</TableHeadCell>
+                                <TableHeadCell align="right">{t("page.exhibits.table.number")}</TableHeadCell>
+                                <TableHeadCell align="right">{t("page.exhibits.table.status")}</TableHeadCell>
+                                <TableHeadCell align="right">{t("page.exhibits.table.languageOptions")}</TableHeadCell>
+                                <TableHeadCell align="right">{t("page.exhibits.table.audio")}</TableHeadCell>
                                 <TableHeadCell align="right"></TableHeadCell>
                             </TableRow>
                         </TableHead>
@@ -163,7 +164,7 @@ const ExhibitsPage = () => {
                                         <TableCell component="th" scope="row">
                                             <ResourceAvatar referenceName={row.referenceName} images={row.images} status={row.status}/>
                                         </TableCell>
-                                        <TableCell align="right">{row.number}</TableCell>
+                                        <TableCell align="right"><Typography variant={"body2"}>{row.number}</Typography></TableCell>
                                         <TableCell align="right"><StatusChip status={row.status}/></TableCell>
                                         <TableCell align="right"><LangOptions langOptions={row.langOptions}/></TableCell>
                                         <TableCell align="right"><AudioOptions langOptions={row.langOptions}/></TableCell>
@@ -189,12 +190,14 @@ const ExhibitsPage = () => {
 };
 
 const SearchTextField = ({value, onChange}: { value?: string, onChange: (key: string, value?: string) => void }) => {
+    const {t} = useTranslation();
+
     return (
         <FormControl size={"small"} fullWidth>
-            <Typography variant='body1' pb={1}>Reference name</Typography>
+            <Typography variant='body1' pb={1}>{t("page.exhibits.table.searchTextTitle")}</Typography>
             <TextField
                 size="small"
-                placeholder={"Reference name starts with..."}
+                placeholder={t("page.exhibits.table.searchTextPlaceholder")}
                 value={value ?? ""}
                 onChange={event => onChange("referenceNamePrefix", event.target.value)}
                 InputProps={{
@@ -237,7 +240,7 @@ const ResourceAvatar = ({referenceName, images, status}: { referenceName: string
                     <HideImageOutlinedIcon color={"disabled"}/>
                 </Avatar>
             }
-            <Typography fontWeight={"bold"}>{referenceName}</Typography>
+            <Typography fontWeight={"bold"} variant={"body2"}>{referenceName}</Typography>
         </Stack>
     )
 }
@@ -290,6 +293,7 @@ const RowActions = ({id, referenceName, qrCodeUrl, reload}: {
     reload: () => void
 }) => {
     const navigate = useNavigate()
+    const {t} = useTranslation()
     const {enqueueSnackbar: snackbar} = useSnackbar();
     const [removeExhibitDialogOpen, setRemoveExhibitDialogOpen] = useState(false);
     const [qrCodeDialogOpen, setQrCodeDialogOpen] = useState<boolean>(false);
@@ -303,17 +307,17 @@ const RowActions = ({id, referenceName, qrCodeUrl, reload}: {
         try {
             await exhibitService.deleteExhibit(exhibitId);
             reload()
-            snackbar(`Exhibit id: ${exhibitId} deleted successfully.`, {variant: "success"})
+            snackbar(t("success.exhibitDeleted", {exhibitId: exhibitId}), {variant: "success"})
         } catch (err) {
-            snackbar(`Deleting exhibit id: ${exhibitId} failed.`, {variant: "error"})
+            snackbar(t("success.deletingExhibitFailed", {exhibitId: exhibitId}), {variant: "error"})
         }
     }
 
     return (
         <>
             <ConfirmationDialog
-                title={"Delete exhibits"}
-                description={"Are you sure you want to permanently delete this exhibit? It will also remove all exhibits belonging to this exhibit."}
+                title={t("dialog.deleteExhibit.title")}
+                description={t("dialog.deleteExhibit.subtitle")}
                 open={removeExhibitDialogOpen}
                 handleAgree={() => deleteExhibit(id)}
                 handleClose={handleRemoveExhibitDialogClose}
@@ -401,9 +405,9 @@ const NoItems = () => {
     return (
         <TableRow>
             <TableCell align="center" colSpan={6} sx={{paddingY: 8}}>
-                <Typography variant='body1' fontWeight='bolder'>{t('Brak aktywnych wystaw')}</Typography>
-                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>{t('Nie posiadasz żadnego aktywnego eksponatu. Kliknij aby dodać nowy.')}</Typography>
-                <Button startIcon={<AddOutlinedIcon/>} variant="outlined" onClick={() => navigate("new")}>{t('Dodaj eksponat')}</Button> </TableCell>
+                <Typography variant='body1' fontWeight='bolder'>{t("page.exhibits.table.noItemsTitle")}</Typography>
+                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>{t("page.exhibits.table.noItemsSubtitle")}</Typography>
+                <Button startIcon={<AddOutlinedIcon/>} variant="outlined" onClick={() => navigate("new")}>{t('common.create')}</Button> </TableCell>
         </TableRow>
     )
 }

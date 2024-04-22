@@ -4,19 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Finishing exhibit">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Exhibit finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/pl/translation.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/ImagePreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImagePreview.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/langOptions/NoLanguagePlaceholder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/langOptions/NoLanguagePlaceholder.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/langOptions/TabTitle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/langOptions/TabTitle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/common.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ArticleDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ArticleDialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/AudioGeneratorDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/AudioGeneratorDialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/AssetService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AssetService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +268,9 @@
       <workItem from="1713462794499" duration="3410000" />
       <workItem from="1713507739323" duration="564000" />
       <workItem from="1713550104638" duration="2010000" />
-      <workItem from="1713635623783" duration="1378000" />
+      <workItem from="1713635623783" duration="11655000" />
+      <workItem from="1713766711192" duration="16000" />
+      <workItem from="1713810377282" duration="1796000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -320,7 +328,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713464608618</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Exhibit finished">
+      <option name="closed" value="true" />
+      <created>1713637040788</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1713637040788</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,6 +363,7 @@
     <MESSAGE value="Add catch" />
     <MESSAGE value="Add exhibit page" />
     <MESSAGE value="Finishing exhibit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finishing exhibit" />
+    <MESSAGE value="Exhibit finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exhibit finished" />
   </component>
 </project>

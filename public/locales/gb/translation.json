@@ -1,48 +1,155 @@
 {
-    "oops": "Oops",
-    "menu": {
-        "institution": "Institution",
-        "exhibitions": "Exhibitions",
-        "exhibits": "Exhibits",
-        "artists": "Artists",
-        "profile": "Profile",
-        "signOut": "Sing out",
-        "dashboard": "Dashboard"
+  "oops": "Oops",
+  "menu": {
+    "institution": "Institution",
+    "exhibitions": "Exhibitions",
+    "exhibits": "Exhibits",
+    "artists": "Artists",
+    "profile": "Profile",
+    "signOut": "Sing out",
+    "dashboard": "Dashboard"
+  },
+  "langSelect": {
+    "pl": "Polish",
+    "gb": "English (Great Britain)",
+    "es": "Spanish"
+  },
+  "page": {
+    "exhibit": {
+      "title": "Exhibit",
+      "subtitle": "Create or edit exhibits here, generate audio and QR code",
+      "generalInfoForm": {
+        "title": "General info",
+        "subtitle": "Provide basic information about exhibit. You can enrich it with article and audio",
+        "referenceName": "Reference name",
+        "referenceNamePlaceholder": "Amazing exhibit",
+        "exhibitNumber": "Exhibit number",
+        "exhibitNumberHelperText": "You can organize exhibits in any order you want. However, you are responsible for providing unique exhibit numbers"
+      },
+      "languagesForm": {
+        "title": "Available languages",
+        "subtitle": "Provide info for exhibit in multiple languages. You can add as many languages as you want. At least one language is required",
+        "exhibitTitle": "Exhibit title",
+        "exhibitTitlePlaceholder": "Amazing exhibit",
+        "exhibitSubtitle": "Exhibit subtitle",
+        "exhibitSubtitlePlaceholder": "This exhibit is amazing",
+
+        "audioHelperText": "Click here to listen or to generate new audio for this language",
+        "noAudioHelperTextTitle": "Audio missing",
+        "noAudioHelperTextSubtitle": "No audio generated for this language option",
+
+        "articleHelperText": "Preview description or create new one for this language",
+        "noArticleHelperTextTitle": "Description missing",
+        "noArticleHelperTextSubtitle": "You can enrich your resource with optional description in form of article"
+      },
+      "actions": {
+        "appPreview": "App preview",
+        "generateAudio": "Generate audio",
+        "createArticle": "Create article"
+      }
     },
-    "exhibitPage": {
-        "title": "Exhibit",
-        "subtitle": "Create or edit exhibits here, generate audio and QR code."
+    "exhibits": {
+      "title": "Exhibits",
+      "subtitle": "List of your exhibits",
+      "table": {
+        "referenceName": "Reference name",
+        "number": "Number",
+        "status": "Status",
+        "languageOptions": "Language option",
+        "audio": "Audio",
+
+        "searchTextTitle": "Reference name",
+        "searchTextPlaceholder": "Search exhibits by reference name...",
+
+        "noItemsTitle": "No exhibits",
+        "noItemsSubtitle": "No exhibit found with given search criteria, or you have got no active exhibits. You can create new exhibit by clicking button below."
+      }
     },
-    "exhibitionPage": {
-        "title": "Exhibition",
-        "subtitle": "Create or edit exhibitions here. Collections group exhibits."
+    "exhibition": {
+      "title": "Exhibition",
+      "subtitle": "Create or edit exhibitions here. Collections group exhibits"
     },
-    "exhibitionsPage": {
-        "title": "Exhibitions",
-        "subtitle": "List of your collections."
-    },
-    "langSelect": {
-        "pl": "Polish",
-        "gb": "English (Great Britain",
-        "es": "Spanish"
+    "exhibitions": {
+      "title": "Exhibits",
+      "subtitle": "List of your collection."
     },
     "common": {
-        "yes": "yes",
-        "no": "no",
-        "select": "select",
-        "add": "add",
-        "close": "close",
-        "save": "save",
-        "listen": "listen",
-        "edit": "edit",
-        "preview": "preview",
-        "audio": "audio",
-        "article": "article",
-        "cancel": "cancel"
-    },
-    "validation": {
-        "required": "This field is required",
-        "maxLength": "Max length is: {{length}}",
-        "pattern": "Provided value doesn't match pattern: {{pattern}}"
+      "noLanguage": "Add language to this element",
+      "uploadHelperText": "Click and some pictures here. Pictures will be available in mobile app"
     }
+  },
+  "dialog": {
+    "article": {
+      "title": "Prepare article",
+      "description": "You can enrich your resource with descriptive article. Provide text, format and add photos to deliver best experience to your audience."
+    },
+    "audio": {
+      "title": "Generate audio",
+      "description": "In this application, we utilize state-of-the-art artificial intelligence tools to generate audio that closely mimics human speech. To use this feature, you simply need to provide the text you want to be converted into audio. This could be a description of an exhibit, a narration of an article, or any other content that you think would enhance the user's experience. Once you've provided the text, our AI tools will process it and generate an audio file. This audio file will then be available for playback within the application, providing your users with a rich, multimedia experience. This feature is not only limited to English. Our AI tools are capable of synthesizing audio in multiple languages, making your content accessible to a wider audience. Remember, the quality of the synthesized audio greatly depends on the text input. Therefore, it's recommended to use clear and concise language for the best results."
+    },
+    "uploadPhoto": {
+      "title": "Upload photos",
+      "helperTextTitle": "Add photos",
+      "helperTextSubTitle": "Drag and drop photos here or click to upload. Photos will be available in mobile app",
+      "choosePhoto": "Choose photo"
+    },
+    "qrCode": {
+      "title": "QR code",
+      "description": "Unique QR code used to transfer the Visitor to the resource page. Choose one of the available options to print it and place it in a visible location",
+      "referenceName": "Resource: {{referenceName}}"
+    },
+    "languageSelect": {
+      "title": "Select language",
+      "description": "Select language option for this element"
+    },
+    "removeLanguage": {
+      "title": "Remove language",
+      "description": "Are you sure you want to remove this language option? This action is irreversible."
+    },
+    "deleteExhibit": {
+      "title": "Delete exhibit",
+      "description": "Are you sure you want to permanently delete this exhibit?"
+    }
+  },
+  "common": {
+    "yes": "yes",
+    "no": "no",
+    "select": "select",
+    "add": "add",
+    "create": "create",
+    "close": "close",
+    "save": "save",
+    "listen": "listen",
+    "edit": "edit",
+    "preview": "preview",
+    "audio": "audio",
+    "article": "article",
+    "cancel": "cancel",
+    "upload": "upload",
+    "crop": "crop"
+  },
+  "validation": {
+    "required": "This field is required.",
+    "maxLength": "Max length is: {{length}}.",
+    "pattern": "Provided value doesn't match pattern: {{pattern}}.",
+    "noLanguageOption": "You must provide at least one language for collection...",
+    "noActiveExhibition": "You must have at least one active Exhibition to manage Exhibits.",
+    "languageOptionExists": "Language option already exists for this element."
+  },
+  "error": {
+    "audioGeneration": "Error during audio generation.",
+
+    "fetchingExhibitionsFailed": "Fetching exhibitions failed.",
+    "fetchingExhibitionFailed": "Fetching exhibition failed.",
+
+    "fetchingExhibitsFailed": "Fetching exhibits failed.",
+    "fetchingExhibitFailed": "Fetching exhibit failed.",
+    "savingExhibitFailed": "Saving exhibit failed.",
+    "deletingExhibitFailed": "Deleting exhibit id: {{exhibitId}} failed."
+  },
+  "success": {
+    "exhibitCreated": "New exhibit created.",
+    "exhibitUpdated": "Exhibit {{exhibitId}} updated.",
+    "exhibitDeleted": "Exhibit id: {{exhibitId}} deleted successfully."
+  }
 }

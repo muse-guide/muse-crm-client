@@ -23,6 +23,7 @@ export interface ImageHolder {
 
 export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<ImageHolder, "images", "id"> }) => {
     const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
+    const {t} = useTranslation();
 
     const handleClickOpen = () => {
         setUploadDialogOpen(true);
@@ -42,10 +43,10 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Im
         <Stack pb={0} pt={1}>
             <ImageUploaderDialog arrayMethods={props.arrayMethods} open={uploadDialogOpen} handleClose={handleClose} removeImage={removeImage}/>
             <Stack direction="row" spacing={2} alignItems="center">
-                <Box p={0}><Button onClick={handleClickOpen} variant="contained" disableElevation startIcon={<CloudUploadIcon/>}>Upload</Button></Box>
-                <Typography variant='body1'>Dodaj zdjęcia kolekcji. Pojawią się one w aplikacji mobilnej na stronie wystawy.</Typography>
+                <Box p={0}><Button onClick={handleClickOpen} variant="contained" disableElevation startIcon={<CloudUploadIcon/>}>{t("common.upload")}</Button></Box>
+                <Typography variant='body1'>{t("page.common.uploadHelperText")}</Typography>
             </Stack>
-            <List sx={{width: '100%', maxWidth: 500, bgcolor: 'background.paper', pb: 0, pt: 2}} dense>
+            <List sx={{width: '100%', maxWidth: 500, pb: 0, pt: 2}} dense>
                 {props.arrayMethods.fields.map((field, index) => (
                     <UploadedItem key={"main-" + field.id} index={index} item={field} removeImage={removeImage} tmp={field.tmp}/>
                 ))}
@@ -89,7 +90,7 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                 onClose={props.handleClose}
             >
                 <DialogTitle fontSize="large" fontWeight="bold" sx={{pt: 3}}>
-                    Dodaj zdjęcia
+                    {t("dialog.uploadPhoto.title")}
                 </DialogTitle>
                 <DialogContent sx={{minWidth: '600px'}}>
                     <ImageUploading
@@ -113,9 +114,9 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                                 backgroundColor: theme.palette.grey[50]
                             }}>
                                 <Stack alignItems="center" spacing={0} p={3} height="100%" justifyContent="center">
-                                    <Typography variant='body1' fontWeight='bolder'>Dodaj zdjęcia</Typography>
-                                    <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>Przeciągnij zdjęcia tutaj albo wybierz je z dysku</Typography>
-                                    <Button startIcon={<CloudUploadRoundedIcon/>} variant="outlined" onClick={onImageUpload}>Wybierz zdjęcia</Button>
+                                    <Typography variant='body1' fontWeight='bolder'>{t("dialog.uploadPhoto.helperTextTitle")}</Typography>
+                                    <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2' align={"center"}>{t("dialog.uploadPhoto.helperTextSubTitle")}</Typography>
+                                    <Button startIcon={<CloudUploadRoundedIcon/>} variant="outlined" onClick={onImageUpload}>{t("dialog.uploadPhoto.choosePhoto")}</Button>
                                 </Stack>
                             </Box>
                         )}
@@ -158,11 +159,11 @@ const UploadedItem = ({index, item, removeImage, tmp}: {
 
     const getImageAsync = async (id: string, tmp?: boolean) => {
         try {
-            console.log("tmp", tmp)
+            console.error("tmp", tmp)
             if (tmp) return await assetService.getTmpImage(id)
             else return await assetService.getPrivateImage(id)
         } catch (error) {
-            console.log('Get image error: ', error);
+            console.error('Get image error: ', error);
         }
     };
 

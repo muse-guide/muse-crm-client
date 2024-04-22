@@ -75,7 +75,6 @@ export default function Navigation({drawerWidth}: { drawerWidth: number }) {
                         width: drawerWidth,
                         paddingX: 2,
                         border: "0",
-                        // borderColor: borderColor
                     },
                 }}
                 open

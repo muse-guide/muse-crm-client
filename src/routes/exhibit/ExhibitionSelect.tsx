@@ -4,7 +4,6 @@ import {useSnackbar} from "notistack";
 import React, {useCallback, useEffect, useState} from "react";
 import {Exhibition} from "../../model/exhibition";
 import {exhibitionService} from "../../services/ExhibitionService";
-import {ApiException} from "../../http/types";
 import {FormControl, MenuItem, Skeleton, TextField, Typography} from "@mui/material";
 
 export const ExhibitionSelect = (props: {
@@ -23,7 +22,7 @@ export const ExhibitionSelect = (props: {
         try {
             const exhibitions = await exhibitionService.getExhibitions({});
             if (exhibitions.length < 1) {
-                snackbar(`You must have at least one active Exhibition to manage Exhibits.`, {variant: "error"})
+                snackbar(t("validation.noActiveExhibition"), {variant: "error"})
                 navigate("/exhibitions");
                 return
             }
@@ -33,8 +32,7 @@ export const ExhibitionSelect = (props: {
                 props.onChange(exhibitions[0].id)
             }
         } catch (err) {
-            if (err instanceof ApiException) snackbar(`Fetching exhibitions failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
-            else snackbar(`Fetching exhibitions failed.`, {variant: "error"})
+            snackbar(t("error.fetchingExhibitionsFailed"), {variant: "error"})
         } finally {
             setLoading(false);
         }
@@ -63,7 +61,6 @@ export const ExhibitionSelect = (props: {
                         <MenuItem key={exhibition.id + index} value={exhibition.id}>{exhibition.referenceName}</MenuItem>
                     ))}
                 </TextField>
-
             }
         </FormControl>
     )

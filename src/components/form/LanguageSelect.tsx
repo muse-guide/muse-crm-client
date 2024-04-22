@@ -60,7 +60,7 @@ export const LanguageSelectDialog = (props: LanguageSelectDialogProps) => {
                 onClose={handleClose}
             >
                 <DialogTitle fontSize="large" fontWeight="bold" sx={{pt: 3}}>
-                    {t("Wybierz język")}
+                    {t("dialog.languageSelect.title")}
                 </DialogTitle>
                 <DialogContent sx={{
                     minWidth: '400px',
@@ -69,7 +69,7 @@ export const LanguageSelectDialog = (props: LanguageSelectDialogProps) => {
                 }}
                 >
                     <DialogContentText>
-                        Nowa opcja językowa pojawi się w aplikacji mobilnej.
+                        {t("dialog.languageSelect.description")}
                     </DialogContentText>
                     <FormControl sx={{paddingTop: 1.5, paddingBottom: 0, width: "100%"}}>
                         <Select
@@ -83,7 +83,7 @@ export const LanguageSelectDialog = (props: LanguageSelectDialogProps) => {
                             <MenuItem value={'en-GB'}><LanguageOption countryCode='gb'/></MenuItem>
                             <MenuItem value={'es-ES'}><LanguageOption countryCode='es'/></MenuItem>
                         </Select>
-                        <FormHelperText error={validationError}>{validationError ? "Wybrany język został już dodany" : null}</FormHelperText>
+                        <FormHelperText error={validationError}>{validationError ? t("validation.languageOptionExists") : null}</FormHelperText>
                     </FormControl>
                 </DialogContent>
                 <DialogActions sx={{px: '24px', pb: '20px'}}>

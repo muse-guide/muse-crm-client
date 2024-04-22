@@ -16,6 +16,7 @@ import {ApiException} from "../../http/types";
 import {ImageHolder, ImageUploaderField} from "../../components/form/ImageUploader";
 import {LanguageTabs} from "./ExhibtLanguageTabs";
 import {ExhibitionSelect} from "./ExhibitionSelect";
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 
 const defaults = {
     id: "",
@@ -64,8 +65,7 @@ const ExhibitPage = () => {
             const exhibit = await exhibitService.getExhibit(exhibitId);
             methods.reset(exhibit);
         } catch (err) {
-            if (err instanceof ApiException) snackbar(`Loading exhibit failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
-            else snackbar(`Loading exhibit failed.`, {variant: "error"})
+            snackbar(t("error.fetchingExhibitFailed"), {variant: "error"})
         } finally {
             setLoading(false);
         }
@@ -80,7 +80,7 @@ const ExhibitPage = () => {
 
     const onSubmit: SubmitHandler<Exhibit> = async (data) => {
         if (langOptionMethods.fields.length < 1) {
-            snackbar("Your must provide at least one language for collection...", {variant: "error"})
+            snackbar(t("validation.noLanguageOption"), {variant: "error"})
             return
         }
         setProcessing(true);
@@ -89,16 +89,15 @@ const ExhibitPage = () => {
                 await exhibitService.updateExhibit(data)
                 methods.reset(defaults);
                 navigate("/exhibits");
-                snackbar(`Exhibit ${exhibitId} updated`, {variant: "success"})
+                snackbar(t("success.exhibitUpdated", {exhibitId: exhibitId}), {variant: "success"})
             } else {
                 await exhibitService.createExhibit(data)
                 methods.reset(defaults);
                 navigate("/exhibits");
-                snackbar(`New collection created`, {variant: "success"})
+                snackbar(t("success.exhibitCreated"), {variant: "success"})
             }
         } catch (err) {
-            if (err instanceof ApiException) snackbar(`Creating exhibit failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
-            else snackbar(`Creating exhibit failed.`, {variant: "error"})
+            snackbar(t("error.savingExhibitFailed"), {variant: "error"})
         } finally {
             setProcessing(false);
         }
@@ -120,13 +119,13 @@ const ExhibitPage = () => {
             <FormProvider {...methods} >
                 <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
                     <AppBreadcrumbs links={links}/>
-                    <PageTitle title={t('exhibitPage.title')}/>
+                    <PageTitle title={t('page.exhibit.title')}/>
                     <PageContentContainer>
                         <SinglePageColumn>
                             <Panel
                                 loading={loading}
-                                title="Podstawowe informacje"
-                                subtitle="Przypisz eksponat do koleckji oraz nadaj mu nazwę. Tu dodasz także zdjęcia, które pojawią się w aplikacji mobilej."
+                                title={t('page.exhibit.generalInfoForm.title')}
+                                subtitle={t('page.exhibit.generalInfoForm.subtitle')}
                             >
                                 <FullRow>
                                     <ExhibitionSelect
@@ -138,8 +137,8 @@ const ExhibitPage = () => {
                                 <FullRow>
                                     <TextInput
                                         name="referenceName"
-                                        title="Nazwa własna"
-                                        placeholder="Moja wielka wystawa"
+                                        title={t('page.exhibit.generalInfoForm.referenceName')}
+                                        placeholder={t('page.exhibit.generalInfoForm.referenceNamePlaceholder')}
                                         required
                                         maxLength={64}
                                     />
@@ -147,8 +146,8 @@ const ExhibitPage = () => {
                                 <FullRow>
                                     <TextInput
                                         name="number"
-                                        title="Exhibit number"
-                                        subtitle="You can organize exhibits in any order you want. However, you are responsible for providing unique exhibit numbers."
+                                        title={t('page.exhibit.generalInfoForm.exhibitNumber')}
+                                        subtitle={t('page.exhibit.generalInfoForm.exhibitNumberHelperText')}
                                         placeholder="1"
                                         required
                                         numeric
@@ -161,8 +160,8 @@ const ExhibitPage = () => {
 
                             <Panel
                                 loading={loading}
-                                title="Opcje językowe"
-                                subtitle="Dodaj informacje o eksponacie, które będą dostępne w wybranych przez Ciebie językach."
+                                title={t('page.exhibit.languagesForm.title')}
+                                subtitle={t('page.exhibit.languagesForm.subtitle')}
                             >
                                 <FullRow>
                                     <LanguageTabs arrayMethods={langOptionMethods}/>
@@ -171,8 +170,8 @@ const ExhibitPage = () => {
                         </SinglePageColumn>
 
                         <Actions>
-                            <Button variant="text" onClick={() => navigate("/exhibits")}>Anuluj</Button>
-                            <Button variant="outlined">Podgląd aplikacji</Button>
+                            <Button variant="text" onClick={() => navigate("/exhibits")}>{t('common.cancel')}</Button>
+                            <Button variant="outlined" startIcon={<PhoneIphoneIcon/>}>{t('page.exhibit.actions.appPreview')}</Button>
                             <LoadingButton
                                 key="submitButton"
                                 variant="contained"
@@ -182,7 +181,7 @@ const ExhibitPage = () => {
                                 loadingPosition="start"
                                 startIcon={<SaveIcon/>}
                             >
-                                Zapisz
+                                {t('common.save')}
                             </LoadingButton>
                         </Actions>
 

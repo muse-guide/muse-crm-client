@@ -16,3 +16,8 @@ export const langMap = new Map<string, string>([
     ["en-GB", "gb"],
     ["es-ES", "es"]
 ])
+
+export const voices = new Map<string, string>([
+    ["FEMALE_1", "Female 1"],
+    ["MALE_1", "Male 1"],
+])

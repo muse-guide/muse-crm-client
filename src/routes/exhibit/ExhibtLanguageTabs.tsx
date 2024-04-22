@@ -20,25 +20,26 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import {ArticleDialog} from "./ArticleDialog";
 
 export function LanguageTabs(props: { arrayMethods: UseFieldArrayReturn<Exhibit, "langOptions", "id"> }) {
-    const [value, setValue] = useState("0");
+    const {t} = useTranslation();
+    const [tab, setTab] = useState("0");
     const [selectLangDialogOpen, setSelectLangDialogOpen] = useState(false);
 
-    const handleClose = useCallback(() => {
+    const handleClose = () => {
         setSelectLangDialogOpen(false);
-    }, []);
+    };
 
     const handleRemoveLang = useCallback((index: number) => {
         props.arrayMethods.remove(index);
-        setValue('0')
+        setTab('0')
     }, [props.arrayMethods]);
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
+        setTab(newValue);
     };
 
     useEffect(() => {
-        if (props.arrayMethods.fields.length === 0) setValue('0')
-        else setValue(`${props.arrayMethods.fields.length - 1}`)
+        if (props.arrayMethods.fields.length === 0) setTab('0')
+        else setTab(`${props.arrayMethods.fields.length - 1}`)
     }, [props.arrayMethods.fields]);
 
     const handleClickOpen = () => {
@@ -46,7 +47,7 @@ export function LanguageTabs(props: { arrayMethods: UseFieldArrayReturn<Exhibit,
     };
 
     return (
-        <TabContext value={value}>
+        <TabContext value={tab}>
             <Box sx={{width: '100%'}}>
                 <LanguageSelectDialog open={selectLangDialogOpen} arrayMethods={props.arrayMethods as unknown as UseFieldArrayReturn<LanguageOptionsHolder, "langOptions">} handleClose={handleClose}/>
                 <Stack sx={{borderBottom: 1, borderColor: 'divider'}} direction="row" alignItems="center" spacing={1}>
@@ -66,7 +67,7 @@ export function LanguageTabs(props: { arrayMethods: UseFieldArrayReturn<Exhibit,
                         ))}
                     </TabList>
                     <Box px={0}>
-                        <Button variant="text" onClick={handleClickOpen} startIcon={<AddIcon color="primary" fontSize='medium'/>}>Dodaj</Button>
+                        <Button variant="text" onClick={handleClickOpen} startIcon={<AddIcon color="primary" fontSize='medium'/>}>{t("common.add")}</Button>
                     </Box>
                 </Stack>
                 {props.arrayMethods.fields.length === 0 ? <NoLanguagePlaceholder/> : null}
@@ -140,8 +141,8 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
                     <TextInput
                         name={`langOptions.${props.index}.title`}
                         control={methods.control}
-                        title="Tytuł wystawy"
-                        placeholder="Moja wielka wystawa"
+                        title={t("page.exhibit.languagesForm.exhibitTitle")}
+                        placeholder={t("page.exhibit.languagesForm.exhibitTitlePlaceholder")}
                         required
                     />
                 </Grid>
@@ -149,8 +150,8 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
                     <TextInput
                         name={`langOptions.${props.index}.subtitle`}
                         control={methods.control}
-                        title="Podtytuł wystawy"
-                        placeholder="Moja wielka wystawa to jest to!"
+                        title={t("page.exhibit.languagesForm.exhibitSubtitle")}
+                        placeholder={t("page.exhibit.languagesForm.exhibitSubtitlePlaceholder")}
                         multiline={true}
                         rows={2}
                         required
@@ -162,13 +163,13 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
                         {methods.getValues(`langOptions.${props.index}.audio`) ?
                             <Stack direction={"row"} gap={2} alignItems={"center"}>
                                 <Button variant="contained" onClick={handleAudioDialogOpen} startIcon={<PlayCircleIcon/>} disableElevation>{t("common.audio")}</Button>
-                                <Typography variant='body1'>Posłuchaj wygenerownego audio albo edytuj tekst to przeczytania.</Typography>
+                                <Typography variant='body1'>{t("page.exhibit.languagesForm.audioHelperText")}</Typography>
                             </Stack>
                             :
                             <EmptyPlaceholder>
-                                <Typography variant='body1' fontWeight='bolder'>Brak audio przewodnika</Typography>
-                                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>Użyj najlepszych rozwiązan AI aby wygenerować audio przewodnik.</Typography>
-                                <Button startIcon={<PlayArrowIcon/>} variant="outlined" onClick={handleAudioDialogOpen}>Generate audio</Button>
+                                <Typography variant='body1' fontWeight='bolder'>{t("page.exhibit.languagesForm.noAudioHelperTextTitle")}</Typography>
+                                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2' align={"center"}>{t("page.exhibit.languagesForm.noAudioHelperTextSubtitle")}</Typography>
+                                <Button startIcon={<PlayArrowIcon/>} variant="outlined" onClick={handleAudioDialogOpen} sx={{paddingTop: 1}}>{t("page.exhibit.actions.generateAudio")}</Button>
                             </EmptyPlaceholder>
                         }
                     </Stack>
@@ -179,15 +180,15 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
                         {methods.getValues(`langOptions.${props.index}.description`) ?
                             <Stack direction={"row"} gap={2} alignItems={"center"}>
                                 <Button variant="contained" onClick={handleArticleDialogOpen} startIcon={<DescriptionIcon/>} disableElevation>{t("common.article")}</Button>
-                                <Typography variant='body1'>Zobacz albo edytuj tekst artykułu.</Typography>
+                                <Typography variant='body1'>{t("page.exhibit.languagesForm.articleHelperText")}</Typography>
                             </Stack>
                             :
                             <EmptyPlaceholder>
-                                <Typography variant='body1' fontWeight='bolder'>Description missing</Typography>
-                                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>
-                                    You can enrich your resource with optional description in form of article.
+                                <Typography variant='body1' fontWeight='bolder'>{t("page.exhibit.languagesForm.noArticleHelperTextTitle")}</Typography>
+                                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2' align={"center"}>
+                                    {t("page.exhibit.languagesForm.noArticleHelperTextSubtitle")}
                                 </Typography>
-                                <Button startIcon={<DescriptionIcon/>} variant="outlined" onClick={handleArticleDialogOpen}>Create article</Button>
+                                <Button startIcon={<DescriptionIcon/>} variant="outlined" onClick={handleArticleDialogOpen}>{t("page.exhibit.actions.createArticle")}</Button>
                             </EmptyPlaceholder>
                         }
                     </Stack>

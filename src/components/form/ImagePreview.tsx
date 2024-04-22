@@ -1,6 +1,6 @@
-import { Backdrop, Fade, Modal } from "@mui/material";
+import {Fade, Modal} from "@mui/material";
 import React from "react";
-import { styled } from "@mui/material/styles";
+import {styled} from "@mui/material/styles";
 
 const Image = styled("img")({
     maxHeight: "90%",
@@ -26,7 +26,7 @@ export const ImagePreview = (props: ImagePreviewProps) => (
         }}
     >
         <Fade in={props.show}>
-            <Image src={props.img} alt="asd" />
+            <Image src={props.img} alt="asd"/>
         </Fade>
     </Modal>
 );
