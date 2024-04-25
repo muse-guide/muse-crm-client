@@ -44,7 +44,7 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Im
             <ImageUploaderDialog arrayMethods={props.arrayMethods} open={uploadDialogOpen} handleClose={handleClose} removeImage={removeImage}/>
             <Stack direction="row" spacing={2} alignItems="center">
                 <Box p={0}><Button onClick={handleClickOpen} variant="contained" disableElevation startIcon={<CloudUploadIcon/>}>{t("common.upload")}</Button></Box>
-                <Typography variant='body1'>{t("page.common.uploadHelperText")}</Typography>
+                <Typography variant='body1'>{t("dialog.uploadPhoto.uploadHelperText")}</Typography>
             </Stack>
             <List sx={{width: '100%', maxWidth: 500, pb: 0, pt: 2}} dense>
                 {props.arrayMethods.fields.map((field, index) => (

@@ -6,7 +6,7 @@ export interface PaginatedResults {
     nextPageKey?: string | undefined
 }
 
-export interface Pagination {
+export interface ApiPagination {
     pageSize: number,
     nextPageKey?: string
 }

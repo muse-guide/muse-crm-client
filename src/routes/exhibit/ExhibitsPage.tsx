@@ -1,41 +1,21 @@
-import React, {useCallback, useEffect, useState} from "react";
-import {Avatar, AvatarGroup, Box, Button, Chip, FormControl, IconButton, InputAdornment, MenuItem, Select, Stack, TextField, Typography, useTheme} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {Box, Button, Stack, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import {PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
-import {BaseTable, BaseTableRow, TableHeadCell} from "../../components/table";
+import {AudioOptions, BaseTable, BaseTableRow, LangOptions, Loading, NoItems, Pagination, ResourceAvatar, RowActions, SearchTextField, StatusChip, TableHeadCell} from "../../components/table";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import {Exhibit} from "../../model/exhibit";
-import {CircleFlag} from "react-circle-flags";
 import {useNavigate} from "react-router-dom";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
-import QrCode2Icon from '@mui/icons-material/QrCode2';
-import {exhibitService} from "../../services/ExhibitService";
+import {exhibitService, ExhibitsFilter} from "../../services/ExhibitService";
 import {useSnackbar} from "notistack";
-import ConfirmationDialog from "../../components/dialog/ConfirmationDialog";
-import CircularProgress from '@mui/material/CircularProgress';
-import QrCodeDialog from "../../components/dialog/QrCodeDialog";
-import {ImageRef, langMap, Status} from "../../model/common";
-import DoneIcon from '@mui/icons-material/Done';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
 import {ExhibitionSelect} from "./ExhibitionSelect";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ClearIcon from '@mui/icons-material/Clear';
-import {assetService} from "../../services/AssetService";
-import HideImageOutlinedIcon from '@mui/icons-material/HideImageOutlined';
-
-export interface ExhibitsFilter {
-    exhibitionId: string,
-    referenceNamePrefix?: string
-}
+import {usePagination} from "../../components/hooks";
 
 const links = [{
     nameKey: "menu.exhibits",
@@ -51,33 +31,23 @@ const ExhibitsPage = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
     const [filters, setFilters] = useState<ExhibitsFilter>({exhibitionId: ""})
-    const [page, setPage] = useState<number>(0);
-    const [pageSize, setPageSize] = useState<number>(10);
-    const [keys, setKeys] = useState<(string | undefined)[]>([undefined]);
+    const {page, pageSize, resetPagination, ...pagination} = usePagination();
 
     useEffect(() => {
-        if (!filters.exhibitionId || (filters.referenceNamePrefix && filters.referenceNamePrefix.length < 3)) return
+        if (!filters.exhibitionId || (filters.referenceNameLike && filters.referenceNameLike.length < 3)) return
         getExhibitsAsync()
     }, [filters, page, pageSize]);
 
     const getExhibitsAsync = async () => {
         setLoading(true);
         try {
-            const searchParams = {
+            const results = await exhibitService.getExhibits({
                 filters: filters,
-                pagination: {
-                    pageSize: pageSize,
-                    nextPageKey: keys[page]
-                },
-            }
-            const results = await exhibitService.getExhibits(searchParams)
+                pagination: pagination.toApiPagination(),
+            })
 
             setExhibits(results.items as Exhibit[]);
-            if (results.nextPageKey) {
-                const tmpKeys = keys
-                tmpKeys[page + 1] = results.nextPageKey
-                setKeys(tmpKeys)
-            }
+            if (results.nextPageKey) pagination.updatePageKeys(results.nextPageKey)
         } catch (err) {
             snackbar(t("error.fetchingExhibitsFailed"), {variant: "error"})
         } finally {
@@ -85,30 +55,17 @@ const ExhibitsPage = () => {
         }
     };
 
-    const resetPage = () => {
-        setPage(0)
-        setKeys([undefined])
+    const onRowDelete = () => {
+        resetPagination()
+        getExhibitsAsync()
     }
 
     const filterResults = (key: string, value: any) => {
-        resetPage()
+        resetPagination()
         setFilters({
             ...filters,
             [key]: value
         })
-    }
-
-    const nextPage = () => setPage(page + 1)
-    const prevPage = () => setPage(page - 1)
-
-    const onPageSizeChange = (pageSize: number) => {
-        setPageSize(pageSize)
-        resetPage()
-    }
-
-    const onRowDelete = () => {
-        resetPage()
-        getExhibitsAsync()
     }
 
     const showEmptyResults = (!exhibits || exhibits.length == 0) && !!filters.exhibitionId
@@ -134,19 +91,19 @@ const ExhibitsPage = () => {
                         <Box width={"30%"}>
                             <ExhibitionSelect
                                 value={filters.exhibitionId}
-                                onChange={id => filterResults("exhibitionId", id)}
+                                onChange={value => filterResults("exhibitionId", value)}
                                 disabled={false}
                             />
                         </Box>
-                        <Box width={"40%"}>
+                        <Box width={"50%"}>
                             <SearchTextField
-                                value={filters.referenceNamePrefix}
-                                onChange={filterResults}
+                                value={filters.referenceNameLike}
+                                onChange={value => filterResults("referenceNameLike", value)}
                             />
                         </Box>
                     </Stack>
 
-                    <BaseTable size={"small"}>
+                    <BaseTable>
                         <TableHead>
                             <TableRow>
                                 <TableHeadCell width={"30%"}>{t("page.exhibits.table.referenceName")}</TableHeadCell>
@@ -176,240 +133,18 @@ const ExhibitsPage = () => {
                                 <Pagination
                                     page={page}
                                     pageSize={pageSize}
-                                    keys={keys}
-                                    onNextPage={nextPage}
-                                    onPrevPage={prevPage}
-                                    onPageSizeChange={onPageSizeChange}
+                                    keys={pagination.keys}
+                                    onNextPage={pagination.nextPage}
+                                    onPrevPage={pagination.prevPage}
+                                    onPageSizeChange={resetPagination}
                                 />
-                            </TableBody>}
+                            </TableBody>
+                        }
                     </BaseTable>
                 </SinglePageColumn>
             </PageContentContainer>
         </Stack>
     );
 };
-
-const SearchTextField = ({value, onChange}: { value?: string, onChange: (key: string, value?: string) => void }) => {
-    const {t} = useTranslation();
-
-    return (
-        <FormControl size={"small"} fullWidth>
-            <Typography variant='body1' pb={1}>{t("page.exhibits.table.searchTextTitle")}</Typography>
-            <TextField
-                size="small"
-                placeholder={t("page.exhibits.table.searchTextPlaceholder")}
-                value={value ?? ""}
-                onChange={event => onChange("referenceNamePrefix", event.target.value)}
-                InputProps={{
-                    endAdornment: <InputAdornment position="end">
-                        <IconButton edge="end" onClick={() => onChange("referenceNamePrefix", undefined)}>
-                            <ClearIcon/>
-                        </IconButton>
-                    </InputAdornment>
-                }}
-                required
-            >
-            </TextField>
-        </FormControl>
-    )
-}
-
-const ResourceAvatar = ({referenceName, images, status}: { referenceName: string, images: ImageRef[], status: Status }) => {
-    const theme = useTheme()
-    const [imgSrc, setImgSrc] = useState<string>("");
-    const imageId = images[0]?.id ?? undefined
-    const displayImg = !!(imageId) && status === "ACTIVE"
-
-    const getThumbnail = useCallback(async (imageId: string) => {
-        await assetService.getPrivateThumbnail(imageId)
-            .then(src => setImgSrc(src!!))
-    }, []);
-
-    useEffect(() => {
-        if (displayImg) {
-            getThumbnail(imageId);
-        }
-    }, [displayImg, imageId, getThumbnail]);
-
-    return (
-        <Stack spacing={2} py={0.5} direction="row" alignItems={"center"}>
-            {displayImg ?
-                <Avatar src={imgSrc} alt={"A"} sx={{backgroundColor: theme.palette.secondary.light}}/>
-                :
-                <Avatar sx={{backgroundColor: theme.palette.secondary.light}}>
-                    <HideImageOutlinedIcon color={"disabled"}/>
-                </Avatar>
-            }
-            <Typography fontWeight={"bold"} variant={"body2"}>{referenceName}</Typography>
-        </Stack>
-    )
-}
-
-const LangOptions = ({langOptions}: {
-    langOptions: { lang: string }[]
-}) => {
-    const langs = langOptions.map(opt => opt.lang)
-    return <LangList langs={langs}/>
-}
-
-const AudioOptions = ({langOptions}: {
-    langOptions: { lang: string, audio?: object }[]
-}) => {
-    const langs = langOptions
-        .filter(opt => !!opt.audio)
-        .map(opt => opt.lang)
-    return <LangList langs={langs}/>
-}
-
-const LangList = ({langs}: { langs: string[] }) => {
-    return <AvatarGroup spacing={"small"} max={5}>
-        {
-            langs.map((lang, i) => {
-                return (
-                    <Avatar key={lang + i} sx={{width: 32, height: 32, backgroundColor: 'transparent'}}>
-                        <CircleFlag countryCode={langMap.get(lang) ?? ""} height="28"/>
-                    </Avatar>
-                )
-            })
-        }
-    </AvatarGroup>
-}
-
-const StatusChip = ({status}: { status: Status }) => {
-    switch (status) {
-        case "ACTIVE":
-            return <Chip icon={<DoneIcon/>} label="Active" size="medium" variant="outlined" color="primary"/>
-        case "ERROR":
-            return <Chip icon={<ErrorOutlineIcon/>} label="Error" size="medium" variant="outlined" color="error"/>
-        case "PROCESSING":
-            return <Chip icon={<AutorenewIcon/>} label="Processing" size="medium" variant="outlined" color="primary"/>
-    }
-}
-
-const RowActions = ({id, referenceName, qrCodeUrl, reload}: {
-    id: string,
-    referenceName: string,
-    qrCodeUrl: string,
-    reload: () => void
-}) => {
-    const navigate = useNavigate()
-    const {t} = useTranslation()
-    const {enqueueSnackbar: snackbar} = useSnackbar();
-    const [removeExhibitDialogOpen, setRemoveExhibitDialogOpen] = useState(false);
-    const [qrCodeDialogOpen, setQrCodeDialogOpen] = useState<boolean>(false);
-
-    const handleRemoveExhibitDialogOpen = () => setRemoveExhibitDialogOpen(true);
-    const handleRemoveExhibitDialogClose = () => setRemoveExhibitDialogOpen(false);
-    const handleQrCodeDialogOpen = () => setQrCodeDialogOpen(true);
-    const handleQrCodeDialogClose = () => setQrCodeDialogOpen(false);
-
-    const deleteExhibit = async (exhibitId: string) => {
-        try {
-            await exhibitService.deleteExhibit(exhibitId);
-            reload()
-            snackbar(t("success.exhibitDeleted", {exhibitId: exhibitId}), {variant: "success"})
-        } catch (err) {
-            snackbar(t("success.deletingExhibitFailed", {exhibitId: exhibitId}), {variant: "error"})
-        }
-    }
-
-    return (
-        <>
-            <ConfirmationDialog
-                title={t("dialog.deleteExhibit.title")}
-                description={t("dialog.deleteExhibit.subtitle")}
-                open={removeExhibitDialogOpen}
-                handleAgree={() => deleteExhibit(id)}
-                handleClose={handleRemoveExhibitDialogClose}
-            />
-            <QrCodeDialog open={qrCodeDialogOpen} referenceName={referenceName} qrCodeUrl={qrCodeUrl} handleClose={handleQrCodeDialogClose}/>
-            <Stack direction="row" display="flex" spacing={1} justifyContent="end">
-                <IconButton onClick={() => handleQrCodeDialogOpen()}>
-                    <QrCode2Icon/>
-                </IconButton>
-                <IconButton onClick={() => navigate(`/exhibits/${id}`)}>
-                    <EditOutlinedIcon/>
-                </IconButton>
-                <IconButton onClick={() => handleRemoveExhibitDialogOpen()}>
-                    <DeleteOutlinedIcon/>
-                </IconButton>
-            </Stack>
-        </>
-    )
-}
-
-const Pagination = ({page, pageSize, keys, onNextPage, onPrevPage, onPageSizeChange}: {
-    page: number,
-    pageSize: number,
-    keys: (string | undefined)[],
-    onNextPage: () => void,
-    onPrevPage: () => void,
-    onPageSizeChange: (pageSize: number) => void
-}) => {
-    return (
-        <TableRow>
-            <TableCell align="right" colSpan={6} sx={{paddingY: 1}}>
-                <Stack direction="row" spacing={1} display="flex" justifyContent="end" alignItems={"center"}>
-                    <Typography variant='subtitle2' paddingRight={1}>Rows per page:</Typography>
-                    <Select
-                        value={pageSize}
-                        onChange={event => onPageSizeChange(+event.target.value)}
-                        size={"small"}
-                        sx={{
-                            height: "32px",
-                        }}
-                    >
-                        <MenuItem value={2}>
-                            <Typography variant='subtitle2'>2</Typography>
-                        </MenuItem>
-                        <MenuItem value={5}>
-                            <Typography variant='subtitle2'>5</Typography>
-                        </MenuItem>
-                        <MenuItem value={10}>
-                            <Typography variant='subtitle2'>10</Typography>
-                        </MenuItem>
-                        <MenuItem value={25}>
-                            <Typography variant='subtitle2'>25</Typography>
-                        </MenuItem>
-                    </Select>
-
-                    <IconButton onClick={onPrevPage} disabled={page < 1}>
-                        <ChevronLeftIcon/>
-                    </IconButton>
-                    <IconButton onClick={onNextPage} disabled={keys[page + 1] === undefined}>
-                        <ChevronRightIcon/>
-                    </IconButton>
-                </Stack>
-            </TableCell>
-        </TableRow>
-    )
-}
-
-const Loading = () => {
-    return (
-        <TableBody>
-            <TableRow>
-                <TableCell align="center" colSpan={6} sx={{paddingY: 8}}>
-                    <CircularProgress/>
-                </TableCell>
-            </TableRow>
-        </TableBody>
-    )
-}
-
-const NoItems = () => {
-    const {t} = useTranslation();
-    const navigate = useNavigate()
-    const theme = useTheme()
-
-    return (
-        <TableRow>
-            <TableCell align="center" colSpan={6} sx={{paddingY: 8}}>
-                <Typography variant='body1' fontWeight='bolder'>{t("page.exhibits.table.noItemsTitle")}</Typography>
-                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>{t("page.exhibits.table.noItemsSubtitle")}</Typography>
-                <Button startIcon={<AddOutlinedIcon/>} variant="outlined" onClick={() => navigate("new")}>{t('common.create')}</Button> </TableCell>
-        </TableRow>
-    )
-}
 
 export default ExhibitsPage;

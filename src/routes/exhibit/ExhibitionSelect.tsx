@@ -20,7 +20,7 @@ export const ExhibitionSelect = (props: {
     const getExhibitionsAsync = useCallback(async () => {
         setLoading(true);
         try {
-            const exhibitions = await exhibitionService.getExhibitions({});
+            const exhibitions = await exhibitionService.getAllExhibitions();
             if (exhibitions.length < 1) {
                 snackbar(t("validation.noActiveExhibition"), {variant: "error"})
                 navigate("/exhibitions");

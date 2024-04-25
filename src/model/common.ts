@@ -21,3 +21,17 @@ export const voices = new Map<string, string>([
     ["FEMALE_1", "Female 1"],
     ["MALE_1", "Male 1"],
 ])
+
+export interface Pagination {
+    page: number;
+    pageSize: number;
+    keys: (string | undefined)[];
+}
+
+export const DEFAULT_PAGE = 0;
+export const DEFAULT_PAGE_SIZE = 10;
+export const DEFAULT_PAGINATION: Pagination = {
+    page: DEFAULT_PAGE,
+    pageSize: DEFAULT_PAGE_SIZE,
+    keys: [undefined]
+}

@@ -19,10 +19,13 @@ export async function getAuthHeaders() {
     }
 }
 
+export function normalize(value: string | undefined): string | undefined {
+    return value === "" ? undefined : value;
+}
+
 export async function requestWrapper<T>(request: () => Promise<T>) {
     try {
         const response = await request()
-        // console.log(JSON.stringify(response, null, 4))
         return response
     } catch (error) {
         if (error instanceof AxiosError) {
