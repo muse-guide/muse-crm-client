@@ -14,9 +14,11 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
 import {ApiException} from "../../http/types";
 import {ImageHolder, ImageUploaderField} from "../../components/form/ImageUploader";
-import {LanguageTabs} from "./ExhibtLanguageTabs";
 import {ExhibitionSelect} from "./ExhibitionSelect";
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
+import {ExhibitLanguageSpecificForm} from "./ExhibtLanguageTabs";
+import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
 
 const defaults = {
     id: "",
@@ -52,7 +54,6 @@ const ExhibitPage = () => {
     const exhibitionId = methods.watch("exhibitionId")
 
     useEffect(() => {
-        methods.reset(defaults)
         if (exhibitId) {
             getExhibitAsync(exhibitId);
         }
@@ -87,12 +88,10 @@ const ExhibitPage = () => {
         try {
             if (exhibitId) {
                 await exhibitService.updateExhibit(data)
-                methods.reset(defaults);
                 navigate("/exhibits");
                 snackbar(t("success.exhibitUpdated", {exhibitId: exhibitId}), {variant: "success"})
             } else {
                 await exhibitService.createExhibit(data)
-                methods.reset(defaults);
                 navigate("/exhibits");
                 snackbar(t("success.exhibitCreated"), {variant: "success"})
             }
@@ -140,7 +139,7 @@ const ExhibitPage = () => {
                                         title={t('page.exhibit.generalInfoForm.referenceName')}
                                         placeholder={t('page.exhibit.generalInfoForm.referenceNamePlaceholder')}
                                         required
-                                        maxLength={64}
+                                        maxLength={128}
                                     />
                                 </FullRow>
                                 <FullRow>
@@ -164,14 +163,17 @@ const ExhibitPage = () => {
                                 subtitle={t('page.exhibit.languagesForm.subtitle')}
                             >
                                 <FullRow>
-                                    <LanguageTabs arrayMethods={langOptionMethods}/>
+                                    <LanguageTabs
+                                        arrayMethods={langOptionMethods as unknown as UseFieldArrayReturn<LanguageOptionsHolder, "langOptions">}
+                                        FormComponent={ExhibitLanguageSpecificForm}
+                                    />
                                 </FullRow>
                             </Panel>
                         </SinglePageColumn>
 
                         <Actions>
                             <Button variant="text" onClick={() => navigate("/exhibits")}>{t('common.cancel')}</Button>
-                            <Button variant="outlined" startIcon={<PhoneIphoneIcon/>}>{t('page.exhibit.actions.appPreview')}</Button>
+                            <Button variant="outlined" startIcon={<PhoneIphoneIcon/>}>{t('page.common.appPreview')}</Button>
                             <LoadingButton
                                 key="submitButton"
                                 variant="contained"

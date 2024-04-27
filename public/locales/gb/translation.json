@@ -32,20 +32,7 @@
         "exhibitTitle": "Exhibit title",
         "exhibitTitlePlaceholder": "Amazing exhibit",
         "exhibitSubtitle": "Exhibit subtitle",
-        "exhibitSubtitlePlaceholder": "This exhibit is amazing",
-
-        "audioHelperText": "Click here to listen or to generate new audio for this language.",
-        "noAudioHelperTextTitle": "Audio missing",
-        "noAudioHelperTextSubtitle": "No audio generated for this language option.",
-
-        "articleHelperText": "Preview description or create new one for this language.",
-        "noArticleHelperTextTitle": "Description missing",
-        "noArticleHelperTextSubtitle": "You can enrich your resource with optional description in form of article."
-      },
-      "actions": {
-        "appPreview": "App preview",
-        "generateAudio": "Generate audio",
-        "createArticle": "Create article"
+        "exhibitSubtitlePlaceholder": "This exhibit is amazing"
       }
     },
     "exhibits": {
@@ -57,9 +44,7 @@
         "status": "Status",
         "languageOptions": "Language option",
         "audio": "Audio",
-
-        "searchTextTitle": "Reference name",
-        "searchTextPlaceholder": "Search exhibits by reference name...",
+        "actions": "Actions",
 
         "noItemsTitle": "No exhibits",
         "noItemsSubtitle": "No exhibit found with given search criteria, or you have got no active exhibits. You can create new exhibit by clicking button below."
@@ -67,7 +52,22 @@
     },
     "exhibition": {
       "title": "Exhibition",
-      "subtitle": "Create or edit exhibitions here. Collections group exhibits"
+      "subtitle": "Create or edit exhibitions here. Collections group exhibits",
+      "generalInfoForm": {
+        "title": "General info",
+        "subtitle": "Provide basic information about exhibition. You can enrich it with article and audio.",
+        "referenceName": "Reference name",
+        "referenceNamePlaceholder": "Amazing exhibition",
+        "includeInstitutionInfoHelperText": "If selected, user will be able to access institution info from this exhibition."
+      },
+      "languagesForm": {
+        "title": "Available languages",
+        "subtitle": "Provide info for exhibition in multiple languages. You can add as many languages as you want. At least one language is required.",
+        "exhibitionTitle": "Exhibit title",
+        "exhibitionTitlePlaceholder": "Amazing exhibit",
+        "exhibitionSubtitle": "Exhibit subtitle",
+        "exhibitionSubtitlePlaceholder": "This exhibit is amazing"
+      }
     },
     "exhibitions": {
       "title": "Exhibitions",
@@ -76,13 +76,26 @@
         "referenceName": "Reference name",
         "status": "Status",
         "languageOptions": "Language option",
+        "audio": "Audio",
+        "actions": "Actions",
 
         "noItemsTitle": "No exhibits",
         "noItemsSubtitle": "No exhibit found with given search criteria, or you have got no active exhibits. You can create new exhibit by clicking button below."
       }
     },
     "common": {
-      "noLanguage": "Add language to this element"
+      "noLanguage": "Add language to this element",
+      "appPreview": "App preview",
+
+      "audioHelperText": "Click here to listen or to generate new audio for this language.",
+      "noAudioHelperTextTitle": "Audio missing",
+      "noAudioHelperTextSubtitle": "No audio generated for this language option.",
+      "generateAudio": "Generate audio",
+
+      "articleHelperText": "Preview description or create new one for this language.",
+      "noArticleHelperTextTitle": "Description missing",
+      "noArticleHelperTextSubtitle": "You can enrich your resource with optional description in form of article.",
+      "createArticle": "Create article"
     }
   },
   "dialog": {
@@ -114,15 +127,15 @@
       "title": "Remove language",
       "description": "Are you sure you want to remove this language option? This action is irreversible."
     },
-    "deleteExhibit": {
-      "title": "Delete exhibit",
-      "description": "Are you sure you want to permanently delete this exhibit?"
+    "delete": {
+      "title": "Delete item",
+      "description": "Are you sure you want to permanently delete this item?"
     }
   },
   "component": {
     "searchText": {
       "title": "Reference name",
-      "placeholder": "Search exhibits by reference name..."
+      "placeholder": "Search by reference name..."
     }
   },
   "common": {
@@ -162,6 +175,10 @@
     "deletingExhibitFailed": "Deleting exhibit id: {{exhibitId}} failed."
   },
   "success": {
+    "exhibitionCreated": "New exhibition created.",
+    "exhibitionUpdated": "Exhibition {{exhibitionId}} updated.",
+    "exhibitionDeleted": "Exhibition id: {{exhibitionId}} deleted successfully.",
+
     "exhibitCreated": "New exhibit created.",
     "exhibitUpdated": "Exhibit {{exhibitId}} updated.",
     "exhibitDeleted": "Exhibit id: {{exhibitId}} deleted successfully."

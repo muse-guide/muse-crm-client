@@ -7,17 +7,20 @@ import {CheckboxInput} from "../../components/form/CheckboxInput";
 import {ImageHolder, ImageUploaderField} from "../../components/form/ImageUploader";
 import {FormProvider, SubmitHandler, useFieldArray, UseFieldArrayReturn, useForm} from "react-hook-form";
 import {Exhibition} from "../../model/exhibition";
-import {LanguageTabs} from "./ExhibtionLanguageTabs";
 import {useSnackbar} from "notistack";
 import {useNavigate, useParams} from "react-router-dom";
 import {exhibitionService} from "../../services/ExhibitionService";
 import {FullRow, Panel} from "../../components/panel";
-import {Actions, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
+import {Actions, Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
 import {ApiException} from "../../http/types";
+import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
+import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
+import {ExhibitionLanguageSpecificForm} from "./ExhibtionLanguageTabs";
+import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
 
-const initialExhibition: Exhibition = {
+const defaults: Exhibition = {
     id: "abea222c",
     institutionId: "abea222c",
     referenceName: "",
@@ -37,7 +40,7 @@ const ExhibitionPage = () => {
     const {enqueueSnackbar: snackbar} = useSnackbar();
     const methods = useForm<Exhibition>({
         mode: "onSubmit",
-        defaultValues: initialExhibition
+        defaultValues: defaults
     });
     const langOptionMethods = useFieldArray({
         shouldUnregister: false,
@@ -50,7 +53,6 @@ const ExhibitionPage = () => {
     });
 
     useEffect(() => {
-        methods.reset(initialExhibition)
         if (exhibitionId) {
             getExhibitionAsync(exhibitionId);
         }
@@ -63,8 +65,7 @@ const ExhibitionPage = () => {
             const exhibition = await exhibitionService.getExhibition(exhibitionId);
             methods.reset(exhibition);
         } catch (err) {
-            if (err instanceof ApiException) snackbar(`Creating exhibition failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
-            else snackbar(`Creating exhibition failed.`, {variant: "error"})
+            snackbar(t("error.fetchingExhibitionFailed"), {variant: "error"})
         } finally {
             setLoading(false);
         }
@@ -72,21 +73,19 @@ const ExhibitionPage = () => {
 
     const onSubmit: SubmitHandler<Exhibition> = async (data) => {
         if (langOptionMethods.fields.length < 1) {
-            snackbar("Your must provide at least one language for collection...", {variant: "error"})
+            snackbar(t("validation.noLanguageOption"), {variant: "error"})
             return
         }
         setProcessing(true);
         try {
             if (exhibitionId) {
                 await exhibitionService.updateExhibition(data)
-                methods.reset(initialExhibition);
                 navigate("/exhibitions");
-                snackbar(`Exhibition ${exhibitionId} updated`, {variant: "success"})
+                snackbar(t("success.exhibitionUpdated", {exhibitionId: exhibitionId}), {variant: "success"})
             } else {
                 await exhibitionService.createExhibition(data)
-                methods.reset(initialExhibition);
                 navigate("/exhibitions");
-                snackbar(`New collection created`, {variant: "success"})
+                snackbar(t("success.exhibitionCreated"), {variant: "success"})
             }
         } catch (err) {
             if (err instanceof ApiException) snackbar(`Creating exhibition failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
@@ -110,68 +109,74 @@ const ExhibitionPage = () => {
     const theme = useTheme()
 
     return (
-        <FormProvider {...methods} >
-            <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
-                <AppBreadcrumbs links={links}/>
-                <PageTitle title={t('exhibitionPage.title')}/>
-                <PageContentContainer>
-                    <SinglePageColumn>
-                        <Panel
-                            loading={loading}
-                            title="Podstawowe informacje"
-                            subtitle="Podaj podstawowe informacje dotyczące wystawy, jak nazwę której będziesz używał, żeby dodawać eksponaty do kolekcji. Tu dodasz także zdjęcia, które pojawią się w aplikacji mobilej."
-                        >
-                            <FullRow>
-                                <TextInput
-                                    name="referenceName"
-                                    title="Nazwa własna"
-                                    placeholder="Moja wielka wystawa"
-                                    required
-                                    maxLength={20}
-                                />
-                            </FullRow>
-                            <FullRow>
-                                <CheckboxInput
-                                    name="includeInstitutionInfo"
-                                    control={methods.control}
-                                    defaultChecked={true}
-                                    label="Pokaż odnośnik do Twojej instytucji. Kiedy opcja zaznaczona, w aplikacji mobilnej pojawi się przycisk który przenisie użytkownika do strony z informacjami o instytucji."/>
-                            </FullRow>
-                            <FullRow>
-                                <ImageUploaderField arrayMethods={imagesMethods as unknown as UseFieldArrayReturn<ImageHolder, "images", "id">}/>
-                            </FullRow>
-                        </Panel>
+        <Page>
+            <FormProvider {...methods} >
+                <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
+                    <AppBreadcrumbs links={links}/>
+                    <PageTitle title={t('page.exhibition.title')} subtitle={t('page.exhibition.subtitle')}/>
+                    <PageContentContainer>
+                        <SinglePageColumn>
+                            <Panel
+                                loading={loading}
+                                title={t('page.exhibition.generalInfoForm.title')}
+                                subtitle={t('page.exhibition.generalInfoForm.subtitle')}
+                            >
+                                <FullRow>
+                                    <TextInput
+                                        name="referenceName"
+                                        title={t('page.exhibition.generalInfoForm.referenceName')}
+                                        placeholder={t('page.exhibition.generalInfoForm.referenceNamePlaceholder')}
+                                        required
+                                        maxLength={128}
+                                    />
+                                </FullRow>
+                                <FullRow>
+                                    <CheckboxInput
+                                        name="includeInstitutionInfo"
+                                        control={methods.control}
+                                        defaultChecked={true}
+                                        label={t('page.exhibition.generalInfoForm.includeInstitutionInfoHelperText')}
+                                    />
+                                </FullRow>
+                                <FullRow>
+                                    <ImageUploaderField arrayMethods={imagesMethods as unknown as UseFieldArrayReturn<ImageHolder, "images", "id">}/>
+                                </FullRow>
+                            </Panel>
 
-                        <Panel
-                            loading={loading}
-                            title="Opcje językowe"
-                            subtitle="Dodaj informacje o kolekcji, które będą dostępne w wybranych przez Ciebie językach. Dodając tutaj języki, definiujesz także w jakich językach będą dostępne eksponaty należące do kolekcji."
-                        >
-                            <FullRow>
-                                <LanguageTabs arrayMethods={langOptionMethods}/>
-                            </FullRow>
-                        </Panel>
-                    </SinglePageColumn>
+                            <Panel
+                                loading={loading}
+                                title={t('page.exhibition.languagesForm.title')}
+                                subtitle={t('page.exhibition.languagesForm.subtitle')}
+                            >
+                                <FullRow>
+                                    <LanguageTabs
+                                        arrayMethods={langOptionMethods as unknown as UseFieldArrayReturn<LanguageOptionsHolder, "langOptions">}
+                                        FormComponent={ExhibitionLanguageSpecificForm}
+                                    />
+                                </FullRow>
+                            </Panel>
+                        </SinglePageColumn>
 
-                    <Actions>
-                        <Button variant="text" onClick={() => navigate("/exhibitions")}>Anuluj</Button>
-                        <Button variant="outlined">Podgląd aplikacji</Button>
-                        <LoadingButton
-                            key="submitButton"
-                            variant="contained"
-                            disableElevation
-                            type="submit"
-                            loading={processing}
-                            loadingPosition="start"
-                            startIcon={<SaveIcon/>}
-                        >
-                            Zapisz
-                        </LoadingButton>
-                    </Actions>
+                        <Actions>
+                            <Button variant="text" onClick={() => navigate("/exhibitions")}>{t('common.cancel')}</Button>
+                            <Button variant="outlined" startIcon={<PhoneIphoneIcon/>}>{t('page.common.appPreview')}</Button>
+                            <LoadingButton
+                                key="submitButton"
+                                variant="contained"
+                                disableElevation
+                                type="submit"
+                                loading={processing}
+                                loadingPosition="start"
+                                startIcon={<SaveIcon/>}
+                            >
+                                {t('common.save')}
+                            </LoadingButton>
+                        </Actions>
 
-                </PageContentContainer>
-            </form>
-        </FormProvider>
+                    </PageContentContainer>
+                </form>
+            </FormProvider>
+        </Page>
     );
 };
 

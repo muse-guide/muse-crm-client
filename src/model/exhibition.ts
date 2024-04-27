@@ -11,11 +11,30 @@ export interface Exhibition {
     status: Status
 }
 
-export type CreateExhibition = Omit<Exhibition, "id" | "qrCodeUrl" | "status">
-
 export interface ExhibitionLang {
     lang: string;
     title: string;
     subtitle: string;
     description?: string;
+    audio?: {
+        key: string,
+        markup: string,
+        voice: string,
+    }
+}
+
+export interface CreateExhibition {
+    institutionId: string,
+    referenceName: string,
+    langOptions: {
+        lang: string;
+        title: string;
+        subtitle: string;
+        description?: string;
+        audio?: {
+            markup: string,
+            voice: string,
+        }
+    }[];
+    images: ImageRef[];
 }

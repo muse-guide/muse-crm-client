@@ -3,7 +3,7 @@ import {Box, Button, Stack} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import {PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
-import {BaseTable, BaseTableRow, LangOptions, Loading, NoItems, Pagination, ResourceAvatar, RowActions, SearchTextField, StatusChip, TableHeadCell} from "../../components/table";
+import {AudioOptions, BaseTable, BaseTableRow, LangOptions, Loading, NoItems, Pagination, ResourceAvatar, RowActions, SearchTextField, StatusChip, TableHeadCell} from "../../components/table";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableBody from "@mui/material/TableBody";
@@ -15,6 +15,7 @@ import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import {exhibitionService, ExhibitionsFilter} from "../../services/ExhibitionService";
 import {useSnackbar} from "notistack";
 import {usePagination} from "../../components/hooks";
+import {exhibitService} from "../../services/ExhibitService";
 
 const links = [{
     nameKey: "menu.exhibitions",
@@ -53,10 +54,18 @@ const ExhibitionsPage = () => {
         }
     };
 
-    const onRowDelete = () => {
-        resetPagination()
-        getExhibitionsAsync()
+    const onDelete = async (exhibitionId: string) => {
+        try {
+            await exhibitionService.deleteExhibition(exhibitionId);
+            resetPagination()
+            getExhibitionsAsync()
+            snackbar(t("success.exhibitionDeleted", {exhibitionId: exhibitionId}), {variant: "success"})
+        } catch (err) {
+            snackbar(t("success.deletingExhibitionFailed", {exhibitionId: exhibitionId}), {variant: "error"})
+        }
     }
+
+    const onEdit = (id: string) => navigate(`/exhibitions/${id}`)
 
     const filterResults = (key: string, value: any) => {
         resetPagination()
@@ -100,10 +109,11 @@ const ExhibitionsPage = () => {
                                 <TableHeadCell width={"30%"}>{t("page.exhibitions.table.referenceName")}</TableHeadCell>
                                 <TableHeadCell align="right">{t("page.exhibitions.table.status")}</TableHeadCell>
                                 <TableHeadCell align="right">{t("page.exhibitions.table.languageOptions")}</TableHeadCell>
-                                <TableHeadCell align="right"></TableHeadCell>
+                                <TableHeadCell align="right">{t("page.exhibitions.table.audio")}</TableHeadCell>
+                                <TableHeadCell align="right">{t("page.exhibitions.table.actions")}</TableHeadCell>
                             </TableRow>
                         </TableHead>
-                        {loading ? <Loading/> :
+                        {loading ? <Loading span={5}/> :
                             <TableBody>
                                 {exhibitions.map((row, i) => (
                                     <BaseTableRow key={row.id + i}>
@@ -112,7 +122,16 @@ const ExhibitionsPage = () => {
                                         </TableCell>
                                         <TableCell align="right"><StatusChip status={row.status}/></TableCell>
                                         <TableCell align="right"><LangOptions langOptions={row.langOptions}/></TableCell>
-                                        <TableCell align="right"><RowActions id={row.id} referenceName={row.referenceName} qrCodeUrl={row.qrCodeUrl} reload={onRowDelete}/></TableCell>
+                                        <TableCell align="right"><AudioOptions langOptions={row.langOptions}/></TableCell>
+                                        <TableCell align="right">
+                                            <RowActions
+                                                id={row.id}
+                                                referenceName={row.referenceName}
+                                                qrCodeUrl={row.qrCodeUrl}
+                                                onDelete={onDelete}
+                                                onEdit={onEdit}
+                                            />
+                                        </TableCell>
                                     </BaseTableRow>
                                 ))}
                                 {showEmptyResults && <NoItems/>}

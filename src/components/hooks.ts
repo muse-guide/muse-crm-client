@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import {DEFAULT_PAGE, DEFAULT_PAGE_SIZE} from "../model/common";
 
 export function usePagination() {
@@ -29,5 +29,19 @@ export function usePagination() {
     })
 
     return {page, pageSize, keys, resetPagination, updatePageKeys, nextPage, prevPage, toApiPagination}
-
 }
+
+const useDialog = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openDialog = () => setIsOpen(true);
+    const closeDialog = useCallback(() => setIsOpen(false), []);
+
+    return {
+        isOpen,
+        openDialog,
+        closeDialog
+    };
+};
+
+export default useDialog;

@@ -161,57 +161,7 @@ export const StatusChip = ({status}: { status: Status }) => {
             return <Chip icon={<AutorenewIcon/>} label="Processing" size="medium" variant="outlined" color="primary"/>
     }
 }
-export const RowActions = ({id, referenceName, qrCodeUrl, reload}: {
-    id: string,
-    referenceName: string,
-    qrCodeUrl: string,
-    reload: () => void
-}) => {
-    const navigate = useNavigate()
-    const {t} = useTranslation()
-    const {enqueueSnackbar: snackbar} = useSnackbar();
-    const [removeExhibitDialogOpen, setRemoveExhibitDialogOpen] = useState(false);
-    const [qrCodeDialogOpen, setQrCodeDialogOpen] = useState<boolean>(false);
 
-    const handleRemoveExhibitDialogOpen = () => setRemoveExhibitDialogOpen(true);
-    const handleRemoveExhibitDialogClose = () => setRemoveExhibitDialogOpen(false);
-    const handleQrCodeDialogOpen = () => setQrCodeDialogOpen(true);
-    const handleQrCodeDialogClose = () => setQrCodeDialogOpen(false);
-
-    const deleteExhibit = async (exhibitId: string) => {
-        try {
-            await exhibitService.deleteExhibit(exhibitId);
-            reload()
-            snackbar(t("success.exhibitDeleted", {exhibitId: exhibitId}), {variant: "success"})
-        } catch (err) {
-            snackbar(t("success.deletingExhibitFailed", {exhibitId: exhibitId}), {variant: "error"})
-        }
-    }
-
-    return (
-        <>
-            <ConfirmationDialog
-                title={t("dialog.deleteExhibit.title")}
-                description={t("dialog.deleteExhibit.subtitle")}
-                open={removeExhibitDialogOpen}
-                handleAgree={() => deleteExhibit(id)}
-                handleClose={handleRemoveExhibitDialogClose}
-            />
-            <QrCodeDialog open={qrCodeDialogOpen} referenceName={referenceName} qrCodeUrl={qrCodeUrl} handleClose={handleQrCodeDialogClose}/>
-            <Stack direction="row" display="flex" spacing={1} justifyContent="end">
-                <IconButton onClick={() => handleQrCodeDialogOpen()}>
-                    <QrCode2Icon/>
-                </IconButton>
-                <IconButton onClick={() => navigate(`/exhibits/${id}`)}>
-                    <EditOutlinedIcon/>
-                </IconButton>
-                <IconButton onClick={() => handleRemoveExhibitDialogOpen()}>
-                    <DeleteOutlinedIcon/>
-                </IconButton>
-            </Stack>
-        </>
-    )
-}
 export const Pagination = ({page, pageSize, keys, onNextPage, onPrevPage, onPageSizeChange}: {
     page: number,
     pageSize: number,
@@ -258,11 +208,56 @@ export const Pagination = ({page, pageSize, keys, onNextPage, onPrevPage, onPage
         </TableRow>
     )
 }
-export const Loading = () => {
+
+export const RowActions = ({id, referenceName, qrCodeUrl, onEdit, onDelete, deleteMessage = undefined}: {
+    id: string,
+    referenceName: string,
+    qrCodeUrl: string,
+    onEdit: (id: string) => void,
+    onDelete: (id: string) => Promise<void>,
+    deleteMessage?: string
+}) => {
+    const navigate = useNavigate()
+    const {t} = useTranslation()
+    const {enqueueSnackbar: snackbar} = useSnackbar();
+    const [removeExhibitDialogOpen, setRemoveExhibitDialogOpen] = useState(false);
+    const [qrCodeDialogOpen, setQrCodeDialogOpen] = useState<boolean>(false);
+
+    const handleRemoveExhibitDialogOpen = () => setRemoveExhibitDialogOpen(true);
+    const handleRemoveExhibitDialogClose = () => setRemoveExhibitDialogOpen(false);
+    const handleQrCodeDialogOpen = () => setQrCodeDialogOpen(true);
+    const handleQrCodeDialogClose = () => setQrCodeDialogOpen(false);
+
+    return (
+        <>
+            <ConfirmationDialog
+                title={t("dialog.delete.title")}
+                description={deleteMessage ?? t("dialog.delete.description")}
+                open={removeExhibitDialogOpen}
+                handleAgree={() => onDelete(id)}
+                handleClose={handleRemoveExhibitDialogClose}
+            />
+            <QrCodeDialog open={qrCodeDialogOpen} referenceName={referenceName} qrCodeUrl={qrCodeUrl} handleClose={handleQrCodeDialogClose}/>
+            <Stack direction="row" display="flex" spacing={1} justifyContent="end">
+                <IconButton onClick={() => handleQrCodeDialogOpen()}>
+                    <QrCode2Icon/>
+                </IconButton>
+                <IconButton onClick={() => onEdit(id)}>
+                    <EditOutlinedIcon/>
+                </IconButton>
+                <IconButton onClick={() => handleRemoveExhibitDialogOpen()}>
+                    <DeleteOutlinedIcon/>
+                </IconButton>
+            </Stack>
+        </>
+    )
+}
+
+export const Loading = ({span}: {span: number}) => {
     return (
         <TableBody>
             <TableRow>
-                <TableCell align="center" colSpan={6} sx={{paddingY: 8}}>
+                <TableCell align="center" colSpan={span} sx={{paddingY: 8}}>
                     <CircularProgress/>
                 </TableCell>
             </TableRow>

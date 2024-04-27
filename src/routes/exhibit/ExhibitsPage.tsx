@@ -55,10 +55,18 @@ const ExhibitsPage = () => {
         }
     };
 
-    const onRowDelete = () => {
-        resetPagination()
-        getExhibitsAsync()
+    const onDelete = async (exhibitId: string) => {
+        try {
+            await exhibitService.deleteExhibit(exhibitId);
+            resetPagination()
+            getExhibitsAsync()
+            snackbar(t("success.exhibitDeleted", {exhibitId: exhibitId}), {variant: "success"})
+        } catch (err) {
+            snackbar(t("success.deletingExhibitFailed", {exhibitId: exhibitId}), {variant: "error"})
+        }
     }
+
+    const onEdit = (id: string) => navigate(`/exhibits/${id}`)
 
     const filterResults = (key: string, value: any) => {
         resetPagination()
@@ -111,10 +119,10 @@ const ExhibitsPage = () => {
                                 <TableHeadCell align="right">{t("page.exhibits.table.status")}</TableHeadCell>
                                 <TableHeadCell align="right">{t("page.exhibits.table.languageOptions")}</TableHeadCell>
                                 <TableHeadCell align="right">{t("page.exhibits.table.audio")}</TableHeadCell>
-                                <TableHeadCell align="right"></TableHeadCell>
+                                <TableHeadCell align="right">{t("page.exhibits.table.actions")}</TableHeadCell>
                             </TableRow>
                         </TableHead>
-                        {loading ? <Loading/> :
+                        {loading ? <Loading span={6}/> :
                             <TableBody>
                                 {exhibits.map((row, i) => (
                                     <BaseTableRow key={row.id + i} hover>
@@ -125,7 +133,15 @@ const ExhibitsPage = () => {
                                         <TableCell align="right"><StatusChip status={row.status}/></TableCell>
                                         <TableCell align="right"><LangOptions langOptions={row.langOptions}/></TableCell>
                                         <TableCell align="right"><AudioOptions langOptions={row.langOptions}/></TableCell>
-                                        <TableCell align="right"><RowActions id={row.id} referenceName={row.referenceName} qrCodeUrl={row.qrCodeUrl} reload={onRowDelete}/></TableCell>
+                                        <TableCell align="right">
+                                            <RowActions
+                                                id={row.id}
+                                                referenceName={row.referenceName}
+                                                qrCodeUrl={row.qrCodeUrl}
+                                                onDelete={onDelete}
+                                                onEdit={onEdit}
+                                            />
+                                        </TableCell>
                                     </BaseTableRow>
                                 ))}
                                 {showEmptyResults && <NoItems/>}
