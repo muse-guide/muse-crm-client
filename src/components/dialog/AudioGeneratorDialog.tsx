@@ -19,7 +19,7 @@ import {audioService} from "../../services/AudioPreviewService";
 import {assetService} from "../../services/AssetService";
 import {useSnackbar} from "notistack";
 
-const MAX_LENGTH = 1000;
+const MAX_LENGTH = 2000;
 
 export const AudioGeneratorDialog = (props: {
     input: {

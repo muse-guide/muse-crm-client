@@ -85,6 +85,7 @@ const darkTheme = createTheme({
         },
     },
     typography: {
+        // fontFamily: ["Poppins", "sans-serif", "Roboto", "sans-serif"].join(",")
         fontFamily: ["Lato", "sans-serif"].join(",")
         // fontFamily: ["Public Sans", "sans-serif"].join(",")
         // fontFamily: ["PT Sans", "sans-serif"].join(",")

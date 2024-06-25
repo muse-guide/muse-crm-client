@@ -9,7 +9,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import SaveIcon from "@mui/icons-material/Save";
 
-const MAX_LENGTH = 1000;
+const MAX_LENGTH = 2000;
 
 export const ArticleDialog = (props: {
     markup: string | undefined,

@@ -20,15 +20,14 @@ import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
 import {ExhibitionLanguageSpecificForm} from "./ExhibtionLanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
 
-const defaults: Exhibition = {
+const defaults = {
     id: "abea222c",
-    institutionId: "abea222c",
+    institutionId: "abea222c", // TODO get from user context?
     referenceName: "",
     qrCodeUrl: "",
     includeInstitutionInfo: false,
     images: [],
-    langOptions: [],
-    status: "ACTIVE"
+    langOptions: []
 }
 
 const ExhibitionPage = () => {
@@ -50,6 +49,7 @@ const ExhibitionPage = () => {
     const imagesMethods = useFieldArray({
         control: methods.control,
         name: "images",
+        keyName: "fieldId"
     });
 
     useEffect(() => {

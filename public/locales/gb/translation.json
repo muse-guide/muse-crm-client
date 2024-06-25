@@ -44,10 +44,7 @@
         "status": "Status",
         "languageOptions": "Language option",
         "audio": "Audio",
-        "actions": "Actions",
-
-        "noItemsTitle": "No exhibits",
-        "noItemsSubtitle": "No exhibit found with given search criteria, or you have got no active exhibits. You can create new exhibit by clicking button below."
+        "actions": "Actions"
       }
     },
     "exhibition": {
@@ -63,9 +60,9 @@
       "languagesForm": {
         "title": "Available languages",
         "subtitle": "Provide info for exhibition in multiple languages. You can add as many languages as you want. At least one language is required.",
-        "exhibitionTitle": "Exhibit title",
+        "exhibitionTitle": "Exhibition title",
         "exhibitionTitlePlaceholder": "Amazing exhibit",
-        "exhibitionSubtitle": "Exhibit subtitle",
+        "exhibitionSubtitle": "Exhibition subtitle",
         "exhibitionSubtitlePlaceholder": "This exhibit is amazing"
       }
     },
@@ -77,10 +74,7 @@
         "status": "Status",
         "languageOptions": "Language option",
         "audio": "Audio",
-        "actions": "Actions",
-
-        "noItemsTitle": "No exhibits",
-        "noItemsSubtitle": "No exhibit found with given search criteria, or you have got no active exhibits. You can create new exhibit by clicking button below."
+        "actions": "Actions"
       }
     },
     "common": {
@@ -95,7 +89,10 @@
       "articleHelperText": "Preview description or create new one for this language.",
       "noArticleHelperTextTitle": "Description missing",
       "noArticleHelperTextSubtitle": "You can enrich your resource with optional description in form of article.",
-      "createArticle": "Create article"
+      "createArticle": "Create article",
+
+      "noItemsTitle": "No items found",
+      "noItemsSubtitle": "No items found for given search criteria. You can create new item by clicking button below."
     }
   },
   "dialog": {

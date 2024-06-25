@@ -70,6 +70,7 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
                         title={t("page.exhibit.languagesForm.exhibitTitle")}
                         placeholder={t("page.exhibit.languagesForm.exhibitTitlePlaceholder")}
                         required
+                        maxLength={120}
                     />
                 </Grid>
                 <Grid xs={12}>
@@ -81,6 +82,7 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
                         multiline={true}
                         rows={2}
                         required
+                        maxLength={200}
                     />
                 </Grid>
                 <Grid xs={12} pt={2}>

@@ -28,6 +28,8 @@ import TableBody from "@mui/material/TableBody";
 import CircularProgress from "@mui/material/CircularProgress";
 import ClearIcon from "@mui/icons-material/Clear";
 import {CircleFlag} from "react-circle-flags";
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import {SvgIconProps} from "@mui/material/SvgIcon/SvgIcon";
 
 export const BaseTable = ({children, ...props}: TableProps) => {
     return (
@@ -152,13 +154,14 @@ const LangList = ({langs}: { langs: string[] }) => {
     </AvatarGroup>
 }
 export const StatusChip = ({status}: { status: Status }) => {
+    const DotIcon = ({...props}: SvgIconProps) => <FiberManualRecordIcon sx={{fontSize: 16, paddingLeft: 0.5}} {...props}/>
     switch (status) {
         case "ACTIVE":
-            return <Chip icon={<DoneIcon/>} label="Active" size="medium" variant="outlined" color="primary"/>
+            return <Chip icon={<DotIcon/>} label="Active" size="small" variant="outlined" color="success"/>
         case "ERROR":
-            return <Chip icon={<ErrorOutlineIcon/>} label="Error" size="medium" variant="outlined" color="error"/>
+            return <Chip icon={<DotIcon/>} label="Error" size="small" variant="outlined" color="error"/>
         case "PROCESSING":
-            return <Chip icon={<AutorenewIcon/>} label="Processing" size="medium" variant="outlined" color="primary"/>
+            return <Chip icon={<DotIcon color={"disabled"}/>} label="Processing" size="small" variant="outlined" color="default"/>
     }
 }
 
@@ -253,7 +256,7 @@ export const RowActions = ({id, referenceName, qrCodeUrl, onEdit, onDelete, dele
     )
 }
 
-export const Loading = ({span}: {span: number}) => {
+export const Loading = ({span}: { span: number }) => {
     return (
         <TableBody>
             <TableRow>
@@ -272,8 +275,8 @@ export const NoItems = () => {
     return (
         <TableRow>
             <TableCell align="center" colSpan={6} sx={{paddingY: 8}}>
-                <Typography variant='body1' fontWeight='bolder'>{t("page.exhibits.table.noItemsTitle")}</Typography>
-                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>{t("page.exhibits.table.noItemsSubtitle")}</Typography>
+                <Typography variant='body1' fontWeight='bolder'>{t("page.common.noItemsTitle")}</Typography>
+                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>{t("page.common.noItemsSubtitle")}</Typography>
                 <Button startIcon={<AddOutlinedIcon/>} variant="outlined" onClick={() => navigate("new")}>{t('common.create')}</Button> </TableCell>
         </TableRow>
     )

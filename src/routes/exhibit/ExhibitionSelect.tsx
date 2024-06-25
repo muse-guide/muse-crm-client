@@ -23,7 +23,7 @@ export const ExhibitionSelect = (props: {
             const exhibitions = await exhibitionService.getAllExhibitions();
             if (exhibitions.length < 1) {
                 snackbar(t("validation.noActiveExhibition"), {variant: "error"})
-                navigate("/exhibitions");
+                navigate("/exhibitions/new");
                 return
             }
             setExhibitions(exhibitions);
