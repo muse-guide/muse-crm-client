@@ -6,6 +6,7 @@ import {borderColor} from "../index";
 
 type PanelProps = {
     children: React.ReactNode
+    panelAction?: React.ReactNode
     loading: boolean
     title: string,
     subtitle?: string
@@ -20,17 +21,21 @@ export const BasePanel = ({children, ...props}: PaperProps) => {
     )
 }
 
-export const Panel = ({children, loading, title, subtitle, skeletonHeight = 400}: PanelProps) => {
+export const Panel = ({children, loading, title, subtitle, skeletonHeight = 400,panelAction, ...rest}: PanelProps) => {
     return (
         <>
             {loading ? <Skeleton variant="rectangular" height={skeletonHeight}/>
                 :
-                <BasePanel>
+                <BasePanel {...rest}>
                     <Grid container spacing={3} p={3}>
                         <Grid xs={12}>
-                            <Stack spacing={1}>
-                                <Typography variant='body1' fontWeight='bolder'>{title}</Typography>
+                            <Stack direction={"row"} alignItems={"start"} justifyContent={"space-between"}>
+
+                            <Stack spacing={0.25}>
+                                <Typography variant='h6' fontWeight='bolder'>{title}</Typography>
                                 {subtitle && <Typography variant='body1'>{subtitle}</Typography>}
+                            </Stack>
+                                {panelAction}
                             </Stack>
                         </Grid>
                         {children}
@@ -49,6 +54,6 @@ export const FullRow = ({children, ...props}: Grid2Props) => {
 
 export const HalfRow = ({children, ...props}: Grid2Props) => {
     return (
-        <Grid xs={6} {...props}>{children}</Grid>
+        <Grid xs={12} md={6} {...props}>{children}</Grid>
     )
 }

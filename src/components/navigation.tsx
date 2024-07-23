@@ -124,8 +124,8 @@ export function AppDrawer() {
             </List>
             <List>
                 <CustomListItemButton
-                    to="exhibits"
-                    title={t("menu.profile")}
+                    to="account"
+                    title={t("menu.account")}
                     Icon={AccountCircleOutlinedIcon}
                 />
                 <SingOutButton/>
@@ -249,7 +249,7 @@ const MuseLogo = () => {
 
 const ProfileAvatar = () => {
     const theme = useTheme()
-    const {user} = useAuthenticator((context) => [context.user]);
+    const {user} = useAuthenticator((context) => [context.user.username]);
     return (
         <Stack direction='row'
                spacing={2}

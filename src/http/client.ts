@@ -25,8 +25,7 @@ export function normalize(value: string | undefined): string | undefined {
 
 export async function requestWrapper<T>(request: () => Promise<T>) {
     try {
-        const response = await request()
-        return response
+        return await request()
     } catch (error) {
         if (error instanceof AxiosError) {
             if (error.response) {

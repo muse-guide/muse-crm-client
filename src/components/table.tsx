@@ -153,15 +153,15 @@ const LangList = ({langs}: { langs: string[] }) => {
         }
     </AvatarGroup>
 }
-export const StatusChip = ({status}: { status: Status }) => {
+export const StatusChip = ({status, size}: { status: Status, size?: "small" | "medium" }) => {
     const DotIcon = ({...props}: SvgIconProps) => <FiberManualRecordIcon sx={{fontSize: 16, paddingLeft: 0.5}} {...props}/>
     switch (status) {
         case "ACTIVE":
-            return <Chip icon={<DotIcon/>} label="Active" size="small" variant="outlined" color="success"/>
+            return <Chip label="Active" size={size ?? "small"} variant="filled" color="success"/>
         case "ERROR":
-            return <Chip icon={<DotIcon/>} label="Error" size="small" variant="outlined" color="error"/>
+            return <Chip label="Error" size={size ?? "small"} variant="filled" color="error"/>
         case "PROCESSING":
-            return <Chip icon={<DotIcon color={"disabled"}/>} label="Processing" size="small" variant="outlined" color="default"/>
+            return <Chip label="Processing" size={size ?? "small"} variant="filled" color="default"/>
     }
 }
 

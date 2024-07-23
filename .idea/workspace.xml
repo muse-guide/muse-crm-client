@@ -4,19 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Refactoring">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Ready to exhibition refactoring">
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/form/Label.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/configuration.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/customer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/ConfigurationService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/CustomerService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/ArticleDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/ArticleDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/AudioGeneratorDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/AudioGeneratorDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/client.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ExhibitionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitionService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +36,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package.json" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -67,7 +76,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17.0.2&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse/muse-crm-client/src/components/langOptions&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/src/routes/profile&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -75,21 +84,22 @@
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.install --force.executor&quot;: &quot;Run&quot;,
     &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.3876967&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/michalpacholczyk/workspace/muse/muse-crm-client/node_modules/typescript/lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/langOptions" />
-      <recent name="$PROJECT_DIR$/src/routes/exhibit" />
+      <recent name="$PROJECT_DIR$/src/routes/profile" />
       <recent name="$PROJECT_DIR$/src/model" />
       <recent name="$PROJECT_DIR$/src/services" />
-      <recent name="$PROJECT_DIR$/public/v1" />
+      <recent name="$PROJECT_DIR$/src/components/langOptions" />
+      <recent name="$PROJECT_DIR$/src/routes/exhibit" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/dialog" />
@@ -99,23 +109,14 @@
       <recent name="$PROJECT_DIR$/src/types" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" />
       <recent name="$PROJECT_DIR$/src/services/ExhibitService.ts" />
       <recent name="$PROJECT_DIR$/src/components/table.tsx" />
       <recent name="$PROJECT_DIR$/src/routes/exhibit/AudioGeneratorDialog.tsx" />
       <recent name="$PROJECT_DIR$/src/components/TabTitle.tsx" />
-      <recent name="$PROJECT_DIR$/src/components/NoLanguagePlaceholder.tsx" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
-    <configuration default="true" type="TestNG">
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="npm.npm start">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -140,13 +141,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="install --force" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
+      <command value="install" />
+      <arguments value="--force" />
+      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v20.15.0/bin/node" />
       <envs />
       <method v="2" />
     </configuration>
@@ -160,17 +168,21 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="npm.npm start" />
+      <item itemvalue="npm.install --force" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
+        <item itemvalue="npm.install --force" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -306,6 +318,34 @@
       <workItem from="1718046540807" duration="506000" />
       <workItem from="1718132571725" duration="325000" />
       <workItem from="1718562667495" duration="371000" />
+      <workItem from="1719427276762" duration="364000" />
+      <workItem from="1719427882871" duration="924000" />
+      <workItem from="1719470558866" duration="13000" />
+      <workItem from="1719599607557" duration="1738000" />
+      <workItem from="1719771675602" duration="83000" />
+      <workItem from="1719771774408" duration="627000" />
+      <workItem from="1719816839357" duration="1000" />
+      <workItem from="1719858779382" duration="1569000" />
+      <workItem from="1719901544960" duration="11000" />
+      <workItem from="1719989001296" duration="13000" />
+      <workItem from="1720378118030" duration="2078000" />
+      <workItem from="1720431623776" duration="5000" />
+      <workItem from="1720466402130" duration="1302000" />
+      <workItem from="1720505211173" duration="1000" />
+      <workItem from="1720548947313" duration="2822000" />
+      <workItem from="1720594867350" duration="2000" />
+      <workItem from="1720635105616" duration="3443000" />
+      <workItem from="1720679738312" duration="33000" />
+      <workItem from="1720721090823" duration="4185000" />
+      <workItem from="1720766358805" duration="35000" />
+      <workItem from="1720766412868" duration="1000" />
+      <workItem from="1720808863892" duration="3049000" />
+      <workItem from="1721025068341" duration="8000" />
+      <workItem from="1721240710984" duration="3381000" />
+      <workItem from="1721285986963" duration="10000" />
+      <workItem from="1721671378165" duration="4985000" />
+      <workItem from="1721716955849" duration="47000" />
+      <workItem from="1721761199550" duration="325000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />

@@ -4,7 +4,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 
 export const Page = ({children}: { children: React.ReactNode }) => {
     return (
-        <Box display="flex" flexDirection="column" flexGrow="1">
+        <Box display="flex" flexDirection="column" flexGrow="1" pb={4}>
             {children}
         </Box>
     )

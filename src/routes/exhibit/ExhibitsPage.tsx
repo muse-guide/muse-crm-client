@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Box, Button, Stack, Typography} from "@mui/material";
+import {Box, Button, Checkbox, Stack, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import {PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
@@ -114,6 +114,7 @@ const ExhibitsPage = () => {
                     <BaseTable>
                         <TableHead>
                             <TableRow>
+                                <TableCell padding="checkbox"><Checkbox color="primary"/></TableCell>
                                 <TableHeadCell width={"30%"}>{t("page.exhibits.table.referenceName")}</TableHeadCell>
                                 <TableHeadCell align="right">{t("page.exhibits.table.number")}</TableHeadCell>
                                 <TableHeadCell align="right">{t("page.exhibits.table.status")}</TableHeadCell>
@@ -122,10 +123,11 @@ const ExhibitsPage = () => {
                                 <TableHeadCell align="right">{t("page.exhibits.table.actions")}</TableHeadCell>
                             </TableRow>
                         </TableHead>
-                        {loading ? <Loading span={6}/> :
+                        {loading ? <Loading span={7}/> :
                             <TableBody>
                                 {exhibits.map((row, i) => (
                                     <BaseTableRow key={row.id + i} hover>
+                                        <TableCell padding="checkbox"><Checkbox color="primary"/></TableCell>
                                         <TableCell component="th" scope="row">
                                             <ResourceAvatar referenceName={row.referenceName} images={row.images} status={row.status}/>
                                         </TableCell>

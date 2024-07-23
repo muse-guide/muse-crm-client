@@ -5,7 +5,7 @@
     "exhibitions": "Exhibitions",
     "exhibits": "Exhibits",
     "artists": "Artists",
-    "profile": "Profile",
+    "account": "Account",
     "signOut": "Sing out",
     "dashboard": "Dashboard"
   },
@@ -15,6 +15,42 @@
     "es": "Spanish"
   },
   "page": {
+    "account": {
+      "title": "Account",
+      "subtitle": "Manage your account here",
+      "generalInfoForm": {
+        "title": "Account summary",
+        "subtitle": "Here you can view your account general information.",
+        "accountId": "Account ID",
+        "status": "Account status",
+        "fullName": "Full name",
+        "email": "E-mail address"
+      },
+      "address": {
+        "title": "Contact information",
+        "subtitle": "Provide your contact information here. It will be used for invoicing.",
+        "fullName": "Full name",
+        "street": "Street",
+        "houseNumber": "House number",
+        "houseNumberExtension": "House number extension",
+        "city": "City",
+        "zipCode": "Zip code",
+        "telephoneNumber": "Telephone number",
+        "taxNumber": "Tax number"
+      },
+      "subscription": {
+        "title": "Subscription",
+        "subtitle": "See your subscription details here and change it if needed."
+
+      },
+      "actions": {
+        "accountActions": "Account actions",
+        "saveChanges": "Save changes",
+        "changePassword": "Change password",
+        "deleteAccount": "Delete account",
+        "changeSubscription": "Change subscription"
+      }
+    },
     "exhibit": {
       "title": "Exhibit",
       "subtitle": "Create or edit exhibits here",
@@ -141,6 +177,7 @@
     "select": "select",
     "add": "add",
     "create": "create",
+    "update": "update",
     "close": "close",
     "save": "save",
     "listen": "listen",
@@ -169,7 +206,11 @@
     "fetchingExhibitsFailed": "Fetching exhibits failed.",
     "fetchingExhibitFailed": "Fetching exhibit failed.",
     "savingExhibitFailed": "Saving exhibit failed.",
-    "deletingExhibitFailed": "Deleting exhibit id: {{exhibitId}} failed."
+    "deletingExhibitFailed": "Deleting exhibit id: {{exhibitId}} failed.",
+
+    "fetchingCustomerDataFailed": "Fetching Customer details failed.",
+    "fetchingConfigurationFailed": "Fetching application configuration failed.",
+    "updatingSubscriptionFailed": "Changing subscription failed."
   },
   "success": {
     "exhibitionCreated": "New exhibition created.",
@@ -178,6 +219,8 @@
 
     "exhibitCreated": "New exhibit created.",
     "exhibitUpdated": "Exhibit {{exhibitId}} updated.",
-    "exhibitDeleted": "Exhibit id: {{exhibitId}} deleted successfully."
+    "exhibitDeleted": "Exhibit id: {{exhibitId}} deleted successfully.",
+
+    "subscriptionUpdated": "Subscription updated successfully."
   }
 }
