@@ -1,4 +1,4 @@
-import {AppBar, Avatar, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, Stack, SvgIcon, Toolbar, Typography, useTheme} from "@mui/material";
+import {AppBar, Avatar, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, Stack, SvgIcon, Toolbar, Typography, useTheme} from "@mui/material";
 import {Link, LinkProps, useLocation, useResolvedPath} from "react-router-dom";
 import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
 import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
@@ -11,7 +11,7 @@ import {normalizeText} from "./ComponentUtils";
 import {useTranslation} from "react-i18next";
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import {useEffect, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import {useAuthenticator} from "@aws-amplify/ui-react";
 import {bgColor} from "../index";
 
@@ -66,10 +66,12 @@ export default function Navigation({drawerWidth}: { drawerWidth: number }) {
             </Drawer>
             <Drawer
                 variant="permanent"
+
                 anchor="left"
                 sx={{
                     display: {xs: 'none', md: 'flex'},
                     '& .MuiDrawer-paper': {
+                        overflow: 'hidden',
                         backgroundColor: bgColor,
                         boxSizing: 'border-box',
                         width: drawerWidth,

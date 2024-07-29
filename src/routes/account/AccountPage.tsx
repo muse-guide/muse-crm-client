@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {Button, Card, CardContent, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem, Stack, Typography} from "@mui/material";
+import {Button, Divider, Menu, MenuItem, Stack, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import TextInput from "../../components/form/TextInput";
-import {FormProvider, SubmitHandler, useForm} from "react-hook-form";
+import {FormProvider, useForm} from "react-hook-form";
 import {useSnackbar} from "notistack";
 import {useNavigate} from "react-router-dom";
 import {HalfRow, Panel} from "../../components/panel";
@@ -17,6 +17,7 @@ import {Status} from "../../model/common";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 import {SubscriptionsPanel} from "./SubscriptionsPanel";
+import Grid from "@mui/material/Unstable_Grid2";
 
 const defaults = {
     customerId: "",
@@ -51,6 +52,18 @@ const AccountPage = () => {
             setLoading(false);
         }
     };
+
+    const updateCustomerDetails = async (data: Customer) => {
+        setProcessing(true);
+        try {
+            await customerService.updateCustomerDetails(data);
+            snackbar(t("success.customerDetailsUpdated"), {variant: "success"})
+        } catch (err) {
+            snackbar(t("error.updatingCustomerDetailsFailed"), {variant: "error"})
+        } finally {
+            setProcessing(false);
+        }
+    }
 
     const links = [
         {
@@ -93,12 +106,14 @@ const AccountPage = () => {
                             <SubscriptionsPanel currentPlanType={methods.getValues("subscription.plan")}/>
 
                             <Panel
-                                loading={loading}
+                                loading={loading || processing}
                                 title={t('page.account.address.title')}
                                 subtitle={t('page.account.address.subtitle')}
                                 panelAction={<LoadingButton
                                     variant="outlined"
-                                    startIcon={<PermContactCalendarOutlinedIcon/>}>
+                                    startIcon={<PermContactCalendarOutlinedIcon/>}
+                                    onClick={() => updateCustomerDetails(methods.getValues())}
+                                >
                                     {t('page.account.actions.saveChanges')}
                                 </LoadingButton>}
                             >
@@ -110,6 +125,17 @@ const AccountPage = () => {
                                         maxLength={128}
                                     />
                                 </HalfRow>
+                                <HalfRow>
+                                    <TextInput
+                                        name="taxNumber"
+                                        title={t('page.account.address.taxNumber')}
+                                        placeholder={t('page.account.address.taxNumber')}
+                                        maxLength={128}
+                                    />
+                                </HalfRow>
+                                <Grid xs={12} py={2}>
+                                    <Divider/>
+                                </Grid>
                                 <HalfRow>
                                     <TextInput
                                         name="address.street"
@@ -152,17 +178,17 @@ const AccountPage = () => {
                                 </HalfRow>
                                 <HalfRow>
                                     <TextInput
-                                        name="address.telephoneNumber"
-                                        title={t('page.account.address.telephoneNumber')}
-                                        placeholder={t('page.account.address.telephoneNumber')}
+                                        name="address.country"
+                                        title={t('page.account.address.countryCode')}
+                                        placeholder={t('page.account.address.countryCode')}
                                         maxLength={128}
                                     />
                                 </HalfRow>
                                 <HalfRow>
                                     <TextInput
-                                        name="address.taxNumber"
-                                        title={t('page.account.address.taxNumber')}
-                                        placeholder={t('page.account.address.taxNumber')}
+                                        name="telephoneNumber"
+                                        title={t('page.account.address.telephoneNumber')}
+                                        placeholder={t('page.account.address.telephoneNumber')}
                                         maxLength={128}
                                     />
                                 </HalfRow>

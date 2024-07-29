@@ -26,22 +26,23 @@
         "fullName": "Full name",
         "email": "E-mail address"
       },
+      "subscription": {
+        "title": "Subscription",
+        "subtitle": "See your subscription details here and change it if needed."
+
+      },
       "address": {
-        "title": "Contact information",
-        "subtitle": "Provide your contact information here. It will be used for invoicing.",
-        "fullName": "Full name",
+        "title": "Invoicing information",
+        "subtitle": "If you wish to receive named invoices, provide invoice details here.",
+        "fullName": "Full name or company name",
+        "taxNumber": "Tax number",
         "street": "Street",
         "houseNumber": "House number",
         "houseNumberExtension": "House number extension",
         "city": "City",
         "zipCode": "Zip code",
         "telephoneNumber": "Telephone number",
-        "taxNumber": "Tax number"
-      },
-      "subscription": {
-        "title": "Subscription",
-        "subtitle": "See your subscription details here and change it if needed."
-
+        "countryCode": "Country"
       },
       "actions": {
         "accountActions": "Account actions",
@@ -210,7 +211,8 @@
 
     "fetchingCustomerDataFailed": "Fetching Customer details failed.",
     "fetchingConfigurationFailed": "Fetching application configuration failed.",
-    "updatingSubscriptionFailed": "Changing subscription failed."
+    "updatingSubscriptionFailed": "Changing subscription failed.",
+    "updatingCustomerDetailsFailed": "Updating customer details failed."
   },
   "success": {
     "exhibitionCreated": "New exhibition created.",
@@ -221,6 +223,7 @@
     "exhibitUpdated": "Exhibit {{exhibitId}} updated.",
     "exhibitDeleted": "Exhibit id: {{exhibitId}} deleted successfully.",
 
-    "subscriptionUpdated": "Subscription updated successfully."
+    "subscriptionUpdated": "Subscription updated successfully.",
+    "customerDetailsUpdated": "Customer details updated successfully."
   }
 }

@@ -13,6 +13,14 @@ async function getCurrentCustomer(): Promise<Customer> {
     })
 }
 
+async function updateCustomerDetails(detailsToUpdate: Customer): Promise<Customer> {
+    return await requestWrapper(async () => {
+        const path = `${entityPath}/details`;
+        const response = await api.put<Customer>(path, detailsToUpdate, {...await getAuthHeaders()});
+        return response.data;
+    })
+}
+
 async function changeSubscription(newPlan: string): Promise<Customer> {
     return await requestWrapper(async () => {
         const path = `${entityPath}/subscriptions`;
@@ -23,5 +31,6 @@ async function changeSubscription(newPlan: string): Promise<Customer> {
 
 export const customerService = {
     getCurrentCustomer: getCurrentCustomer,
+    updateCustomerDetails: updateCustomerDetails,
     changeSubscription: changeSubscription
 };
