@@ -4,13 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add subscription resources">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add update customer details">
+      <change afterPath="$PROJECT_DIR$/src/model/invoice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/account/InvoiceDialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/account/InvoicePeriodSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/account/InvoiceStatusChip.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/account/InvoicesPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/InvoiceService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/customer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/configuration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/configuration.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Root.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/CustomerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/CustomerService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ExhibitionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitionService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +74,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17.0.2&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/src/routes/profile&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/src/routes/account&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -80,11 +93,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/account" />
+      <recent name="$PROJECT_DIR$/src/services" />
       <recent name="$PROJECT_DIR$/src/routes/profile" />
       <recent name="$PROJECT_DIR$/src/model" />
-      <recent name="$PROJECT_DIR$/src/services" />
       <recent name="$PROJECT_DIR$/src/components/langOptions" />
-      <recent name="$PROJECT_DIR$/src/routes/exhibit" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/dialog" />
@@ -135,6 +148,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="install --force" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="install" />
@@ -154,11 +177,13 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="npm.npm start" />
+      <item itemvalue="npm.build" />
       <item itemvalue="npm.install --force" />
+      <item itemvalue="npm.npm start" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.install --force" />
       </list>
     </recent_temporary>
@@ -166,8 +191,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19072.14" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19072.14" />
       </set>
     </attachedChunks>
   </component>
@@ -333,7 +358,16 @@
       <workItem from="1721761199550" duration="1837000" />
       <workItem from="1721933665619" duration="2561000" />
       <workItem from="1721977597657" duration="5000" />
-      <workItem from="1722278579866" duration="2269000" />
+      <workItem from="1722278579866" duration="3674000" />
+      <workItem from="1722319548805" duration="2000" />
+      <workItem from="1722710743044" duration="1639000" />
+      <workItem from="1724008025876" duration="1301000" />
+      <workItem from="1724179586809" duration="2838000" />
+      <workItem from="1724224064145" duration="11000" />
+      <workItem from="1724438189447" duration="8556000" />
+      <workItem from="1724699269239" duration="8920000" />
+      <workItem from="1725128226579" duration="5087000" />
+      <workItem from="1725475887159" duration="2509000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -431,7 +465,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721761670738</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add update customer details">
+      <option name="closed" value="true" />
+      <created>1722281021958</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1722281021958</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,6 +507,7 @@
     <MESSAGE value="Alig" />
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Add subscription resources" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add subscription resources" />
+    <MESSAGE value="Add update customer details" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add update customer details" />
   </component>
 </project>

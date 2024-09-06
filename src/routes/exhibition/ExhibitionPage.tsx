@@ -159,7 +159,7 @@ const ExhibitionPage = () => {
 
                         <Actions>
                             <Button variant="text" onClick={() => navigate("/exhibitions")}>{t('common.cancel')}</Button>
-                            <Button variant="outlined" startIcon={<PhoneIphoneIcon/>}>{t('page.common.appPreview')}</Button>
+                            <Button variant="outlined" disabled startIcon={<PhoneIphoneIcon/>}>{t('page.common.appPreview')}</Button>
                             <LoadingButton
                                 key="submitButton"
                                 variant="contained"

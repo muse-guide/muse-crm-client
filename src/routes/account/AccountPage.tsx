@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Button, Divider, Menu, MenuItem, Stack, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
@@ -18,56 +18,42 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 import {SubscriptionsPanel} from "./SubscriptionsPanel";
 import Grid from "@mui/material/Unstable_Grid2";
+import {AppContext} from "../Root";
+import {InvoicesPanel} from "./InvoicesPanel";
 
-const defaults = {
-    customerId: "",
-    email: "",
-    status: "",
-    subscription: {},
-}
 
 const AccountPage = () => {
-    const navigate = useNavigate();
+    const applicationContext = useContext(AppContext);
     const [loading, setLoading] = useState<boolean>(false);
     const [processing, setProcessing] = useState<boolean>(false);
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
+
     const methods = useForm<Customer>({
         mode: "onSubmit",
-        defaultValues: defaults
+        defaultValues: applicationContext?.customer
     });
 
-    useEffect(() => {
-        getCurrentCustomerAsync();
-    }, []);
-
-    const getCurrentCustomerAsync = async () => {
+    const updateCustomerDetails = async (data: Customer) => {
         setLoading(true);
         try {
-            const customer = await customerService.getCurrentCustomer()
-            methods.reset(customer);
-        } catch (err) {
-            snackbar(t("error.fetchingCustomerDataFailed"), {variant: "error"})
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const updateCustomerDetails = async (data: Customer) => {
-        setProcessing(true);
-        try {
             await customerService.updateCustomerDetails(data);
+            const customer = await customerService.getCurrentCustomer()
+
+            applicationContext?.setCustomer(customer);
+            methods.reset(customer);
+
             snackbar(t("success.customerDetailsUpdated"), {variant: "success"})
         } catch (err) {
             snackbar(t("error.updatingCustomerDetailsFailed"), {variant: "error"})
         } finally {
-            setProcessing(false);
+            setLoading(false);
         }
     }
 
     const links = [
         {
-            nameKey: "menu.exhibits",
+            nameKey: "menu.account",
             path: "/profile"
         }
     ]
@@ -193,6 +179,8 @@ const AccountPage = () => {
                                     />
                                 </HalfRow>
                             </Panel>
+
+                            <InvoicesPanel/>
 
                         </SinglePageColumn>
                     </PageContentContainer>

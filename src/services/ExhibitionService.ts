@@ -24,9 +24,6 @@ export interface SearchParams {
 }
 
 async function getExhibitions(searchParams?: SearchParams): Promise<PaginatedResults> {
-    // await customerService.getCurrentCustomer()
-    // await customerService.changeSubscription("FREE")
-    // await configurationService.getApplicationConfiguration()
     return await requestWrapper(async () => {
         const response = await api.get<PaginatedResults>(entityPath, {
             ...await getAuthHeaders(),

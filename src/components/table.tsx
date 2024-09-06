@@ -175,7 +175,7 @@ export const Pagination = ({page, pageSize, keys, onNextPage, onPrevPage, onPage
 }) => {
     return (
         <TableRow>
-            <TableCell align="right" colSpan={6} sx={{paddingY: 1}}>
+            <TableCell align="right" colSpan={100} sx={{paddingY: 1}}>
                 <Stack direction="row" spacing={1} display="flex" justifyContent="end" alignItems={"center"}>
                     <Typography variant='subtitle2' paddingRight={1}>Rows per page:</Typography>
                     <Select
@@ -274,7 +274,7 @@ export const NoItems = () => {
 
     return (
         <TableRow>
-            <TableCell align="center" colSpan={6} sx={{paddingY: 8}}>
+            <TableCell align="center" colSpan={100} sx={{paddingY: 8}}>
                 <Typography variant='body1' fontWeight='bolder'>{t("page.common.noItemsTitle")}</Typography>
                 <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>{t("page.common.noItemsSubtitle")}</Typography>
                 <Button startIcon={<AddOutlinedIcon/>} variant="outlined" onClick={() => navigate("new")}>{t('common.create')}</Button> </TableCell>

@@ -29,7 +29,13 @@
       "subscription": {
         "title": "Subscription",
         "subtitle": "See your subscription details here and change it if needed."
-
+      },
+      "invoices": {
+        "title": "Invoices",
+        "subtitle": "See your invoices here.",
+        "issued": "Issued",
+        "paid": "Paid",
+        "unpaid": "Unpaid"
       },
       "address": {
         "title": "Invoicing information",
@@ -117,17 +123,14 @@
     "common": {
       "noLanguage": "Add language to this element",
       "appPreview": "App preview",
-
       "audioHelperText": "Click here to listen or to generate new audio for this language.",
       "noAudioHelperTextTitle": "Audio missing",
       "noAudioHelperTextSubtitle": "No audio generated for this language option.",
       "generateAudio": "Generate audio",
-
       "articleHelperText": "Preview description or create new one for this language.",
       "noArticleHelperTextTitle": "Description missing",
       "noArticleHelperTextSubtitle": "You can enrich your resource with optional description in form of article.",
       "createArticle": "Create article",
-
       "noItemsTitle": "No items found",
       "noItemsSubtitle": "No items found for given search criteria. You can create new item by clicking button below."
     }
@@ -136,6 +139,21 @@
     "article": {
       "title": "Prepare article",
       "description": "You can enrich your resource with descriptive article. Provide text, format and add photos to deliver best experience to your audience."
+    },
+    "invoice": {
+      "title": "Invoice details",
+      "description": "See invoice details here. You can download it by clicking button below.",
+      "invoiceBusinessId": "Invoice business ID",
+      "invoicePeriod": "Invoice period",
+      "soldAt": "Sold at",
+      "issuedAt": "Issued at",
+      "paymentDue": "Payment due",
+      "paymentStatus": "Payment status",
+      "totalAmount": "Total amount",
+      "plan": "Plan",
+      "activeFrom": "Active from",
+      "activeTo": "Active to",
+      "amount": "Amount"
     },
     "audio": {
       "title": "Generate audio",
@@ -188,7 +206,11 @@
     "article": "article",
     "cancel": "cancel",
     "upload": "upload",
-    "crop": "crop"
+    "crop": "crop",
+    "from": "From",
+    "to": "To",
+    "download": "Download",
+    "error": "Error"
   },
   "validation": {
     "required": "This field is required.",
@@ -200,15 +222,12 @@
   },
   "error": {
     "audioGeneration": "Error during audio generation.",
-
     "fetchingExhibitionsFailed": "Fetching exhibitions failed.",
     "fetchingExhibitionFailed": "Fetching exhibition failed.",
-
     "fetchingExhibitsFailed": "Fetching exhibits failed.",
     "fetchingExhibitFailed": "Fetching exhibit failed.",
     "savingExhibitFailed": "Saving exhibit failed.",
     "deletingExhibitFailed": "Deleting exhibit id: {{exhibitId}} failed.",
-
     "fetchingCustomerDataFailed": "Fetching Customer details failed.",
     "fetchingConfigurationFailed": "Fetching application configuration failed.",
     "updatingSubscriptionFailed": "Changing subscription failed.",
@@ -218,11 +237,9 @@
     "exhibitionCreated": "New exhibition created.",
     "exhibitionUpdated": "Exhibition {{exhibitionId}} updated.",
     "exhibitionDeleted": "Exhibition id: {{exhibitionId}} deleted successfully.",
-
     "exhibitCreated": "New exhibit created.",
     "exhibitUpdated": "Exhibit {{exhibitId}} updated.",
     "exhibitDeleted": "Exhibit id: {{exhibitId}} deleted successfully.",
-
     "subscriptionUpdated": "Subscription updated successfully.",
     "customerDetailsUpdated": "Customer details updated successfully."
   }

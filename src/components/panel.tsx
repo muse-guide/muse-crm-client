@@ -21,21 +21,22 @@ export const BasePanel = ({children, ...props}: PaperProps) => {
     )
 }
 
-export const Panel = ({children, loading, title, subtitle, skeletonHeight = 400,panelAction, ...rest}: PanelProps) => {
+export const Panel = ({children, loading, title, subtitle, skeletonHeight = 400, panelAction, ...rest}: PanelProps) => {
     return (
         <>
-            {loading ? <Skeleton variant="rectangular" height={skeletonHeight}/>
-                :
-                <BasePanel {...rest}>
+            {loading
+                ? <Skeleton variant="rectangular" height={skeletonHeight}/>
+                : <BasePanel {...rest}>
                     <Grid container spacing={3} p={3}>
                         <Grid xs={12}>
                             <Stack direction={"row"} alignItems={"start"} justifyContent={"space-between"}>
-
-                            <Stack spacing={0.25}>
-                                <Typography variant='h6' fontWeight='bolder'>{title}</Typography>
-                                {subtitle && <Typography variant='body1'>{subtitle}</Typography>}
-                            </Stack>
-                                {panelAction}
+                                <Stack spacing={0.25} display={"flex"} flexGrow={1}>
+                                    <Typography variant='h6' fontWeight='bolder'>{title}</Typography>
+                                    {subtitle && <Typography variant='body1'>{subtitle}</Typography>}
+                                </Stack>
+                                <Stack>
+                                    {panelAction}
+                                </Stack>
                             </Stack>
                         </Grid>
                         {children}
