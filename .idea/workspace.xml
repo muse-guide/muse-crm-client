@@ -4,26 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add update customer details">
-      <change afterPath="$PROJECT_DIR$/src/model/invoice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/account/InvoiceDialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/account/InvoicePeriodSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/account/InvoiceStatusChip.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/account/InvoicesPanel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/InvoiceService.ts" afterDir="false" />
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add invoicing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/configuration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/configuration.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/account/InvoiceDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/InvoiceDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/account/InvoicesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/InvoicesPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ExhibitionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitionService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,9 +170,9 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="npm.npm start" />
       <item itemvalue="npm.build" />
       <item itemvalue="npm.install --force" />
-      <item itemvalue="npm.npm start" />
     </list>
     <recent_temporary>
       <list>
@@ -368,6 +361,8 @@
       <workItem from="1724699269239" duration="8920000" />
       <workItem from="1725128226579" duration="5087000" />
       <workItem from="1725475887159" duration="2509000" />
+      <workItem from="1725648659002" duration="1855000" />
+      <workItem from="1725733289665" duration="2564000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -473,7 +468,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722281021958</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add invoicing">
+      <option name="closed" value="true" />
+      <created>1725648673910</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1725648673910</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,6 +511,7 @@
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Add subscription resources" />
     <MESSAGE value="Add update customer details" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add update customer details" />
+    <MESSAGE value="Add invoicing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add invoicing" />
   </component>
 </project>

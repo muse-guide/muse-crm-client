@@ -1,8 +1,7 @@
 import {useFormContext} from "react-hook-form";
 import React, {useCallback, useState} from "react";
-import {Box, Divider, Stack, useTheme} from "@mui/material";
+import {Box, Divider, Grid2, Stack, useTheme} from "@mui/material";
 import {useTabContext} from "@mui/lab";
-import Grid from "@mui/material/Unstable_Grid2";
 import TextInput from "../../components/form/TextInput";
 import {AudioGeneratorDialog} from "../../components/dialog/AudioGeneratorDialog";
 import {ArticleDialog} from "../../components/dialog/ArticleDialog";
@@ -62,8 +61,8 @@ export const ExhibitionLanguageSpecificForm = (props: ExhibitionLanguageSpecific
                 handleClose={articleDialog.closeDialog}
                 handleSave={handleSaveArticle}
             />
-            <Grid container spacing={3} pt={4}>
-                <Grid xs={12}>
+            <Grid2 container spacing={3} pt={4}>
+                <Grid2 size={12}>
                     <TextInput
                         name={`langOptions.${props.index}.title`}
                         control={methods.control}
@@ -72,8 +71,8 @@ export const ExhibitionLanguageSpecificForm = (props: ExhibitionLanguageSpecific
                         required
                         maxLength={120}
                     />
-                </Grid>
-                <Grid xs={12}>
+                </Grid2>
+                <Grid2 size={12}>
                     <TextInput
                         name={`langOptions.${props.index}.subtitle`}
                         control={methods.control}
@@ -84,8 +83,8 @@ export const ExhibitionLanguageSpecificForm = (props: ExhibitionLanguageSpecific
                         required
                         maxLength={200}
                     />
-                </Grid>
-                <Grid xs={12} pt={2}>
+                </Grid2>
+                <Grid2 size={12} pt={2}>
                     <Stack gap={3}>
                         <Divider/>
                         {methods.getValues(`langOptions.${props.index}.audio`)
@@ -93,8 +92,8 @@ export const ExhibitionLanguageSpecificForm = (props: ExhibitionLanguageSpecific
                             : <NoAudioPlaceholder onClick={audioDialog.openDialog}/>
                         }
                     </Stack>
-                </Grid>
-                <Grid xs={12} pt={2} pb={3}>
+                </Grid2>
+                <Grid2 size={12} pt={2} pb={3}>
                     <Stack gap={3}>
                         <Divider/>
                         {methods.getValues(`langOptions.${props.index}.description`)
@@ -102,8 +101,8 @@ export const ExhibitionLanguageSpecificForm = (props: ExhibitionLanguageSpecific
                             : <NoArticlePlaceholder onClick={articleDialog.openDialog}/>
                         }
                     </Stack>
-                </Grid>
-            </Grid>
+                </Grid2>
+            </Grid2>
         </Box>
     )
 }

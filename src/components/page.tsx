@@ -1,6 +1,5 @@
-import {Box, Grid2Props, Stack, SxProps, Theme, Typography, useTheme} from "@mui/material";
+import {Box, Grid2, Grid2Props, Stack, SxProps, Theme, Typography, useTheme} from "@mui/material";
 import React from "react";
-import Grid from "@mui/material/Unstable_Grid2";
 
 export const Page = ({children}: { children: React.ReactNode }) => {
     return (
@@ -38,9 +37,9 @@ export const PageContentContainer = ({children}: { children: React.ReactNode }) 
 
 export const SinglePageColumn = ({children, ...props}: Grid2Props) => {
     return (
-        <Grid
+        <Grid2
             container
-            xs={12} xl={8}
+            size={{xs:12, xl:8}}
             minWidth="540px"
             maxWidth="840px"
             width={{xs: "100%", xl: "100%"}}
@@ -49,17 +48,17 @@ export const SinglePageColumn = ({children, ...props}: Grid2Props) => {
             <Stack gap={4} width="100%">
                 {children}
             </Stack>
-        </Grid>
+        </Grid2>
     )
 }
 
 export const Actions = ({children, ...props}: Grid2Props) => {
     return (
-        <Grid xs={12} xl={8} minWidth="540px" maxWidth="840px" width={{xs: "100%", xl: "100%"}} {...props}>
+        <Grid2 size={{xs:12, xl:8}} minWidth="540px" maxWidth="840px" width={{xs: "100%", xl: "100%"}} {...props}>
             <Stack direction="row" spacing={1} display="flex" justifyContent="end" pb={4}>
                 {children}
             </Stack>
-        </Grid>
+        </Grid2>
     )
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
-import {Grid2Props, Paper, Skeleton, Stack, Typography} from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import {Grid2, Grid2Props, Paper, Skeleton, Stack, Typography} from "@mui/material";
 import {PaperProps} from "@mui/material/Paper";
 import {borderColor} from "../index";
 
@@ -27,8 +26,8 @@ export const Panel = ({children, loading, title, subtitle, skeletonHeight = 400,
             {loading
                 ? <Skeleton variant="rectangular" height={skeletonHeight}/>
                 : <BasePanel {...rest}>
-                    <Grid container spacing={3} p={3}>
-                        <Grid xs={12}>
+                    <Grid2 container spacing={3} p={3}>
+                        <Grid2 size={12}>
                             <Stack direction={"row"} alignItems={"start"} justifyContent={"space-between"}>
                                 <Stack spacing={0.25} display={"flex"} flexGrow={1}>
                                     <Typography variant='h6' fontWeight='bolder'>{title}</Typography>
@@ -38,9 +37,9 @@ export const Panel = ({children, loading, title, subtitle, skeletonHeight = 400,
                                     {panelAction}
                                 </Stack>
                             </Stack>
-                        </Grid>
+                        </Grid2>
                         {children}
-                    </Grid>
+                    </Grid2>
                 </BasePanel>
             }
         </>
@@ -49,12 +48,12 @@ export const Panel = ({children, loading, title, subtitle, skeletonHeight = 400,
 
 export const FullRow = ({children, ...props}: Grid2Props) => {
     return (
-        <Grid xs={12} {...props}>{children}</Grid>
+        <Grid2 size={12} {...props}>{children}</Grid2>
     )
 }
 
 export const HalfRow = ({children, ...props}: Grid2Props) => {
     return (
-        <Grid xs={12} md={6} {...props}>{children}</Grid>
+        <Grid2 size={{xs:12, md:6}} {...props}>{children}</Grid2>
     )
 }

@@ -3,8 +3,7 @@ import {useTranslation} from "react-i18next";
 import {useSnackbar} from "notistack";
 import { SubscriptionPlan} from "../../model/configuration";
 import {Panel} from "../../components/panel";
-import Grid from "@mui/material/Unstable_Grid2";
-import {Button, Card, CardContent, List, ListItem, ListItemIcon, ListItemText, Stack, Typography} from "@mui/material";
+import {Button, Card, CardContent, Grid2, List, ListItem, ListItemIcon, ListItemText, Stack, Typography} from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {customerService} from "../../services/CustomerService";
@@ -51,9 +50,9 @@ export const SubscriptionsPanel = ({currentPlanType}: { currentPlanType: string 
         >
             {
                 applicationContext?.configuration && applicationContext.configuration.subscriptionPlans.map((plan, index) => (
-                    <Grid xs={12} md={4} key={index}>
+                    <Grid2 size={{xs:12, md:4}} key={index}>
                         <SubscriptionPlanCard plan={plan} currentPlan={currentPlan} changePlan={() => changePlan(plan.type)}/>
-                    </Grid>
+                    </Grid2>
                 ))
             }
         </Panel>

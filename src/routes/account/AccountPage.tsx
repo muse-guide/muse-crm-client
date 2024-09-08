@@ -6,7 +6,7 @@ import TextInput from "../../components/form/TextInput";
 import {FormProvider, useForm} from "react-hook-form";
 import {useSnackbar} from "notistack";
 import {useNavigate} from "react-router-dom";
-import {HalfRow, Panel} from "../../components/panel";
+import {FullRow, HalfRow, Panel} from "../../components/panel";
 import {Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
 import LoadingButton from '@mui/lab/LoadingButton';
 import {customerService} from "../../services/CustomerService";
@@ -17,7 +17,6 @@ import {Status} from "../../model/common";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 import {SubscriptionsPanel} from "./SubscriptionsPanel";
-import Grid from "@mui/material/Unstable_Grid2";
 import {AppContext} from "../Root";
 import {InvoicesPanel} from "./InvoicesPanel";
 
@@ -119,9 +118,9 @@ const AccountPage = () => {
                                         maxLength={128}
                                     />
                                 </HalfRow>
-                                <Grid xs={12} py={2}>
+                                <FullRow py={2}>
                                     <Divider/>
-                                </Grid>
+                                </FullRow>
                                 <HalfRow>
                                     <TextInput
                                         name="address.street"

@@ -43,6 +43,20 @@ export const InvoicesPanel = () => {
         }
     }
 
+    const onChangeInvoicePeriodStart = (value: string) => {
+        if (value > invoicePeriodEnd) {
+            setInvoicePeriodEnd(value);
+        }
+        setInvoicePeriodStart(value);
+    }
+
+    const onChangeInvoicePeriodEnd = (value: string) => {
+        if (value < invoicePeriodStart) {
+            setInvoicePeriodStart(value);
+        }
+        setInvoicePeriodEnd(value);
+    }
+
     const handleInvoiceClick = async (invoiceId: string) => {
         setInvoiceId(invoiceId);
         invoiceDialog.openDialog();
@@ -59,13 +73,13 @@ export const InvoicesPanel = () => {
                         label={t('common.from')}
                         values={invoicePeriods.map(period => period.periodStart)}
                         value={invoicePeriodStart}
-                        onChange={setInvoicePeriodStart}
+                        onChange={onChangeInvoicePeriodStart}
                     />
                     <InvoicePeriodSelect
                         label={t('common.to')}
                         values={invoicePeriods.map(period => period.periodEnd)}
                         value={invoicePeriodEnd}
-                        onChange={setInvoicePeriodEnd}
+                        onChange={onChangeInvoicePeriodEnd}
                     />
                 </Stack>
             }

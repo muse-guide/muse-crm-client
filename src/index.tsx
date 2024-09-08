@@ -95,10 +95,9 @@ const darkTheme = createTheme({
         fontFamily: ["Lato", "sans-serif"].join(",")
         // fontFamily: ["Public Sans", "sans-serif"].join(",")
         // fontFamily: ["PT Sans", "sans-serif"].join(",")
-        // fontFamily: ["Lora", "serif"].join(",")
     },
     shape: {
-        borderRadius: 3,
+        borderRadius: 6,
     },
     components: {
         MuiTextField: {
