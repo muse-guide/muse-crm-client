@@ -47,41 +47,41 @@ const Root = () => {
     return (
         <>
             {loading || !applicationConfiguration || !customer ? <div>Loading...</div> :
-                <Box display='flex' overflow={"clip"}>
-                    <CssBaseline/>
-                    <Navigation drawerWidth={drawerWidth}/>
-                    <Box component="main"
-                         display='flex'
-                         flexGrow={1}
-                         minWidth="600px"
-                         sx={{
-                             marginLeft: {
-                                 md: `${drawerWidth}px`
-                             },
-                             marginTop: {
-                                 xs: 10,
-                                 md: 3
-                             },
-                             paddingLeft: {
-                                 xs: 3,
-                                 md: 10,
-                             },
-                             paddingRight: {
-                                 xs: 3,
-                                 md: 12,
-                             },
-                             backgroundColor: "white"
-                         }}
-                    >
-                        <AppContext.Provider value={{
-                            configuration: applicationConfiguration,
-                            customer: customer,
-                            setCustomer: setCustomer
-                        }}>
+                <AppContext.Provider value={{
+                    configuration: applicationConfiguration,
+                    customer: customer,
+                    setCustomer: setCustomer
+                }}>
+                    <Box display='flex' overflow={"clip"}>
+                        <CssBaseline/>
+                        <Navigation drawerWidth={drawerWidth}/>
+                        <Box component="main"
+                             display='flex'
+                             flexGrow={1}
+                             minWidth="600px"
+                             sx={{
+                                 marginLeft: {
+                                     md: `${drawerWidth}px`
+                                 },
+                                 marginTop: {
+                                     xs: 10,
+                                     md: 3
+                                 },
+                                 paddingLeft: {
+                                     xs: 3,
+                                     md: 10,
+                                 },
+                                 paddingRight: {
+                                     xs: 3,
+                                     md: 12,
+                                 },
+                                 backgroundColor: "white"
+                             }}
+                        >
                             <Outlet/>
-                        </AppContext.Provider>
+                        </Box>
                     </Box>
-                </Box>
+                </AppContext.Provider>
             }
         </>
     );

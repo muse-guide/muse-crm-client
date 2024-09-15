@@ -132,6 +132,7 @@ const ExhibitionsPage = () => {
                                                 qrCodeUrl={row.qrCodeUrl}
                                                 onDelete={onDelete}
                                                 onEdit={onEdit}
+                                                appPath={"exhibitions"}
                                             />
                                         </TableCell>
                                     </BaseTableRow>

@@ -8,7 +8,7 @@ export const InvoiceStatusChip = ({status}: { status?: string }) => {
     switch (status) {
         case "PAID":
             return <Chip label={t('page.account.invoices.paid')} size="small" variant="outlined" color="success"/>
-        case "UNPAID":
+        case "OVERDUE":
             return <Chip label={t('page.account.invoices.unpaid')} size="small" variant="outlined" color="error"/>
         case "ISSUED":
             return <Chip label={t('page.account.invoices.issued')} size="small" variant="outlined" color="info"/>

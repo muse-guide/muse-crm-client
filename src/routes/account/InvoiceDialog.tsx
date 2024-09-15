@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {Button, Chip, Grid2, Skeleton, Stack, Typography} from "@mui/material";
+import {Button, Chip, Divider, Grid2, Skeleton, Stack, Typography} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -58,11 +58,15 @@ export const InvoiceDialog = (props: {
                         <Skeleton variant="rectangular" height="300px"/>
                     </Stack>
                     : <DialogContentText>
-                        <Stack minWidth="600px" gap={4}>
+                        <Stack minWidth="600px" gap={3}>
                             <Stack gap={1}>
                                 <Stack direction={"row"} gap={2} alignItems="baseline">
                                     <Typography minWidth={150} variant={"body1"}>{t("dialog.invoice.invoiceBusinessId")}:</Typography>
                                     <Typography variant={"body1"} fontWeight={"bold"}>{invoice?.invoiceBusinessId}</Typography>
+                                </Stack>
+                                <Stack direction={"row"} gap={2} alignItems="baseline">
+                                    <Typography minWidth={150} variant={"body1"}>{t("dialog.invoice.issuedAt")}:</Typography>
+                                    <Typography variant={"body1"} fontWeight={"bold"}>{invoice?.issuedAt}</Typography>
                                 </Stack>
                                 <Stack direction={"row"} gap={2} alignItems="baseline">
                                     <Typography minWidth={150} variant={"body1"}>{t("dialog.invoice.invoicePeriod")}:</Typography>
@@ -77,6 +81,7 @@ export const InvoiceDialog = (props: {
                                     <InvoiceStatusChip status={invoice?.status}/>
                                 </Stack>
                             </Stack>
+                            <Divider/>
                             <Stack width="100%" gap={1}>
                                 <Grid2 container>
                                     <Grid2 size={{ xs: 3}}>
@@ -111,6 +116,7 @@ export const InvoiceDialog = (props: {
                                     ))}
                                 </Stack>
                             </Stack>
+                            <Divider/>
                             <Stack direction="row" gap={1}>
                                 <Typography fontWeight="bold">{t("dialog.invoice.totalAmount")}:</Typography>
                                 <Typography>{invoice?.amount}zł</Typography>

@@ -172,8 +172,7 @@ const ExhibitPage = () => {
                         </SinglePageColumn>
 
                         <Actions>
-                            <Button variant="text" onClick={() => navigate("/exhibits")}>{t('common.cancel')}</Button>
-                            <Button variant="outlined" disabled startIcon={<PhoneIphoneIcon/>}>{t('page.common.appPreview')}</Button>
+                            <Button variant="outlined" onClick={() => navigate("/exhibits")}>{t('common.cancel')}</Button>
                             <LoadingButton
                                 key="submitButton"
                                 variant="contained"

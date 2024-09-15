@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import {useSnackbar} from "notistack";
 import { SubscriptionPlan} from "../../model/configuration";
 import {Panel} from "../../components/panel";
-import {Button, Card, CardContent, Grid2, List, ListItem, ListItemIcon, ListItemText, Stack, Typography} from "@mui/material";
+import {Box, Button, Card, CardContent, Grid2, List, ListItem, ListItemIcon, ListItemText, Stack, Typography} from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {customerService} from "../../services/CustomerService";
@@ -77,28 +77,35 @@ const SubscriptionPlanCard = ({plan, currentPlan, changePlan}: { plan: Subscript
                         {`$${plan.price}`}
                     </Typography>
                     <Typography variant="body1" fontWeight="normal">
-                        {t('/per month')}
+                       /{t('page.account.subscription.perMonth')}
                     </Typography>
                 </Stack>
-                <Button disabled={isActive} onClick={changePlan} fullWidth variant='outlined' sx={{mt: 3}}>Subscribe to</Button>
+                {
+                    isActive
+                        ? <Box display={"flex"} alignItems={"center"} justifyContent={"center"} width={"100%"} py={1} mt={3}>
+
+                            <Typography variant="body1" fontWeight="bold" color="success">{t('page.account.subscription.activePlan')}</Typography>
+                        </Box>
+                        : <Button onClick={changePlan} fullWidth variant='outlined' sx={{mt: 3}}>{t('page.account.subscription.subscribeTo')}</Button>
+                }
                 <List dense sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper', mt: 1}}>
                     <ListItem>
                         <ListItemIcon>
                             <CheckCircleOutlineIcon/>
                         </ListItemIcon>
-                        <ListItemText primary={`No. of exhibitions: ${plan.maxExhibitions}`}/>
+                        <ListItemText primary={`${t('page.account.subscription.exhibitionsNumber')}: ${plan.maxExhibitions}`}/>
                     </ListItem>
                     <ListItem>
                         <ListItemIcon>
                             <CheckCircleOutlineIcon/>
                         </ListItemIcon>
-                        <ListItemText primary={`No. of exhibits: ${plan.maxExhibits}`}/>
+                        <ListItemText primary={`${t('page.account.subscription.exhibitsNumber')}: ${plan.maxExhibits}`}/>
                     </ListItem>
                     <ListItem>
                         <ListItemIcon>
                             <CheckCircleOutlineIcon/>
                         </ListItemIcon>
-                        <ListItemText primary={`No. of language options: ${plan.maxLanguages}`}/>
+                        <ListItemText primary={`${t('page.account.subscription.langOptsNumber')}: ${plan.maxLanguages}`}/>
                     </ListItem>
                 </List>
             </CardContent>

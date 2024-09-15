@@ -8,8 +8,6 @@ import {BasePanel} from "./panel";
 import {Avatar, AvatarGroup, Button, Chip, FormControl, IconButton, InputAdornment, MenuItem, Select, Stack, TextField, Typography, useTheme} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import {useSnackbar} from "notistack";
-import {exhibitService} from "../services/ExhibitService";
 import ConfirmationDialog from "./dialog/ConfirmationDialog";
 import QrCodeDialog from "./dialog/QrCodeDialog";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
@@ -19,9 +17,6 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import {ImageRef, langMap, Status} from "../model/common";
-import DoneIcon from "@mui/icons-material/Done";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import AutorenewIcon from "@mui/icons-material/Autorenew";
 import {assetService} from "../services/AssetService";
 import HideImageOutlinedIcon from "@mui/icons-material/HideImageOutlined";
 import TableBody from "@mui/material/TableBody";
@@ -30,6 +25,9 @@ import ClearIcon from "@mui/icons-material/Clear";
 import {CircleFlag} from "react-circle-flags";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {SvgIconProps} from "@mui/material/SvgIcon/SvgIcon";
+import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
+import AppDialog from "./dialog/AppDialog";
+import useDialog from "./hooks";
 
 export const BaseTable = ({children, ...props}: TableProps) => {
     return (
@@ -212,19 +210,29 @@ export const Pagination = ({page, pageSize, keys, onNextPage, onPrevPage, onPage
     )
 }
 
-export const RowActions = ({id, referenceName, qrCodeUrl, onEdit, onDelete, deleteMessage = undefined}: {
-    id: string,
-    referenceName: string,
-    qrCodeUrl: string,
-    onEdit: (id: string) => void,
-    onDelete: (id: string) => Promise<void>,
-    deleteMessage?: string
-}) => {
-    const navigate = useNavigate()
+export const RowActions = (
+    {
+        id,
+        referenceName,
+        qrCodeUrl,
+        onEdit,
+        onDelete,
+        appPath,
+        deleteMessage = undefined
+
+    }: {
+        id: string,
+        referenceName: string,
+        qrCodeUrl: string,
+        onEdit: (id: string) => void,
+        onDelete: (id: string) => Promise<void>,
+        appPath: string,
+        deleteMessage?: string
+    }) => {
     const {t} = useTranslation()
-    const {enqueueSnackbar: snackbar} = useSnackbar();
     const [removeExhibitDialogOpen, setRemoveExhibitDialogOpen] = useState(false);
     const [qrCodeDialogOpen, setQrCodeDialogOpen] = useState<boolean>(false);
+    const appDialog = useDialog()
 
     const handleRemoveExhibitDialogOpen = () => setRemoveExhibitDialogOpen(true);
     const handleRemoveExhibitDialogClose = () => setRemoveExhibitDialogOpen(false);
@@ -241,7 +249,16 @@ export const RowActions = ({id, referenceName, qrCodeUrl, onEdit, onDelete, dele
                 handleClose={handleRemoveExhibitDialogClose}
             />
             <QrCodeDialog open={qrCodeDialogOpen} referenceName={referenceName} qrCodeUrl={qrCodeUrl} handleClose={handleQrCodeDialogClose}/>
+            <AppDialog
+                open={appDialog.isOpen}
+                referenceName={referenceName}
+                path={`${appPath}/${id}`}
+                handleClose={appDialog.closeDialog}
+            />
             <Stack direction="row" display="flex" spacing={1} justifyContent="end">
+                <IconButton onClick={() => appDialog.openDialog()}>
+                    <PhoneIphoneIcon/>
+                </IconButton>
                 <IconButton onClick={() => handleQrCodeDialogOpen()}>
                     <QrCode2Icon/>
                 </IconButton>

@@ -28,14 +28,20 @@
       },
       "subscription": {
         "title": "Subscription",
-        "subtitle": "See your subscription details here and change it if needed."
+        "subtitle": "See your subscription details here and change it if needed.",
+        "perMonth": "per month",
+        "exhibitionsNumber": "No. of exhibitions",
+        "exhibitsNumber": "No. of exhibits",
+        "langOptsNumber": "No. of language options",
+        "subscribeTo": "Subscribe to",
+        "activePlan": "Active plan"
       },
       "invoices": {
         "title": "Invoices",
         "subtitle": "See your invoices here.",
         "issued": "Issued",
         "paid": "Paid",
-        "unpaid": "Unpaid"
+        "overdue": "Overdue"
       },
       "address": {
         "title": "Invoicing information",
@@ -139,6 +145,10 @@
     "article": {
       "title": "Prepare article",
       "description": "You can enrich your resource with descriptive article. Provide text, format and add photos to deliver best experience to your audience."
+    },
+    "app": {
+      "title": "App preview",
+      "description": "Here you can see how your app will look like. You can navigate through the app and see how your resources will be displayed to the users."
     },
     "invoice": {
       "title": "Invoice details",

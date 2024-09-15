@@ -2,15 +2,17 @@ import React, {useContext, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useSnackbar} from "notistack";
 import {Panel} from "../../components/panel";
-import {Button, Chip, List, ListItem, ListItemText, Stack, Typography} from "@mui/material";
+import {Button, List, ListItem, ListItemText, Stack, Typography} from "@mui/material";
 import {AppContext} from "../Root";
-import {InvoicePeriodSelect} from "./InvoicePeriodSelect";
-import {invoiceService} from "../../services/InvoiceService";
 import {Invoice} from "../../model/invoice";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import useDialog from "../../components/hooks";
 import {InvoiceDialog} from "./InvoiceDialog";
 import {InvoiceStatusChip} from "./InvoiceStatusChip";
+import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import dayjs, {Dayjs} from "dayjs";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {invoiceService} from "../../services/InvoiceService";
 
 export const InvoicesPanel = () => {
     const {t} = useTranslation();
@@ -18,14 +20,13 @@ export const InvoicesPanel = () => {
     const invoiceDialog = useDialog()
 
     const applicationContext = useContext(AppContext);
-    const invoicePeriods = applicationContext?.configuration?.invoicePeriods ?? [];
     const [loading, setLoading] = useState<boolean>(false);
     const [invoices, setInvoices] = useState<Invoice[]>([]);
     const [invoiceId, setInvoiceId] = useState<string | undefined>(undefined);
 
-    const currentInvoicePeriodEnd = applicationContext?.configuration.currentInvoicePeriod
-    const [invoicePeriodStart, setInvoicePeriodStart] = useState<string>(currentInvoicePeriodEnd?.periodStart ?? "");
-    const [invoicePeriodEnd, setInvoicePeriodEnd] = useState<string>(currentInvoicePeriodEnd?.periodEnd ?? "");
+    const currentInvoicePeriod = applicationContext?.configuration.lastInvoicedPeriod
+    const [invoicePeriodStart, setInvoicePeriodStart] = useState<Dayjs | null>(dayjs(currentInvoicePeriod?.periodStart || null));
+    const [invoicePeriodEnd, setInvoicePeriodEnd] = useState<Dayjs | null>(dayjs(currentInvoicePeriod?.periodEnd || null));
 
     useEffect(() => {
         getCustomerInvoice();
@@ -34,7 +35,9 @@ export const InvoicesPanel = () => {
     const getCustomerInvoice = async () => {
         setLoading(true);
         try {
-            const results = await invoiceService.getCustomerInvoicesForPeriod(invoicePeriodStart, invoicePeriodEnd);
+            const from = invoicePeriodStart?.format("YYYY-MM-DD") ?? "";
+            const to = invoicePeriodEnd?.format("YYYY-MM-DD") ?? "";
+            const results = await invoiceService.getCustomerInvoicesForPeriod(from, to);
             setInvoices(results)
         } catch (err) {
             snackbar(t("error.fetchingInvoicesFailed"), {variant: "error"})
@@ -43,15 +46,15 @@ export const InvoicesPanel = () => {
         }
     }
 
-    const onChangeInvoicePeriodStart = (value: string) => {
-        if (value > invoicePeriodEnd) {
+    const onChangeInvoicePeriodStart = (value: Dayjs | null) => {
+        if (value?.isAfter(invoicePeriodEnd)) {
             setInvoicePeriodEnd(value);
         }
         setInvoicePeriodStart(value);
     }
 
-    const onChangeInvoicePeriodEnd = (value: string) => {
-        if (value < invoicePeriodStart) {
+    const onChangeInvoicePeriodEnd = (value: Dayjs | null) => {
+        if (value?.isBefore(invoicePeriodStart)) {
             setInvoicePeriodStart(value);
         }
         setInvoicePeriodEnd(value);
@@ -69,18 +72,20 @@ export const InvoicesPanel = () => {
             subtitle={t('page.account.invoices.subtitle')}
             panelAction={
                 <Stack direction={"row"} gap={4}>
-                    <InvoicePeriodSelect
-                        label={t('common.from')}
-                        values={invoicePeriods.map(period => period.periodStart)}
-                        value={invoicePeriodStart}
-                        onChange={onChangeInvoicePeriodStart}
-                    />
-                    <InvoicePeriodSelect
-                        label={t('common.to')}
-                        values={invoicePeriods.map(period => period.periodEnd)}
-                        value={invoicePeriodEnd}
-                        onChange={onChangeInvoicePeriodEnd}
-                    />
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                            label={t('common.from')}
+                            value={invoicePeriodStart}
+                            onChange={(newValue) => onChangeInvoicePeriodStart(newValue)}
+
+                        />
+                        <DatePicker
+                            label={t('common.to')}
+                            value={invoicePeriodEnd}
+                            onChange={(newValue) => onChangeInvoicePeriodEnd(newValue)}
+
+                        />
+                    </LocalizationProvider>
                 </Stack>
             }
         >

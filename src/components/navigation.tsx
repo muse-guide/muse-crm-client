@@ -5,15 +5,16 @@ import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 import CloudCircleIcon from '@mui/icons-material/CloudCircle';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import {normalizeText} from "./ComponentUtils";
 import {useTranslation} from "react-i18next";
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import {Fragment, useEffect, useState} from "react";
+import {Fragment, useContext, useEffect, useState} from "react";
 import {useAuthenticator} from "@aws-amplify/ui-react";
 import {bgColor} from "../index";
+import {AppContext} from "../routes/Root";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export default function Navigation({drawerWidth}: { drawerWidth: number }) {
     const theme = useTheme()
@@ -117,11 +118,6 @@ export function AppDrawer() {
                     to="exhibits"
                     title={t("menu.exhibits")}
                     Icon={ColorLensOutlinedIcon}
-                />
-                <CustomListItemButton
-                    to="artists"
-                    title={t("menu.artists")}
-                    Icon={PersonOutlinedIcon}
                 />
             </List>
             <List>
@@ -251,7 +247,7 @@ const MuseLogo = () => {
 
 const ProfileAvatar = () => {
     const theme = useTheme()
-    const {user} = useAuthenticator((context) => [context.user.username]);
+    const applicationContext = useContext(AppContext);
     return (
         <Stack direction='row'
                spacing={2}
@@ -262,21 +258,19 @@ const ProfileAvatar = () => {
                    paddingTop: 2,
                    paddingBottom: 3
                }}>
-            <Avatar>{user.signInDetails?.loginId}</Avatar>
+            <Avatar sx={{bgcolor: "white"}}>
+                <Box display={"flex"} sx={{color: "black", fontSize: 42}} alignItems={"center"}>
+
+                    <AccountCircleIcon fontSize={"inherit"} color={"inherit"}/>
+                </Box>
+            </Avatar>
             <Stack>
                 <Typography
                     variant="body1"
                     fontWeight='bold'
                     noWrap
                 >
-                    {user.username}
-                </Typography>
-                <Typography
-                    variant="body1"
-                    fontWeight='normal'
-                    noWrap
-                >
-                    {normalizeText(24, user.username)}
+                    {normalizeText(24, applicationContext?.customer.email)}
                 </Typography>
             </Stack>
         </Stack>

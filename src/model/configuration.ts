@@ -15,8 +15,7 @@ export interface InvoicePeriod {
 
 export interface ApplicationConfiguration {
     subscriptionPlans: SubscriptionPlan[],
-    invoicePeriods: InvoicePeriod[],
-    currentInvoicePeriod: InvoicePeriod,
+    lastInvoicedPeriod: InvoicePeriod,
 }
 
 export interface ApplicationContext {

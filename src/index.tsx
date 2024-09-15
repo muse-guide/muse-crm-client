@@ -4,7 +4,7 @@ import Root from "./routes/Root";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ErrorPage from "./routes/ErrorPage";
 import ExhibitPage from "./routes/exhibit/ExhibitPage";
-import {createTheme, ThemeProvider} from "@mui/material";
+import {createTheme, outlinedInputClasses, ThemeProvider} from "@mui/material";
 import "./translation";
 import ExhibitionPage from "./routes/exhibition/ExhibitionPage";
 import {SnackbarProvider} from "notistack";
@@ -77,47 +77,121 @@ const router = createBrowserRouter([
 export const bgColor = "rgba(255,255,255,0.01)"
 export const borderColor = grey[400]
 const darkTheme = createTheme({
-    palette: {
-        mode: "light",
-        primary: {
-            main: "#000000"
+        palette: {
+            mode: "light",
+            primary: {
+                main: "#000000"
+            },
+            secondary: {
+                main: "rgba(0,0,0,0.46)",
+                light: "rgba(145,145,145,0.1)",
+            },
+            background: {
+                default: "rgba(0,0,0,0)"
+            },
         },
-        secondary: {
-            main: "rgba(0,0,0,0.46)",
-            light: "rgba(145,145,145,0.1)",
+        typography: {
+            // fontFamily: ["Poppins", "sans-serif", "Roboto", "sans-serif"].join(","),
+            fontFamily: ["Lato", "sans-serif"].join(","),
+            body1: {
+                color: "black"
+            },
+            body2: {
+                color: "black"
+            },
+            subtitle1: {
+                color: "black"
+            },
+            subtitle2: {
+                color: "black"
+            },
+            h6: {
+                color: "black"
+            },
+            h5: {
+                color: "black"
+            },
+            h4: {
+                color: "black"
+            },
+            h3: {
+                color: "black"
+            },
+
+            // fontFamily: ["Public Sans", "sans-serif"].join(",")
+            // fontFamily: ["PT Sans", "sans-serif"].join(",")
         },
-        background: {
-            default: "rgba(0,0,0,0)"
-        },
-    },
-    typography: {
-        // fontFamily: ["Poppins", "sans-serif", "Roboto", "sans-serif"].join(",")
-        fontFamily: ["Lato", "sans-serif"].join(",")
-        // fontFamily: ["Public Sans", "sans-serif"].join(",")
-        // fontFamily: ["PT Sans", "sans-serif"].join(",")
-    },
-    shape: {
-        borderRadius: 6,
-    },
-    components: {
-        MuiTextField: {
-            styleOverrides: {
-                root: ({theme}) => ({
-                    "& .MuiOutlinedInput-root": {
-                        backgroundColor: theme.palette.secondary.light
-                    },
-                }),
+        shape:
+            {
+                borderRadius: 6,
             }
-        },
-        MuiTableHead: {
-            styleOverrides: {
-                root: ({theme}) => ({
-                    // backgroundColor: theme.palette.secondary.light,
-                }),
+        ,
+        components: {
+            MuiTextField: {
+                styleOverrides: {
+                    root: ({theme}) => ({
+                        '--TextField-brandBorderColor': borderColor,
+                        '--TextField-brandBorderHoverColor': grey[600],
+                        '--TextField-brandBorderFocusedColor': grey[700],
+                        '& label.Mui-focused': {
+                            color: 'var(--TextField-brandBorderFocusedColor)',
+                        },
+                        "& .MuiOutlinedInput-root": {
+                            backgroundColor: theme.palette.secondary.light,
+                        },
+                    }),
+                }
+                ,
             }
+            ,
+            MuiOutlinedInput: {
+                styleOverrides: {
+                    notchedOutline: {
+                        borderColor: 'var(--TextField-brandBorderColor)',
+                    }
+                    ,
+                    root: {
+                        [`&:hover .${outlinedInputClasses.notchedOutline}`]:
+                            {
+                                borderColor: 'var(--TextField-brandBorderHoverColor)',
+                            }
+                        ,
+                        [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]:
+                            {
+                                borderColor: 'var(--TextField-brandBorderFocusedColor)',
+                            }
+                        ,
+                    }
+                    ,
+                }
+                ,
+            }
+            ,
+            MuiTableHead: {
+                styleOverrides: {
+                    root: ({theme}) => ({
+                        // backgroundColor: theme.palette.secondary.light,
+                    }),
+                }
+            }
+            ,
+            MuiPaper: {
+                styleOverrides: {
+                    root: ({theme}) => ({
+                        borderColor: borderColor,
+                    }),
+                }
+            },
+            MuiButton: {
+                styleOverrides: {
+                    root: {
+                        borderColor: borderColor,
+                    }
+                }
+            },
         }
-    }
-});
+    })
+;
 
 root.render(
     <React.StrictMode>

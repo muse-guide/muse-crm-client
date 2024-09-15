@@ -18,7 +18,7 @@ interface PageTitleProps {
 export const PageTitle = (props: PageTitleProps) => {
     return (
         <Stack sx={props.sx} spacing={0} pt={5} pb={4}>
-            <Typography variant='h4' fontWeight='bolder'>{props.title}</Typography>
+            <Typography variant='h4' fontWeight='bold'>{props.title}</Typography>
             {props.subtitle && <Typography variant={'body1'}>{props.subtitle}</Typography>}
         </Stack>
     )
