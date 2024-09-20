@@ -7,7 +7,7 @@ const ErrorPage = () => {
 
     return (
         <Box width="100%" height="100svh" justifyContent="center" alignItems="center" display="flex" flexGrow={1}>
-            <Typography variant={"h5"} fontWeight={"bolder"}>
+            <Typography variant={"h5"} fontWeight={"bold"}>
                 {t("oops")}
             </Typography>
         </Box>

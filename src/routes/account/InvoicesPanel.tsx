@@ -2,27 +2,32 @@ import React, {useContext, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useSnackbar} from "notistack";
 import {Panel} from "../../components/panel";
-import {Button, List, ListItem, ListItemText, Stack, Typography} from "@mui/material";
+import {Avatar, Button, FormControl, List, ListItem, ListItemAvatar, ListItemText, MenuItem, Select, SelectChangeEvent, Stack, Typography, useTheme} from "@mui/material";
 import {AppContext} from "../Root";
 import {Invoice} from "../../model/invoice";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import useDialog from "../../components/hooks";
 import {InvoiceDialog} from "./InvoiceDialog";
 import {InvoiceStatusChip} from "./InvoiceStatusChip";
-import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import dayjs, {Dayjs} from "dayjs";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {invoiceService} from "../../services/InvoiceService";
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import {grey} from "@mui/material/colors";
+import CircleIcon from '@mui/icons-material/Circle';
+
+type InvoiceStatusTypes = "all" | "paid" | "unpaid"
 
 export const InvoicesPanel = () => {
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
     const invoiceDialog = useDialog()
+    const theme = useTheme()
 
     const applicationContext = useContext(AppContext);
     const [loading, setLoading] = useState<boolean>(false);
     const [invoices, setInvoices] = useState<Invoice[]>([]);
     const [invoiceId, setInvoiceId] = useState<string | undefined>(undefined);
+    const [invoiceStatus, setInvoiceStatus] = useState<InvoiceStatusTypes>("all");
 
     const currentInvoicePeriod = applicationContext?.configuration.lastInvoicedPeriod
     const [invoicePeriodStart, setInvoicePeriodStart] = useState<Dayjs | null>(dayjs(currentInvoicePeriod?.periodStart || null));
@@ -46,20 +51,6 @@ export const InvoicesPanel = () => {
         }
     }
 
-    const onChangeInvoicePeriodStart = (value: Dayjs | null) => {
-        if (value?.isAfter(invoicePeriodEnd)) {
-            setInvoicePeriodEnd(value);
-        }
-        setInvoicePeriodStart(value);
-    }
-
-    const onChangeInvoicePeriodEnd = (value: Dayjs | null) => {
-        if (value?.isBefore(invoicePeriodStart)) {
-            setInvoicePeriodStart(value);
-        }
-        setInvoicePeriodEnd(value);
-    }
-
     const handleInvoiceClick = async (invoiceId: string) => {
         setInvoiceId(invoiceId);
         invoiceDialog.openDialog();
@@ -71,22 +62,37 @@ export const InvoicesPanel = () => {
             title={t('page.account.invoices.title')}
             subtitle={t('page.account.invoices.subtitle')}
             panelAction={
-                <Stack direction={"row"} gap={4}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker
-                            label={t('common.from')}
-                            value={invoicePeriodStart}
-                            onChange={(newValue) => onChangeInvoicePeriodStart(newValue)}
-
-                        />
-                        <DatePicker
-                            label={t('common.to')}
-                            value={invoicePeriodEnd}
-                            onChange={(newValue) => onChangeInvoicePeriodEnd(newValue)}
-
-                        />
-                    </LocalizationProvider>
-                </Stack>
+                <FormControl>
+                    <Select
+                        value={invoiceStatus}
+                        onChange={(event: SelectChangeEvent) => setInvoiceStatus(event.target.value as InvoiceStatusTypes)}
+                        size={"small"}
+                        sx={{
+                            minWidth: "100px",
+                            height: "36px",
+                            color: grey[500],
+                        }}
+                    >
+                        <MenuItem value={'all'}>
+                            <Stack direction={"row"} gap={1} alignItems={"center"} fontSize={"14px"}>
+                                <CircleIcon sx={{color: theme.palette.info.dark}} fontSize={"inherit"}/>
+                                <Typography variant={"button"}>{t('page.account.invoices.all')}</Typography>
+                            </Stack>
+                        </MenuItem>
+                        <MenuItem value={'paid'}>
+                            <Stack direction={"row"} gap={1} alignItems={"center"} fontSize={"14px"}>
+                                <CircleIcon sx={{color: theme.palette.success.dark}} fontSize={"inherit"}/>
+                                <Typography variant={"button"}>{t('page.account.invoices.paid')}</Typography>
+                            </Stack>
+                        </MenuItem>
+                        <MenuItem value={'unpaid'}>
+                            <Stack direction={"row"} gap={1} alignItems={"center"} fontSize={"14px"}>
+                                <CircleIcon sx={{color: theme.palette.warning.light}} fontSize={"inherit"}/>
+                                <Typography variant={"button"}>{t('page.account.invoices.unpaid')}</Typography>
+                            </Stack>
+                        </MenuItem>
+                    </Select>
+                </FormControl>
             }
         >
             <InvoiceDialog
@@ -98,14 +104,19 @@ export const InvoicesPanel = () => {
                 <List>
                     {invoices.map(invoice => (
                         <ListItem key={invoice.invoiceId}>
+                            <ListItemAvatar>
+                                <Avatar sx={{backgroundColor: grey[200]}}>
+                                    <DescriptionOutlinedIcon color={"primary"}/>
+                                </Avatar>
+                            </ListItemAvatar>
                             <Stack direction="row" width="100%" alignItems="center" justifyContent="space-between" gap={2}>
                                 <ListItemText primary={invoice.invoiceBusinessId} secondary={`${invoice.periodStart} - ${invoice.periodEnd}`}/>
                                 <InvoiceStatusChip status={invoice.status}/>
                                 <Stack direction="row" mx={5} gap={2} alignItems="center">
                                     <Typography variant={"body1"} fontWeight="">{t("Total")}:</Typography>
-                                    <Typography variant={"h6"} fontWeight="bold">{invoice.amount}zł</Typography>
+                                    <Typography variant={"body1"} sx={{fontWeight: 700}}>{invoice.amount}zł</Typography>
                                 </Stack>
-                                <Button variant="text" size={"medium"} onClick={() => handleInvoiceClick(invoice.invoiceId)} startIcon={<InfoOutlinedIcon/>}>{t("details")}</Button>
+                                <Button variant="text" size={"medium"} onClick={() => handleInvoiceClick(invoice.invoiceId)} startIcon={<InfoOutlinedIcon/>}>{t("common.details")}</Button>
                             </Stack>
                         </ListItem>
                     ))}

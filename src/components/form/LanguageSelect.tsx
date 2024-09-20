@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {UseFieldArrayReturn} from "react-hook-form";
+import TranslateIcon from '@mui/icons-material/Translate';
 
 export interface LanguageOptionsHolder {
     langOptions: {
@@ -60,7 +61,10 @@ export const LanguageSelectDialog = (props: LanguageSelectDialogProps) => {
                 onClose={handleClose}
             >
                 <DialogTitle fontSize="large" fontWeight="bold" sx={{pt: 3}}>
-                    {t("dialog.languageSelect.title")}
+                    <Stack pb={1} direction={"row"} alignItems={"center"} gap={1}>
+                        <TranslateIcon/>
+                        {t("dialog.languageSelect.title")}
+                    </Stack>
                 </DialogTitle>
                 <DialogContent sx={{
                     minWidth: '400px',

@@ -1,5 +1,5 @@
 import {Outlet} from "react-router-dom";
-import {Box, CssBaseline} from "@mui/material";
+import {Box, CssBaseline, Stack} from "@mui/material";
 import React, {createContext, useEffect, useState} from "react";
 import Navigation from "../components/navigation";
 import '@aws-amplify/ui-react/styles.css';
@@ -10,6 +10,9 @@ import {useSnackbar} from "notistack";
 import {useTranslation} from "react-i18next";
 import {configurationService} from "../services/ConfigurationService";
 import {withAuthenticator} from "@aws-amplify/ui-react";
+import CircularProgress from "@mui/material/CircularProgress";
+import {grey} from "@mui/material/colors";
+import {mainBackgroundColor} from "../index";
 
 export const AppContext = createContext<ApplicationContext | null>(null);
 
@@ -45,25 +48,26 @@ const Root = () => {
     };
 
     return (
-        <>
-            {loading || !applicationConfiguration || !customer ? <div>Loading...</div> :
+        <Box width={"100%"} sx={{backgroundColor: mainBackgroundColor}}>
+            {loading || !applicationConfiguration || !customer ? <LoadingPage/> :
                 <AppContext.Provider value={{
                     configuration: applicationConfiguration,
                     customer: customer,
                     setCustomer: setCustomer
                 }}>
-                    <Box display='flex' overflow={"clip"}>
+                    <Box display='flex' height={"100%"} sx={{backgroundColor: mainBackgroundColor}}>
                         <CssBaseline/>
                         <Navigation drawerWidth={drawerWidth}/>
                         <Box component="main"
                              display='flex'
+                             flexDirection='column'
                              flexGrow={1}
                              minWidth="600px"
                              sx={{
                                  marginLeft: {
                                      md: `${drawerWidth}px`
                                  },
-                                 marginTop: {
+                                 paddingTop: {
                                      xs: 10,
                                      md: 3
                                  },
@@ -75,7 +79,6 @@ const Root = () => {
                                      xs: 3,
                                      md: 12,
                                  },
-                                 backgroundColor: "white"
                              }}
                         >
                             <Outlet/>
@@ -83,8 +86,19 @@ const Root = () => {
                     </Box>
                 </AppContext.Provider>
             }
-        </>
+        </Box>
     );
+}
+
+const LoadingPage = () => {
+    return (
+        <Stack width={"100%"} height={"100vh"} justifyContent={"center"} alignItems={"center"}>
+            <Stack direction={"row"} gap={1.5} alignItems={"center"}>
+                <CircularProgress size={20}/>
+                Loading...
+            </Stack>
+        </Stack>
+    )
 }
 
 

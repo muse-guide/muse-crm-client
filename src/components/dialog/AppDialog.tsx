@@ -42,16 +42,16 @@ export default function AppDialog(props: AooDialogProps) {
                 <DialogContentText>
                     {t("dialog.app.description")}
                 </DialogContentText>
-                <Stack alignItems={"center"} width={"auto"} m={6}>
+                <Stack alignItems={"center"} width={"auto"} mx={6} mb={4} mt={4}>
                     <Stack alignItems={"center"} p={1} sx={{
                         borderRadius: 4,
-                        boxShadow: 8,
+                        boxShadow: 12,
                         backgroundColor: 'black',
                     }}>
                         <Stack gap={1} pb={2} height={"104px"} sx={{
                             backgroundColor: 'white',
-                            borderTopLeftRadius: 14,
-                            borderTopRightRadius: 14,
+                            borderTopLeftRadius: 22,
+                            borderTopRightRadius: 22,
                             borderBottom: 1,
                             borderColor: theme.palette.grey["300"],
                             width: '100%',
@@ -77,7 +77,7 @@ export default function AppDialog(props: AooDialogProps) {
                             <Stack width={"100%"} alignItems={"center"} px={2}>
                                 <Stack
                                     border={0}
-                                    borderRadius={12}
+                                    borderRadius={22}
                                     p={1}
                                     width={"100%"}
                                     alignItems={"center"}
@@ -102,8 +102,8 @@ export default function AppDialog(props: AooDialogProps) {
                             border: 0,
                             borderTop: 1,
                             borderColor: theme.palette.grey["300"],
-                            borderBottomLeftRadius: 14,
-                            borderBottomRightRadius: 14
+                            borderBottomLeftRadius: 22,
+                            borderBottomRightRadius: 22
                         }}>
                             <Stack color={theme.palette.grey["600"]} direction={"row"} width={"100%"} justifyContent={"space-between"} py={1} px={2}>
                                 <KeyboardArrowLeftIcon fontSize={"large"}/>

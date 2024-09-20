@@ -16,6 +16,8 @@ import {ImagePreview} from "./ImagePreview";
 import {normalizeText} from "../ComponentUtils";
 import LinearProgress from '@mui/material/LinearProgress';
 import {assetService} from "../../services/AssetService";
+import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
+import {EmptyPlaceholder} from "../page";
 
 export interface ImageHolder {
     images: ImageRef[];
@@ -90,7 +92,10 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                 onClose={props.handleClose}
             >
                 <DialogTitle fontSize="large" fontWeight="bold" sx={{pt: 3}}>
-                    {t("dialog.uploadPhoto.title")}
+                    <Stack pb={1} direction={"row"} alignItems={"center"} gap={1}>
+                        <ImageOutlinedIcon/>
+                        {t("dialog.uploadPhoto.title")}
+                    </Stack>
                 </DialogTitle>
                 <DialogContent sx={{minWidth: '600px'}}>
                     <ImageUploading
@@ -105,20 +110,11 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
                               onImageUpload,
                               dragProps
                           }) => (
-                            <Box width={"100%"} {...dragProps} sx={{
-                                alignItems: "center",
-                                height: "200px",
-                                border: 1,
-                                borderStyle: "dashed",
-                                borderColor: theme.palette.grey[600],
-                                backgroundColor: theme.palette.grey[50]
-                            }}>
-                                <Stack alignItems="center" spacing={0} p={3} height="100%" justifyContent="center">
-                                    <Typography variant='body1' fontWeight='bolder'>{t("dialog.uploadPhoto.helperTextTitle")}</Typography>
-                                    <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2' align={"center"}>{t("dialog.uploadPhoto.helperTextSubTitle")}</Typography>
-                                    <Button startIcon={<CloudUploadRoundedIcon/>} variant="outlined" onClick={onImageUpload}>{t("dialog.uploadPhoto.choosePhoto")}</Button>
-                                </Stack>
-                            </Box>
+                            <EmptyPlaceholder>
+                                <Typography variant='body1' fontWeight='bold'>{t("dialog.uploadPhoto.helperTextTitle")}</Typography>
+                                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle1' align={"center"}>{t("dialog.uploadPhoto.helperTextSubTitle")}</Typography>
+                                <Button startIcon={<CloudUploadRoundedIcon/>} variant="outlined" onClick={onImageUpload}>{t("dialog.uploadPhoto.choosePhoto")}</Button>
+                            </EmptyPlaceholder>
                         )}
                     </ImageUploading>
                     <List sx={{width: '100%', bgcolor: 'background.paper', pb: 0, pt: 2}} dense>

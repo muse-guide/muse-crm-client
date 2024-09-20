@@ -1,5 +1,7 @@
 import {Box, Grid2, Grid2Props, Stack, SxProps, Theme, Typography, useTheme} from "@mui/material";
 import React from "react";
+import {grey} from "@mui/material/colors";
+import {borderColor, mainBackgroundColor} from "../index";
 
 export const Page = ({children}: { children: React.ReactNode }) => {
     return (
@@ -17,8 +19,8 @@ interface PageTitleProps {
 
 export const PageTitle = (props: PageTitleProps) => {
     return (
-        <Stack sx={props.sx} spacing={0} pt={5} pb={4}>
-            <Typography variant='h4' fontWeight='bold'>{props.title}</Typography>
+        <Stack sx={props.sx} gap={1} pt={5} pb={4}>
+            <Typography variant='h4'>{props.title}</Typography>
             {props.subtitle && <Typography variant={'body1'}>{props.subtitle}</Typography>}
         </Stack>
     )
@@ -70,10 +72,9 @@ export const EmptyPlaceholder = ({children}: { children: React.ReactNode }) => {
             alignItems: "center",
             height: "170px",
             border: 1,
-            borderStyle: "dashed",
-            borderColor: theme.palette.grey[600],
+            borderColor: borderColor,
+            backgroundColor: mainBackgroundColor,
             borderRadius: `${theme.shape.borderRadius}px`,
-            backgroundColor: theme.palette.secondary.light,
         }}>
             <Stack alignItems="center" spacing={0} p={3} height="100%" justifyContent="center">
                 {children}

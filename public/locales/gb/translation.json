@@ -39,9 +39,12 @@
       "invoices": {
         "title": "Invoices",
         "subtitle": "See your invoices here.",
-        "issued": "Issued",
+        "all": "All",
         "paid": "Paid",
-        "overdue": "Overdue"
+        "unpaid": "Unpaid",
+        "overdue": "Overdue",
+        "issued": "Issued",
+        "filterByStatus": "Filter by status"
       },
       "address": {
         "title": "Invoicing information",
@@ -167,7 +170,10 @@
     },
     "audio": {
       "title": "Generate audio",
-      "description": "In this application, we utilize state-of-the-art artificial intelligence tools to generate audio that closely mimics human speech. To use this feature, you simply need to provide the text you want to be converted into audio. This could be a description of an exhibit, a narration of an article, or any other content that you think would enhance the user's experience. Once you've provided the text, our AI tools will process it and generate an audio file. This audio file will then be available for playback within the application, providing your users with a rich, multimedia experience. This feature is not only limited to English. Our AI tools are capable of synthesizing audio in multiple languages, making your content accessible to a wider audience. Remember, the quality of the synthesized audio greatly depends on the text input. Therefore, it's recommended to use clear and concise language for the best results."
+      "description": "In this application, we utilize state-of-the-art artificial intelligence tools to generate audio that closely mimics human speech. To use this feature, you simply need to provide the text you want to be converted into audio. This could be a description of an exhibit, a narration of an article, or any other content that you think would enhance the user's experience. Once you've provided the text, our AI tools will process it and generate an audio file. This audio file will then be available for playback within the application, providing your users with a rich, multimedia experience. This feature is not only limited to English. Our AI tools are capable of synthesizing audio in multiple languages, making your content accessible to a wider audience. Remember, the quality of the synthesized audio greatly depends on the text input. Therefore, it's recommended to use clear and concise language for the best results.",
+      "tryIt": "Try it",
+      "replay": "Replay",
+      "pause": "Pause"
     },
     "uploadPhoto": {
       "title": "Upload photos",
@@ -201,26 +207,27 @@
     }
   },
   "common": {
-    "yes": "yes",
-    "no": "no",
-    "select": "select",
-    "add": "add",
-    "create": "create",
-    "update": "update",
-    "close": "close",
-    "save": "save",
-    "listen": "listen",
-    "edit": "edit",
-    "preview": "preview",
-    "audio": "audio",
-    "article": "article",
-    "cancel": "cancel",
-    "upload": "upload",
-    "crop": "crop",
+    "yes": "Yes",
+    "no": "No",
+    "select": "Select",
+    "add": "Add",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close",
+    "save": "Save",
+    "listen": "Listen",
+    "edit": "Edit",
+    "preview": "Preview",
+    "audio": "Audio",
+    "article": "Article",
+    "cancel": "Cancel",
+    "upload": "Upload",
+    "crop": "Crop",
     "from": "From",
     "to": "To",
     "download": "Download",
-    "error": "Error"
+    "error": "Error",
+    "details": "Details"
   },
   "validation": {
     "required": "This field is required.",

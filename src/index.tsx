@@ -74,8 +74,11 @@ const router = createBrowserRouter([
     }
 ]);
 
-export const bgColor = "rgba(255,255,255,0.01)"
-export const borderColor = grey[400]
+// export const borderColor = grey[400]
+export const borderColor = "#D0D5DD"
+// export const mainBackgroundColor = "#FCFCFD"
+export const mainBackgroundColor = "white"
+
 const darkTheme = createTheme({
         palette: {
             mode: "light",
@@ -89,43 +92,69 @@ const darkTheme = createTheme({
             background: {
                 default: "rgba(0,0,0,0)"
             },
+            success: {
+                main: "#32D583",
+                light: "#ECFDF3"
+            },
+            error: {
+                main: "#F97066",
+                light: "#FEF3F2"
+            },
+            warning: {
+                main: "#FDB022",
+                light: "#ffc886",
+            },
+            info: {
+                main: "#36BFFA",
+                light: "#E0F2FE",
+            },
+            grey: {
+                50: "#FCFCFD",
+            }
         },
         typography: {
-            // fontFamily: ["Poppins", "sans-serif", "Roboto", "sans-serif"].join(","),
-            fontFamily: ["Lato", "sans-serif"].join(","),
+            fontFamily: ["Inter", "sans-serif"].join(","),
             body1: {
-                color: "black"
+                color: grey[700],
+                fontSize: "16px"
             },
             body2: {
-                color: "black"
+                color: grey[700],
+                fontSize: "14px"
             },
             subtitle1: {
-                color: "black"
+                color: grey[700],
+                fontSize: "12px"
             },
             subtitle2: {
-                color: "black"
+                color: grey[700],
+                fontSize: "10px"
             },
             h6: {
-                color: "black"
+                color: grey[900],
+                fontWeight: '600',
             },
             h5: {
                 color: "black"
             },
             h4: {
-                color: "black"
+                color: grey[900],
+                fontWeight: '600',
+                fontSize: '30px'
+
             },
             h3: {
-                color: "black"
+                color: grey[900],
             },
-
-            // fontFamily: ["Public Sans", "sans-serif"].join(",")
-            // fontFamily: ["PT Sans", "sans-serif"].join(",")
-        },
-        shape:
-            {
-                borderRadius: 6,
+            button: {
+                textTransform: "none",
+                color: grey[700],
+                fontWeight: '500',
             }
-        ,
+        },
+        shape: {
+            borderRadius: 8,
+        },
         components: {
             MuiTextField: {
                 styleOverrides: {
@@ -137,55 +166,50 @@ const darkTheme = createTheme({
                             color: 'var(--TextField-brandBorderFocusedColor)',
                         },
                         "& .MuiOutlinedInput-root": {
-                            backgroundColor: theme.palette.secondary.light,
+                            // backgroundColor: mainBackgroundColor,
+                            backgroundColor: "white",
                         },
                     }),
-                }
-                ,
-            }
-            ,
+                },
+            },
             MuiOutlinedInput: {
                 styleOverrides: {
                     notchedOutline: {
                         borderColor: 'var(--TextField-brandBorderColor)',
-                    }
-                    ,
+                    },
                     root: {
                         [`&:hover .${outlinedInputClasses.notchedOutline}`]:
                             {
                                 borderColor: 'var(--TextField-brandBorderHoverColor)',
-                            }
-                        ,
+                            },
                         [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]:
                             {
                                 borderColor: 'var(--TextField-brandBorderFocusedColor)',
-                            }
-                        ,
-                    }
-                    ,
-                }
-                ,
-            }
-            ,
+                            },
+                    },
+                },
+            },
             MuiTableHead: {
                 styleOverrides: {
                     root: ({theme}) => ({
                         // backgroundColor: theme.palette.secondary.light,
                     }),
                 }
-            }
-            ,
+            },
             MuiPaper: {
                 styleOverrides: {
                     root: ({theme}) => ({
                         borderColor: borderColor,
+                        border: `1px solid ${borderColor}`,
+                        elevation: 0,
                     }),
                 }
             },
             MuiButton: {
                 styleOverrides: {
                     root: {
-                        borderColor: borderColor,
+                        borderColor: grey[500],
+                        fontWeight: '500',
                     }
                 }
             },

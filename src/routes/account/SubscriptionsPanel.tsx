@@ -64,13 +64,13 @@ const SubscriptionPlanCard = ({plan, currentPlan, changePlan}: { plan: Subscript
     const isActive = plan.type === currentPlan;
 
     return (
-        <Card variant={isActive ? 'elevation' : 'outlined'} elevation={isActive ? 5 : 0}>
+        <Card variant={isActive ? 'elevation' : 'outlined'} elevation={isActive ? 3 : 0}>
             <CardContent>
                 <Stack direction="row" alignItems="center" justifyContent="space-between">
-                    <Typography variant={"h6"} fontWeight={"bolder"} gutterBottom>
+                    <Typography variant={"h6"} fontWeight={"bold"} gutterBottom>
                         {plan.type}
                     </Typography>
-                    {isActive && <CheckCircleIcon color="success" fontSize="large"/>}
+                    {isActive && <CheckCircleIcon color="primary" fontSize="large"/>}
                 </Stack>
                 <Stack direction='row' alignItems={"end"} mt={3}>
                     <Typography variant="h4" fontWeight="bold">
@@ -83,8 +83,7 @@ const SubscriptionPlanCard = ({plan, currentPlan, changePlan}: { plan: Subscript
                 {
                     isActive
                         ? <Box display={"flex"} alignItems={"center"} justifyContent={"center"} width={"100%"} py={1} mt={3}>
-
-                            <Typography variant="body1" fontWeight="bold" color="success">{t('page.account.subscription.activePlan')}</Typography>
+                            <Typography variant="body1">{t('page.account.subscription.activePlan')}</Typography>
                         </Box>
                         : <Button onClick={changePlan} fullWidth variant='outlined' sx={{mt: 3}}>{t('page.account.subscription.subscribeTo')}</Button>
                 }
@@ -93,7 +92,7 @@ const SubscriptionPlanCard = ({plan, currentPlan, changePlan}: { plan: Subscript
                         <ListItemIcon>
                             <CheckCircleOutlineIcon/>
                         </ListItemIcon>
-                        <ListItemText primary={`${t('page.account.subscription.exhibitionsNumber')}: ${plan.maxExhibitions}`}/>
+                        <ListItemText primary={<Typography variant={"body2"}>{t('page.account.subscription.exhibitionsNumber')}: {plan.maxExhibitions}</Typography>}/>
                     </ListItem>
                     <ListItem>
                         <ListItemIcon>

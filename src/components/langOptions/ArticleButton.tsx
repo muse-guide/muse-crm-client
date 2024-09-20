@@ -22,8 +22,8 @@ export const NoArticlePlaceholder = ({onClick}: { onClick: () => void }) => {
 
     return (
         <EmptyPlaceholder>
-            <Typography variant='body1' fontWeight='bolder'>{t("page.common.noArticleHelperTextTitle")}</Typography>
-            <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2' align={"center"}>
+            <Typography variant='body1'>{t("page.common.noArticleHelperTextTitle")}</Typography>
+            <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle1' align={"center"}>
                 {t("page.common.noArticleHelperTextSubtitle")}
             </Typography>
             <Button startIcon={<DescriptionIcon/>} variant="outlined" onClick={onClick}>{t("page.common.createArticle")}</Button>

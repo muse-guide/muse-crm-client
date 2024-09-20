@@ -147,7 +147,7 @@ export const AudioGeneratorDialog = (props: {
         if (playing) {
             return (
                 <Button onClick={clickAudioButton} startIcon={<PauseIcon/>} variant="contained" disableElevation>
-                    {t("pause")}
+                    {t("dialog.audio.pause")}
                 </Button>)
         }
 
@@ -160,7 +160,7 @@ export const AudioGeneratorDialog = (props: {
                 startIcon={<PlayArrowIcon/>}
                 onClick={clickAudioButton}
             >
-                {audioUrl ? t("listen") : t("try it")}
+                {audioUrl ? t("listen") : t("dialog.audio.tryIt")}
             </LoadingButton>
         )
     }
@@ -169,7 +169,7 @@ export const AudioGeneratorDialog = (props: {
         if (audioUrl) {
             return (
                 <Button onClick={clickReplayAudioButton} startIcon={<StopIcon/>} variant="outlined" disableElevation>
-                    {t('replay')}
+                    {t('dialog.audio.replay')}
                 </Button>
             )
         }

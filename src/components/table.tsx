@@ -41,8 +41,8 @@ export const BaseTable = ({children, ...props}: TableProps) => {
 
 export const TableHeadCell = ({children, ...props}: TableCellProps) => {
     return (
-        <TableCell sx={{fontWeight: "bolder"}} {...props}>
-            <Typography variant="subtitle2" fontWeight="bold">{children}</Typography>
+        <TableCell sx={{paddingY: 1.5}} {...props}>
+            <Typography variant="subtitle1" >{children}</Typography>
         </TableCell>
     )
 }
@@ -120,7 +120,7 @@ export const ResourceAvatar = ({referenceName, images, status}: { referenceName:
                     <HideImageOutlinedIcon color={"disabled"}/>
                 </Avatar>
             }
-            <Typography fontWeight={"bold"} variant={"body2"}>{referenceName}</Typography>
+            <Typography sx={{fontWeight: "600"}} variant={"body2"}>{referenceName}</Typography>
         </Stack>
     )
 }
@@ -152,14 +152,14 @@ const LangList = ({langs}: { langs: string[] }) => {
     </AvatarGroup>
 }
 export const StatusChip = ({status, size}: { status: Status, size?: "small" | "medium" }) => {
-    const DotIcon = ({...props}: SvgIconProps) => <FiberManualRecordIcon sx={{fontSize: 16, paddingLeft: 0.5}} {...props}/>
+    const theme = useTheme()
     switch (status) {
         case "ACTIVE":
-            return <Chip label="Active" size={size ?? "small"} variant="filled" color="success"/>
+            return <Chip label="Active" size={size ?? "small"} variant="filled" sx={{backgroundColor: theme.palette.success.light}}/>
         case "ERROR":
-            return <Chip label="Error" size={size ?? "small"} variant="filled" color="error"/>
+            return <Chip label="Error" size={size ?? "small"} variant="filled" sx={{backgroundColor: theme.palette.error.light}}/>
         case "PROCESSING":
-            return <Chip label="Processing" size={size ?? "small"} variant="filled" color="default"/>
+            return <Chip label="Processing" size={size ?? "small"} variant="filled" sx={{backgroundColor: theme.palette.info.light}}/>
     }
 }
 
@@ -175,26 +175,28 @@ export const Pagination = ({page, pageSize, keys, onNextPage, onPrevPage, onPage
         <TableRow>
             <TableCell align="right" colSpan={100} sx={{paddingY: 1}}>
                 <Stack direction="row" spacing={1} display="flex" justifyContent="end" alignItems={"center"}>
-                    <Typography variant='subtitle2' paddingRight={1}>Rows per page:</Typography>
+                    <Typography variant='subtitle1' paddingRight={1}>Rows per page:</Typography>
                     <Select
                         value={pageSize}
                         onChange={event => onPageSizeChange(+event.target.value)}
                         size={"small"}
                         sx={{
                             height: "32px",
+                            alignItems: "center",
                         }}
                     >
                         <MenuItem value={2}>
-                            <Typography variant='subtitle2'>2</Typography>
+                                <Typography variant='body2' lineHeight={2}>2</Typography>
                         </MenuItem>
                         <MenuItem value={5}>
-                            <Typography variant='subtitle2'>5</Typography>
+
+                            <Typography variant='body2' lineHeight={2}>5</Typography>
                         </MenuItem>
                         <MenuItem value={10}>
-                            <Typography variant='subtitle2'>10</Typography>
+                            <Typography variant='body2' lineHeight={2}>10</Typography>
                         </MenuItem>
                         <MenuItem value={25}>
-                            <Typography variant='subtitle2'>25</Typography>
+                            <Typography variant='body2' lineHeight={2}>25</Typography>
                         </MenuItem>
                     </Select>
 
@@ -292,8 +294,8 @@ export const NoItems = () => {
     return (
         <TableRow>
             <TableCell align="center" colSpan={100} sx={{paddingY: 8}}>
-                <Typography variant='body1' fontWeight='bolder'>{t("page.common.noItemsTitle")}</Typography>
-                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2'>{t("page.common.noItemsSubtitle")}</Typography>
+                <Typography variant='body1' fontWeight='bold'>{t("page.common.noItemsTitle")}</Typography>
+                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle1'>{t("page.common.noItemsSubtitle")}</Typography>
                 <Button startIcon={<AddOutlinedIcon/>} variant="outlined" onClick={() => navigate("new")}>{t('common.create')}</Button> </TableCell>
         </TableRow>
     )

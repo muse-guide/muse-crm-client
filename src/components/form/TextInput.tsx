@@ -2,6 +2,7 @@ import {Box, Stack, TextField, TextFieldProps, Typography} from "@mui/material";
 import React from "react";
 import {Control, Controller, ControllerProps} from "react-hook-form";
 import {useTranslation} from "react-i18next";
+import {grey} from "@mui/material/colors";
 
 interface TextInputCustomProps {
     name: string;
@@ -64,8 +65,8 @@ const TextInput = ({
                          fieldState: {invalid, error},
                      }) => (
                 <Stack spacing={-0.25}>
-                    {title && <Typography variant='body1'>{`${title} ${required ? "*" : ""}`}</Typography>}
-                    {title && <Typography variant='subtitle2'>{subtitle}</Typography>}
+                    {title && <Typography variant='body1' >{`${title} ${required ? "*" : ""}`}</Typography>}
+                    {title && <Typography variant='subtitle1'>{subtitle}</Typography>}
                     <Box pt={0.25}>
                         <TextField
                             {...rest}

@@ -10,11 +10,12 @@ import {normalizeText} from "./ComponentUtils";
 import {useTranslation} from "react-i18next";
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import {Fragment, useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useAuthenticator} from "@aws-amplify/ui-react";
-import {bgColor} from "../index";
 import {AppContext} from "../routes/Root";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {borderColor} from "../index";
+import {grey} from "@mui/material/colors";
 
 export default function Navigation({drawerWidth}: { drawerWidth: number }) {
     const theme = useTheme()
@@ -57,9 +58,12 @@ export default function Navigation({drawerWidth}: { drawerWidth: number }) {
                 sx={{
                     display: {xs: 'block', md: 'none'},
                     '& .MuiDrawer-paper': {
+                        backgroundColor: theme.palette.background.paper,
                         boxSizing: 'border-box',
                         width: drawerWidth,
                         paddingX: 2,
+                        borderRight: 1,
+                        borderColor: borderColor,
                     },
                 }}
             >
@@ -67,17 +71,18 @@ export default function Navigation({drawerWidth}: { drawerWidth: number }) {
             </Drawer>
             <Drawer
                 variant="permanent"
-
                 anchor="left"
                 sx={{
                     display: {xs: 'none', md: 'flex'},
                     '& .MuiDrawer-paper': {
                         overflow: 'hidden',
-                        backgroundColor: bgColor,
+                        backgroundColor: theme.palette.background.paper,
                         boxSizing: 'border-box',
                         width: drawerWidth,
                         paddingX: 2,
                         border: "0",
+                        borderRight: 1,
+                        borderColor: borderColor,
                     },
                 }}
                 open
@@ -120,7 +125,7 @@ export function AppDrawer() {
                     Icon={ColorLensOutlinedIcon}
                 />
             </List>
-            <List>
+            <List sx={{overflow: "hidden"}}>
                 <CustomListItemButton
                     to="account"
                     title={t("menu.account")}
@@ -140,7 +145,15 @@ const SingOutButton = () => {
         <ListItem disablePadding>
             <ListItemButton
                 onClick={signOut}
-                sx={{justifyContent: 'initial', px: 3}}
+                sx={{
+                    justifyContent: 'initial',
+                    px: 3,
+                    '&:hover': {
+                        backgroundColor: grey[50],
+                        borderRadius: 1
+                    },
+                    borderRadius: 1
+            }}
             >
                 <ListItemIcon
                     sx={{
@@ -155,6 +168,10 @@ const SingOutButton = () => {
                 <Typography
                     variant={"body1"}
                     noWrap
+                    sx={{
+                        color: grey[900],
+                        fontWeight: 'normal'
+                    }}
                 >
                     {t("menu.signOut")}
                 </Typography>
@@ -183,6 +200,12 @@ const CustomListItemButton = ({to, title, Icon, ...props}: LinkProps & { title: 
                 sx={{
                     justifyContent: 'initial',
                     px: 3,
+                    backgroundColor: match ? grey[50] : 'transparent',
+                    '&:hover': {
+                        backgroundColor: grey[50],
+                        borderRadius: 1
+                    },
+                    borderRadius: 1
                 }}
             >
                 <ListItemIcon
@@ -190,15 +213,18 @@ const CustomListItemButton = ({to, title, Icon, ...props}: LinkProps & { title: 
                         minWidth: 0,
                         mr: 3,
                         justifyContent: 'center',
-                        color: 'black'
+                        color: grey[900]
                     }}
                 >
                     <Icon/>
                 </ListItemIcon>
                 <Typography
                     variant={"body1"}
-                    fontWeight={match ? 'bold' : 'normal'}
                     noWrap
+                    sx={{
+                        color: grey[900],
+                        fontWeight: match ? '600' : 'normal'
+                    }}
                 >
                     {title}
                 </Typography>
@@ -233,10 +259,10 @@ const MuseLogo = () => {
             </ListItemIcon>
             <Typography
                 variant={"h6"}
-                fontWeight={"bolder"}
                 noWrap
                 sx={{
-                    color: theme.palette.primary.main
+                    color: grey[900],
+                    fontWeight: '600'
                 }}
             >
                 muse.cloud
@@ -254,6 +280,7 @@ const ProfileAvatar = () => {
                sx={{
                    justifyContent: 'initial',
                    alignItems: 'center',
+                   overflow: 'hidden',
                    px: 2,
                    paddingTop: 2,
                    paddingBottom: 3
@@ -266,9 +293,12 @@ const ProfileAvatar = () => {
             </Avatar>
             <Stack>
                 <Typography
-                    variant="body1"
-                    fontWeight='bold'
+                    variant="body2"
                     noWrap
+                    sx={{
+                        color: grey[700],
+                        fontWeight: '600'
+                    }}
                 >
                     {normalizeText(24, applicationContext?.customer.email)}
                 </Typography>

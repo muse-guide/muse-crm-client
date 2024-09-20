@@ -24,9 +24,9 @@ export const NoAudioPlaceholder = ({onClick}: { onClick: () => void }) => {
 
     return (
         <EmptyPlaceholder>
-            <Typography variant='body1' fontWeight='bolder'>{t("page.common.noAudioHelperTextTitle")}</Typography>
-            <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle2' align={"center"}>{t("page.common.noAudioHelperTextSubtitle")}</Typography>
-            <Button startIcon={<PlayArrowIcon/>} variant="outlined" onClick={onClick} sx={{paddingTop: 1}}>{t("page.common.generateAudio")}</Button>
+            <Typography variant='body1'>{t("page.common.noAudioHelperTextTitle")}</Typography>
+            <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle1' align={"center"}>{t("page.common.noAudioHelperTextSubtitle")}</Typography>
+            <Button startIcon={<PlayArrowIcon/>} variant="outlined" onClick={onClick}>{t("page.common.generateAudio")}</Button>
         </EmptyPlaceholder>
     )
 }
