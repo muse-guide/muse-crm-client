@@ -21,7 +21,6 @@ interface QrCodeDialogProps {
     handleClose: () => any | Promise<any>
 }
 
-
 export default function QrCodeDialog(props: QrCodeDialogProps) {
     const {t} = useTranslation();
     const [qrCode, setQrCode] = useState<string | undefined>(undefined);
@@ -43,7 +42,10 @@ export default function QrCodeDialog(props: QrCodeDialogProps) {
             onClose={props.handleClose}
         >
             <DialogTitle fontSize="large" fontWeight="bold" sx={{pt: 3}}>
-                {t("dialog.qrCode.title")}
+                <Stack pb={1} direction={"row"} alignItems={"center"} gap={1}>
+                    <QrCode2Icon/>
+                    {t("dialog.qrCode.title")}
+                </Stack>
             </DialogTitle>
             <DialogContent>
                 <DialogContentText>

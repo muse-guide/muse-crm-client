@@ -13,6 +13,7 @@ import {Amplify} from 'aws-amplify';
 import ExhibitionsPage from "./routes/exhibition/ExhibitionsPage";
 import ExhibitsPage from './routes/exhibit/ExhibitsPage';
 import AccountPage from "./routes/account/AccountPage";
+import { AccountSettings } from '@aws-amplify/ui-react';
 
 const config = {
     Auth: {
@@ -68,8 +69,7 @@ const router = createBrowserRouter([
             {
                 path: "account",
                 element: <AccountPage/>
-            },
-
+            }
         ]
     }
 ]);

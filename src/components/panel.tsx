@@ -14,7 +14,7 @@ type PanelProps = {
 
 export const BasePanel = ({children, ...props}: PaperProps) => {
     return (
-        <Paper elevation={1} sx={{width: '100%',}} {...props}>
+        <Paper elevation={0} sx={{width: '100%',}} {...props}>
             {children}
         </Paper>
     )

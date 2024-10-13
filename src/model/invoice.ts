@@ -27,3 +27,5 @@ export interface InvoiceItem {
     activeTo: string,
     amount: string,
 }
+
+export type InvoicePaymentStatus = "ALL" | "PAID" | "UNPAID"

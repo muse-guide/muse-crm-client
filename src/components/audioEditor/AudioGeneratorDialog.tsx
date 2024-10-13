@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback, useEffect, useMemo, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Button, MenuItem, Stack, TextField} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
@@ -18,8 +18,8 @@ import {AudioPreviewRequest} from "../../model/audio";
 import {audioService} from "../../services/AudioPreviewService";
 import {assetService} from "../../services/AssetService";
 import {useSnackbar} from "notistack";
-
-const MAX_LENGTH = 2000;
+import {AudioEditor} from "./AudioEditor";
+import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
 
 export const AudioGeneratorDialog = (props: {
     input: {
@@ -82,12 +82,9 @@ export const AudioGeneratorDialog = (props: {
 
     audio.addEventListener('ended', setPlayingFalse)
 
-    const handleMarkupChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleMarkupChange = (content: string) => {
         setError(undefined)
-        if (event.target.value.length > MAX_LENGTH) {
-            setError(t("validation.maxLength", {length: MAX_LENGTH}))
-        }
-        setMarkup(event.target.value)
+        setMarkup(content)
         setAudioUrl(undefined)
     }
 
@@ -98,6 +95,11 @@ export const AudioGeneratorDialog = (props: {
         }
         props.handleSave(markup, voice)
     }, [markup, voice, props]);
+
+    const generateAudioAsync = async (input: AudioPreviewRequest) => {
+        const {audio} = await audioService.generateAudioPreview(input)
+        return await assetService.getTmpAudio(audio.key)
+    }
 
     const clickAudioButton = useCallback(async () => {
         if (audioUrl) {
@@ -160,7 +162,7 @@ export const AudioGeneratorDialog = (props: {
                 startIcon={<PlayArrowIcon/>}
                 onClick={clickAudioButton}
             >
-                {audioUrl ? t("listen") : t("dialog.audio.tryIt")}
+                {audioUrl ? t("dialog.audio.listen") : t("dialog.audio.tryIt")}
             </LoadingButton>
         )
     }
@@ -191,9 +193,9 @@ export const AudioGeneratorDialog = (props: {
                 <DialogContentText>
                     {t("dialog.audio.description")}
                 </DialogContentText>
-                <Stack pt={4}>
+                <Stack pt={4} gap={2}>
                     <Stack direction={"row"} display="flex" flexDirection={"row"} spacing={1} justifyContent="end">
-                        <Stack direction="row" gap={2} flexGrow={1} justifyItems="start" alignItems={"center"}>
+                        <Stack direction="row" gap={3} flexGrow={1} justifyItems="start" alignItems={"center"}>
                             <CircleFlag countryCode={langMap.get(props.input.lang) ?? ""} height="32"/>
                             <VoiceSelect voice={voice} setVoice={setVoice}/>
                         </Stack>
@@ -202,20 +204,7 @@ export const AudioGeneratorDialog = (props: {
                             <ReplayAudioButton/>
                         </Stack>
                     </Stack>
-                    <TextField
-                        variant={"outlined"}
-                        name={"markup"}
-                        value={markup}
-                        disabled={playing || loading}
-                        onChange={handleMarkupChange}
-                        required
-                        error={!!error}
-                        helperText={error ?? `${markup.length}/${MAX_LENGTH}`}
-                        fullWidth={true}
-                        multiline={true}
-                        rows={12}
-                        sx={{paddingTop: 1.5}}
-                    />
+                    <AudioEditor content={markup} onContentChange={handleMarkupChange}/>
                 </Stack>
             </DialogContent>
             <DialogActions sx={{px: '24px', pb: '20px'}}>
@@ -234,11 +223,11 @@ const VoiceSelect = (
     const voiceOptions = [
         {
             value: "FEMALE_1",
-            name: "Female 1"
+            name: "Eve"
         },
         {
             value: "MALE_1",
-            name: "Male 1"
+            name: "Adam"
         }
     ]
 
@@ -250,16 +239,16 @@ const VoiceSelect = (
             onChange={event => setVoice(event.target.value)}
             select
             defaultValue="FEMALE_1"
-            label={"Voice"}
+            // label={"Voice"}
         >
             {voiceOptions.map(option => (
-                <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem>
+                <MenuItem key={option.value} value={option.value}>
+                    <Stack direction={"row"} gap={1.5}>
+                        <RecordVoiceOverOutlinedIcon color={"primary"}/>
+                        {option.name}
+                    </Stack>
+                </MenuItem>
             ))}
         </TextField>
     )
-}
-
-const generateAudioAsync = async (input: AudioPreviewRequest) => {
-    const {audio} = await audioService.generateAudioPreview(input)
-    return await assetService.getTmpAudio(audio.key)
 }

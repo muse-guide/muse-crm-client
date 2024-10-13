@@ -1,21 +1,18 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useSnackbar} from "notistack";
 import {Panel} from "../../components/panel";
 import {Avatar, Button, FormControl, List, ListItem, ListItemAvatar, ListItemText, MenuItem, Select, SelectChangeEvent, Stack, Typography, useTheme} from "@mui/material";
-import {AppContext} from "../Root";
-import {Invoice} from "../../model/invoice";
+import {Invoice, InvoicePaymentStatus} from "../../model/invoice";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import useDialog from "../../components/hooks";
 import {InvoiceDialog} from "./InvoiceDialog";
 import {InvoiceStatusChip} from "./InvoiceStatusChip";
-import dayjs, {Dayjs} from "dayjs";
 import {invoiceService} from "../../services/InvoiceService";
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import {grey} from "@mui/material/colors";
 import CircleIcon from '@mui/icons-material/Circle';
-
-type InvoiceStatusTypes = "all" | "paid" | "unpaid"
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const InvoicesPanel = () => {
     const {t} = useTranslation();
@@ -23,27 +20,22 @@ export const InvoicesPanel = () => {
     const invoiceDialog = useDialog()
     const theme = useTheme()
 
-    const applicationContext = useContext(AppContext);
+    const [nextPageKey, setNextPageKey] = useState<string>();
     const [loading, setLoading] = useState<boolean>(false);
     const [invoices, setInvoices] = useState<Invoice[]>([]);
     const [invoiceId, setInvoiceId] = useState<string | undefined>(undefined);
-    const [invoiceStatus, setInvoiceStatus] = useState<InvoiceStatusTypes>("all");
-
-    const currentInvoicePeriod = applicationContext?.configuration.lastInvoicedPeriod
-    const [invoicePeriodStart, setInvoicePeriodStart] = useState<Dayjs | null>(dayjs(currentInvoicePeriod?.periodStart || null));
-    const [invoicePeriodEnd, setInvoicePeriodEnd] = useState<Dayjs | null>(dayjs(currentInvoicePeriod?.periodEnd || null));
+    const [paymentStatus, setPaymentStatus] = useState<InvoicePaymentStatus>("UNPAID");
 
     useEffect(() => {
         getCustomerInvoice();
-    }, [invoicePeriodStart, invoicePeriodEnd]);
+    }, [paymentStatus]);
 
     const getCustomerInvoice = async () => {
         setLoading(true);
         try {
-            const from = invoicePeriodStart?.format("YYYY-MM-DD") ?? "";
-            const to = invoicePeriodEnd?.format("YYYY-MM-DD") ?? "";
-            const results = await invoiceService.getCustomerInvoicesForPeriod(from, to);
-            setInvoices(results)
+            const results = await invoiceService.getCustomerInvoices(paymentStatus, nextPageKey);
+            setInvoices(prevState => prevState.concat(results.items as Invoice[]));
+            setNextPageKey(results.nextPageKey);
         } catch (err) {
             snackbar(t("error.fetchingInvoicesFailed"), {variant: "error"})
         } finally {
@@ -56,6 +48,12 @@ export const InvoicesPanel = () => {
         invoiceDialog.openDialog();
     }
 
+    const handlePaymentStatusChange = (event: SelectChangeEvent) => {
+        setInvoices([]);
+        setNextPageKey(undefined);
+        setPaymentStatus(event.target.value as InvoicePaymentStatus);
+    }
+
     return (
         <Panel
             loading={loading}
@@ -64,8 +62,8 @@ export const InvoicesPanel = () => {
             panelAction={
                 <FormControl>
                     <Select
-                        value={invoiceStatus}
-                        onChange={(event: SelectChangeEvent) => setInvoiceStatus(event.target.value as InvoiceStatusTypes)}
+                        value={paymentStatus}
+                        onChange={(event: SelectChangeEvent) => handlePaymentStatusChange(event)}
                         size={"small"}
                         sx={{
                             minWidth: "100px",
@@ -73,19 +71,19 @@ export const InvoicesPanel = () => {
                             color: grey[500],
                         }}
                     >
-                        <MenuItem value={'all'}>
+                        <MenuItem value={'ALL'}>
                             <Stack direction={"row"} gap={1} alignItems={"center"} fontSize={"14px"}>
                                 <CircleIcon sx={{color: theme.palette.info.dark}} fontSize={"inherit"}/>
                                 <Typography variant={"button"}>{t('page.account.invoices.all')}</Typography>
                             </Stack>
                         </MenuItem>
-                        <MenuItem value={'paid'}>
+                        <MenuItem value={'PAID'}>
                             <Stack direction={"row"} gap={1} alignItems={"center"} fontSize={"14px"}>
                                 <CircleIcon sx={{color: theme.palette.success.dark}} fontSize={"inherit"}/>
                                 <Typography variant={"button"}>{t('page.account.invoices.paid')}</Typography>
                             </Stack>
                         </MenuItem>
-                        <MenuItem value={'unpaid'}>
+                        <MenuItem value={'UNPAID'}>
                             <Stack direction={"row"} gap={1} alignItems={"center"} fontSize={"14px"}>
                                 <CircleIcon sx={{color: theme.palette.warning.light}} fontSize={"inherit"}/>
                                 <Typography variant={"button"}>{t('page.account.invoices.unpaid')}</Typography>
@@ -111,8 +109,10 @@ export const InvoicesPanel = () => {
                             </ListItemAvatar>
                             <Stack direction="row" width="100%" alignItems="center" justifyContent="space-between" gap={2}>
                                 <ListItemText primary={invoice.invoiceBusinessId} secondary={`${invoice.periodStart} - ${invoice.periodEnd}`}/>
-                                <InvoiceStatusChip status={invoice.status}/>
-                                <Stack direction="row" mx={5} gap={2} alignItems="center">
+                                <Stack direction="row" px={2} justifyContent="start" alignItems="center" minWidth={"140px"}>
+                                    <InvoiceStatusChip status={invoice.status}/>
+                                </Stack>
+                                <Stack direction="row" mx={2} gap={2} alignItems="center" minWidth={"140px"}>
                                     <Typography variant={"body1"} fontWeight="">{t("Total")}:</Typography>
                                     <Typography variant={"body1"} sx={{fontWeight: 700}}>{invoice.amount}zł</Typography>
                                 </Stack>
@@ -120,6 +120,10 @@ export const InvoicesPanel = () => {
                             </Stack>
                         </ListItem>
                     ))}
+                    {nextPageKey &&
+                        <Stack alignItems={"center"} justifyContent={"center"} width={"100%"} p={1}>
+                            <Button startIcon={<ExpandMoreIcon/>} variant="text" onClick={getCustomerInvoice}>{t("common.loadMore")}</Button>
+                        </Stack>}
                 </List>
             </Stack>
         </Panel>

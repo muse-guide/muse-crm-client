@@ -1,0 +1,28 @@
+.tiptap p {
+    border: 0px solid #D0D5DD !important;
+    border-radius: 4px;
+    /*min-height: 200px;*/
+    padding: 8px;
+    margin: 0px;
+    background-color: white;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+    color: #adb5bd;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+}
+code {
+    background-color: #5a5acc;
+    border-radius: 0.4rem;
+    color: white;
+    font-size: 0.85rem;
+    padding: 0.25em 0.3em;
+}
+
+
+.ProseMirror:focus {
+    outline: none;
+}

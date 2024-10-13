@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {Button, Divider, Menu, MenuItem, Stack, Typography} from "@mui/material";
+import {Button, Chip, Divider, Menu, MenuItem, Stack, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import TextInput from "../../components/form/TextInput";
@@ -19,6 +19,8 @@ import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCale
 import {SubscriptionsPanel} from "./SubscriptionsPanel";
 import {AppContext} from "../Root";
 import {InvoicesPanel} from "./InvoicesPanel";
+import useDialog from "../../components/hooks";
+import {ChangePasswordDialog} from "./ChangePasswordDialog";
 
 
 const AccountPage = () => {
@@ -194,6 +196,8 @@ const AccountActions = () => {
     const {t} = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+    const changePasswordDialog = useDialog()
+
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -201,8 +205,20 @@ const AccountActions = () => {
         setAnchorEl(null);
     };
 
+    useEffect(() => {
+        setAnchorEl(null)
+    }, [changePasswordDialog.isOpen])
+
+    const onChangePassword = () => {
+        changePasswordDialog.openDialog()
+    }
+
     return (
-        <div>
+        <>
+            <ChangePasswordDialog
+                open={changePasswordDialog.isOpen}
+                handleClose={changePasswordDialog.closeDialog}
+            />
             <Button
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
@@ -218,10 +234,10 @@ const AccountActions = () => {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>{t('page.account.actions.changePassword')}</MenuItem>
-                <MenuItem onClick={handleClose}>{t('page.account.actions.deleteAccount')}</MenuItem>
+                <MenuItem onClick={onChangePassword}>{t('page.account.actions.changePassword')}</MenuItem>
+                {/*<MenuItem onClick={handleClose}>{t('page.account.actions.deleteAccount')}</MenuItem>*/}
             </Menu>
-        </div>
+        </>
     );
 }
 

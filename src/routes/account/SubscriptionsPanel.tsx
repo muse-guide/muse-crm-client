@@ -67,13 +67,13 @@ const SubscriptionPlanCard = ({plan, currentPlan, changePlan}: { plan: Subscript
         <Card variant={isActive ? 'elevation' : 'outlined'} elevation={isActive ? 3 : 0}>
             <CardContent>
                 <Stack direction="row" alignItems="center" justifyContent="space-between">
-                    <Typography variant={"h6"} fontWeight={"bold"} gutterBottom>
+                    <Typography variant={"h6"} sx={{fontWeight: 600}} gutterBottom>
                         {plan.type}
                     </Typography>
                     {isActive && <CheckCircleIcon color="primary" fontSize="large"/>}
                 </Stack>
                 <Stack direction='row' alignItems={"end"} mt={3}>
-                    <Typography variant="h4" fontWeight="bold">
+                    <Typography variant="h4" sx={{fontWeight: 600}}>
                         {`$${plan.price}`}
                     </Typography>
                     <Typography variant="body1" fontWeight="normal">

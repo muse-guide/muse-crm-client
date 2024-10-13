@@ -147,7 +147,8 @@
   "dialog": {
     "article": {
       "title": "Prepare article",
-      "description": "You can enrich your resource with descriptive article. Provide text, format and add photos to deliver best experience to your audience."
+      "description": "You can enrich your resource with descriptive article. Provide text, format and add photos to deliver best experience to your audience.",
+      "articleEditorPlaceholder": "Put here description, images or even YouTube video..."
     },
     "app": {
       "title": "App preview",
@@ -172,8 +173,16 @@
       "title": "Generate audio",
       "description": "In this application, we utilize state-of-the-art artificial intelligence tools to generate audio that closely mimics human speech. To use this feature, you simply need to provide the text you want to be converted into audio. This could be a description of an exhibit, a narration of an article, or any other content that you think would enhance the user's experience. Once you've provided the text, our AI tools will process it and generate an audio file. This audio file will then be available for playback within the application, providing your users with a rich, multimedia experience. This feature is not only limited to English. Our AI tools are capable of synthesizing audio in multiple languages, making your content accessible to a wider audience. Remember, the quality of the synthesized audio greatly depends on the text input. Therefore, it's recommended to use clear and concise language for the best results.",
       "tryIt": "Try it",
+      "listen": "Listen",
       "replay": "Replay",
-      "pause": "Pause"
+      "pause": "Pause",
+      "sayIn": "Say in ...",
+      "sayInHelperText": "Insert text you want to speak in other language. It is especially useful when you want to speak surname or name of the artist in the native language.",
+      "longPause": "Long pause",
+      "longPauseHelperText": "Insert tag which will pause audio for a longer period.",
+      "customPause": "Custom pause",
+      "customPauseHelperText": "Insert tag which will pause audio for as long as you prefer.",
+      "audioEditorPlaceholder": "Type here text you want to convert into audio..."
     },
     "uploadPhoto": {
       "title": "Upload photos",
@@ -198,6 +207,14 @@
     "delete": {
       "title": "Delete item",
       "description": "Are you sure you want to permanently delete this item?"
+    },
+    "changePassword": {
+      "title": "Change password",
+      "description": "Provide new password for your account.",
+      "currentPasswordFieldLabel": "Current password",
+      "newPasswordFieldLabel": "Enter new password",
+      "confirmPasswordFieldLabel": "Confirm your password",
+      "updatePasswordButtonText": "Update your password"
     }
   },
   "component": {
@@ -227,7 +244,8 @@
     "to": "To",
     "download": "Download",
     "error": "Error",
-    "details": "Details"
+    "details": "Details",
+    "loadMore": "Load more"
   },
   "validation": {
     "required": "This field is required.",
@@ -258,6 +276,7 @@
     "exhibitUpdated": "Exhibit {{exhibitId}} updated.",
     "exhibitDeleted": "Exhibit id: {{exhibitId}} deleted successfully.",
     "subscriptionUpdated": "Subscription updated successfully.",
-    "customerDetailsUpdated": "Customer details updated successfully."
+    "customerDetailsUpdated": "Customer details updated successfully.",
+    "passwordChanged": "Password changed successfully."
   }
 }
