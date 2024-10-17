@@ -70,7 +70,7 @@ export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
     const theme = useTheme()
     const maxNumber = 8;
 
-    const onChange = async (imageList: ImageListType,) => {
+    const onChange = async (imageList: ImageListType) => {
         setUploadInProgress(true)
         const lastIndex = imageList.length - 1;
         const image = imageList[lastIndex]

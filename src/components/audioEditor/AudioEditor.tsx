@@ -2,7 +2,7 @@ import {Editor, EditorContent, useEditor} from "@tiptap/react";
 import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {Box, Chip, Popover, Stack, Typography} from "@mui/material";
 import './styles.css'
 import {borderColor} from "../../index";
@@ -13,7 +13,7 @@ import {CharacterCount} from "@tiptap/extension-character-count";
 
 const limit = 2000
 
-const availableSsmlTags =[
+const availableSsmlTags = [
     /<break\/>/g,
     /<break time="[^"]+"\/>/g,
     /<lang xml:lang="[^"]+">/g,
@@ -60,8 +60,8 @@ export const AudioEditor = (
 
     const onUpdate = useCallback(() => {
         let text = editor?.getText()
-        .replaceAll('&lt;', "<")
-        .replaceAll('&gt;', ">")
+            .replaceAll('&lt;', "<")
+            .replaceAll('&gt;', ">")
 
         onContentChange(text ?? "")
     }, [editor, onContentChange])
@@ -69,10 +69,12 @@ export const AudioEditor = (
     editor?.on('update', onUpdate)
 
     return (
-        <Stack position={"relative"} p={1} border={1} borderRadius={1} borderColor={borderColor} gap={0} minHeight={"200px"}>
-            <AudioEditorMenu editor={editor}/>
-            <EditorContent editor={editor} content={"p"}/>
-            <Box position={"absolute"} p={1} bottom={-35}>
+        <Stack gap={1}>
+            <Stack position={"relative"} p={1} border={1} borderRadius={1} borderColor={borderColor} gap={0} minHeight={"200px"}>
+                <AudioEditorMenu editor={editor}/>
+                <EditorContent editor={editor} content={"p"}/>
+            </Stack>
+            <Box px={2}>
                 <Typography variant={"caption"}>{`${editor?.storage.characterCount.characters()} / ${limit}`} </Typography>
             </Box>
         </Stack>

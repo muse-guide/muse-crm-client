@@ -4,27 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Restyle to love it again">
-      <change afterPath="$PROJECT_DIR$/src/components/articleEditor/ArticleEditor.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/audioEditor/AudioEditor.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/audioEditor/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/account/ChangePasswordDialog.tsx" afterDir="false" />
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add audio editor">
+      <change afterPath="$PROJECT_DIR$/src/components/articleEditor/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/ArticleDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/articleEditor/ArticleDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/AudioGeneratorDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/invoice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/invoice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/account/InvoicesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/InvoicesPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/InvoiceService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/InvoiceService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/articleEditor/ArticleDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/articleEditor/ArticleDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/articleEditor/ArticleEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/articleEditor/ArticleEditor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/AudioEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/AudioEditor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/AssetService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AssetService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,32 +59,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "openjdk-17.0.2",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/michalpacholczyk/workspace/muse-crm-client/src/components/articleEditor",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.install --force.executor": "Run",
-    "npm.npm start.executor": "Run",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.3876967",
-    "ts.external.directory.path": "/Users/michalpacholczyk/workspace/muse-crm-client/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17.0.2&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/src/components/articleEditor&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.install --force.executor&quot;: &quot;Run&quot;,
+    &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3876967&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/articleEditor" />
@@ -413,7 +404,15 @@
       <workItem from="1728282911525" duration="17000" />
       <workItem from="1728671382941" duration="5948000" />
       <workItem from="1728757044955" duration="1194000" />
-      <workItem from="1728844263767" duration="1888000" />
+      <workItem from="1728844263767" duration="4436000" />
+      <workItem from="1728888896503" duration="2683000" />
+      <workItem from="1728929695541" duration="4630000" />
+      <workItem from="1728977714137" duration="3000" />
+      <workItem from="1729015932574" duration="4565000" />
+      <workItem from="1729058641694" duration="216000" />
+      <workItem from="1729102739436" duration="2981000" />
+      <workItem from="1729145734883" duration="1000" />
+      <workItem from="1729190752849" duration="861000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -551,7 +550,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726858157375</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Add audio editor">
+      <option name="closed" value="true" />
+      <created>1728846661255</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1728846661255</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,6 +597,7 @@
     <MESSAGE value="Updrade to MUI v6" />
     <MESSAGE value="Add app preview" />
     <MESSAGE value="Restyle to love it again" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restyle to love it again" />
+    <MESSAGE value="Add audio editor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add audio editor" />
   </component>
 </project>

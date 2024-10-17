@@ -1,0 +1,129 @@
+.tiptap p {
+    border: 0px solid #D0D5DD !important;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 0px;
+    background-color: white;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+    color: #adb5bd;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+}
+
+code {
+    background-color: #5a5acc;
+    border-radius: 0.4rem;
+    color: white;
+    font-size: 0.85rem;
+    padding: 0.25em 0.3em;
+}
+
+.hidden {
+    display: none
+}
+
+.ProseMirror:focus {
+    outline: none;
+}
+
+/* Basic editor styles */
+.tiptap {
+    :first-child {
+        margin-top: 0.5rem;
+    }
+
+    img {
+        padding: 0.5rem;
+        width: 100%;
+        height: auto;
+    }
+
+    /* List styles */
+
+    ul,
+    ol {
+        padding: 0 1rem;
+        margin: 1.25rem 1rem 1.25rem 0.4rem;
+
+        li {
+            padding: 0;
+        }
+
+        li p {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 0;
+        }
+    }
+
+    /* Heading styles */
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.1;
+        margin-top: 2.5rem;
+        text-wrap: pretty;
+        padding-inline: 0.5rem;
+    }
+
+    h1,
+    h2 {
+        margin-top: 3.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    h4,
+    h5,
+    h6 {
+        font-size: 1rem;
+    }
+
+    blockquote {
+        border-left: 3px solid #7e7e7e;
+        margin: 1.0rem 0.5rem;
+        padding-left: 1rem;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid #7e7e7e;
+        margin: 1rem 0;
+    }
+
+    /* Youtube embed */
+
+    div[data-youtube-video] {
+        padding: 1rem;
+        cursor: move;
+        display: flex;
+        justify-content: center;
+
+        iframe {
+            border: 0.25rem solid black;
+            display: block;
+            min-height: 200px;
+            min-width: 200px;
+            outline: 0 solid transparent;
+        }
+    }
+}

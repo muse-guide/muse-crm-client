@@ -7,11 +7,8 @@ const uploadTmpFile = async (
     try {
         const id = nano_8()
         await uploadData({
-            key: `tmp/images/${id}`,
-            data: file,
-            options: {
-                accessLevel: 'guest'
-            }
+            path: `public/tmp/images/${id}`,
+            data: file
         }).result;
 
         return id;
@@ -23,23 +20,22 @@ const uploadTmpFile = async (
 const removeTmpImage = async (key: string) => {
     try {
         return (await remove({
-            key: `tmp/images/${key}`,
-            options: {
-                accessLevel: "guest"
-            }
-        })).key
+            path: `public/tmp/images/${key}`,
+        })).path
     } catch (error) {
         console.log('Remove image error: ', error);
     }
 };
 
-const getAsset = async (id: string, level: "guest" | "private", prefix?: string) => {
-    const key = prefix ? `${prefix}/${id}` : id;
+const getAsset = async (id: string, isPrivateAsset: boolean, prefix?: string) => {
+    const pathPrefix = prefix ? `${prefix}/` : "";
+    const key = isPrivateAsset
+        ? ({identityId}: {identityId?: string | undefined}) => `private/${identityId}/${pathPrefix}${id}`
+        :`public/${pathPrefix}${id}`;
     try {
         return (await getUrl({
-            key: key,
+            path: key,
             options: {
-                accessLevel: level,
                 validateObjectExistence: true,
             }
         })).url.toString()
@@ -48,12 +44,12 @@ const getAsset = async (id: string, level: "guest" | "private", prefix?: string)
     }
 };
 
-const getTmpImage = async (id: string) => await getAsset(id, "guest", "tmp/images");
-const getPrivateImage = async (id: string) => await getAsset(id, "private", "images");
-const getPrivateThumbnail = async (id: string) => await getAsset(`${id}_thumbnail`, "private", "images");
-const getTmpAudio = async (id: string) => await getAsset(id, "guest", "tmp/audio");
-const getPrivateAudio = async (id: string) => await getAsset(id, "private", "audio");
-const getQrCode = async (id: string) => await getAsset(id, "private");
+const getTmpImage = async (id: string) => await getAsset(id, false, "tmp/images");
+const getPrivateImage = async (id: string) => await getAsset(id, true, "images");
+const getPrivateThumbnail = async (id: string) => await getAsset(`${id}_thumbnail`, true, "images");
+const getTmpAudio = async (id: string) => await getAsset(id, false, "tmp/audio");
+const getPrivateAudio = async (id: string) => await getAsset(id, true, "audio");
+const getQrCode = async (id: string) => await getAsset(id, true);
 
 export const assetService = {
     uploadTmpFile: uploadTmpFile,

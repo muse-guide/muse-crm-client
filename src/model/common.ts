@@ -9,6 +9,7 @@ export interface ImageRef {
     id: string;
     name: string;
     tmp?: boolean;
+    url?: string;
 }
 
 export const langMap = new Map<string, string>([
