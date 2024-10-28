@@ -1,8 +1,6 @@
 import {CreateExhibition, Exhibition} from "../model/exhibition";
 import api, {getAuthHeaders, normalize, requestWrapper} from "../http/client"
-import {PaginatedResults, ApiPagination,} from "../http/types";
-import {customerService} from "./CustomerService";
-import {configurationService} from "./ConfigurationService";
+import {ApiPagination, PaginatedResults,} from "../http/types";
 
 const entityPath = `/exhibitions`;
 
@@ -36,6 +34,7 @@ async function getExhibitions(searchParams?: SearchParams): Promise<PaginatedRes
         return response.data;
     })
 }
+
 async function getAllExhibitions(): Promise<Exhibition[]> {
     return await requestWrapper(async () => {
         const response = await api.get<PaginatedResults>(entityPath, {

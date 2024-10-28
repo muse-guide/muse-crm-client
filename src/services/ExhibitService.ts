@@ -1,6 +1,6 @@
 import {CreateExhibit, Exhibit} from "../model/exhibit";
 import api, {getAuthHeaders, normalize, requestWrapper} from "../http/client"
-import {PaginatedResults, ApiPagination,} from "../http/types";
+import {ApiPagination, PaginatedResults,} from "../http/types";
 
 const entityPath = `/exhibits`;
 
@@ -43,6 +43,7 @@ async function createExhibit(data: CreateExhibit): Promise<Exhibit> {
         return response.data;
     })
 }
+
 
 async function updateExhibit(data: Exhibit): Promise<Exhibit> {
     return await requestWrapper(async () => {

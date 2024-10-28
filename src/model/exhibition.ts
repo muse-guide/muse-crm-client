@@ -1,4 +1,4 @@
-import {ImageRef, Status} from "./common";
+import { ImageRef, Status} from "./common";
 
 export interface Exhibition {
     id: string;
@@ -15,7 +15,7 @@ export interface ExhibitionLang {
     lang: string;
     title: string;
     subtitle: string;
-    description?: string;
+    article?: string
     audio?: {
         key: string,
         markup: string,
@@ -30,7 +30,7 @@ export interface CreateExhibition {
         lang: string;
         title: string;
         subtitle: string;
-        description?: string;
+        article?: string
         audio?: {
             markup: string,
             voice: string,

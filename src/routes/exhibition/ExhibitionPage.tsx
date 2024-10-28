@@ -66,6 +66,7 @@ const ExhibitionPage = () => {
             methods.reset(exhibition);
         } catch (err) {
             snackbar(t("error.fetchingExhibitionFailed"), {variant: "error"})
+            navigate("/exhibitions");
         } finally {
             setLoading(false);
         }

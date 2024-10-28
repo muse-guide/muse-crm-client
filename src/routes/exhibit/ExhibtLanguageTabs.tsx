@@ -31,11 +31,11 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
         audioDialog.closeDialog();
     }, [])
 
-    const handleSaveArticle = (markup: string | undefined) => {
-        if (markup === undefined) {
-            methods.setValue(`langOptions.${props.index}.description`, undefined)
+    const handleSaveArticle = (article?: string) => {
+        if (article === undefined) {
+            methods.setValue(`langOptions.${props.index}.article`, undefined)
         } else {
-            methods.setValue(`langOptions.${props.index}.description`, markup)
+            methods.setValue(`langOptions.${props.index}.article`, article)
         }
         articleDialog.closeDialog();
     };
@@ -57,7 +57,7 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
             />
             <ArticleDialog
                 open={articleDialog.isOpen}
-                markup={methods.getValues(`langOptions.${props.index}.description`)}
+                article={methods.getValues(`langOptions.${props.index}.article`)}
                 handleClose={articleDialog.closeDialog}
                 handleSave={handleSaveArticle}
             />
@@ -96,7 +96,7 @@ export const ExhibitLanguageSpecificForm = (props: ExhibitLanguageSpecificFormPr
                 <Grid2 size={12} pt={2} pb={3}>
                     <Stack gap={3}>
                         <Divider/>
-                        {methods.getValues(`langOptions.${props.index}.description`)
+                        {methods.getValues(`langOptions.${props.index}.article`)
                             ? <ArticleButton onClick={articleDialog.openDialog}/>
                             : <NoArticlePlaceholder onClick={articleDialog.openDialog}/>
                         }

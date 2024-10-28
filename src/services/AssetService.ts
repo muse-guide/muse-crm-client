@@ -1,11 +1,11 @@
 import {getUrl, remove, uploadData} from "aws-amplify/storage";
-import {nano_8} from "../model/common";
+import {nano_16, nano_8} from "../model/common";
 
 const uploadTmpFile = async (
     file: File
 ) => {
     try {
-        const id = nano_8()
+        const id = nano_16()
         await uploadData({
             path: `public/tmp/images/${id}`,
             data: file
@@ -30,8 +30,8 @@ const removeTmpImage = async (key: string) => {
 const getAsset = async (id: string, isPrivateAsset: boolean, prefix?: string) => {
     const pathPrefix = prefix ? `${prefix}/` : "";
     const key = isPrivateAsset
-        ? ({identityId}: {identityId?: string | undefined}) => `private/${identityId}/${pathPrefix}${id}`
-        :`public/${pathPrefix}${id}`;
+        ? ({identityId}: { identityId?: string | undefined }) => `private/${identityId}/${pathPrefix}${id}`
+        : `public/${pathPrefix}${id}`;
     try {
         return (await getUrl({
             path: key,
@@ -43,6 +43,17 @@ const getAsset = async (id: string, isPrivateAsset: boolean, prefix?: string) =>
         console.log('Get image error: ', error);
     }
 };
+
+const getPrivateImageUrl = async (id: string) => {
+    const getUrlResult = await getUrl({
+        path: ({identityId}) => `private/${identityId}/images/${id}`,
+        options: {
+            expiresIn: 3600,
+        },
+    });
+
+    return getUrlResult.url.toString();
+}
 
 const getTmpImage = async (id: string) => await getAsset(id, false, "tmp/images");
 const getPrivateImage = async (id: string) => await getAsset(id, true, "images");
@@ -59,5 +70,6 @@ export const assetService = {
     removeTmpImage: removeTmpImage,
     getTmpAudio: getTmpAudio,
     getPrivateAudio: getPrivateAudio,
-    getQrCode: getQrCode
+    getQrCode: getQrCode,
+    getPrivateImageUrl: getPrivateImageUrl,
 };

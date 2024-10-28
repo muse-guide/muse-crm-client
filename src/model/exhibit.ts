@@ -15,7 +15,7 @@ export interface ExhibitLang {
     lang: string;
     title: string;
     subtitle: string;
-    description?: string;
+    article?: string;
     audio?: {
         key: string,
         markup: string,
@@ -31,7 +31,7 @@ export interface CreateExhibit {
         lang: string;
         title: string;
         subtitle: string;
-        description?: string;
+        article?: string
         audio?: {
             markup: string,
             voice: string,

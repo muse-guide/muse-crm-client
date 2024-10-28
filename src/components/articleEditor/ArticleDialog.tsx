@@ -9,33 +9,23 @@ import DialogActions from "@mui/material/DialogActions";
 import SaveIcon from "@mui/icons-material/Save";
 import {ArticleEditor} from "./ArticleEditor";
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import {ImageRef} from "../../model/common";
-import {ImageListType} from "react-images-uploading";
-import {assetService} from "../../services/AssetService";
-
-const MAX_LENGTH = 2000;
 
 export const ArticleDialog = (props: {
-    markup: string | undefined,
+    article?: string
     open: boolean,
     handleClose: () => any | Promise<any>
-    handleSave: (markup: string | undefined) => any | Promise<any>
+    handleSave: (article?: string) => any | Promise<any>
 }) => {
     const [markup, setMarkup] = useState("");
-    const [images, setImages] = useState<ImageRef[]>([]);
     const {t} = useTranslation();
 
     useEffect(() => {
-        setMarkup(props.markup ?? "")
+        setMarkup(props.article ?? "")
     }, [props])
 
     const handleMarkupChange = useCallback((content: string) => {
         setMarkup(content)
     }, []);
-
-    const addImage = (image: ImageRef) => {
-        setImages([...images, image])
-    };
 
     const handleSaveArticle = useCallback(() => {
         if (!markup || markup.length === 0) {
@@ -65,8 +55,6 @@ export const ArticleDialog = (props: {
                     <ArticleEditor
                         content={markup}
                         onContentChange={handleMarkupChange}
-                        addImage={addImage}
-                        images={images}
                     />
                 </Stack>
             </DialogContent>

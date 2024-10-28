@@ -4,18 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add audio editor">
-      <change afterPath="$PROJECT_DIR$/src/components/articleEditor/styles.css" afterDir="false" />
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add article editor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/articleEditor/ArticleDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/articleEditor/ArticleDialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/articleEditor/ArticleEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/articleEditor/ArticleEditor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/AudioEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/AudioEditor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/exhibit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibit.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/exhibition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/AssetService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AssetService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ExhibitService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ExhibitionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ExhibitionService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +110,7 @@
       <recent name="$PROJECT_DIR$/src/components/TabTitle.tsx" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.npm start">
+  <component name="RunManager" selected="npm.build">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -412,7 +414,23 @@
       <workItem from="1729058641694" duration="216000" />
       <workItem from="1729102739436" duration="2981000" />
       <workItem from="1729145734883" duration="1000" />
-      <workItem from="1729190752849" duration="861000" />
+      <workItem from="1729190752849" duration="4435000" />
+      <workItem from="1729236044783" duration="91000" />
+      <workItem from="1729276327960" duration="2874000" />
+      <workItem from="1729362281402" duration="2165000" />
+      <workItem from="1729448294417" duration="1487000" />
+      <workItem from="1729496074679" duration="2000" />
+      <workItem from="1729621332679" duration="2275000" />
+      <workItem from="1729665072433" duration="2000" />
+      <workItem from="1729708213376" duration="3414000" />
+      <workItem from="1729752934752" duration="2000" />
+      <workItem from="1729795783649" duration="1825000" />
+      <workItem from="1729838641081" duration="2000" />
+      <workItem from="1729880433824" duration="1883000" />
+      <workItem from="1729966870613" duration="1778000" />
+      <workItem from="1730055233427" duration="2765000" />
+      <workItem from="1730101373579" duration="7000" />
+      <workItem from="1730143558605" duration="944000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -558,7 +576,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728846661255</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Add article editor">
+      <option name="closed" value="true" />
+      <created>1729191628427</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1729191628427</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,6 +624,7 @@
     <MESSAGE value="Add app preview" />
     <MESSAGE value="Restyle to love it again" />
     <MESSAGE value="Add audio editor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add audio editor" />
+    <MESSAGE value="Add article editor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add article editor" />
   </component>
 </project>

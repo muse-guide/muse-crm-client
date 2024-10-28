@@ -19,11 +19,9 @@ import FormatSizeIcon from '@mui/icons-material/FormatSize';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
 import {Youtube} from "@tiptap/extension-youtube";
-import {ImageRef} from "../../model/common";
 import {assetService} from "../../services/AssetService";
 
 const limit = 5000
@@ -32,18 +30,12 @@ export const ArticleEditor = (
     {
         content,
         onContentChange,
-        images,
-        addImage
     }: {
         content: string,
         onContentChange: (content: string) => void,
-        images: ImageRef[],
-        addImage: (image: ImageRef) => void
     }
 ) => {
     const {t} = useTranslation()
-
-
 
     const editor = useEditor({
         content: content,
@@ -78,6 +70,7 @@ export const ArticleEditor = (
 
     const onUpdate = useCallback(() => {
         let text = editor?.getHTML()
+        console.log(text)
         onContentChange(text ?? "")
     }, [editor, onContentChange])
 
@@ -87,7 +80,7 @@ export const ArticleEditor = (
         <Stack gap={1}>
             <Stack position={"relative"} overflow={"hidden"} p={1} border={1} borderRadius={1} borderColor={borderColor} gap={1} minHeight={"200px"} maxHeight={"800px"}>
                 <Box>
-                    <ArticleEditorMenu editor={editor} addImage={addImage}/>
+                    <ArticleEditorMenu editor={editor}/>
                 </Box>
                 <Box overflow={'scroll'}>
                     <EditorContent editor={editor} content={""}/>
@@ -100,7 +93,7 @@ export const ArticleEditor = (
     )
 }
 
-const ArticleEditorMenu = ({editor, addImage}: { editor: Editor | null, addImage: (image: ImageRef) => void }) => {
+const ArticleEditorMenu = ({editor}: { editor: Editor | null }) => {
     if (!editor) {
         return null
     }
@@ -115,13 +108,6 @@ const ArticleEditorMenu = ({editor, addImage}: { editor: Editor | null, addImage
 
         const url = await assetService.getTmpImage(imageId)
         if (!url) return
-
-        addImage({
-            id: imageId,
-            name: image.name,
-            tmp: true,
-            url: url
-        })
 
         editor.chain().focus().setImage({src: url}).run()
     }
@@ -163,23 +149,12 @@ const ArticleEditorMenu = ({editor, addImage}: { editor: Editor | null, addImage
                 >
                     <FormatUnderlinedIcon/>
                 </IconButton>
-            </Stack>
-
-            <Stack direction={"row"}>
                 <IconButton
                     size="small"
                     onClick={() => editor.chain().focus().toggleHeading({level: 3}).run()}
                     color={editor.isActive('heading', {level: 3}) ? 'primary' : 'default'}
                 >
                     <FormatSizeIcon/>
-                </IconButton>
-                <IconButton
-                    size="small"
-                    onClick={() => editor.chain().focus().toggleBlockquote().run()}
-                    disabled={!editor.can().chain().focus().toggleBlockquote().run()}
-                    color={editor.isActive('blockquote') ? 'primary' : 'default'}
-                >
-                    <FormatQuoteIcon/>
                 </IconButton>
             </Stack>
 
