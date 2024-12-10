@@ -4,7 +4,6 @@ export interface Exhibition {
     id: string;
     institutionId: string;
     referenceName: string;
-    qrCodeUrl: string;
     includeInstitutionInfo: boolean;
     langOptions: ExhibitionLang[];
     images: ImageRef[];

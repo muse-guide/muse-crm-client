@@ -5,6 +5,7 @@ export const nano_12 = () => nanoid(12)
 export const nano_16 = () => nanoid(16)
 
 export type Status = "ACTIVE" | "PROCESSING" | "ERROR"
+export type AssetType = "images" | "audios" | "qrcodes" | "tmp"
 
 export interface ImageRef {
     id: string;

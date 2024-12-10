@@ -9,32 +9,48 @@ import Button from "@mui/material/Button";
 import {Box, Stack, Typography} from "@mui/material";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
 import PhotoIcon from "@mui/icons-material/Photo";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-import CropIcon from "@mui/icons-material/Crop";
 import {assetService} from "../../services/AssetService";
 import {useTranslation} from "react-i18next";
+import {styled} from "@mui/material/styles";
 
 interface QrCodeDialogProps {
     referenceName: string,
-    qrCodeUrl: string,
+    resourceId: string,
     open: boolean,
     handleClose: () => any | Promise<any>
 }
+
+const Image = styled("img")({
+    width: "176px",
+    height: "auto",
+    outline: 0,
+});
 
 export default function QrCodeDialog(props: QrCodeDialogProps) {
     const {t} = useTranslation();
     const [qrCode, setQrCode] = useState<string | undefined>(undefined);
 
-    const getImageAsync = useCallback(async (key: string) => {
-        const url = await assetService.getQrCode(key)
-        setQrCode(url)
+    const getQrCodeImageAsync = useCallback(async (key: string) => {
+        const response = await assetService.getAssetPreSignedUrl({assetId: key, assetType: "qrcodes"});
+        setQrCode(response.url)
     }, []);
+
+    // const download = async (url: string | undefined) => {
+    //     if (!url) return
+    //     const qrCodeBlob = await assetService.downloadQrCode(url)
+    //     const blobURL = URL.createObjectURL(qrCodeBlob);
+    //
+    //     const element = document.createElement("a");
+    //     element.href = blobURL;
+    //     element.download = `${props.referenceName}.png`;
+    //     element.click();
+    // };
 
     useEffect(() => {
         if (props.open && !qrCode) {
-            getImageAsync(props.qrCodeUrl);
+            getQrCodeImageAsync(props.resourceId);
         }
-    }, [props.open, qrCode, getImageAsync]);
+    }, [props.open, qrCode, getQrCodeImageAsync]);
 
     return (
         <Dialog
@@ -51,13 +67,13 @@ export default function QrCodeDialog(props: QrCodeDialogProps) {
                 <DialogContentText>
                     {t("dialog.qrCode.description")}
                 </DialogContentText>
-                <Box pt={1}>
-                    <Typography fontWeight={"bold"}>
+                <Box pt={2} justifyItems={"center"}>
+                    <Typography fontWeight={"normal"}>
                         {t("dialog.qrCode.referenceName", {referenceName: props.referenceName})}
                     </Typography>
                 </Box>
 
-                <Box justifyContent="center" display="flex" pb={3} pt={4}>
+                <Box justifyContent="center" display="flex" pb={3} pt={1}>
                     <Box
                         sx={{
                             width: 180,
@@ -68,16 +84,21 @@ export default function QrCodeDialog(props: QrCodeDialogProps) {
                             justifyContent: "center",
                             display: "flex"
                         }}>
-                        <img src={qrCode}></img>
+                        <Image src={qrCode}></Image>
                         {!qrCode && <QrCode2Icon color="disabled" sx={{fontSize: "80px"}}/>}
                     </Box>
                 </Box>
             </DialogContent>
             <DialogActions sx={{px: '24px', pb: '20px'}}>
                 <Stack direction="row" spacing={2} display="flex" justifyContent="center" pb={1}>
-                    <Button variant="outlined" startIcon={<PhotoIcon fontSize='medium'/>}>png</Button>
-                    <Button variant="outlined" startIcon={<PictureAsPdfIcon fontSize='medium'/>}>pdf</Button>
-                    <Button variant="outlined" startIcon={<CropIcon fontSize='medium'/>}>{t("common.crop")}</Button>
+                    <Button
+                        variant="contained"
+                        disableElevation
+                        startIcon={<PhotoIcon fontSize='medium'/>}
+                        // onClick={() => download(props.qrCodeUrl)}
+                    >
+                        {t("dialog.qrCode.downloadPng")}
+                    </Button>
                 </Stack>
             </DialogActions>
         </Dialog>

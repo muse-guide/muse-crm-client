@@ -1,7 +1,7 @@
 import api, {getAuthHeaders, requestWrapper} from "../http/client"
 import {AudioPreviewRequest, AudioPreviewResponse} from "../model/audio";
 
-const entityPath = `/audio`;
+const entityPath = `/assets/audio`;
 
 async function generateAudioPreview(data: AudioPreviewRequest): Promise<AudioPreviewResponse> {
     return await requestWrapper(async () => {

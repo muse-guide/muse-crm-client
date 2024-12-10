@@ -25,7 +25,6 @@ const defaults = {
     exhibitionId: "",
     referenceName: "",
     number: 1,
-    qrCodeUrl: "",
     images: [],
     langOptions: []
 }

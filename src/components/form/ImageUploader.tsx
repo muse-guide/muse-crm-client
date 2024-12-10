@@ -1,143 +1,83 @@
-import React, {useEffect, useState} from "react";
-import ImageUploading, {ImageListType} from "react-images-uploading";
-import {Box, Button, IconButton, Link, List, ListItem, ListItemIcon, Stack, Typography, useTheme} from "@mui/material";
-import CloudUploadRoundedIcon from '@mui/icons-material/CloudUploadRounded';
+import React, {ChangeEvent, useEffect, useState} from "react";
+import {Box, Button, IconButton, Link, List, ListItem, ListItemIcon, Stack, Typography} from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {UseFieldArrayReturn} from "react-hook-form";
 import {ImageRef} from "../../model/common";
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import {useTranslation} from "react-i18next";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import {ImagePreview} from "./ImagePreview";
 import {normalizeText} from "../ComponentUtils";
 import LinearProgress from '@mui/material/LinearProgress';
 import {assetService} from "../../services/AssetService";
-import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
-import {EmptyPlaceholder} from "../page";
 
 export interface ImageHolder {
     images: ImageRef[];
 }
 
 export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<ImageHolder, "images", "id"> }) => {
-    const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
+    const [uploadInProgress, setUploadInProgress] = useState(false);
     const {t} = useTranslation();
 
-    const handleClickOpen = () => {
-        setUploadDialogOpen(true);
-    };
-
-    const handleClose = () => {
-        setUploadDialogOpen(false);
-    };
-
     const removeImage = async (index: number) => {
-        const item = props.arrayMethods.fields[index]
-        if (item.tmp) await assetService.removeTmpImage(item.id)
         props.arrayMethods.remove(index)
+    }
+
+    const addImage = async (event: ChangeEvent<HTMLInputElement>) => {
+        setUploadInProgress(true)
+
+        const input = event.target as HTMLInputElement;
+        if (!input.files || input.files.length < 1) return
+
+        const image: File = input.files[0];
+        const imageId = await assetService.uploadTmpFile(image)
+        if (!imageId) return
+
+        props.arrayMethods.append({
+            id: imageId,
+            name: image.name,
+            tmp: true
+        })
+
+        input.value = ''
+        setUploadInProgress(false)
     }
 
     return (
         <Stack pb={0} pt={1}>
-            <ImageUploaderDialog arrayMethods={props.arrayMethods} open={uploadDialogOpen} handleClose={handleClose} removeImage={removeImage}/>
             <Stack direction="row" spacing={2} alignItems="center">
-                <Box p={0}><Button onClick={handleClickOpen} variant="contained" disableElevation startIcon={<CloudUploadIcon/>}>{t("common.upload")}</Button></Box>
+                <Box p={0}>
+                    <input
+                        hidden
+                        accept="image/*"
+                        id="choose-resource-images"
+                        type="file"
+                        onChange={addImage}
+                    />
+                    <label htmlFor="choose-resource-images">
+                        <Button component="span" variant="contained" disableElevation startIcon={<CloudUploadIcon/>}>
+                            {t("common.upload")}
+                        </Button>
+                    </label>
+                </Box>
                 <Typography variant='body1'>{t("dialog.uploadPhoto.uploadHelperText")}</Typography>
             </Stack>
             <List sx={{width: '100%', maxWidth: 500, pb: 0, pt: 2}} dense>
                 {props.arrayMethods.fields.map((field, index) => (
                     <UploadedItem key={"main-" + field.id} index={index} item={field} removeImage={removeImage} tmp={field.tmp}/>
                 ))}
+                {uploadInProgress && <ListItem sx={{pl: "14px", py: 1}}>
+                    <ListItemIcon sx={{minWidth: "44px"}}>
+                        <InsertPhotoOutlinedIcon/>
+                    </ListItemIcon>
+                    <Box width={'100%'} px={0} mr={2}>
+                        <LinearProgress variant="indeterminate"/>
+                    </Box>
+                </ListItem>
+                }
             </List>
         </Stack>
     )
-}
-
-interface ImageUploaderDialogProps {
-    open: boolean,
-    handleClose: () => void,
-    removeImage: (index: number) => void
-    arrayMethods: UseFieldArrayReturn<ImageHolder, "images", "id">
-}
-
-export function ImageUploaderDialog(props: ImageUploaderDialogProps) {
-    const [uploadInProgress, setUploadInProgress] = useState(false);
-    const {t} = useTranslation();
-    const theme = useTheme()
-    const maxNumber = 8;
-
-    const onChange = async (imageList: ImageListType) => {
-        setUploadInProgress(true)
-        const lastIndex = imageList.length - 1;
-        const image = imageList[lastIndex]
-        if (image.file) {
-            const imageId = await assetService.uploadTmpFile(image.file)
-            if (imageId) props.arrayMethods.append({
-                id: imageId,
-                name: image.file.name!!,
-                tmp: true
-            })
-            setUploadInProgress(false)
-        }
-    };
-
-    return (
-        <div>
-            <Dialog
-                open={props.open}
-                onClose={props.handleClose}
-            >
-                <DialogTitle fontSize="large" fontWeight="bold" sx={{pt: 3}}>
-                    <Stack pb={1} direction={"row"} alignItems={"center"} gap={1}>
-                        <ImageOutlinedIcon/>
-                        {t("dialog.uploadPhoto.title")}
-                    </Stack>
-                </DialogTitle>
-                <DialogContent sx={{minWidth: '600px'}}>
-                    <ImageUploading
-                        multiple
-                        acceptType={['png', 'jpg', 'jpeg']}
-                        maxFileSize={1024000}
-                        value={[props.arrayMethods.fields]}
-                        onChange={onChange}
-                        maxNumber={maxNumber}
-                    >
-                        {({
-                              onImageUpload,
-                              dragProps
-                          }) => (
-                            <EmptyPlaceholder>
-                                <Typography variant='body1' fontWeight='bold'>{t("dialog.uploadPhoto.helperTextTitle")}</Typography>
-                                <Typography sx={{color: theme.palette.text.secondary, paddingBottom: 2}} variant='subtitle1' align={"center"}>{t("dialog.uploadPhoto.helperTextSubTitle")}</Typography>
-                                <Button startIcon={<CloudUploadRoundedIcon/>} variant="outlined" onClick={onImageUpload}>{t("dialog.uploadPhoto.choosePhoto")}</Button>
-                            </EmptyPlaceholder>
-                        )}
-                    </ImageUploading>
-                    <List sx={{width: '100%', bgcolor: 'background.paper', pb: 0, pt: 2}} dense>
-                        {props.arrayMethods.fields.map((field, index) => (
-                            <UploadedItem key={field.id} index={index} item={field} removeImage={props.removeImage} tmp={field.tmp}/>
-                        ))}
-                        {uploadInProgress && <ListItem sx={{pl: "14px", py: 1}}>
-                            <ListItemIcon sx={{minWidth: "44px"}}>
-                                <InsertPhotoOutlinedIcon/>
-                            </ListItemIcon>
-                            <Box width={'100%'} px={0} mr={3}>
-                                <LinearProgress variant="indeterminate"/>
-                            </Box>
-                        </ListItem>
-                        }
-                    </List>
-                </DialogContent>
-                <DialogActions sx={{px: '24px', pb: '20px'}}>
-                    <Button variant="contained" disableElevation onClick={props.handleClose}>{t("common.close")}</Button>
-                </DialogActions>
-            </Dialog>
-        </div>
-    );
 }
 
 const UploadedItem = ({index, item, removeImage, tmp}: {
@@ -155,9 +95,8 @@ const UploadedItem = ({index, item, removeImage, tmp}: {
 
     const getImageAsync = async (id: string, tmp?: boolean) => {
         try {
-            console.error("tmp", tmp)
-            if (tmp) return await assetService.getTmpImage(id)
-            else return await assetService.getPrivateImage(id)
+            if (tmp) return await assetService.getAssetPreSignedUrl({assetId: id, assetType: "tmp"})
+            else return await assetService.getAssetPreSignedUrl({assetId: id, assetType: "images"})
         } catch (error) {
             console.error('Get image error: ', error);
         }
@@ -168,8 +107,8 @@ const UploadedItem = ({index, item, removeImage, tmp}: {
             setImgPrevOpen(true)
             return
         }
-        const url = await getImageAsync(item.id, tmp)
-        setImageUrl(url)
+        const response = await getImageAsync(item.id, tmp)
+        setImageUrl(response?.url)
         setImgPrevOpen(true)
     }
 

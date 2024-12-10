@@ -189,12 +189,13 @@
       "helperTextTitle": "Add photos",
       "helperTextSubTitle": "Drag and drop photos here or click to upload. Photos will be available in mobile app",
       "choosePhoto": "Choose photo",
-      "uploadHelperText": "Click and some pictures here. Pictures will be available in mobile app."
+      "uploadHelperText": "Click and add some pictures here. Pictures will be available in mobile app."
     },
     "qrCode": {
       "title": "QR code",
       "description": "Unique QR code used to transfer the Visitor to the resource page. Choose one of the available options to print it and place it in a visible location.",
-      "referenceName": "Resource: {{referenceName}}"
+      "referenceName": "Resource: {{referenceName}}",
+      "downloadPng": "Download QR code as PNG"
     },
     "languageSelect": {
       "title": "Select language",

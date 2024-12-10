@@ -272,7 +272,6 @@ const MuseLogo = () => {
 }
 
 const ProfileAvatar = () => {
-    const theme = useTheme()
     const applicationContext = useContext(AppContext);
     return (
         <Stack direction='row'

@@ -129,7 +129,6 @@ const ExhibitionsPage = () => {
                                             <RowActions
                                                 id={row.id}
                                                 referenceName={row.referenceName}
-                                                qrCodeUrl={row.qrCodeUrl}
                                                 onDelete={onDelete}
                                                 onEdit={onEdit}
                                                 appPath={"exhibitions"}

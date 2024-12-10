@@ -98,7 +98,7 @@ export const AudioGeneratorDialog = (props: {
 
     const generateAudioAsync = async (input: AudioPreviewRequest) => {
         const {audio} = await audioService.generateAudioPreview(input)
-        return await assetService.getTmpAudio(audio.key)
+        return await assetService.getAssetPreSignedUrl({assetId: audio.key, assetType: "tmp"})
     }
 
     const clickAudioButton = useCallback(async () => {
@@ -109,8 +109,8 @@ export const AudioGeneratorDialog = (props: {
             if (props.input.key && props.input.markup === markup) {
                 try {
                     setLoading(true)
-                    const url = await assetService.getPrivateAudio(props.input.key)
-                    setAudioUrl(url)
+                    const response = await assetService.getAssetPreSignedUrl({assetId: props.input.key, assetType: "audios"})
+                    setAudioUrl(response.url)
                     setPlaying(true)
                 } catch (e) {
                     snackbar(t("error.audioGeneration"), {variant: "error"})
@@ -121,12 +121,12 @@ export const AudioGeneratorDialog = (props: {
             } else {
                 try {
                     setLoading(true)
-                    const url = await generateAudioAsync({
+                    const response = await generateAudioAsync({
                         markup: markup,
                         voice: voice,
                         lang: props.input.lang,
                     })
-                    setAudioUrl(url)
+                    setAudioUrl(response.url)
                     setPlaying(true)
                 } catch (e) {
                     snackbar(t("error.audioGeneration"), {variant: "error"})

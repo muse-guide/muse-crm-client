@@ -5,7 +5,6 @@ export interface Exhibit {
     exhibitionId: string,
     referenceName: string,
     number: number,
-    qrCodeUrl: string,
     langOptions: ExhibitLang[];
     images: ImageRef[];
     status: Status

@@ -24,7 +24,6 @@ const defaults = {
     id: "abea222c",
     institutionId: "abea222c", // TODO get from user context?
     referenceName: "",
-    qrCodeUrl: "",
     includeInstitutionInfo: false,
     images: [],
     langOptions: []

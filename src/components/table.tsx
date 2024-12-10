@@ -101,8 +101,8 @@ export const ResourceAvatar = ({referenceName, images, status}: { referenceName:
     const displayImg = !!(imageId) && status === "ACTIVE"
 
     const getThumbnail = useCallback(async (imageId: string) => {
-        await assetService.getPrivateThumbnail(imageId)
-            .then(src => setImgSrc(src!!))
+        const response = await assetService.getAssetPreSignedUrl({assetId: `${imageId}_thumbnail`, assetType: "images"})
+        setImgSrc(response.url)
     }, []);
 
     useEffect(() => {
@@ -216,7 +216,6 @@ export const RowActions = (
     {
         id,
         referenceName,
-        qrCodeUrl,
         onEdit,
         onDelete,
         appPath,
@@ -225,7 +224,6 @@ export const RowActions = (
     }: {
         id: string,
         referenceName: string,
-        qrCodeUrl: string,
         onEdit: (id: string) => void,
         onDelete: (id: string) => Promise<void>,
         appPath: string,
@@ -250,7 +248,7 @@ export const RowActions = (
                 handleAgree={() => onDelete(id)}
                 handleClose={handleRemoveExhibitDialogClose}
             />
-            <QrCodeDialog open={qrCodeDialogOpen} referenceName={referenceName} qrCodeUrl={qrCodeUrl} handleClose={handleQrCodeDialogClose}/>
+            <QrCodeDialog open={qrCodeDialogOpen} referenceName={referenceName} resourceId={id} handleClose={handleQrCodeDialogClose}/>
             <AppDialog
                 open={appDialog.isOpen}
                 referenceName={referenceName}

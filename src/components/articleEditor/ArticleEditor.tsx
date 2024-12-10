@@ -15,7 +15,6 @@ import Image from '@tiptap/extension-image'
 
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import FormatSizeIcon from '@mui/icons-material/FormatSize';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
@@ -101,15 +100,18 @@ const ArticleEditorMenu = ({editor}: { editor: Editor | null }) => {
     const addImageToEditor = async (event: ChangeEvent<HTMLInputElement>) => {
         const input = event.target as HTMLInputElement;
         if (!input.files || input.files.length < 1) return
+        editor.chain().focus().setImage({src: '/image_loading.png'}).run()
 
         const image: File = input.files[0];
         const imageId = await assetService.uploadTmpFile(image)
         if (!imageId) return
 
-        const url = await assetService.getTmpImage(imageId)
-        if (!url) return
+        const response = await assetService.getAssetPreSignedUrl({assetId: imageId, assetType: "tmp"})
+        if (!response) return
 
-        editor.chain().focus().setImage({src: url}).run()
+        input.value = ''
+        editor.chain().focus().deleteCurrentNode().run()
+        editor.chain().focus().setImage({src: response.url}).run()
     }
 
     const addYoutubeVideo = () => {
@@ -149,13 +151,6 @@ const ArticleEditorMenu = ({editor}: { editor: Editor | null }) => {
                 >
                     <FormatUnderlinedIcon/>
                 </IconButton>
-                <IconButton
-                    size="small"
-                    onClick={() => editor.chain().focus().toggleHeading({level: 3}).run()}
-                    color={editor.isActive('heading', {level: 3}) ? 'primary' : 'default'}
-                >
-                    <FormatSizeIcon/>
-                </IconButton>
             </Stack>
 
             <Stack direction={"row"}>
@@ -184,7 +179,7 @@ const ArticleEditorMenu = ({editor}: { editor: Editor | null }) => {
                         accept="image/*"
                         id="choose-file"
                         type="file"
-                        onChange={(event) => addImageToEditor(event)}
+                        onChange={addImageToEditor}
                     />
                     <label htmlFor="choose-file">
                         <IconButton
