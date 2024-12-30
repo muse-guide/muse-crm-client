@@ -18,7 +18,6 @@ import { AccountSettings } from '@aws-amplify/ui-react';
 const config = {
     Auth: {
         Cognito: {
-            identityPoolId: 'eu-central-1:b4a2d594-4d5d-4046-b38a-d6edf2dcfb05', // (required) - Amazon Cognito Identity Pool ID
             userPoolId: 'eu-central-1_YhPb8TNLP', // (optional) - Amazon Cognito User Pool ID
             userPoolClientId: '60vli1o6ticnsvj89i5e1sj9lb', // (optional) - Amazon Cognito Web Client ID (App client secret needs to be disabled)
             region: 'eu-central-1',
