@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {UseFieldArrayReturn} from "react-hook-form";
 import TranslateIcon from '@mui/icons-material/Translate';
+import LanguageFlag from "../LaungageFlag";
 
 export interface LanguageOptionsHolder {
     langOptions: {
@@ -104,7 +105,7 @@ const LanguageOption = ({countryCode}: { countryCode: string }) => {
 
     return (
         <Stack direction='row' alignItems='center'>
-            <CircleFlag countryCode={countryCode} height="18"/>
+            <LanguageFlag countryCode={countryCode} size={18}/>
             <Typography variant='body1' fontSize='bold' pl={1}>
                 {t(`langSelect.${countryCode}`)}
             </Typography>

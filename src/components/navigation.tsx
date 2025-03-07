@@ -110,7 +110,7 @@ export function AppDrawer() {
                     Icon={DashboardOutlinedIcon}
                 />
                 <CustomListItemButton
-                    to="institutions"
+                    to="institution"
                     title={t("menu.institution")}
                     Icon={AccountBalanceOutlinedIcon}
                 />

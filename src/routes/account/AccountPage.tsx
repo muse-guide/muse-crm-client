@@ -1,14 +1,12 @@
 import React, {useContext, useEffect, useState} from "react";
-import {Button, Chip, Divider, Menu, MenuItem, Stack, Typography} from "@mui/material";
+import {Button, Divider, Menu, MenuItem, Stack, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import TextInput from "../../components/form/TextInput";
 import {FormProvider, useForm} from "react-hook-form";
 import {useSnackbar} from "notistack";
-import {useNavigate} from "react-router-dom";
 import {FullRow, HalfRow, Panel} from "../../components/panel";
 import {Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
-import LoadingButton from '@mui/lab/LoadingButton';
 import {customerService} from "../../services/CustomerService";
 import {Customer} from "../../model/customer";
 import {Label} from "../../components/form/Label";
@@ -96,13 +94,13 @@ const AccountPage = () => {
                                 loading={loading || processing}
                                 title={t('page.account.address.title')}
                                 subtitle={t('page.account.address.subtitle')}
-                                panelAction={<LoadingButton
+                                panelAction={<Button
                                     variant="outlined"
                                     startIcon={<PermContactCalendarOutlinedIcon/>}
                                     onClick={() => updateCustomerDetails(methods.getValues())}
                                 >
                                     {t('page.account.actions.saveChanges')}
-                                </LoadingButton>}
+                                </Button>}
                             >
                                 <HalfRow>
                                     <TextInput

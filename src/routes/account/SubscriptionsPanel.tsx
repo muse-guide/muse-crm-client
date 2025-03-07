@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useSnackbar} from "notistack";
-import { SubscriptionPlan} from "../../model/configuration";
+import {SubscriptionPlan} from "../../model/configuration";
 import {Panel} from "../../components/panel";
 import {Box, Button, Card, CardContent, Grid2, List, ListItem, ListItemIcon, ListItemText, Stack, Typography} from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -50,7 +50,7 @@ export const SubscriptionsPanel = ({currentPlanType}: { currentPlanType: string 
         >
             {
                 applicationContext?.configuration && applicationContext.configuration.subscriptionPlans.map((plan, index) => (
-                    <Grid2 size={{xs:12, md:4}} key={index}>
+                    <Grid2 size={{xs: 12, md: 4}} key={index}>
                         <SubscriptionPlanCard plan={plan} currentPlan={currentPlan} changePlan={() => changePlan(plan.type)}/>
                     </Grid2>
                 ))
@@ -77,7 +77,7 @@ const SubscriptionPlanCard = ({plan, currentPlan, changePlan}: { plan: Subscript
                         {`$${plan.price}`}
                     </Typography>
                     <Typography variant="body1" fontWeight="normal">
-                       /{t('page.account.subscription.perMonth')}
+                        /{t('page.account.subscription.perMonth')}
                     </Typography>
                 </Stack>
                 {

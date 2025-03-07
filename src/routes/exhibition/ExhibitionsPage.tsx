@@ -15,7 +15,6 @@ import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import {exhibitionService, ExhibitionsFilter} from "../../services/ExhibitionService";
 import {useSnackbar} from "notistack";
 import {usePagination} from "../../components/hooks";
-import {exhibitService} from "../../services/ExhibitService";
 
 const links = [{
     nameKey: "menu.exhibitions",
@@ -75,12 +74,12 @@ const ExhibitionsPage = () => {
         })
     }
 
-    const showEmptyResults = !exhibitions || exhibitions.length == 0
+    const showEmptyResults = !exhibitions || exhibitions.length === 0
 
     return (
         <Stack width={'100%'}>
             <AppBreadcrumbs links={links}/>
-            <Stack maxWidth="1100px" direction="row" display="flex" spacing={1} justifyContent="end" alignItems="center">
+            <Stack maxWidth="1024px" minWidth="540px" direction="row" display="flex" spacing={1} justifyContent="end" alignItems="center">
                 <Stack direction="row" width="100%" spacing={1} flexGrow={1} justifyItems="start">
                     <PageTitle
                         title={t('page.exhibitions.title')}
@@ -93,7 +92,7 @@ const ExhibitionsPage = () => {
                 </Stack>
             </Stack>
             <PageContentContainer>
-                <SinglePageColumn maxWidth="1100px">
+                <SinglePageColumn maxWidth="1024px">
                     <Stack direction="row" spacing={1} display="flex" alignItems="center">
                         <Box width={"50%"}>
                             <SearchTextField

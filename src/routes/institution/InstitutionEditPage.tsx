@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {Button, useTheme} from "@mui/material";
+import {Button} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import TextInput from "../../components/form/TextInput";
-import {CheckboxInput} from "../../components/form/CheckboxInput";
 import {ImageHolder, ImageUploaderField} from "../../components/form/ImageUploader";
 import {FormProvider, SubmitHandler, useFieldArray, UseFieldArrayReturn, useForm} from "react-hook-form";
-import {Exhibition} from "../../model/exhibition";
+import {Institution} from "../../model/institution";
 import {useSnackbar} from "notistack";
-import {useNavigate, useParams} from "react-router-dom";
-import {exhibitionService} from "../../services/ExhibitionService";
+import {useNavigate} from "react-router-dom";
+import {institutionService} from "../../services/InstitutionService";
 import {FullRow, Panel} from "../../components/panel";
 import {Actions, Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -19,21 +18,18 @@ import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
 
 const defaults = {
-    id: "abea222c",
-    referenceName: "",
-    includeInstitutionInfo: false,
     images: [],
     langOptions: []
 }
 
-const ExhibitionPage = () => {
-    const {exhibitionId} = useParams();
+const InstitutionEditPage = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
+    const [hasInstitution, setHasInstitution] = useState<boolean>(false);
     const [processing, setProcessing] = useState<boolean>(false);
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
-    const methods = useForm<Exhibition>({
+    const methods = useForm<Institution>({
         mode: "onSubmit",
         defaultValues: defaults
     });
@@ -49,44 +45,48 @@ const ExhibitionPage = () => {
     });
 
     useEffect(() => {
-        if (exhibitionId) {
-            getExhibitionAsync(exhibitionId);
-        }
-    }, [exhibitionId]);
+        getCustomerInstitutionAsync();
+    }, []);
 
-    const getExhibitionAsync = async (exhibitionId?: string) => {
-        if (!exhibitionId) return;
+    const getCustomerInstitutionAsync = async () => {
         setLoading(true);
         try {
-            const exhibition = await exhibitionService.getExhibition(exhibitionId);
-            methods.reset(exhibition);
+            const institution = await institutionService.getInstitutionForCustomer();
+            if (institution) {
+                if (institution.status === "ERROR" || institution.status === "PROCESSING") {
+                    snackbar(t(`Institution cannot be edited because in status: ${institution.status}`), {variant: "error"})
+                    navigate("/institution");
+                }
+                setHasInstitution(true);
+                methods.reset(institution);
+            } else {
+                setHasInstitution(false);
+            }
         } catch (err) {
-            snackbar(t("error.fetchingExhibitionFailed"), {variant: "error"})
-            navigate("/exhibitions");
+            snackbar(t("error.fetchingInstitutionFailed"), {variant: "error"})
+            navigate("/");
         } finally {
             setLoading(false);
         }
     };
 
-    const onSubmit: SubmitHandler<Exhibition> = async (data) => {
+    const onSubmit: SubmitHandler<Institution> = async (data) => {
         if (langOptionMethods.fields.length < 1) {
             snackbar(t("validation.noLanguageOption"), {variant: "error"})
             return
         }
         setProcessing(true);
         try {
-            if (exhibitionId) {
-                await exhibitionService.updateExhibition(data)
-                navigate("/exhibitions");
-                snackbar(t("success.exhibitionUpdated", {exhibitionId: exhibitionId}), {variant: "success"})
+            if (hasInstitution) {
+                await institutionService.updateInstitution(data)
             } else {
-                await exhibitionService.createExhibition(data)
-                navigate("/exhibitions");
-                snackbar(t("success.exhibitionCreated"), {variant: "success"})
+                await institutionService.createInstitution(data)
             }
+            snackbar(t("success.institutionSaved"), {variant: "success"})
+            navigate('/institution')
         } catch (err) {
-            if (err instanceof ApiException) snackbar(`Creating exhibition failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
-            else snackbar(`Creating exhibition failed.`, {variant: "error"})
+            if (err instanceof ApiException) snackbar(`Creating institution failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
+            else snackbar(`Creating institution failed.`, {variant: "error"})
         } finally {
             setProcessing(false);
         }
@@ -94,45 +94,31 @@ const ExhibitionPage = () => {
 
     const links = [
         {
-            nameKey: "menu.exhibitions",
-            path: "/exhibitions"
-        },
-        {
-            nameKey: `${!exhibitionId ? "..." : methods.getValues("referenceName")}`,
-            path: ""
-        },
+            nameKey: "menu.institution",
+            path: "/institution"
+        }
     ]
-
-    const theme = useTheme()
 
     return (
         <Page>
             <FormProvider {...methods} >
                 <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
                     <AppBreadcrumbs links={links}/>
-                    <PageTitle title={t('page.exhibition.title')} subtitle={t('page.exhibition.subtitle')}/>
+                    <PageTitle title={t('page.institution.title')} subtitle={t('page.institution.subtitle')}/>
                     <PageContentContainer>
                         <SinglePageColumn>
                             <Panel
                                 loading={loading}
-                                title={t('page.exhibition.generalInfoForm.title')}
-                                subtitle={t('page.exhibition.generalInfoForm.subtitle')}
+                                title={t('page.institution.generalInfoForm.title')}
+                                subtitle={t('page.institution.generalInfoForm.subtitle')}
                             >
                                 <FullRow>
                                     <TextInput
                                         name="referenceName"
-                                        title={t('page.exhibition.generalInfoForm.referenceName')}
-                                        placeholder={t('page.exhibition.generalInfoForm.referenceNamePlaceholder')}
+                                        title={t('page.institution.generalInfoForm.referenceName')}
+                                        placeholder={t('page.institution.generalInfoForm.referenceNamePlaceholder')}
                                         required
                                         maxLength={128}
-                                    />
-                                </FullRow>
-                                <FullRow>
-                                    <CheckboxInput
-                                        name="includeInstitutionInfo"
-                                        control={methods.control}
-                                        defaultChecked={true}
-                                        label={t('page.exhibition.generalInfoForm.includeInstitutionInfoHelperText')}
                                     />
                                 </FullRow>
                                 <FullRow>
@@ -142,8 +128,8 @@ const ExhibitionPage = () => {
 
                             <Panel
                                 loading={loading}
-                                title={t('page.exhibition.languagesForm.title')}
-                                subtitle={t('page.exhibition.languagesForm.subtitle')}
+                                title={t('page.institution.languagesForm.title')}
+                                subtitle={t('page.institution.languagesForm.subtitle')}
                             >
                                 <FullRow>
                                     <LanguageTabs
@@ -154,7 +140,7 @@ const ExhibitionPage = () => {
                         </SinglePageColumn>
 
                         <Actions>
-                            <Button variant="outlined" onClick={() => navigate("/exhibitions")}>{t('common.cancel')}</Button>
+                            <Button variant="outlined" onClick={() => navigate("/")}>{t('common.cancel')}</Button>
                             <LoadingButton
                                 key="submitButton"
                                 variant="contained"
@@ -175,4 +161,4 @@ const ExhibitionPage = () => {
     );
 };
 
-export default ExhibitionPage;
+export default InstitutionEditPage;

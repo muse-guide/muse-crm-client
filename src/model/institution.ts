@@ -1,15 +1,14 @@
-import { ImageRef, Status} from "./common";
+import {ImageRef, Status} from "./common";
 
-export interface Exhibition {
-    id: string;
-    referenceName: string;
-    includeInstitutionInfo: boolean;
-    langOptions: ExhibitionLang[];
-    images: ImageRef[];
+export interface Institution {
+    id: string,
+    referenceName: string,
+    langOptions: InstitutionLang[],
+    images: ImageRef[],
     status: Status
 }
 
-export interface ExhibitionLang {
+export interface InstitutionLang {
     lang: string;
     title: string;
     subtitle: string;
@@ -21,7 +20,7 @@ export interface ExhibitionLang {
     }
 }
 
-export interface CreateExhibition {
+export interface CreateInstitution {
     referenceName: string,
     langOptions: {
         lang: string;

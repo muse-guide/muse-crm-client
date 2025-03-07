@@ -14,6 +14,8 @@ import ExhibitionsPage from "./routes/exhibition/ExhibitionsPage";
 import ExhibitsPage from './routes/exhibit/ExhibitsPage';
 import AccountPage from "./routes/account/AccountPage";
 import { AccountSettings } from '@aws-amplify/ui-react';
+import InstitutionEditPage from "./routes/institution/InstitutionEditPage";
+import InstitutionPage from "./routes/institution/InstitutionPage";
 
 const config = {
     Auth: {
@@ -68,7 +70,15 @@ const router = createBrowserRouter([
             {
                 path: "account",
                 element: <AccountPage/>
-            }
+            },
+            {
+                path: "institution",
+                element: <InstitutionPage/>
+            },
+            {
+                path: "institution/edit",
+                element: <InstitutionEditPage/>
+            },
         ]
     }
 ]);

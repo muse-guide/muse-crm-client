@@ -1,20 +1,26 @@
-import {UseFieldArrayReturn} from "react-hook-form";
+import {UseFieldArrayReturn, useFormContext} from "react-hook-form";
 import {useTranslation} from "react-i18next";
 import React, {useCallback, useEffect, useState} from "react";
 import TabContext from "@mui/lab/TabContext";
 import {LanguageOptionsHolder, LanguageSelectDialog} from "../form/LanguageSelect";
-import {Box, Button, Stack, Tab} from "@mui/material";
+import {Box, Button, Divider, Grid2, Stack, Tab} from "@mui/material";
 import TabList from "@mui/lab/TabList";
 import {TabTitle} from "./TabTitle";
 import AddIcon from "@mui/icons-material/Add";
 import {NoLanguagePlaceholder} from "./NoLanguagePlaceholder";
+import useDialog from "../hooks";
+import {useTabContext} from "@mui/lab";
+import {AudioGeneratorDialog} from "../audioEditor/AudioGeneratorDialog";
+import {ArticleDialog} from "../articleEditor/ArticleDialog";
+import TextInput from "../form/TextInput";
+import {AudioButton, NoAudioPlaceholder} from "./AudioButton";
+import {ArticleButton, NoArticlePlaceholder} from "./ArticleButton";
 
 interface LanguageTabsProps {
     arrayMethods: UseFieldArrayReturn<LanguageOptionsHolder, "langOptions", "id">;
-    FormComponent: React.ComponentType<{ key: string; index: number }>;
 }
 
-export function LanguageTabs({arrayMethods, FormComponent}: LanguageTabsProps) {
+export function LanguageTabs({arrayMethods}: LanguageTabsProps) {
     const {t} = useTranslation();
     const [tab, setTab] = useState("0");
     const [selectLangDialogOpen, setSelectLangDialogOpen] = useState(false);
@@ -66,8 +72,106 @@ export function LanguageTabs({arrayMethods, FormComponent}: LanguageTabsProps) {
             </Stack>
             {arrayMethods.fields.length === 0 ? <NoLanguagePlaceholder/> : null}
             {arrayMethods.fields.map((field, index) => (
-                <FormComponent key={field.id} index={index}/>
+                <LanguageOptionForm key={field.id} index={index}/>
             ))}
         </TabContext>
     );
+}
+
+
+interface LanguageOptionFormProps {
+    index: number;
+}
+
+export const LanguageOptionForm = (props: LanguageOptionFormProps) => {
+    const methods = useFormContext()
+    const audioDialog = useDialog()
+    const articleDialog = useDialog()
+    const {t} = useTranslation();
+    const {value} = useTabContext() || {};
+
+    const handleSaveAudio = useCallback((markup: string | undefined, voice: string | undefined) => {
+        if (markup === undefined || voice === undefined) {
+            methods.setValue(`langOptions.${props.index}.audio`, undefined)
+        } else {
+            methods.setValue(`langOptions.${props.index}.audio.markup`, markup)
+            methods.setValue(`langOptions.${props.index}.audio.voice`, voice)
+        }
+        audioDialog.closeDialog();
+    }, [])
+
+    const handleSaveArticle = (article?: string) => {
+        if (article === undefined) {
+            methods.setValue(`langOptions.${props.index}.article`, undefined)
+        } else {
+            methods.setValue(`langOptions.${props.index}.article`, article)
+        }
+        articleDialog.closeDialog();
+    };
+
+    const audioInput = {
+        lang: methods.getValues(`langOptions.${props.index}.lang`),
+        key: methods.getValues(`langOptions.${props.index}.audio.key`),
+        markup: methods.getValues(`langOptions.${props.index}.audio.markup`),
+        voice: methods.getValues(`langOptions.${props.index}.audio.voice`),
+    }
+
+    return (
+        <Box sx={{display: props.index.toString() === value ? 'block' : 'none'}}>
+            <AudioGeneratorDialog
+                open={audioDialog.isOpen}
+                handleClose={audioDialog.closeDialog}
+                handleSave={handleSaveAudio}
+                input={audioInput}
+            />
+            <ArticleDialog
+                open={articleDialog.isOpen}
+                article={methods.getValues(`langOptions.${props.index}.article`)}
+                handleClose={articleDialog.closeDialog}
+                handleSave={handleSaveArticle}
+            />
+            <Grid2 container spacing={3} pt={4}>
+                <Grid2 size={12}>
+                    <TextInput
+                        name={`langOptions.${props.index}.title`}
+                        control={methods.control}
+                        title={t("page.languagesForm.title")}
+                        placeholder={t("page.languagesForm.titlePlaceholder")}
+                        required
+                        maxLength={120}
+                    />
+                </Grid2>
+                <Grid2 size={12}>
+                    <TextInput
+                        name={`langOptions.${props.index}.subtitle`}
+                        control={methods.control}
+                        title={t("page.languagesForm.subtitle")}
+                        placeholder={t("page.languagesForm.subtitlePlaceholder")}
+                        multiline={true}
+                        rows={2}
+                        required
+                        maxLength={200}
+                    />
+                </Grid2>
+                <Grid2 size={12} pt={2}>
+                    <Stack gap={3}>
+                        <Divider/>
+                        {methods.getValues(`langOptions.${props.index}.audio`)
+                            ? <AudioButton onClick={audioDialog.openDialog}/>
+                            : <NoAudioPlaceholder onClick={audioDialog.openDialog}/>
+                        }
+                    </Stack>
+                </Grid2>
+                <Grid2 size={12} pt={2} pb={3}>
+                    <Stack gap={3}>
+                        <Divider/>
+                        {methods.getValues(`langOptions.${props.index}.article`)
+                            ? <ArticleButton onClick={articleDialog.openDialog}/>
+                            : <NoArticlePlaceholder onClick={articleDialog.openDialog}/>
+                        }
+                    </Stack>
+                </Grid2>
+            </Grid2>
+        </Box>
+    )
 }

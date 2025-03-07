@@ -1,7 +1,6 @@
 import React from "react";
 import {Grid2, Grid2Props, Paper, Skeleton, Stack, Typography} from "@mui/material";
 import {PaperProps} from "@mui/material/Paper";
-import {grey} from "@mui/material/colors";
 
 type PanelProps = {
     children: React.ReactNode
@@ -30,12 +29,14 @@ export const Panel = ({children, loading, title, subtitle, skeletonHeight = 400,
                         <Grid2 size={12}>
                             <Stack flexWrap={"wrap"} direction={"row"} alignItems={"start"} gap={2} justifyContent={"space-between"}>
                                 <Stack gap={0.5} display={"flex"} flexGrow={1}>
-                                    <Typography variant='h6' >{title}</Typography>
+                                    <Typography variant='h6'>{title}</Typography>
                                     {subtitle && <Typography variant='body1'>{subtitle}</Typography>}
                                 </Stack>
-                                <Stack>
-                                    {panelAction}
-                                </Stack>
+                                {panelAction &&
+                                    <Stack>
+                                        {panelAction}
+                                    </Stack>
+                                }
                             </Stack>
                         </Grid2>
                         {children}

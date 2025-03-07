@@ -99,6 +99,24 @@
         "actions": "Actions"
       }
     },
+    "institution": {
+      "title": "Institution",
+      "subtitle": "Create or edit your Institution here.",
+      "generalInfoForm": {
+        "title": "General info",
+        "subtitle": "Provide basic information about Institution. You can enrich it with images, article and audio.",
+        "referenceName": "Reference name",
+        "referenceNamePlaceholder": "Amazing Institution"
+      },
+      "languagesForm": {
+        "title": "Available languages",
+        "subtitle": "Provide info for Institution in multiple languages. You can add as many languages as you want. At least one language is required.",
+        "institutionName": "Institution name",
+        "institutionNamePlaceholder": "Amazing Institution",
+        "institutionNameLine2": "Institution name second line",
+        "institutionNameLine2Placeholder": "Institution Department of Amazingness"
+      }
+    },
     "exhibition": {
       "title": "Exhibition",
       "subtitle": "Create or edit exhibitions here. Collections group exhibits",

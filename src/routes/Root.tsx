@@ -11,7 +11,6 @@ import {useTranslation} from "react-i18next";
 import {configurationService} from "../services/ConfigurationService";
 import {withAuthenticator} from "@aws-amplify/ui-react";
 import CircularProgress from "@mui/material/CircularProgress";
-import {grey} from "@mui/material/colors";
 import {mainBackgroundColor} from "../index";
 
 export const AppContext = createContext<ApplicationContext | null>(null);

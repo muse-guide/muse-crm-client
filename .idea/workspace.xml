@@ -4,26 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add article">
-      <change afterPath="$PROJECT_DIR$/public/image_loading.png" afterDir="false" />
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="`Add article">
+      <change afterPath="$PROJECT_DIR$/src/components/LaungageFlag.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/institution.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/institution/InstitutionEditPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/institution/InstitutionPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/InstitutionService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/articleEditor/ArticleEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/articleEditor/ArticleEditor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/langOptions/LanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/langOptions/LanguageTabs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/common.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/exhibit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibit.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/exhibition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/account/InvoiceDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/InvoiceDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibtLanguageTabs.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/AssetService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AssetService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/AudioPreviewService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AudioPreviewService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibtionLanguageTabs.tsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,14 +42,26 @@
       <list>
         <option value="package.json" />
         <option value="TypeScript File" />
-        <option value="TypeScript JSX File" />
         <option value="CSS File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;muse-guide&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/muse-guide/muse-crm-client.git&quot;,
+    &quot;accountId&quot;: &quot;076ad2ae-7cdf-4e3e-8f1e-80e9e38cb6f0&quot;
+  }
+}</component>
   <component name="KubernetesApiProvider">{
   &quot;contexts&quot;: [
     {
@@ -71,11 +90,12 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17.0.2&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/src/components/articleEditor&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/src/routes/institution&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -95,11 +115,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/institution" />
+      <recent name="$PROJECT_DIR$/src/model" />
+      <recent name="$PROJECT_DIR$/src/services" />
       <recent name="$PROJECT_DIR$/src/components/articleEditor" />
       <recent name="$PROJECT_DIR$/src/components/dialog" />
-      <recent name="$PROJECT_DIR$/src/routes/account" />
-      <recent name="$PROJECT_DIR$/src/services" />
-      <recent name="$PROJECT_DIR$/src/routes/profile" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
@@ -193,8 +213,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19072.14" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19072.14" />
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
       </set>
     </attachedChunks>
   </component>
@@ -456,6 +476,16 @@
       <workItem from="1733774443117" duration="1402000" />
       <workItem from="1733816238158" duration="1000" />
       <workItem from="1733859547803" duration="724000" />
+      <workItem from="1735934080380" duration="3720000" />
+      <workItem from="1736021207083" duration="359000" />
+      <workItem from="1736021598346" duration="344000" />
+      <workItem from="1738268711948" duration="687000" />
+      <workItem from="1740341387662" duration="2523000" />
+      <workItem from="1740512935502" duration="4279000" />
+      <workItem from="1741032174710" duration="3929000" />
+      <workItem from="1741075601706" duration="85000" />
+      <workItem from="1741204863367" duration="5068000" />
+      <workItem from="1741377904785" duration="1713000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />

@@ -81,7 +81,7 @@ const ExhibitsPage = () => {
     return (
         <Stack width={'100%'}>
             <AppBreadcrumbs links={links}/>
-            <Stack maxWidth="1100px" direction="row" display="flex" spacing={1} justifyContent="end" alignItems="center">
+            <Stack maxWidth="1024px" minWidth="540px" direction="row" display="flex" spacing={1} justifyContent="end" alignItems="center">
                 <Stack direction="row" width="100%" spacing={1} flexGrow={1} justifyItems="start">
                     <PageTitle
                         title={t('page.exhibits.title')}
@@ -94,7 +94,7 @@ const ExhibitsPage = () => {
                 </Stack>
             </Stack>
             <PageContentContainer>
-                <SinglePageColumn maxWidth="1100px">
+                <SinglePageColumn maxWidth="1024px">
                     <Stack direction="row" spacing={1} display="flex" alignItems="center">
                         <Box width={"30%"}>
                             <ExhibitionSelect

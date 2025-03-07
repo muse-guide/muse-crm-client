@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {Button, Chip, Divider, Grid2, Skeleton, Stack, Typography} from "@mui/material";
+import {Button, Divider, Grid2, Skeleton, Stack, Typography} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -84,32 +84,32 @@ export const InvoiceDialog = (props: {
                             <Divider/>
                             <Stack width="100%" gap={1}>
                                 <Grid2 container>
-                                    <Grid2 size={{ xs: 3}}>
+                                    <Grid2 size={{xs: 3}}>
                                         <Typography fontWeight="bold">{t("dialog.invoice.plan")}</Typography>
                                     </Grid2>
-                                    <Grid2 size={{ xs: 3}}>
+                                    <Grid2 size={{xs: 3}}>
                                         <Typography fontWeight="bold">{t("dialog.invoice.activeFrom")}</Typography>
                                     </Grid2>
-                                    <Grid2 size={{ xs: 3}}>
+                                    <Grid2 size={{xs: 3}}>
                                         <Typography fontWeight="bold">{t("dialog.invoice.activeTo")}</Typography>
                                     </Grid2>
-                                    <Grid2 size={{ xs: 3}}>
+                                    <Grid2 size={{xs: 3}}>
                                         <Typography fontWeight="bold">{t("dialog.invoice.amount")}</Typography>
                                     </Grid2>
                                 </Grid2>
                                 <Stack width="100%" gap={1}>
                                     {invoice?.invoiceItems.map((item, index) => (
-                                        <Grid2 container key={index} >
-                                            <Grid2 size={{ xs: 3}}>
+                                        <Grid2 container key={index}>
+                                            <Grid2 size={{xs: 3}}>
                                                 <Typography>{item.plan}</Typography>
                                             </Grid2>
-                                            <Grid2 size={{ xs: 3}}>
+                                            <Grid2 size={{xs: 3}}>
                                                 <Typography>{item.activeFrom}</Typography>
                                             </Grid2>
-                                            <Grid2 size={{ xs: 3}}>
+                                            <Grid2 size={{xs: 3}}>
                                                 <Typography>{item.activeTo}</Typography>
                                             </Grid2>
-                                            <Grid2 size={{ xs: 3}}>
+                                            <Grid2 size={{xs: 3}}>
                                                 <Typography>{item.amount}zł</Typography>
                                             </Grid2>
                                         </Grid2>

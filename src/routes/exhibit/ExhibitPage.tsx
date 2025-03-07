@@ -12,12 +12,9 @@ import {FullRow, Panel} from "../../components/panel";
 import {Actions, Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
-import {ApiException} from "../../http/types";
 import {ImageHolder, ImageUploaderField} from "../../components/form/ImageUploader";
 import {ExhibitionSelect} from "./ExhibitionSelect";
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
-import {ExhibitLanguageSpecificForm} from "./ExhibtLanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
 
 const defaults = {
@@ -165,7 +162,6 @@ const ExhibitPage = () => {
                                 <FullRow>
                                     <LanguageTabs
                                         arrayMethods={langOptionMethods as unknown as UseFieldArrayReturn<LanguageOptionsHolder, "langOptions">}
-                                        FormComponent={ExhibitLanguageSpecificForm}
                                     />
                                 </FullRow>
                             </Panel>
