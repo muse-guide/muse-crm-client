@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useSnackbar} from "notistack";
 import {SubscriptionPlan} from "../../model/configuration";
@@ -8,11 +8,10 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {customerService} from "../../services/CustomerService";
 import {ApiException} from "../../http/types";
-import {AppContext} from "../Root";
+import {useApplicationContext} from "../../components/hooks";
 
 export const SubscriptionsPanel = ({currentPlanType}: { currentPlanType: string }) => {
-    const applicationContext = useContext(AppContext);
-    const [loading, setLoading] = useState<boolean>(false);
+    const {setCustomer, configuration} = useApplicationContext();
     const [processing, setProcessing] = useState<boolean>(false);
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
@@ -27,7 +26,7 @@ export const SubscriptionsPanel = ({currentPlanType}: { currentPlanType: string 
         try {
             const customer = await customerService.changeSubscription(newPlan)
 
-            applicationContext?.setCustomer(customer);
+            setCustomer(customer);
             setCurrentPlan(customer.subscription.plan);
 
             snackbar(t("success.subscriptionUpdated"), {variant: "success"})
@@ -44,12 +43,12 @@ export const SubscriptionsPanel = ({currentPlanType}: { currentPlanType: string 
 
     return (
         <Panel
-            loading={loading || processing}
+            loading={processing}
             title={t('page.account.subscription.title')}
             subtitle={t('page.account.subscription.subtitle')}
         >
             {
-                applicationContext?.configuration && applicationContext.configuration.subscriptionPlans.map((plan, index) => (
+                configuration && configuration.subscriptionPlans.map((plan, index) => (
                     <Grid2 size={{xs: 12, md: 4}} key={index}>
                         <SubscriptionPlanCard plan={plan} currentPlan={currentPlan} changePlan={() => changePlan(plan.type)}/>
                     </Grid2>

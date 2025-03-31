@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from "react";
-import {Button, Divider, Menu, MenuItem, Stack, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {Button, Chip, Divider, Menu, MenuItem, Stack, Typography, useTheme} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import TextInput from "../../components/form/TextInput";
@@ -10,38 +10,30 @@ import {Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../com
 import {customerService} from "../../services/CustomerService";
 import {Customer} from "../../model/customer";
 import {Label} from "../../components/form/Label";
-import {StatusChip} from "../../components/table";
-import {Status} from "../../model/common";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 import {SubscriptionsPanel} from "./SubscriptionsPanel";
-import {AppContext} from "../Root";
-import {InvoicesPanel} from "./InvoicesPanel";
-import useDialog from "../../components/hooks";
+import useDialog, {useApplicationContext, useTokenCount} from "../../components/hooks";
 import {ChangePasswordDialog} from "./ChangePasswordDialog";
 
-
 const AccountPage = () => {
-    const applicationContext = useContext(AppContext);
+    const {customer, setCustomer} = useApplicationContext();
+    const {counter} = useTokenCount()
     const [loading, setLoading] = useState<boolean>(false);
-    const [processing, setProcessing] = useState<boolean>(false);
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
 
     const methods = useForm<Customer>({
         mode: "onSubmit",
-        defaultValues: applicationContext?.customer
+        defaultValues: customer
     });
 
     const updateCustomerDetails = async (data: Customer) => {
         setLoading(true);
         try {
-            await customerService.updateCustomerDetails(data);
-            const customer = await customerService.getCurrentCustomer()
-
-            applicationContext?.setCustomer(customer);
-            methods.reset(customer);
-
+            const updatedCustomer = await customerService.updateCustomerDetails(data);
+            setCustomer(updatedCustomer);
+            methods.reset(updatedCustomer);
             snackbar(t("success.customerDetailsUpdated"), {variant: "success"})
         } catch (err) {
             snackbar(t("error.updatingCustomerDetailsFailed"), {variant: "error"})
@@ -49,6 +41,10 @@ const AccountPage = () => {
             setLoading(false);
         }
     }
+
+    useEffect(() => {
+        methods.reset(customer);
+    }, [customer]);
 
     const links = [
         {
@@ -76,22 +72,44 @@ const AccountPage = () => {
                                            value={methods.getValues("customerId")}/>
                                 </HalfRow>
                                 <HalfRow>
+                                    <Stack spacing={1} display={"block"}>
+                                        <Typography
+                                            variant='body1'>{t('page.account.generalInfoForm.accountStatus')}</Typography>
+                                        <AccountStatusChip status={methods.getValues("status")} size="small"/>
+                                    </Stack>
+                                </HalfRow>
+                                <HalfRow>
                                     <Label label={t('page.account.generalInfoForm.email')}
                                            value={methods.getValues("email")}/>
+                                </HalfRow>
+                                <FullRow>
+                                    <Divider/>
+                                </FullRow>
+                                <HalfRow>
+                                    <Label label={t('page.account.generalInfoForm.plan')}
+                                           value={methods.getValues("subscription.plan")}/>
                                 </HalfRow>
                                 <HalfRow>
                                     <Stack spacing={1} display={"block"}>
                                         <Typography
-                                            variant='body1'>{t('page.account.generalInfoForm.status')}</Typography>
-                                        <StatusChip status={methods.getValues("status") as Status} size="small"/>
+                                            variant='body1'>{t('page.account.generalInfoForm.subscriptionStatus')}</Typography>
+                                        <AccountStatusChip status={methods.getValues("subscription.status")} size="small"/>
                                     </Stack>
+                                </HalfRow>
+                                <HalfRow>
+                                    <Label label={t('page.account.generalInfoForm.expiredAt')}
+                                           value={methods.getValues("subscription.expiredAt")}/>
+                                </HalfRow>
+                                <HalfRow>
+                                    <Label label={t('page.account.generalInfoForm.tokenCount')}
+                                           value={counter}/>
                                 </HalfRow>
                             </Panel>
 
                             <SubscriptionsPanel currentPlanType={methods.getValues("subscription.plan")}/>
 
                             <Panel
-                                loading={loading || processing}
+                                loading={loading}
                                 title={t('page.account.address.title')}
                                 subtitle={t('page.account.address.subtitle')}
                                 panelAction={<Button
@@ -179,8 +197,6 @@ const AccountPage = () => {
                                 </HalfRow>
                             </Panel>
 
-                            <InvoicesPanel/>
-
                         </SinglePageColumn>
                     </PageContentContainer>
                 </form>
@@ -233,10 +249,22 @@ const AccountActions = () => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={onChangePassword}>{t('page.account.actions.changePassword')}</MenuItem>
-                {/*<MenuItem onClick={handleClose}>{t('page.account.actions.deleteAccount')}</MenuItem>*/}
             </Menu>
         </>
     );
+}
+export const AccountStatusChip = ({status, size}: { status: string, size?: "small" | "medium" }) => {
+    const theme = useTheme()
+    switch (status) {
+        case "ACTIVE":
+            return <Chip label="Active" size={size ?? "small"} variant="filled" sx={{backgroundColor: theme.palette.success.light}}/>
+        case "DEACTIVATED":
+            return <Chip label="Deactivated" size={size ?? "small"} variant="filled" sx={{backgroundColor: theme.palette.error.light}}/>
+        case "LOCKED":
+            return <Chip label="Locked" size={size ?? "small"} variant="filled" sx={{backgroundColor: theme.palette.info.light}}/>
+        case "AWAITING_PAYMENT":
+            return <Chip label="Awaiting payment" size={size ?? "small"} variant="filled" sx={{backgroundColor: theme.palette.info.light}}/>
+    }
 }
 
 export default AccountPage;

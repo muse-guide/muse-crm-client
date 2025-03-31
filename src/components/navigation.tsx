@@ -14,8 +14,10 @@ import {useContext, useEffect, useState} from "react";
 import {useAuthenticator} from "@aws-amplify/ui-react";
 import {AppContext} from "../routes/Root";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import {borderColor} from "../index";
 import {grey} from "@mui/material/colors";
+import {useApplicationContext, useTokenCount} from "./hooks";
 
 export default function Navigation({drawerWidth}: { drawerWidth: number }) {
     const theme = useTheme()
@@ -126,6 +128,7 @@ export function AppDrawer() {
                 />
             </List>
             <List sx={{overflow: "hidden"}}>
+                <TokenCount/>
                 <CustomListItemButton
                     to="account"
                     title={t("menu.account")}
@@ -153,7 +156,7 @@ const SingOutButton = () => {
                         borderRadius: 1
                     },
                     borderRadius: 1
-            }}
+                }}
             >
                 <ListItemIcon
                     sx={{
@@ -178,6 +181,42 @@ const SingOutButton = () => {
             </ListItemButton>
         </ListItem>
     )
+}
+
+const TokenCount = () => {
+    const {counter} = useTokenCount()
+    return (
+        <ListItem
+            disablePadding
+            sx={{
+                justifyContent: 'initial',
+                px: 3,
+                py: 1,
+                borderRadius: 1
+            }}
+        >
+            <ListItemIcon
+                sx={{
+                    minWidth: 0,
+                    mr: 3,
+                    justifyContent: 'center',
+                    color: grey[900]
+                }}
+            >
+                <AutoAwesomeIcon/>
+            </ListItemIcon>
+            <Typography
+                variant={"body1"}
+                noWrap
+                sx={{
+                    color: grey[900],
+                    fontWeight: 'normal'
+                }}
+            >
+                {counter}
+            </Typography>
+        </ListItem>
+    );
 }
 
 const CustomListItemButton = ({to, title, Icon, ...props}: LinkProps & { title: string; Icon: typeof SvgIcon }) => {
@@ -272,7 +311,7 @@ const MuseLogo = () => {
 }
 
 const ProfileAvatar = () => {
-    const applicationContext = useContext(AppContext);
+    const {customer} = useApplicationContext();
     return (
         <Stack direction='row'
                spacing={2}
@@ -299,7 +338,7 @@ const ProfileAvatar = () => {
                         fontWeight: '600'
                     }}
                 >
-                    {normalizeText(24, applicationContext?.customer.email)}
+                    {normalizeText(24, customer.email)}
                 </Typography>
             </Stack>
         </Stack>

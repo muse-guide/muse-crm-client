@@ -6,20 +6,16 @@ export interface SubscriptionPlan {
     maxExhibitions: number,
     maxExhibits: number,
     maxLanguages: number,
-}
-
-export interface InvoicePeriod {
-    periodStart: string,
-    periodEnd: string,
+    tokenCount: number,
 }
 
 export interface ApplicationConfiguration {
     subscriptionPlans: SubscriptionPlan[],
-    lastInvoicedPeriod: InvoicePeriod,
 }
 
 export interface ApplicationContext {
     configuration: ApplicationConfiguration,
     customer: Customer,
     setCustomer: (customer: Customer) => void,
+    refreshCustomer: () => void,
 }

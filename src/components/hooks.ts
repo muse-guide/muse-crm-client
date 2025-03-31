@@ -1,5 +1,6 @@
-import {useCallback, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import {DEFAULT_PAGE, DEFAULT_PAGE_SIZE} from "../model/common";
+import {AppContext} from "../routes/Root";
 
 export function usePagination() {
     const [page, setPage] = useState<number>(DEFAULT_PAGE);
@@ -29,6 +30,34 @@ export function usePagination() {
     })
 
     return {page, pageSize, keys, resetPagination, updatePageKeys, nextPage, prevPage, toApiPagination}
+}
+
+export const useTokenCount = () => {
+    const applicationContext = useApplicationContext();
+    const [tokenCount, setTokenCount] = useState<string>();
+    const [currentPlanTokenCount, setCurrentPlanTokenCount] = useState<string>();
+
+    useEffect(() => {
+        const currentPlanTokenCount = applicationContext.configuration.subscriptionPlans
+            .find(plan => plan.type === applicationContext.customer.subscription.plan)
+            ?.tokenCount;
+
+        const tokenCount = applicationContext.customer.subscription.tokenCount;
+
+        setCurrentPlanTokenCount(currentPlanTokenCount?.toString());
+        setTokenCount(tokenCount.toString());
+    }, [applicationContext]);
+
+    return {tokenCount, currentPlanTokenCount, counter: `${tokenCount} / ${currentPlanTokenCount}`};
+};
+
+export const useApplicationContext = () => {
+    const applicationContext = useContext(AppContext);
+    if (!applicationContext) {
+        throw new Error("useApplicationContext must be used within an AppProvider");
+    }
+
+    return applicationContext;
 }
 
 const useDialog = () => {

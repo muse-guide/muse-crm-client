@@ -23,8 +23,6 @@ import TableBody from "@mui/material/TableBody";
 import CircularProgress from "@mui/material/CircularProgress";
 import ClearIcon from "@mui/icons-material/Clear";
 import {CircleFlag} from "react-circle-flags";
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import {SvgIconProps} from "@mui/material/SvgIcon/SvgIcon";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import AppDialog from "./dialog/AppDialog";
 import useDialog from "./hooks";
@@ -42,7 +40,7 @@ export const BaseTable = ({children, ...props}: TableProps) => {
 export const TableHeadCell = ({children, ...props}: TableCellProps) => {
     return (
         <TableCell sx={{paddingY: 1.5}} {...props}>
-            <Typography variant="subtitle1" >{children}</Typography>
+            <Typography variant="subtitle1">{children}</Typography>
         </TableCell>
     )
 }
@@ -96,13 +94,17 @@ export const SearchTextField = (
 }
 export const ResourceAvatar = ({referenceName, images, status}: { referenceName: string, images: ImageRef[], status: Status }) => {
     const theme = useTheme()
-    const [imgSrc, setImgSrc] = useState<string>("");
+    const [imgSrc, setImgSrc] = useState<string>();
     const imageId = images[0]?.id ?? undefined
     const displayImg = !!(imageId) && status === "ACTIVE"
 
     const getThumbnail = useCallback(async (imageId: string) => {
-        const response = await assetService.getAssetPreSignedUrl({assetId: `${imageId}_thumbnail`, assetType: "images"})
-        setImgSrc(response.url)
+        try {
+            const response = await assetService.getAssetPreSignedUrl({assetId: `${imageId}_thumbnail`, assetType: "images"})
+            setImgSrc(response.url)
+        } catch (e) {
+            console.error("Error fetching thumbnail: ", e)
+        }
     }, []);
 
     useEffect(() => {
@@ -151,6 +153,7 @@ const LangList = ({langs}: { langs: string[] }) => {
         }
     </AvatarGroup>
 }
+
 export const StatusChip = ({status, size}: { status: Status, size?: "small" | "medium" }) => {
     const theme = useTheme()
     switch (status) {
@@ -186,7 +189,7 @@ export const Pagination = ({page, pageSize, keys, onNextPage, onPrevPage, onPage
                         }}
                     >
                         <MenuItem value={2}>
-                                <Typography variant='body2' lineHeight={2}>2</Typography>
+                            <Typography variant='body2' lineHeight={2}>2</Typography>
                         </MenuItem>
                         <MenuItem value={5}>
 

@@ -16,6 +16,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import {ApiException} from "../../http/types";
 import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
+import {useApplicationContext} from "../../components/hooks";
 
 const defaults = {
     images: [],
@@ -24,11 +25,14 @@ const defaults = {
 
 const InstitutionEditPage = () => {
     const navigate = useNavigate();
+    const {t} = useTranslation();
+    const {enqueueSnackbar: snackbar} = useSnackbar();
+    const {refreshCustomer} = useApplicationContext()
+
     const [loading, setLoading] = useState<boolean>(false);
     const [hasInstitution, setHasInstitution] = useState<boolean>(false);
     const [processing, setProcessing] = useState<boolean>(false);
-    const {t} = useTranslation();
-    const {enqueueSnackbar: snackbar} = useSnackbar();
+
     const methods = useForm<Institution>({
         mode: "onSubmit",
         defaultValues: defaults
@@ -53,7 +57,7 @@ const InstitutionEditPage = () => {
         try {
             const institution = await institutionService.getInstitutionForCustomer();
             if (institution) {
-                if (institution.status === "ERROR" || institution.status === "PROCESSING") {
+                if (institution.status === "PROCESSING") {
                     snackbar(t(`Institution cannot be edited because in status: ${institution.status}`), {variant: "error"})
                     navigate("/institution");
                 }
@@ -88,6 +92,7 @@ const InstitutionEditPage = () => {
             if (err instanceof ApiException) snackbar(`Creating institution failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
             else snackbar(`Creating institution failed.`, {variant: "error"})
         } finally {
+            refreshCustomer()
             setProcessing(false);
         }
     }

@@ -11,6 +11,7 @@ export interface Customer {
         status: string
         startedAt: string
         expiredAt: string | undefined
+        tokenCount: number
     }
     address?: Address
 }

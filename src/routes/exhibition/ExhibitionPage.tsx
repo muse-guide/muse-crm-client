@@ -17,6 +17,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import {ApiException} from "../../http/types";
 import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
+import {useApplicationContext} from "../../components/hooks";
 
 const defaults = {
     id: "abea222c",
@@ -29,10 +30,13 @@ const defaults = {
 const ExhibitionPage = () => {
     const {exhibitionId} = useParams();
     const navigate = useNavigate();
+    const {t} = useTranslation();
+    const {refreshCustomer} = useApplicationContext()
+    const {enqueueSnackbar: snackbar} = useSnackbar();
+
     const [loading, setLoading] = useState<boolean>(false);
     const [processing, setProcessing] = useState<boolean>(false);
-    const {t} = useTranslation();
-    const {enqueueSnackbar: snackbar} = useSnackbar();
+
     const methods = useForm<Exhibition>({
         mode: "onSubmit",
         defaultValues: defaults
@@ -88,6 +92,7 @@ const ExhibitionPage = () => {
             if (err instanceof ApiException) snackbar(`Creating exhibition failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
             else snackbar(`Creating exhibition failed.`, {variant: "error"})
         } finally {
+            refreshCustomer()
             setProcessing(false);
         }
     }

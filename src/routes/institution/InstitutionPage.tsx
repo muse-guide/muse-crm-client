@@ -5,7 +5,7 @@ import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import {FormProvider, useForm} from "react-hook-form";
 import {useSnackbar} from "notistack";
 import {FullRow, HalfRow, Panel} from "../../components/panel";
-import {Actions, Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
+import {Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
 import {Label} from "../../components/form/Label";
 import {StatusChip} from "../../components/table";
 import {Status} from "../../model/common";
@@ -16,13 +16,11 @@ import LanguageFlag from "../../components/LaungageFlag";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
 
 const InstitutionPage = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
-    const [processing, setProcessing] = useState<boolean>(false);
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
 
@@ -69,8 +67,8 @@ const InstitutionPage = () => {
                         </Stack>
                         <Stack direction="row" spacing={1} justifyItems={"end"}>
                             <Button variant="outlined" size={"medium"} onClick={getCustomerInstitutionAsync} sx={{minWidth: "32px"}}><RefreshOutlinedIcon/></Button>
-                            <Button startIcon={<PhoneIphoneIcon/>}  size={"medium"} variant="outlined" onClick={() => navigate("edit")}>{t('Preview')}</Button>
-                            <Button startIcon={<EditOutlinedIcon/>}  size={"medium"} variant="contained" disableElevation onClick={() => navigate("edit")}>{t('common.edit')}</Button>
+                            <Button startIcon={<PhoneIphoneIcon/>} size={"medium"} variant="outlined" onClick={() => navigate("edit")}>{t('Preview')}</Button>
+                            <Button startIcon={<EditOutlinedIcon/>} size={"medium"} variant="contained" disableElevation onClick={() => navigate("edit")}>{t('common.edit')}</Button>
                         </Stack>
                     </Stack>
                     <PageContentContainer>

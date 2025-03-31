@@ -25,7 +25,6 @@ const Root = () => {
     const {enqueueSnackbar: snackbar} = useSnackbar();
     const {t} = useTranslation();
 
-
     useEffect(() => {
         getConfiguration();
     }, []);
@@ -46,13 +45,23 @@ const Root = () => {
         }
     };
 
+    const refreshCustomer = async () => {
+        try {
+            const customer = await customerService.getCurrentCustomer()
+            setCustomer(customer);
+        } catch (err) {
+            snackbar(t("error.fetchingCustomerDataFailed"), {variant: "error"})
+        }
+    }
+
     return (
         <Box width={"100%"} sx={{backgroundColor: mainBackgroundColor}}>
             {loading || !applicationConfiguration || !customer ? <LoadingPage/> :
                 <AppContext.Provider value={{
                     configuration: applicationConfiguration,
                     customer: customer,
-                    setCustomer: setCustomer
+                    setCustomer: setCustomer,
+                    refreshCustomer: refreshCustomer,
                 }}>
                     <Box display='flex' height={"100%"} sx={{backgroundColor: mainBackgroundColor}}>
                         <CssBaseline/>

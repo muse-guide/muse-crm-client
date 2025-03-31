@@ -1,9 +1,8 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {Button, MenuItem, Stack, TextField} from "@mui/material";
+import {Button, MenuItem, Stack, TextField, Typography} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import {CircleFlag} from "react-circle-flags";
@@ -20,6 +19,8 @@ import {assetService} from "../../services/AssetService";
 import {useSnackbar} from "notistack";
 import {AudioEditor} from "./AudioEditor";
 import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import {useApplicationContext, useTokenCount} from "../hooks";
 
 export const AudioGeneratorDialog = (props: {
     input: {
@@ -32,17 +33,16 @@ export const AudioGeneratorDialog = (props: {
     handleClose: () => any | Promise<any>
     handleSave: (markup: string | undefined, voice: string | undefined) => any | Promise<any>
 }) => {
+    const {refreshCustomer} = useApplicationContext();
     const [markup, setMarkup] = useState("");
     const [voice, setVoice] = useState("FEMALE_1");
     const [playing, setPlaying] = useState(false);
     const [loading, setLoading] = useState(false);
     const [audioUrl, setAudioUrl] = useState<string | undefined>(undefined);
-    const [error, setError] = useState<string | undefined>();
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
 
     const setDefaults = useCallback(() => {
-        setError(undefined)
         setMarkup(props.input.markup ?? "")
         setVoice(props.input.voice ?? "FEMALE_1")
         setAudioUrl(undefined)
@@ -83,7 +83,6 @@ export const AudioGeneratorDialog = (props: {
     audio.addEventListener('ended', setPlayingFalse)
 
     const handleMarkupChange = (content: string) => {
-        setError(undefined)
         setMarkup(content)
         setAudioUrl(undefined)
     }
@@ -128,6 +127,7 @@ export const AudioGeneratorDialog = (props: {
                     })
                     setAudioUrl(response.url)
                     setPlaying(true)
+                    refreshCustomer()
                 } catch (e) {
                     snackbar(t("error.audioGeneration"), {variant: "error"})
                 } finally {
@@ -200,6 +200,7 @@ export const AudioGeneratorDialog = (props: {
                             <VoiceSelect voice={voice} setVoice={setVoice}/>
                         </Stack>
                         <Stack direction="row" gap={1}>
+                            <TokenCounter/>
                             <AudioButtonIcon/>
                             <ReplayAudioButton/>
                         </Stack>
@@ -214,6 +215,17 @@ export const AudioGeneratorDialog = (props: {
                 </Stack>
             </DialogActions>
         </Dialog>
+    )
+}
+
+const TokenCounter = () => {
+    const {counter} = useTokenCount()
+
+    return (
+        <Stack direction={"row"} gap={2} alignItems={"center"} mr={2}>
+            <AutoAwesomeIcon fontSize={"medium"}/>
+            <Typography variant={"body1"}>{counter}</Typography>
+        </Stack>
     )
 }
 

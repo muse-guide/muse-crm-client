@@ -22,7 +22,11 @@
         "title": "Account summary",
         "subtitle": "Here you can view your account general information.",
         "accountId": "Account ID",
-        "status": "Account status",
+        "accountStatus": "Account status",
+        "subscriptionStatus": "Subscription status",
+        "tokenCount": "Token count",
+        "plan": "Plan",
+        "expiredAt": "Expired at",
         "fullName": "Full name",
         "email": "E-mail address"
       },
@@ -264,7 +268,8 @@
     "download": "Download",
     "error": "Error",
     "details": "Details",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "tokenCount": "Token count"
   },
   "validation": {
     "required": "This field is required.",

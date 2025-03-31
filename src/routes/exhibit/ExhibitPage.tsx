@@ -16,6 +16,7 @@ import {ImageHolder, ImageUploaderField} from "../../components/form/ImageUpload
 import {ExhibitionSelect} from "./ExhibitionSelect";
 import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
+import {useApplicationContext} from "../../components/hooks";
 
 const defaults = {
     id: "",
@@ -29,10 +30,13 @@ const defaults = {
 const ExhibitPage = () => {
     const {exhibitId} = useParams();
     const navigate = useNavigate();
-    const [loading, setLoading] = useState<boolean>(false);
-    const [processing, setProcessing] = useState<boolean>(false);
+    const {refreshCustomer} = useApplicationContext()
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
+
+    const [loading, setLoading] = useState<boolean>(false);
+    const [processing, setProcessing] = useState<boolean>(false);
+
     const methods = useForm<Exhibit>({
         mode: "onSubmit",
         defaultValues: defaults
@@ -95,6 +99,7 @@ const ExhibitPage = () => {
         } catch (err) {
             snackbar(t("error.savingExhibitFailed"), {variant: "error"})
         } finally {
+            refreshCustomer()
             setProcessing(false);
         }
     }
