@@ -3,7 +3,6 @@ import {Button, useTheme} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {AppBreadcrumbs} from "../../components/Breadcrumbs";
 import TextInput from "../../components/form/TextInput";
-import {CheckboxInput} from "../../components/form/CheckboxInput";
 import {ImageHolder, ImageUploaderField} from "../../components/form/ImageUploader";
 import {FormProvider, SubmitHandler, useFieldArray, UseFieldArrayReturn, useForm} from "react-hook-form";
 import {Exhibition} from "../../model/exhibition";
@@ -133,22 +132,14 @@ const ExhibitionPage = () => {
                                     />
                                 </FullRow>
                                 <FullRow>
-                                    <CheckboxInput
-                                        name="includeInstitutionInfo"
-                                        control={methods.control}
-                                        defaultChecked={true}
-                                        label={t('page.exhibition.generalInfoForm.includeInstitutionInfoHelperText')}
-                                    />
-                                </FullRow>
-                                <FullRow>
                                     <ImageUploaderField arrayMethods={imagesMethods as unknown as UseFieldArrayReturn<ImageHolder, "images", "id">}/>
                                 </FullRow>
                             </Panel>
 
                             <Panel
                                 loading={loading}
-                                title={t('page.exhibition.languagesForm.title')}
-                                subtitle={t('page.exhibition.languagesForm.subtitle')}
+                                title={t('page.languagesForm.title')}
+                                subtitle={t('page.languagesForm.subtitle')}
                             >
                                 <FullRow>
                                     <LanguageTabs

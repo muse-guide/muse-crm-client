@@ -11,7 +11,7 @@ export interface Institution {
 export interface InstitutionLang {
     lang: string;
     title: string;
-    subtitle: string;
+    subtitle?: string;
     article?: string
     audio?: {
         key: string,
@@ -25,7 +25,7 @@ export interface CreateInstitution {
     langOptions: {
         lang: string;
         title: string;
-        subtitle: string;
+        subtitle?: string;
         article?: string
         audio?: {
             markup: string,

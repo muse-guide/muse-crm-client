@@ -15,15 +15,14 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Looks3OutlinedIcon from '@mui/icons-material/Looks3Outlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 
-interface AooDialogProps {
-    referenceName: string,
+interface AppDialogProps {
     path: string,
     open: boolean,
     handleClose: () => any | Promise<any>
 }
 
 
-export default function AppDialog(props: AooDialogProps) {
+export default function AppDialog(props: AppDialogProps) {
     const {t} = useTranslation();
     const theme = useTheme();
 

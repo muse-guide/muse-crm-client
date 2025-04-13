@@ -254,7 +254,6 @@ export const RowActions = (
             <QrCodeDialog open={qrCodeDialogOpen} referenceName={referenceName} resourceId={id} handleClose={handleQrCodeDialogClose}/>
             <AppDialog
                 open={appDialog.isOpen}
-                referenceName={referenceName}
                 path={`${appPath}/${id}`}
                 handleClose={appDialog.closeDialog}
             />

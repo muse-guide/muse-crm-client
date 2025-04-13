@@ -3,7 +3,6 @@ import { ImageRef, Status} from "./common";
 export interface Exhibition {
     id: string;
     referenceName: string;
-    includeInstitutionInfo: boolean;
     langOptions: ExhibitionLang[];
     images: ImageRef[];
     status: Status
@@ -12,7 +11,7 @@ export interface Exhibition {
 export interface ExhibitionLang {
     lang: string;
     title: string;
-    subtitle: string;
+    subtitle?: string;
     article?: string
     audio?: {
         key: string,
@@ -26,7 +25,7 @@ export interface CreateExhibition {
     langOptions: {
         lang: string;
         title: string;
-        subtitle: string;
+        subtitle?: string;
         article?: string
         audio?: {
             markup: string,

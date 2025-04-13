@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import {Exhibit} from "../../model/exhibit";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import {exhibitService, ExhibitsFilter} from "../../services/ExhibitService";
@@ -26,11 +26,12 @@ const ExhibitsPage = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
     const {enqueueSnackbar: snackbar} = useSnackbar();
+    const [searchParams] = useSearchParams();
 
     const [exhibits, setExhibits] = useState<Exhibit[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
-    const [filters, setFilters] = useState<ExhibitsFilter>({exhibitionId: ""})
+    const [filters, setFilters] = useState<ExhibitsFilter>({exhibitionId: searchParams.get("exhibitionId") || ""})
     const {page, pageSize, resetPagination, ...pagination} = usePagination();
 
     useEffect(() => {
@@ -90,7 +91,7 @@ const ExhibitsPage = () => {
                 </Stack>
                 <Stack direction="row" spacing={1}>
                     <Button variant="outlined" size={"medium"} onClick={getExhibitsAsync} sx={{minWidth: "32px"}}><RefreshOutlinedIcon/></Button>
-                    <Button variant="contained" size={"medium"} onClick={() => navigate("new")} disableElevation startIcon={<AddOutlinedIcon/>}>{t("common.create")}</Button>
+                    <Button variant="contained" size={"medium"} onClick={() => navigate(`new?exhibitionId=${filters.exhibitionId}`)} disableElevation startIcon={<AddOutlinedIcon/>}>{t("common.create")}</Button>
                 </Stack>
             </Stack>
             <PageContentContainer>

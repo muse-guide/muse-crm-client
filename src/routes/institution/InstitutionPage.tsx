@@ -16,6 +16,10 @@ import LanguageFlag from "../../components/LaungageFlag";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
+import AppDialog from "../../components/dialog/AppDialog";
+import useDialog from "../../components/hooks";
+import QrCodeDialog from "../../components/dialog/QrCodeDialog";
+import QrCode2Icon from "@mui/icons-material/QrCode2";
 
 
 const InstitutionPage = () => {
@@ -23,6 +27,8 @@ const InstitutionPage = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
+    const appDialog = useDialog()
+    const qrCodeDialog = useDialog()
 
     const methods = useForm<Institution>({
         mode: "onSubmit",
@@ -67,11 +73,23 @@ const InstitutionPage = () => {
                         </Stack>
                         <Stack direction="row" spacing={1} justifyItems={"end"}>
                             <Button variant="outlined" size={"medium"} onClick={getCustomerInstitutionAsync} sx={{minWidth: "32px"}}><RefreshOutlinedIcon/></Button>
-                            <Button startIcon={<PhoneIphoneIcon/>} size={"medium"} variant="outlined" onClick={() => navigate("edit")}>{t('Preview')}</Button>
+                            <Button startIcon={<PhoneIphoneIcon/>} size={"medium"} variant="outlined" onClick={appDialog.openDialog}>{t('Preview')}</Button>
+                            <Button startIcon={<QrCode2Icon/>} size={"medium"} variant="outlined" onClick={qrCodeDialog.openDialog} sx={{minWidth: "120px"}}>{t('QR code')}</Button>
                             <Button startIcon={<EditOutlinedIcon/>} size={"medium"} variant="contained" disableElevation onClick={() => navigate("edit")}>{t('common.edit')}</Button>
                         </Stack>
                     </Stack>
                     <PageContentContainer>
+                        <AppDialog
+                            open={appDialog.isOpen}
+                            path={`institutions/${methods.getValues('id')}`}
+                            handleClose={appDialog.closeDialog}
+                        />
+                        <QrCodeDialog
+                            open={qrCodeDialog.isOpen}
+                            referenceName={methods.getValues("referenceName")}
+                            resourceId={methods.getValues("id")}
+                            handleClose={qrCodeDialog.closeDialog}
+                        />
                         <SinglePageColumn maxWidth='1024px'>
                             <Panel
                                 loading={loading}

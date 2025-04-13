@@ -81,14 +81,6 @@
         "referenceNamePlaceholder": "Amazing exhibit",
         "exhibitNumber": "Exhibit number",
         "exhibitNumberHelperText": "You can organize exhibits in any order you want. However, you are responsible for providing unique exhibit numbers."
-      },
-      "languagesForm": {
-        "title": "Available languages",
-        "subtitle": "Provide info for exhibit in multiple languages. You can add as many languages as you want. At least one language is required.",
-        "exhibitTitle": "Exhibit title",
-        "exhibitTitlePlaceholder": "Amazing exhibit",
-        "exhibitSubtitle": "Exhibit subtitle",
-        "exhibitSubtitlePlaceholder": "This exhibit is amazing"
       }
     },
     "exhibits": {
@@ -111,14 +103,6 @@
         "subtitle": "Provide basic information about Institution. You can enrich it with images, article and audio.",
         "referenceName": "Reference name",
         "referenceNamePlaceholder": "Amazing Institution"
-      },
-      "languagesForm": {
-        "title": "Available languages",
-        "subtitle": "Provide info for Institution in multiple languages. You can add as many languages as you want. At least one language is required.",
-        "institutionName": "Institution name",
-        "institutionNamePlaceholder": "Amazing Institution",
-        "institutionNameLine2": "Institution name second line",
-        "institutionNameLine2Placeholder": "Institution Department of Amazingness"
       }
     },
     "exhibition": {
@@ -130,14 +114,6 @@
         "referenceName": "Reference name",
         "referenceNamePlaceholder": "Amazing exhibition",
         "includeInstitutionInfoHelperText": "If selected, user will be able to access institution info from this exhibition."
-      },
-      "languagesForm": {
-        "title": "Available languages",
-        "subtitle": "Provide info for exhibition in multiple languages. You can add as many languages as you want. At least one language is required.",
-        "exhibitionTitle": "Exhibition title",
-        "exhibitionTitlePlaceholder": "Amazing exhibit",
-        "exhibitionSubtitle": "Exhibition subtitle",
-        "exhibitionSubtitlePlaceholder": "This exhibit is amazing"
       }
     },
     "exhibitions": {
@@ -164,6 +140,21 @@
       "createArticle": "Create article",
       "noItemsTitle": "No items found",
       "noItemsSubtitle": "No items found for given search criteria. You can create new item by clicking button below."
+    },
+    "languagesForm": {
+      "title": "Language options",
+      "subtitle": "Add language options to this element. At least one language is required.",
+      "language": "Language",
+      "languagePlaceholder": "Select language...",
+      "addLanguage": "Add language",
+      "removeLanguage": "Remove language",
+      "editLanguage": "Edit language",
+      "options": {
+        "title": "Title",
+        "titlePlaceholder": "Title of the element, eg. Mona Lisa",
+        "subtitle": "Subtitle",
+        "subtitlePlaceholder": "Optional subtitle of the element, eg. Leonardo da Vinci, 1503"
+      }
     }
   },
   "dialog": {

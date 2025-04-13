@@ -6,7 +6,7 @@ import TextInput from "../../components/form/TextInput";
 import {FormProvider, SubmitHandler, useFieldArray, UseFieldArrayReturn, useForm} from "react-hook-form";
 import {Exhibit} from "../../model/exhibit";
 import {useSnackbar} from "notistack";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {exhibitService} from "../../services/ExhibitService";
 import {FullRow, Panel} from "../../components/panel";
 import {Actions, Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
@@ -18,18 +18,11 @@ import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
 import {useApplicationContext} from "../../components/hooks";
 
-const defaults = {
-    id: "",
-    exhibitionId: "",
-    referenceName: "",
-    number: 1,
-    images: [],
-    langOptions: []
-}
 
 const ExhibitPage = () => {
     const {exhibitId} = useParams();
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
     const {refreshCustomer} = useApplicationContext()
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
@@ -39,7 +32,14 @@ const ExhibitPage = () => {
 
     const methods = useForm<Exhibit>({
         mode: "onSubmit",
-        defaultValues: defaults
+        defaultValues: {
+            id: "",
+            exhibitionId: searchParams.get("exhibitionId") || "",
+            referenceName: "",
+            number: 1,
+            images: [],
+            langOptions: []
+        }
     });
     const langOptionMethods = useFieldArray({
         shouldUnregister: false,
@@ -89,11 +89,9 @@ const ExhibitPage = () => {
         try {
             if (exhibitId) {
                 await exhibitService.updateExhibit(data)
-                navigate("/exhibits");
                 snackbar(t("success.exhibitUpdated", {exhibitId: exhibitId}), {variant: "success"})
             } else {
                 await exhibitService.createExhibit(data)
-                navigate("/exhibits");
                 snackbar(t("success.exhibitCreated"), {variant: "success"})
             }
         } catch (err) {
@@ -101,13 +99,14 @@ const ExhibitPage = () => {
         } finally {
             refreshCustomer()
             setProcessing(false);
+            navigate(`/exhibits?exhibitionId=${exhibitionId}`);
         }
     }
 
     const links = [
         {
             nameKey: "menu.exhibits",
-            path: "/exhibits"
+            path: `/exhibits?exhibitionId=${exhibitionId}`
         },
         {
             nameKey: `${!exhibitId ? "..." : methods.getValues("referenceName")}`,
@@ -161,8 +160,8 @@ const ExhibitPage = () => {
 
                             <Panel
                                 loading={loading}
-                                title={t('page.exhibit.languagesForm.title')}
-                                subtitle={t('page.exhibit.languagesForm.subtitle')}
+                                title={t('page.languagesForm.title')}
+                                subtitle={t('page.languagesForm.subtitle')}
                             >
                                 <FullRow>
                                     <LanguageTabs
@@ -173,7 +172,7 @@ const ExhibitPage = () => {
                         </SinglePageColumn>
 
                         <Actions>
-                            <Button variant="outlined" onClick={() => navigate("/exhibits")}>{t('common.cancel')}</Button>
+                            <Button variant="outlined" onClick={() => navigate(`/exhibits?exhibitionId=${exhibitionId}`)}>{t('common.cancel')}</Button>
                             <LoadingButton
                                 key="submitButton"
                                 variant="contained"

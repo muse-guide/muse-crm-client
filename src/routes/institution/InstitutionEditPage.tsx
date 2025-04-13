@@ -133,8 +133,8 @@ const InstitutionEditPage = () => {
 
                             <Panel
                                 loading={loading}
-                                title={t('page.institution.languagesForm.title')}
-                                subtitle={t('page.institution.languagesForm.subtitle')}
+                                title={t('page.languagesForm.title')}
+                                subtitle={t('page.languagesForm.subtitle')}
                             >
                                 <FullRow>
                                     <LanguageTabs
@@ -145,7 +145,7 @@ const InstitutionEditPage = () => {
                         </SinglePageColumn>
 
                         <Actions>
-                            <Button variant="outlined" onClick={() => navigate("/")}>{t('common.cancel')}</Button>
+                            <Button variant="outlined" onClick={() => navigate("/institution")}>{t('common.cancel')}</Button>
                             <LoadingButton
                                 key="submitButton"
                                 variant="contained"

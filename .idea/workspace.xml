@@ -4,28 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Add institution resource">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Refactor account management and enhance token count display">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/Label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/Label.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hooks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hooks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dialog/AppDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/AppDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/CheckboxInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/langOptions/LanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/langOptions/LanguageTabs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/configuration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/configuration.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/customer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/invoice.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/exhibit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibit.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/exhibition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/institution.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/institution.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/account/InvoiceDialog.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/account/InvoiceStatusChip.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/account/InvoicesPanel.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/institution/InstitutionEditPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/institution/InstitutionEditPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/institution/InstitutionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/institution/InstitutionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/InvoiceService.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +125,7 @@
       <recent name="$PROJECT_DIR$/src/components/TabTitle.tsx" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.npm start">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -487,7 +481,12 @@
       <workItem from="1743021178714" duration="3010000" />
       <workItem from="1743281718674" duration="1618000" />
       <workItem from="1743362829152" duration="4097000" />
-      <workItem from="1743448428202" duration="1654000" />
+      <workItem from="1743448428202" duration="3410000" />
+      <workItem from="1743532671609" duration="4510000" />
+      <workItem from="1743623802660" duration="694000" />
+      <workItem from="1743793315387" duration="352000" />
+      <workItem from="1744009923513" duration="3000" />
+      <workItem from="1744569472339" duration="838000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -657,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741379635296</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Refactor account management and enhance token count display">
+      <option name="closed" value="true" />
+      <created>1743450098997</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1743450098997</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,7 +707,8 @@
     <MESSAGE value="Add article editor" />
     <MESSAGE value="Add article" />
     <MESSAGE value="Add institution resource" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add institution resource" />
+    <MESSAGE value="Refactor account management and enhance token count display" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor account management and enhance token count display" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

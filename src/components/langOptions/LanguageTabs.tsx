@@ -135,8 +135,8 @@ export const LanguageOptionForm = (props: LanguageOptionFormProps) => {
                     <TextInput
                         name={`langOptions.${props.index}.title`}
                         control={methods.control}
-                        title={t("page.languagesForm.title")}
-                        placeholder={t("page.languagesForm.titlePlaceholder")}
+                        title={t("page.languagesForm.options.title")}
+                        placeholder={t("page.languagesForm.options.titlePlaceholder")}
                         required
                         maxLength={120}
                     />
@@ -145,11 +145,10 @@ export const LanguageOptionForm = (props: LanguageOptionFormProps) => {
                     <TextInput
                         name={`langOptions.${props.index}.subtitle`}
                         control={methods.control}
-                        title={t("page.languagesForm.subtitle")}
-                        placeholder={t("page.languagesForm.subtitlePlaceholder")}
+                        title={t("page.languagesForm.options.subtitle")}
+                        placeholder={t("page.languagesForm.options.subtitlePlaceholder")}
                         multiline={true}
                         rows={2}
-                        required
                         maxLength={200}
                     />
                 </Grid2>

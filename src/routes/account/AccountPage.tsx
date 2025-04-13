@@ -15,9 +15,10 @@ import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCale
 import {SubscriptionsPanel} from "./SubscriptionsPanel";
 import useDialog, {useApplicationContext, useTokenCount} from "../../components/hooks";
 import {ChangePasswordDialog} from "./ChangePasswordDialog";
+import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 
 const AccountPage = () => {
-    const {customer, setCustomer} = useApplicationContext();
+    const {customer, setCustomer, refreshCustomer} = useApplicationContext();
     const {counter} = useTokenCount()
     const [loading, setLoading] = useState<boolean>(false);
     const {t} = useTranslation();
@@ -43,6 +44,10 @@ const AccountPage = () => {
     }
 
     useEffect(() => {
+        refreshCustomer()
+    }, []);
+
+    useEffect(() => {
         methods.reset(customer);
     }, [customer]);
 
@@ -65,7 +70,10 @@ const AccountPage = () => {
                                 loading={loading}
                                 title={t('page.account.generalInfoForm.title')}
                                 subtitle={t('page.account.generalInfoForm.subtitle')}
-                                panelAction={<AccountActions/>}
+                                panelAction={<Stack direction="row" gap={1}>
+                                    <Button variant="outlined" size={"medium"} onClick={refreshCustomer} sx={{minWidth: "32px"}}><RefreshOutlinedIcon/></Button>
+                                    <AccountActions/>
+                                </Stack>}
                             >
                                 <HalfRow>
                                     <Label label={t('page.account.generalInfoForm.accountId')}
