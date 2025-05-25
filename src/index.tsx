@@ -13,7 +13,6 @@ import {Amplify} from 'aws-amplify';
 import ExhibitionsPage from "./routes/exhibition/ExhibitionsPage";
 import ExhibitsPage from './routes/exhibit/ExhibitsPage';
 import AccountPage from "./routes/account/AccountPage";
-import { AccountSettings } from '@aws-amplify/ui-react';
 import InstitutionEditPage from "./routes/institution/InstitutionEditPage";
 import InstitutionPage from "./routes/institution/InstitutionPage";
 
@@ -43,6 +42,10 @@ const router = createBrowserRouter([
         element: <Root/>,
         errorElement: <ErrorPage/>,
         children: [
+            {
+                path: "/",
+                element: <AccountPage/>
+            },
             {
                 path: "exhibits",
                 element: <ExhibitsPage/>
@@ -84,7 +87,7 @@ const router = createBrowserRouter([
 ]);
 
 // export const borderColor = grey[400]
-export const borderColor = "#D0D5DD"
+export const borderColor = "#a2a3ac"
 // export const mainBackgroundColor = "#FCFCFD"
 export const mainBackgroundColor = "white"
 
@@ -101,6 +104,7 @@ const darkTheme = createTheme({
             background: {
                 default: "rgba(0,0,0,0)"
             },
+            divider: borderColor,
             success: {
                 main: "#32D583",
                 light: "#ECFDF3"

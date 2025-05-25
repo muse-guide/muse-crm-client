@@ -46,11 +46,10 @@ export function LanguageTabs({arrayMethods}: LanguageTabsProps) {
     const handleClickOpen = () => {
         setSelectLangDialogOpen(true);
     };
-
     return (
         <TabContext value={tab}>
             <LanguageSelectDialog open={selectLangDialogOpen} arrayMethods={arrayMethods} handleClose={handleClose}/>
-            <Stack sx={{borderBottom: 1, borderColor: 'divider'}} direction="row" alignItems="center" spacing={1}>
+            <Stack sx={{borderBottom: arrayMethods.fields.length > 0 ? 1 : 0, borderColor: 'divider'}} direction="row" alignItems="center" spacing={1}>
                 <TabList variant="scrollable" scrollButtons={false} onChange={handleChange}>
                     {arrayMethods.fields.map((field, index) => (
                         <Tab key={field.id}

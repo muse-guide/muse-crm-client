@@ -18,7 +18,7 @@ import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 import AppDialog from "../../components/dialog/AppDialog";
 import useDialog from "../../components/hooks";
-import QrCodeDialog from "../../components/dialog/QrCodeDialog";
+import QrCodeDialog from "../../components/qrCodeDialog/QrCodeDialog";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
 
 

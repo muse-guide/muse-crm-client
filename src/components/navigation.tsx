@@ -2,22 +2,19 @@ import {AppBar, Avatar, Box, Drawer, IconButton, List, ListItem, ListItemButton,
 import {Link, LinkProps, useLocation, useResolvedPath} from "react-router-dom";
 import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
 import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
-import CloudCircleIcon from '@mui/icons-material/CloudCircle';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import {normalizeText} from "./ComponentUtils";
 import {useTranslation} from "react-i18next";
-import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useAuthenticator} from "@aws-amplify/ui-react";
-import {AppContext} from "../routes/Root";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import {borderColor} from "../index";
 import {grey} from "@mui/material/colors";
 import {useApplicationContext, useTokenCount} from "./hooks";
+import {MuseeRegularLogo} from "./identity/Logo";
 
 export default function Navigation({drawerWidth}: { drawerWidth: number }) {
     const theme = useTheme()
@@ -47,7 +44,7 @@ export default function Navigation({drawerWidth}: { drawerWidth: number }) {
                     >
                         <MenuIcon color="primary"/>
                     </IconButton>
-                    <CloudCircleIcon fontSize="large" color="primary"/>
+                    <MuseeRegularLogo/>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -64,8 +61,8 @@ export default function Navigation({drawerWidth}: { drawerWidth: number }) {
                         boxSizing: 'border-box',
                         width: drawerWidth,
                         paddingX: 2,
-                        borderRight: 1,
-                        borderColor: borderColor,
+                        borderRight: 0,
+                        // borderColor: borderColor,
                     },
                 }}
             >
@@ -83,8 +80,8 @@ export default function Navigation({drawerWidth}: { drawerWidth: number }) {
                         width: drawerWidth,
                         paddingX: 2,
                         border: "0",
-                        borderRight: 1,
-                        borderColor: borderColor,
+                        borderRight: 0,
+                        // borderColor: borderColor,
                     },
                 }}
                 open
@@ -106,11 +103,6 @@ export function AppDrawer() {
                 flexGrow: 1
             }}>
                 <MuseLogo/>
-                <CustomListItemButton
-                    to="dashboard"
-                    title={t("menu.dashboard")}
-                    Icon={DashboardOutlinedIcon}
-                />
                 <CustomListItemButton
                     to="institution"
                     title={t("menu.institution")}
@@ -282,19 +274,19 @@ const MuseLogo = () => {
                 paddingBottom: 4,
                 display: 'flex',
                 alignItems: 'center',
-                pl: 2.3,
+                pl: 3,
                 zIndex: 100
             }}
         >
             <ListItemIcon
                 sx={{
                     minWidth: 0,
-                    mr: 1,
+                    mr: 1.5,
                     justifyContent: 'center',
                     fontSize: 38
                 }}
             >
-                <CloudCircleIcon color="primary" fontSize='inherit'/>
+                <MuseeRegularLogo/>
             </ListItemIcon>
             <Typography
                 variant={"h6"}
@@ -304,7 +296,7 @@ const MuseLogo = () => {
                     fontWeight: '600'
                 }}
             >
-                muse.cloud
+                musee.cloud
             </Typography>
         </ListItem>
     )

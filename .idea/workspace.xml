@@ -4,21 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Refactor account management and enhance token count display">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Refactor InstitutionPage and ExhibitsPage to improve language options handling and enhance UI interactions">
+      <change afterPath="$PROJECT_DIR$/public/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/identity/Logo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe1.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe2.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe3.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/AppDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/AppDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/CheckboxInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/QrCodeDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/langOptions/LanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/langOptions/LanguageTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/langOptions/NoLanguagePlaceholder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/langOptions/NoLanguagePlaceholder.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/exhibit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibit.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/exhibition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/exhibition.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/institution.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/institution.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/institution/InstitutionEditPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/institution/InstitutionEditPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/common.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/institution/InstitutionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/institution/InstitutionPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,9 +35,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package.json" />
-        <option value="TypeScript File" />
         <option value="CSS File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -52,11 +57,6 @@
   }
 }</component>
   <component name="KubernetesApiProvider">{
-  &quot;contexts&quot;: [
-    {
-      &quot;name&quot;: &quot;gke_prj-stg-gke-a14c_europe-west4_gke-stg-autopilot-cluster&quot;
-    }
-  ],
   &quot;isMigrated&quot;: true
 }</component>
   <component name="KubernetesSettings">
@@ -75,47 +75,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17.0.2&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/src/routes/institution&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.install --force.executor&quot;: &quot;Run&quot;,
-    &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3876967&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "openjdk-17.0.2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/michalpacholczyk/workspace/muse-crm-client/src/components/qrCodeDialog",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.install --force.executor": "Run",
+    "npm.npm start.executor": "Run",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3876967",
+    "ts.external.directory.path": "/Users/michalpacholczyk/workspace/muse-crm-client/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/qrCodeDialog" />
       <recent name="$PROJECT_DIR$/src/routes/institution" />
       <recent name="$PROJECT_DIR$/src/model" />
       <recent name="$PROJECT_DIR$/src/services" />
       <recent name="$PROJECT_DIR$/src/components/articleEditor" />
-      <recent name="$PROJECT_DIR$/src/components/dialog" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/qrCodeDialog" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/components/audioEditor" />
       <recent name="$PROJECT_DIR$/src/components/articleEditp" />
       <recent name="$PROJECT_DIR$/src/components/dialog" />
-      <recent name="$PROJECT_DIR$/src/components/langOptions" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" />
@@ -202,8 +202,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
       </set>
     </attachedChunks>
   </component>
@@ -486,7 +486,19 @@
       <workItem from="1743623802660" duration="694000" />
       <workItem from="1743793315387" duration="352000" />
       <workItem from="1744009923513" duration="3000" />
-      <workItem from="1744569472339" duration="838000" />
+      <workItem from="1744569472339" duration="4142000" />
+      <workItem from="1745088903472" duration="6336000" />
+      <workItem from="1746557050677" duration="18000" />
+      <workItem from="1746644552548" duration="32000" />
+      <workItem from="1746903181389" duration="11760000" />
+      <workItem from="1747018181273" duration="586000" />
+      <workItem from="1747077814771" duration="3042000" />
+      <workItem from="1747733871241" duration="56000" />
+      <workItem from="1747766647087" duration="5246000" />
+      <workItem from="1747856733735" duration="406000" />
+      <workItem from="1748027700046" duration="3149000" />
+      <workItem from="1748114562632" duration="1662000" />
+      <workItem from="1748198046701" duration="6508000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -664,7 +676,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743450098997</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Refactor InstitutionPage and ExhibitsPage to improve language options handling and enhance UI interactions">
+      <option name="closed" value="true" />
+      <created>1744570318345</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1744570318345</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,7 +728,8 @@
     <MESSAGE value="Add article" />
     <MESSAGE value="Add institution resource" />
     <MESSAGE value="Refactor account management and enhance token count display" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor account management and enhance token count display" />
+    <MESSAGE value="Refactor InstitutionPage and ExhibitsPage to improve language options handling and enhance UI interactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor InstitutionPage and ExhibitsPage to improve language options handling and enhance UI interactions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

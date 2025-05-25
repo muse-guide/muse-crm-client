@@ -31,8 +31,8 @@
         "email": "E-mail address"
       },
       "subscription": {
-        "title": "Subscription",
-        "subtitle": "See your subscription details here and change it if needed.",
+        "title": "Change subscription",
+        "subtitle": "Upgrade your subscription plan here.",
         "perMonth": "per month",
         "exhibitionsNumber": "No. of exhibitions",
         "exhibitsNumber": "No. of exhibits",

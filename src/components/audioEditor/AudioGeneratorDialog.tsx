@@ -87,6 +87,11 @@ export const AudioGeneratorDialog = (props: {
         setAudioUrl(undefined)
     }
 
+    const handleVoiceChange = (voice: string) => {
+        setVoice(voice)
+        setAudioUrl(undefined)
+    }
+
     const handleSaveAudio = useCallback(() => {
         if (!markup || markup.length === 0) {
             props.handleSave(undefined, undefined)
@@ -197,7 +202,7 @@ export const AudioGeneratorDialog = (props: {
                     <Stack direction={"row"} display="flex" flexDirection={"row"} spacing={1} justifyContent="end">
                         <Stack direction="row" gap={3} flexGrow={1} justifyItems="start" alignItems={"center"}>
                             <CircleFlag countryCode={langMap.get(props.input.lang) ?? ""} height="32"/>
-                            <VoiceSelect voice={voice} setVoice={setVoice}/>
+                            <VoiceSelect voice={voice} setVoice={handleVoiceChange}/>
                         </Stack>
                         <Stack direction="row" gap={1}>
                             <TokenCounter/>
@@ -235,11 +240,19 @@ const VoiceSelect = (
     const voiceOptions = [
         {
             value: "FEMALE_1",
-            name: "Eve"
+            name: "Ewa (premium)"
         },
         {
             value: "MALE_1",
-            name: "Adam"
+            name: "Adam (premium)"
+        },
+        {
+            value: "FEMALE_2",
+            name: "Anna (standard)"
+        },
+        {
+            value: "MALE_2",
+            name: "Piotr (standard)"
         }
     ]
 

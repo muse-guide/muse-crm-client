@@ -9,7 +9,7 @@ import {Avatar, AvatarGroup, Button, Chip, FormControl, IconButton, InputAdornme
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import ConfirmationDialog from "./dialog/ConfirmationDialog";
-import QrCodeDialog from "./dialog/QrCodeDialog";
+import QrCodeDialog from "./qrCodeDialog/QrCodeDialog";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";

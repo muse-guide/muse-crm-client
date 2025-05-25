@@ -10,6 +10,7 @@ import {ImagePreview} from "./ImagePreview";
 import {normalizeText} from "../ComponentUtils";
 import LinearProgress from '@mui/material/LinearProgress';
 import {assetService} from "../../services/AssetService";
+import {useSnackbar} from "notistack";
 
 export interface ImageHolder {
     images: ImageRef[];
@@ -18,30 +19,40 @@ export interface ImageHolder {
 export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<ImageHolder, "images", "id"> }) => {
     const [uploadInProgress, setUploadInProgress] = useState(false);
     const {t} = useTranslation();
+    const {enqueueSnackbar: snackbar} = useSnackbar();
 
     const removeImage = async (index: number) => {
         props.arrayMethods.remove(index)
     }
 
     const addImage = async (event: ChangeEvent<HTMLInputElement>) => {
-        setUploadInProgress(true)
+        setUploadInProgress(true);
 
         const input = event.target as HTMLInputElement;
-        if (!input.files || input.files.length < 1) return
+        if (!input.files || input.files.length < 1) return;
 
         const image: File = input.files[0];
-        const imageId = await assetService.uploadTmpFile(image)
-        if (!imageId) return
+
+        // Validate image size (max 2MB)
+        const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
+        if (image.size > maxSizeInBytes) {
+            setUploadInProgress(false);
+            snackbar(t("The selected image exceeds the maximum size of 2MB."), {variant: "error"})
+            return;
+        }
+
+        const imageId = await assetService.uploadTmpFile(image);
+        if (!imageId) return;
 
         props.arrayMethods.append({
             id: imageId,
             name: image.name,
-            tmp: true
-        })
+            tmp: true,
+        });
 
-        input.value = ''
-        setUploadInProgress(false)
-    }
+        input.value = '';
+        setUploadInProgress(false);
+    };
 
     return (
         <Stack pb={0} pt={1}>

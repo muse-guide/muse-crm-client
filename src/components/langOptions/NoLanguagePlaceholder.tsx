@@ -4,7 +4,6 @@ import {useTranslation} from "react-i18next";
 import {EmptyPlaceholder} from "../page";
 
 export const NoLanguagePlaceholder = () => {
-    const theme = useTheme()
     const {t} = useTranslation()
 
     return (
