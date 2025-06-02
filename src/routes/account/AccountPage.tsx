@@ -90,6 +90,7 @@ const AccountPage = () => {
                                     <Label label={t('page.account.generalInfoForm.email')}
                                            value={methods.getValues("email")}/>
                                 </HalfRow>
+
                                 <FullRow>
                                     <Divider/>
                                 </FullRow>

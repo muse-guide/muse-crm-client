@@ -91,7 +91,7 @@ export default function AppDialog(props: AppDialogProps) {
 
                         <iframe
                             style={{border: 0}}
-                            src={`https://duz68kh4juaad.cloudfront.net/${props.path}`}
+                            src={`https://app.musee.cloud/${props.path}`}
                             width={390}
                             height={660}
                         />

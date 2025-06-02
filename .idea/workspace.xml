@@ -4,26 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Refactor InstitutionPage and ExhibitsPage to improve language options handling and enhance UI interactions">
-      <change afterPath="$PROJECT_DIR$/public/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/identity/Logo.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe1.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe2.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe3.tsx" afterDir="false" />
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Refactor audio and image upload components to enhance user experience and improve code organization">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/live_preview.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/QrCodeDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/QrCodeDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/langOptions/LanguageTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/langOptions/LanguageTabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/langOptions/NoLanguagePlaceholder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/langOptions/NoLanguagePlaceholder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dialog/AppDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/AppDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/qrCodeDialog/QrCodeDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/QrCodeDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe3.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe3.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/institution/InstitutionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/institution/InstitutionPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,33 +67,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "openjdk-17.0.2",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/michalpacholczyk/workspace/muse-crm-client/src/components/qrCodeDialog",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.install --force.executor": "Run",
-    "npm.npm start.executor": "Run",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.3876967",
-    "ts.external.directory.path": "/Users/michalpacholczyk/workspace/muse-crm-client/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17.0.2&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/src/components/qrCodeDialog&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.install --force.executor&quot;: &quot;Run&quot;,
+    &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3876967&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/qrCodeDialog" />
@@ -498,7 +490,12 @@
       <workItem from="1747856733735" duration="406000" />
       <workItem from="1748027700046" duration="3149000" />
       <workItem from="1748114562632" duration="1662000" />
-      <workItem from="1748198046701" duration="6508000" />
+      <workItem from="1748198046701" duration="8536000" />
+      <workItem from="1748231034248" duration="2989000" />
+      <workItem from="1748264955577" duration="33000" />
+      <workItem from="1748459099667" duration="1638000" />
+      <workItem from="1748803513473" duration="2843000" />
+      <workItem from="1748891554927" duration="3885000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -684,7 +681,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744570318345</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Refactor audio and image upload components to enhance user experience and improve code organization">
+      <option name="closed" value="true" />
+      <created>1748205082116</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1748205082116</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -704,7 +709,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Add exhibitions table" />
     <MESSAGE value="Optimize table" />
     <MESSAGE value="Progress" />
     <MESSAGE value="Introduce nano id" />
@@ -729,7 +733,8 @@
     <MESSAGE value="Add institution resource" />
     <MESSAGE value="Refactor account management and enhance token count display" />
     <MESSAGE value="Refactor InstitutionPage and ExhibitsPage to improve language options handling and enhance UI interactions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor InstitutionPage and ExhibitsPage to improve language options handling and enhance UI interactions" />
+    <MESSAGE value="Refactor audio and image upload components to enhance user experience and improve code organization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor audio and image upload components to enhance user experience and improve code organization" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

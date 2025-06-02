@@ -72,10 +72,10 @@ const InstitutionPage = () => {
                             <PageTitle title={t('Institution')} subtitle={t('Manage your Institution')}/>
                         </Stack>
                         <Stack direction="row" spacing={1} justifyItems={"end"}>
-                            <Button variant="outlined" size={"medium"} onClick={getCustomerInstitutionAsync} sx={{minWidth: "32px"}}><RefreshOutlinedIcon/></Button>
-                            <Button startIcon={<PhoneIphoneIcon/>} size={"medium"} variant="outlined" onClick={appDialog.openDialog}>{t('Preview')}</Button>
-                            <Button startIcon={<QrCode2Icon/>} size={"medium"} variant="outlined" onClick={qrCodeDialog.openDialog} sx={{minWidth: "120px"}}>{t('QR code')}</Button>
-                            <Button startIcon={<EditOutlinedIcon/>} size={"medium"} variant="contained" disableElevation onClick={() => navigate("edit")}>{t('common.edit')}</Button>
+                            <Button variant="outlined" size={"medium"} disabled={loading}  onClick={getCustomerInstitutionAsync} sx={{minWidth: "32px"}}><RefreshOutlinedIcon/></Button>
+                            <Button startIcon={<PhoneIphoneIcon/>} size={"medium"} variant="outlined" disabled={loading} onClick={appDialog.openDialog}>{t('Preview')}</Button>
+                            <Button startIcon={<QrCode2Icon/>} size={"medium"} variant="outlined" disabled={loading} onClick={qrCodeDialog.openDialog} sx={{minWidth: "120px"}}>{t('QR code')}</Button>
+                            <Button startIcon={<EditOutlinedIcon/>} size={"medium"} variant="contained" disabled={loading} disableElevation onClick={() => navigate("edit")}>{t('common.edit')}</Button>
                         </Stack>
                     </Stack>
                     <PageContentContainer>
@@ -87,6 +87,7 @@ const InstitutionPage = () => {
                         <QrCodeDialog
                             open={qrCodeDialog.isOpen}
                             referenceName={methods.getValues("referenceName")}
+                            appPath={"institutions"}
                             resourceId={methods.getValues("id")}
                             handleClose={qrCodeDialog.closeDialog}
                         />

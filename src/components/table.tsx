@@ -251,7 +251,7 @@ export const RowActions = (
                 handleAgree={() => onDelete(id)}
                 handleClose={handleRemoveExhibitDialogClose}
             />
-            <QrCodeDialog open={qrCodeDialogOpen} referenceName={referenceName} resourceId={id} handleClose={handleQrCodeDialogClose}/>
+            <QrCodeDialog open={qrCodeDialogOpen} referenceName={referenceName} resourceId={id} appPath={appPath} handleClose={handleQrCodeDialogClose}/>
             <AppDialog
                 open={appDialog.isOpen}
                 path={`${appPath}/${id}`}

@@ -1,13 +1,15 @@
 import React, {forwardRef} from "react";
-import {Stack, Typography} from "@mui/material";
-import {Image} from "./QrCodeDialog";
-import HeadsetIcon from '@mui/icons-material/Headset';
+import {Stack} from "@mui/material";
+import {QrCodeImage} from "./QrCodeDialog";
 
 export const ScanMe1 = forwardRef(
     (
-        {id, imageUrl}: { id: string; imageUrl: string },
+        {id, imageUrl, large, onLoad = undefined}: { id: string; imageUrl: string | undefined; large?: boolean, onLoad?: () => void },
         ref: React.Ref<any>
     ) => {
+        const width = large ? "600px" : "150px";
+        const height = large ? "600px" : "150px";
+
         return (
             <Stack
                 id={id}
@@ -16,29 +18,24 @@ export const ScanMe1 = forwardRef(
                 alignItems={"center"}
                 justifyContent={"center"}
                 sx={{
-                    backgroundColor: 'black',
-                    border: '12px solid',
-                    borderRadius: '16px',
-                    height: "auto",
+                    backgroundColor: 'white',
+                    borderColor: 'black',
+                    width: width,
+                    height: height,
+                    borderRadius: large ? '96px' : '16px',
                 }}
             >
-                <Image src={imageUrl} crossOrigin="anonymous"/>
-                <Stack
-                    display={"flex"}
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                    pt={1}
-                    pb={0}
-                    direction={'row'}
-                    gap={1.5}
-                    width={"100%"}
-                    sx={{
-                        backgroundColor: 'black',
-                    }}
-                >
-                    <HeadsetIcon sx={{color: 'white', fontSize: '28px'}}/>
-                    <Typography sx={{color: 'white', fontSize: '24px', fontWeight: 'bolder'}}>SCAN ME</Typography>
-                </Stack>
+                {imageUrl
+                    ? <QrCodeImage
+                        src={imageUrl}
+                        width={width}
+                        height={height}
+                        borderRadius={large ? '32px' : '8px' }
+                        crossOrigin="anonymous"
+                        onLoad={onLoad}
+                    />
+                    : large ? null : <QrCodeImage width={width} height={height} src={"/image_loading.png"}/>
+                }
             </Stack>
         );
     }
