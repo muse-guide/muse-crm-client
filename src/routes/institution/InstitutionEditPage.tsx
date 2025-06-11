@@ -17,6 +17,7 @@ import {ApiException} from "../../http/types";
 import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
 import {useApplicationContext} from "../../components/hooks";
+import {useHandleError} from "../../http/errorHandler";
 
 const defaults = {
     images: [],
@@ -28,6 +29,7 @@ const InstitutionEditPage = () => {
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
     const {refreshCustomer} = useApplicationContext()
+    const handleError = useHandleError();
 
     const [loading, setLoading] = useState<boolean>(false);
     const [hasInstitution, setHasInstitution] = useState<boolean>(false);
@@ -58,7 +60,7 @@ const InstitutionEditPage = () => {
             const institution = await institutionService.getInstitutionForCustomer();
             if (institution) {
                 if (institution.status === "PROCESSING") {
-                    snackbar(t(`Institution cannot be edited because in status: ${institution.status}`), {variant: "error"})
+                    snackbar(t(`error.institutionUpdateInProgress`), {variant: "error"})
                     navigate("/institution");
                 }
                 setHasInstitution(true);
@@ -66,7 +68,9 @@ const InstitutionEditPage = () => {
             } else {
                 setHasInstitution(false);
             }
-        } catch (err) {
+        } catch (error) {
+            handleError("error.fetchingInstitutionFailed", error);
+
             snackbar(t("error.fetchingInstitutionFailed"), {variant: "error"})
             navigate("/");
         } finally {
@@ -76,7 +80,7 @@ const InstitutionEditPage = () => {
 
     const onSubmit: SubmitHandler<Institution> = async (data) => {
         if (langOptionMethods.fields.length < 1) {
-            snackbar(t("validation.noLanguageOption"), {variant: "error"})
+            snackbar(t("error.noLanguageOption"), {variant: "error"})
             return
         }
         setProcessing(true);
@@ -88,9 +92,8 @@ const InstitutionEditPage = () => {
             }
             snackbar(t("success.institutionSaved"), {variant: "success"})
             navigate('/institution')
-        } catch (err) {
-            if (err instanceof ApiException) snackbar(`Creating institution failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
-            else snackbar(`Creating institution failed.`, {variant: "error"})
+        } catch (error) {
+            handleError("error.savingInstitutionFailed", error);
         } finally {
             refreshCustomer()
             setProcessing(false);

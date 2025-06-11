@@ -20,6 +20,7 @@ import AppDialog from "../../components/dialog/AppDialog";
 import useDialog from "../../components/hooks";
 import QrCodeDialog from "../../components/qrCodeDialog/QrCodeDialog";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
+import {useHandleError} from "../../http/errorHandler";
 
 
 const InstitutionPage = () => {
@@ -29,6 +30,7 @@ const InstitutionPage = () => {
     const {enqueueSnackbar: snackbar} = useSnackbar();
     const appDialog = useDialog()
     const qrCodeDialog = useDialog()
+    const handleError = useHandleError();
 
     const methods = useForm<Institution>({
         mode: "onSubmit",
@@ -48,8 +50,8 @@ const InstitutionPage = () => {
             } else {
                 navigate("edit")
             }
-        } catch (err) {
-            snackbar(t("error.fetchingInstitutionFailed"), {variant: "error"})
+        } catch (error) {
+            handleError("error.fetchingInstitutionFailed", error);
         } finally {
             setLoading(false);
         }
@@ -69,12 +71,12 @@ const InstitutionPage = () => {
                     <AppBreadcrumbs links={links}/>
                     <Stack maxWidth="1024px" minWidth="540px" direction="row" display="flex" spacing={1} justifyContent="end" alignItems="center">
                         <Stack direction="row" width="100%" spacing={1} flexGrow={1} justifyItems="start">
-                            <PageTitle title={t('Institution')} subtitle={t('Manage your Institution')}/>
+                            <PageTitle title={t('page.institution.title')} subtitle={t('page.institution.subtitle')}/>
                         </Stack>
                         <Stack direction="row" spacing={1} justifyItems={"end"}>
                             <Button variant="outlined" size={"medium"} disabled={loading}  onClick={getCustomerInstitutionAsync} sx={{minWidth: "32px"}}><RefreshOutlinedIcon/></Button>
-                            <Button startIcon={<PhoneIphoneIcon/>} size={"medium"} variant="outlined" disabled={loading} onClick={appDialog.openDialog}>{t('Preview')}</Button>
-                            <Button startIcon={<QrCode2Icon/>} size={"medium"} variant="outlined" disabled={loading} onClick={qrCodeDialog.openDialog} sx={{minWidth: "120px"}}>{t('QR code')}</Button>
+                            <Button startIcon={<PhoneIphoneIcon/>} size={"medium"} variant="outlined" disabled={loading} onClick={appDialog.openDialog}>{t('common.preview')}</Button>
+                            <Button startIcon={<QrCode2Icon/>} size={"medium"} variant="outlined" disabled={loading} onClick={qrCodeDialog.openDialog} sx={{minWidth: "120px"}}>{t('common.qrCode')}</Button>
                             <Button startIcon={<EditOutlinedIcon/>} size={"medium"} variant="contained" disabled={loading} disableElevation onClick={() => navigate("edit")}>{t('common.edit')}</Button>
                         </Stack>
                     </Stack>
@@ -94,22 +96,22 @@ const InstitutionPage = () => {
                         <SinglePageColumn maxWidth='1024px'>
                             <Panel
                                 loading={loading}
-                                title={t('Institution overview')}
-                                subtitle={t('General information about your institution, click edit to change details')}
+                                title={t('page.institution.overview.title')}
+                                subtitle={t('page.institution.overview.subtitle')}
                                 skeletonHeight={264}
                             >
                                 <FullRow>
-                                    <Label label={t('Reference name')} value={methods.getValues("referenceName")}/>
+                                    <Label label={t('page.institution.overview.referenceName')} value={methods.getValues("referenceName")}/>
                                 </FullRow>
                                 <HalfRow>
                                     <Stack spacing={1} display={"block"}>
-                                        <Typography variant='body1'>{t('Institution status')}</Typography>
+                                        <Typography variant='body1'>{t('page.institution.overview.status')}</Typography>
                                         <StatusChip status={methods.getValues("status") as Status} size="small"/>
                                     </Stack>
                                 </HalfRow>
                                 <HalfRow>
                                     <Stack spacing={1} display={"block"}>
-                                        <Typography variant='body1'>{t('Languages')}</Typography>
+                                        <Typography variant='body1'>{t('page.institution.overview.langOptions')}</Typography>
                                         <Stack direction={"row"} spacing={1}>
                                             {methods.getValues("langOptions")?.map((opt, index) => (
                                                 <LanguageFlag countryCode={opt.lang} size={20}/>

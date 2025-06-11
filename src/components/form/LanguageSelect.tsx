@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {FormControl, FormHelperText, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
-import {CircleFlag} from "react-circle-flags";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -88,7 +87,7 @@ export const LanguageSelectDialog = (props: LanguageSelectDialogProps) => {
                             <MenuItem value={'en-GB'}><LanguageOption countryCode='gb'/></MenuItem>
                             <MenuItem value={'es-ES'}><LanguageOption countryCode='es'/></MenuItem>
                         </Select>
-                        <FormHelperText error={validationError}>{validationError ? t("validation.languageOptionExists") : null}</FormHelperText>
+                        <FormHelperText error={validationError}>{validationError ? t("error.languageOptionExists") : null}</FormHelperText>
                     </FormControl>
                 </DialogContent>
                 <DialogActions sx={{px: '24px', pb: '20px'}}>
@@ -107,7 +106,7 @@ const LanguageOption = ({countryCode}: { countryCode: string }) => {
         <Stack direction='row' alignItems='center'>
             <LanguageFlag countryCode={countryCode} size={18}/>
             <Typography variant='body1' fontSize='bold' pl={1}>
-                {t(`langSelect.${countryCode}`)}
+                {t(`dialog.languageSelect.langOption.${countryCode}`)}
             </Typography>
         </Stack>
     )

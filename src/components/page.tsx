@@ -42,9 +42,9 @@ export const SinglePageColumn = ({children, ...props}: Grid2Props) => {
         <Grid2
             container
             size={{xs:12, xl:8}}
-            minWidth="540px"
-            maxWidth="840px"
-            width={{xs: "100%", xl: "100%"}}
+            minWidth="840px"
+            maxWidth={props.maxWidth ?? "1024px"}
+            width={"100%"}
             {...props}
         >
             <Stack gap={4} width="100%">

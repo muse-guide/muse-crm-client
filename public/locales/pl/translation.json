@@ -1,0 +1,340 @@
+{
+  "oops": "Ups! Coś poszło nie tak...",
+  "menu": {
+    "institution": "Instytucja",
+    "exhibitions": "Wystawy",
+    "exhibits": "Eksponaty",
+    "artists": "Artyści",
+    "account": "Konto",
+    "signOut": "Wyloguj się",
+    "dashboard": "Panel"
+  },
+  "page": {
+    "account": {
+      "title": "Zarządzanie kontem",
+      "subtitle": "Tutaj możesz zarządzać swoim kontem i subskrypcją.",
+      "generalInfoForm": {
+        "title": "Informacje ogólne",
+        "subtitle": "Podsumowanie informacji o Twoim koncie.",
+        "accountId": "ID konta",
+        "accountStatus": "Status konta",
+        "subscriptionStatus": "Status subskrypcji",
+        "tokenCount": "Liczba tokenów",
+        "plan": "Plan",
+        "expiredAt": "Wygasa",
+        "fullName": "Imię i nazwisko",
+        "email": "Adres e-mail"
+      },
+      "subscription": {
+        "title": "Zmień subskrypcję",
+        "subtitle": "Tutaj możesz zmienić subskrypcję.",
+        "perMonth": "miesięcznie",
+        "perYear": "rocznie",
+        "monthlyPlans": "Plany miesięczne",
+        "yearlyPlans": "Plany roczne",
+        "exhibitionsNumber": "Kolecje",
+        "exhibitsNumber": "Eksponaty",
+        "langOptsNumber": "Jzyki",
+        "tokensNumber": "Tokeny",
+        "standardVoices": "Głosy Standard",
+        "premiumVoices": "Głosy Premium",
+        "subscribeTo": "Subskrybuj",
+        "activePlan": "Aktywny plan"
+      },
+      "invoices": {
+        "title": "Faktury",
+        "subtitle": "Tutaj zobaczysz swoje faktury.",
+        "all": "Wszystkie",
+        "paid": "Opłacone",
+        "unpaid": "Nieopłacone",
+        "overdue": "Zaległe",
+        "issued": "Wystawione",
+        "filterByStatus": "Filtruj według statusu"
+      },
+      "address": {
+        "title": "Dane do faktury",
+        "subtitle": "Jeśli chcesz otrzymywać faktury imienne, podaj tutaj dane do faktury.",
+        "fullName": "Imię i nazwisko lub nazwa firmy",
+        "taxNumber": "NIP",
+        "street": "Ulica",
+        "houseNumber": "Numer domu",
+        "houseNumberExtension": "Numer lokalu",
+        "city": "Miasto",
+        "zipCode": "Kod pocztowy",
+        "telephoneNumber": "Numer telefonu",
+        "countryCode": "Kraj"
+      },
+      "actions": {
+        "accountActions": "Więcej",
+        "saveChanges": "Zapisz zmiany",
+        "changePassword": "Zmień hasło",
+        "deleteAccount": "Usuń konto",
+        "changeSubscription": "Zmień subskrypcję"
+      }
+    },
+    "exhibit": {
+      "title": "Eksponat",
+      "subtitle": "Tutaj możesz utworzyć lub edytować eksponaty",
+      "generalInfoForm": {
+        "title": "Informacje ogólne",
+        "subtitle": "Podaj podstawowe informacje o eksponacie. Możesz wzbogacić je o wygenerowane audio oraz artykuł.",
+        "referenceName": "Nazwa referencyjna",
+        "referenceNamePlaceholder": "Niesamowity eksponat",
+        "exhibitNumber": "Numer eksponatu",
+        "exhibitNumberHelperText": "Możesz organizować eksponaty w dowolnej kolejności. Pamiętaj jednak o unikalnych numerach eksponatów."
+      }
+    },
+    "exhibits": {
+      "title": "Eksponaty",
+      "subtitle": "Lista Twoich eksponatów",
+      "table": {
+        "referenceName": "Nazwa referencyjna",
+        "collection": "Wybierz kolekcję",
+        "number": "Numer",
+        "status": "Status",
+        "languageOptions": "Wersje językowe",
+        "audio": "Audio",
+        "actions": "Akcje"
+      }
+    },
+    "institution": {
+      "title": "Instytucja",
+      "subtitle": "Tutaj możesz utworzyć lub edytować swoją instytucję.",
+      "overview": {
+        "title": "Przegląd instytucji",
+        "subtitle": "Ogólne informacje o Twojej instytucji, kliknij edytuj, aby zmienić szczegóły.",
+        "referenceName": "Nazwa referencyjna",
+        "status": "Status instytucji",
+        "langOptions": "Wersje językowe"
+      },
+      "generalInfoForm": {
+        "title": "Informacje ogólne",
+        "subtitle": "Podaj podstawowe informacje o instytucji. Możesz wzbogacić je o zdjęcia, artykuł i audio.",
+        "referenceName": "Nazwa referencyjna",
+        "referenceNamePlaceholder": "Niesamowite muzeum"
+      }
+    },
+    "exhibition": {
+      "title": "Kolekcja",
+      "subtitle": "Tutaj możesz utworzyć lub edytować kolekcje. Kolekcje grupują eksponaty.",
+      "generalInfoForm": {
+        "title": "Informacje ogólne",
+        "subtitle": "Podaj podstawowe informacje o kolekcji. Możesz wzbogacić je o artykuł i audio.",
+        "referenceName": "Nazwa referencyjna",
+        "referenceNamePlaceholder": "Niesamowita kolekcja"
+      }
+    },
+    "exhibitions": {
+      "title": "Kolekcje",
+      "subtitle": "Lista Twoich kolekcji",
+      "table": {
+        "referenceName": "Nazwa referencyjna",
+        "status": "Status",
+        "languageOptions": "Wersja językowa",
+        "audio": "Audio",
+        "actions": "Akcje"
+      }
+    },
+    "common": {
+      "noLanguage": "Dodaj wersję językową do tego elementu",
+      "appPreview": "Podgląd aplikacji",
+      "audioHelperText": "Kliknij tutaj, aby odsłuchać lub wygenerować nowe audio dla tej wersji językowej.",
+      "noAudioHelperTextTitle": "Brak audio",
+      "noAudioHelperTextSubtitle": "Nie wygenerowano audio dla tej wersji językowej.",
+      "generateAudio": "Generuj audio",
+      "articleHelperText": "Edytuj artykuł dla tej wersji językowej.",
+      "noArticleHelperTextTitle": "Brak artykułu",
+      "noArticleHelperTextSubtitle": "Możesz wzbogacić swój zasób o opcjonalny opis w formie artykułu.",
+      "createArticle": "Utwórz artykuł",
+      "noItemsTitle": "Nie znaleziono elementów",
+      "noItemsSubtitle": "Nie znaleziono elementów dla podanych kryteriów wyszukiwania. Możesz utworzyć nowy element, klikając poniższy przycisk."
+    },
+    "languagesForm": {
+      "title": "Wersje językowe",
+      "subtitle": "Dodaj wersje językowe do tego elementu. Wymagana jest co najmniej jedna wersja językowa.",
+      "language": "Język",
+      "languagePlaceholder": "Wybierz język...",
+      "addLanguage": "Dodaj język",
+      "removeLanguage": "Usuń język",
+      "editLanguage": "Edytuj język",
+      "options": {
+        "title": "Tytuł",
+        "titlePlaceholder": "Tytuł elementu, np. Mona Lisa",
+        "subtitle": "Podtytuł",
+        "subtitlePlaceholder": "Opcjonalny podtytuł elementu, np. Leonardo da Vinci, 1503"
+      }
+    }
+  },
+  "dialog": {
+    "article": {
+      "title": "Przygotuj artykuł",
+      "description": "Możesz wzbogacić swój zasób o opisowy artykuł. Dodaj tekst, sformatuj go i dodaj zdjęcia, aby zapewnić odbiorcom najlepsze doświadczenie.",
+      "articleEditorPlaceholder": "Dodaj opis, zdjęcia lub nawet film z YouTube..."
+    },
+    "app": {
+      "title": "Podgląd aplikacji",
+      "description": "Tutaj możesz zobaczyć, jak będzie wyglądać Twoja aplikacja. Możesz nawigować po aplikacji i zobaczyć, jak Twoje zasoby będą wyświetlane użytkownikom."
+    },
+    "audio": {
+      "title": "Generuj audio",
+      "description": "W tej aplikacji wykorzystujemy najnowocześniejsze narzędzia sztucznej inteligencji do generowania dźwięku, który wiernie naśladuje ludzką mowę. Aby skorzystać z tej funkcji, wystarczy podać tekst, który chcesz zamienić na nagranie audio. Może to być opis eksponatu, narracja artykułu lub inna treść, która wzbogaci doświadczenie użytkownika. Po podaniu tekstu nasze narzędzia AI przetworzą go i wygenerują plik audio. Plik ten będzie dostępny do odsłuchu w aplikacji, zapewniając użytkownikom bogate, multimedialne doświadczenie. Pamiętaj, że jakość wygenerowanego dźwięku w dużej mierze zależy od wprowadzonego tekstu. Zalecamy więc używanie jasnego i zwięzłego języka dla najlepszych rezultatów.",
+      "abbrAudioInfo": "Staraj się nie używaj skrótów, ponieważ mogą one nie być poprawnie odczytane przez syntezator mowy.",
+      "plAudioInfo": "Używaj końcówek fleksyjnych przy liczbach i datach, aby poprawić jakość generowanego dźwięku.<br/> Na przykład: <strong>5-ty</strong> zamiast <strong>5</strong>, albo <strong>w 1920-tym roku</strong> zamiast <strong>w 1920 roku</strong>.",
+      "tryIt": "Posłuchaj",
+      "listen": "Słuchaj",
+      "replay": "Odtwórz ponownie",
+      "pause": "Pauza",
+      "audioEditorPlaceholder": "Wpisz tutaj tekst, który chcesz zamienić na audio..."
+    },
+    "qrCode": {
+      "title": "Kod QR",
+      "description": "Unikalny kod QR służący do przekierowania odwiedzającego na stronę zasobu. Wybierz jedną z dostępnych opcji, aby go wydrukować i umieścić w widocznym miejscu.",
+      "referenceName": "Zasób: {{referenceName}}",
+      "download": "Pobierz kod QR",
+      "copyLink": "Kopiuj link",
+      "linkCopied": "Link skopiowany do schowka"
+    },
+    "languageSelect": {
+      "title": "Wybierz język",
+      "description": "Wybierz język, w którym chcesz edytować ten element.",
+      "langOption": {
+        "pl": "Polski",
+        "gb": "Angielski (UK)",
+        "es": "Hiszpański"
+      }
+    },
+    "removeLanguage": {
+      "title": "Usuń wersję językową",
+      "description": "Czy na pewno chcesz usunąć tę wersję językową? Ta operacja jest nieodwracalna."
+    },
+    "delete": {
+      "title": "Usuń element",
+      "description": "Czy na pewno chcesz trwale usunąć ten element?"
+    },
+    "changePassword": {
+      "title": "Zmień hasło",
+      "description": "Podaj nowe hasło do swojego konta.",
+      "currentPasswordFieldLabel": "Obecne hasło",
+      "newPasswordFieldLabel": "Wprowadź nowe hasło",
+      "confirmPasswordFieldLabel": "Potwierdź swoje hasło",
+      "updatePasswordButtonText": "Zaktualizuj hasło"
+    }
+  },
+  "component": {
+    "searchText": {
+      "title": "Nazwa referencyjna",
+      "placeholder": "Wyszukaj po nazwie referencyjnej..."
+    },
+    "table": {
+      "pageSize": "Liczba elementów na stronie"
+    },
+    "imageUploader": {
+      "uploadHelperText": "Kliknij i dodaj zdjęcia. Zdjęcia będą widoczne w aplikacji mobilnej."
+    }
+  },
+  "common": {
+    "yes": "Tak",
+    "no": "Nie",
+    "select": "Wybierz",
+    "add": "Dodaj",
+    "create": "Utwórz",
+    "update": "Aktualizuj",
+    "close": "Zamknij",
+    "save": "Zapisz",
+    "listen": "Słuchaj",
+    "edit": "Edytuj",
+    "preview": "Podgląd",
+    "audio": "Audio",
+    "article": "Artykuł",
+    "cancel": "Anuluj",
+    "upload": "Prześlij",
+    "crop": "Przytnij",
+    "from": "Od",
+    "to": "Do",
+    "download": "Pobierz",
+    "error": "Błąd",
+    "details": "Szczegóły",
+    "loadMore": "Załaduj więcej",
+    "tokenCount": "Liczba tokenów",
+    "qrCode": "Kod QR"
+  },
+  "error": {
+    "required": "To pole jest wymagane",
+    "maxLength": "Maksymalna długość to: {{length}}.",
+    "pattern": "Podana wartość nie pasuje do wzorca: {{pattern}}.",
+    "noLanguageOption": "Musisz dodać co najmniej jedną wersję językową do kolekcji...",
+    "noActiveExhibition": "Musisz mieć co najmniej jedną aktywną kolekcję, aby zarządzać eksponatami.",
+    "languageOptionExists": "Ta wersja językowa już istnieje dla tego elementu.",
+    "imageTooLarge": "Obraz jest za duży. Maksymalny rozmiar to 2MB.",
+    "imageUploadFailed": "Nie udało się przesłać obrazu.",
+    "imageFetchingFailed": "Nie udało się pobrać obrazu.",
+    "qrCodeFetchingFailed": "Nie udało się pobrać kodu QR.",
+    "audioGeneration": "Błąd podczas generowania audio.",
+    "institutionUpdateInProgress": "Instytucja nie może być edytowana, ponieważ ma status: PROCESSING.",
+    "fetchingInstitutionFailed": "Nie udało się pobrać instytucji.",
+    "savingInstitutionFailed": "Nie udało się zapisać instytucji.",
+    "creatingInstitutionFailed": "Nie udało się utworzyć instytucji.",
+    "fetchingExhibitionsFailed": "Nie udało się pobrać kolekcji.",
+    "fetchingExhibitionFailed": "Nie udało się pobrać kolekcji.",
+    "savingExhibitionFailed": "Nie udało się zapisać kolekcji.",
+    "deletingExhibitionFailed": "Nie udało się usunąć kolekcji.",
+    "fetchingExhibitsFailed": "Nie udało się pobrać eksponatów.",
+    "fetchingExhibitFailed": "Nie udało się pobrać eksponatu.",
+    "savingExhibitFailed": "Nie udało się zapisać eksponatu.",
+    "deletingExhibitFailed": "Nie udało się usunąć eksponatu.",
+    "fetchingCustomerDataFailed": "Nie udało się pobrać danych klienta.",
+    "fetchingConfigurationFailed": "Nie udało się pobrać konfiguracji aplikacji.",
+    "updatingSubscriptionFailed": "Nie udało się zmienić subskrypcji.",
+    "updatingCustomerDetailsFailed": "Nie udało się zaktualizować danych klienta."
+  },
+  "apiError": {
+    "invalidRequest": "Nieprawidłowe żądanie.",
+    "entriesNotUnique": "Elementy nie są unikalne.",
+    "audioCharacterLimitExceeded": "Przekroczono limit znaków dla audio.",
+    "articleCharacterLimitExceeded": "Przekroczono limit znaków dla artykułu.",
+    "articleInvalidTag": "Nieprawidłowy znacznik w artykule.",
+    "youtubeNoSrcAttribute": "Iframe YouTube nie ma atrybutu src.",
+    "youtubeInvalidSrcAttribute": "Atrybut src iframe YouTube nie jest adresem URL YouTube.",
+    "imageNoSrcAttribute": "Tag obrazka nie ma atrybutu src.",
+    "imageInvalidSrcAttribute": "Atrybut src tagu obrazka nie jest prawidłowym adresem URL.",
+    "imageInvalidImageId": "Nieprawidłowy identyfikator obrazu.",
+    "institutionNotActive": "Instytucja nie jest aktywna.",
+    "exhibitionNotActive": "Kolekcja nie jest aktywna.",
+    "exhibitNotActive": "Eksponat nie jest aktywny.",
+    "institutionNotExist": "Instytucja nie istnieje.",
+    "exhibitionNotExist": "Kolekcja nie istnieje.",
+    "exhibitNotExist": "Eksponat nie istnieje.",
+    "customerAlreadyExist": "Użytkownik już istnieje.",
+    "customerNoActiveSubscription": "Użytkownik nie ma aktywnej subskrypcji.",
+    "customerPlanAlreadyActive": "Wybrany plan jest już aktywny.",
+    "customerMaxExhibitionCountReached": "Osiągnięto maksymalną liczbę kolekcji dla bieżącego planu.",
+    "customerMaxExhibitCountReached": "Osiągnięto maksymalną liczbę eksponatów dla bieżącego planu.",
+    "customerMaxLangOptionsReached": "Osiągnięto maksymalną liczbę wersji językowych dla bieżącego planu.",
+    "customerNotExist": "Użytkownik nie istnieje lub jest nieprawidłowo skonfigurowany.",
+    "customerDeactivated": "Użytkownik został dezaktywowany.",
+    "customerConfigurationError": "Błąd konfiguracji Użytkownika.",
+    "customerNoTokensAvailable": "Brak dostępnych tokenów dla Użytkownika.",
+    "customerInstitutionAlreadyCreate": "Użytkownik ma już utworzoną instytucję.",
+    "customerSubscriptionIdMissing": "Brakuje identyfikatora subskrypcji Użytkownika.",
+    "customerSubscriptionNotFound": "Nie znaleziono subskrypcji Użytkownika.",
+    "customerSubscriptionNotLocked": "Subskrypcja Użytkownika nie jest zablokowana.",
+    "configurationInvalidPlanName": "Nieprawidłowa nazwa planu.",
+    "configurationMultipleInstitutionsFound": "Znaleziono wiele instytucji dla Użytkownika.",
+    "audioGenerationNoApiKey": "Brak klucza API dla generatora audio.",
+    "audioGenerationFailedToRetrieveApiKey": "Nie udało się pobrać klucza API.",
+    "audioGenerationVoiceNotSupported": "Podany głos nie jest obsługiwany.",
+    "audioGenerationNoAudioGenerated": "Nie wygenerowano audio.",
+    "unexpectedError": "Wystąpił nieoczekiwany błąd."
+  },
+  "success": {
+    "exhibitionCreated": "Nowa kolekcja została utworzona.",
+    "exhibitionUpdated": "Kolekcja {{exhibitionId}} została zaktualizowana.",
+    "exhibitionDeleted": "Kolekcja o id: {{exhibitionId}} została usunięta.",
+    "exhibitCreated": "Nowy eksponat został utworzony.",
+    "exhibitUpdated": "Eksponat {{exhibitId}} został zaktualizowany.",
+    "exhibitDeleted": "Eksponat o id: {{exhibitId}} został usunięty.",
+    "subscriptionUpdated": "Subskrypcja została zaktualizowana.",
+    "customerDetailsUpdated": "Dane Użytkownika zostały zaktualizowane.",
+    "passwordChanged": "Hasło zostało zmienione."
+  }
+}

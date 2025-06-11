@@ -19,8 +19,8 @@ import download from "downloadjs";
 import {ScanMe1} from "./ScanMe1";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import PolylineIcon from '@mui/icons-material/Polyline';
 import {useSnackbar} from "notistack";
+import {useHandleError} from "../../http/errorHandler";
 
 interface QrCodeDialogProps {
     referenceName: string,
@@ -67,6 +67,7 @@ export default function QrCodeDialog(props: QrCodeDialogProps) {
     const scanMe2RefLarge = useRef(null);
     const scanMe3RefLarge = useRef(null);
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const handleError = useHandleError();
 
     const qrOptions = [
         {id: 'scan-me-1'},
@@ -75,8 +76,12 @@ export default function QrCodeDialog(props: QrCodeDialogProps) {
     ];
 
     const getQrCodeImageAsync = useCallback(async (key: string) => {
-        const response = await assetService.getAssetPreSignedUrl({assetId: key, assetType: "qrcodes"});
-        setQrCode(response.url)
+        try {
+            const response = await assetService.getAssetPreSignedUrl({assetId: key, assetType: "qrcodes"});
+            setQrCode(response.url)
+        } catch (error) {
+            handleError("error.qrCodeFetchingFailed", error);
+        }
     }, []);
 
     useEffect(() => {

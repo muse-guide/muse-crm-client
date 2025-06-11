@@ -16,6 +16,7 @@ import {SubscriptionsPanel} from "./SubscriptionsPanel";
 import useDialog, {useApplicationContext, useTokenCount} from "../../components/hooks";
 import {ChangePasswordDialog} from "./ChangePasswordDialog";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
+import {useHandleError} from "../../http/errorHandler";
 
 const AccountPage = () => {
     const {customer, setCustomer, refreshCustomer} = useApplicationContext();
@@ -23,6 +24,7 @@ const AccountPage = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
+    const handleError = useHandleError();
 
     const methods = useForm<Customer>({
         mode: "onSubmit",
@@ -36,8 +38,8 @@ const AccountPage = () => {
             setCustomer(updatedCustomer);
             methods.reset(updatedCustomer);
             snackbar(t("success.customerDetailsUpdated"), {variant: "success"})
-        } catch (err) {
-            snackbar(t("error.updatingCustomerDetailsFailed"), {variant: "error"})
+        } catch (error) {
+            handleError("error.updatingCustomerDetailsFailed", error);
         } finally {
             setLoading(false);
         }
@@ -65,7 +67,7 @@ const AccountPage = () => {
                     <AppBreadcrumbs links={links}/>
                     <PageTitle title={t('page.account.title')} subtitle={t('page.account.subtitle')}/>
                     <PageContentContainer>
-                        <SinglePageColumn maxWidth='1024px'>
+                        <SinglePageColumn maxWidth='1280px'>
                             <Panel
                                 loading={loading}
                                 title={t('page.account.generalInfoForm.title')}

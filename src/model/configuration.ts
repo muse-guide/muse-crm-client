@@ -2,7 +2,9 @@ import {Customer} from "./customer";
 
 export interface SubscriptionPlan {
     type: string,
+    name: string,
     price: number,
+    durationMonths: number,
     maxExhibitions: number,
     maxExhibits: number,
     maxLanguages: number,

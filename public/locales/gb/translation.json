@@ -9,11 +9,6 @@
     "signOut": "Sing out",
     "dashboard": "Dashboard"
   },
-  "langSelect": {
-    "pl": "Polish",
-    "gb": "English (Great Britain)",
-    "es": "Spanish"
-  },
   "page": {
     "account": {
       "title": "Account",
@@ -34,9 +29,15 @@
         "title": "Change subscription",
         "subtitle": "Upgrade your subscription plan here.",
         "perMonth": "per month",
-        "exhibitionsNumber": "No. of exhibitions",
-        "exhibitsNumber": "No. of exhibits",
-        "langOptsNumber": "No. of language options",
+        "perYear": "per year",
+        "monthlyPlans": "Monthly subscriptions",
+        "yearlyPlans": "Yearly subscriptions",
+        "exhibitionsNumber": "Collections",
+        "exhibitsNumber": "Exhibits",
+        "langOptsNumber": "Languages",
+        "tokensNumber": "Tokens",
+        "standardVoices": "Standard voices",
+        "premiumVoices": "Premium voices",
         "subscribeTo": "Subscribe to",
         "activePlan": "Active plan"
       },
@@ -88,6 +89,7 @@
       "subtitle": "List of your exhibits",
       "table": {
         "referenceName": "Reference name",
+        "collection": "Choose collection",
         "number": "Number",
         "status": "Status",
         "languageOptions": "Language option",
@@ -98,6 +100,13 @@
     "institution": {
       "title": "Institution",
       "subtitle": "Create or edit your Institution here.",
+      "overview": {
+        "title": "Institution overview",
+        "subtitle": "General information about your institution, click edit to change details.",
+        "referenceName": "Reference name",
+        "status": "Institution status",
+        "langOptions": "Languages"
+      },
       "generalInfoForm": {
         "title": "General info",
         "subtitle": "Provide basic information about Institution. You can enrich it with images, article and audio.",
@@ -112,8 +121,7 @@
         "title": "General info",
         "subtitle": "Provide basic information about exhibition. You can enrich it with article and audio.",
         "referenceName": "Reference name",
-        "referenceNamePlaceholder": "Amazing exhibition",
-        "includeInstitutionInfoHelperText": "If selected, user will be able to access institution info from this exhibition."
+        "referenceNamePlaceholder": "Amazing exhibition"
       }
     },
     "exhibitions": {
@@ -167,42 +175,15 @@
       "title": "App preview",
       "description": "Here you can see how your app will look like. You can navigate through the app and see how your resources will be displayed to the users."
     },
-    "invoice": {
-      "title": "Invoice details",
-      "description": "See invoice details here. You can download it by clicking button below.",
-      "invoiceBusinessId": "Invoice business ID",
-      "invoicePeriod": "Invoice period",
-      "soldAt": "Sold at",
-      "issuedAt": "Issued at",
-      "paymentDue": "Payment due",
-      "paymentStatus": "Payment status",
-      "totalAmount": "Total amount",
-      "plan": "Plan",
-      "activeFrom": "Active from",
-      "activeTo": "Active to",
-      "amount": "Amount"
-    },
     "audio": {
       "title": "Generate audio",
       "description": "In this application, we utilize state-of-the-art artificial intelligence tools to generate audio that closely mimics human speech. To use this feature, you simply need to provide the text you want to be converted into audio. This could be a description of an exhibit, a narration of an article, or any other content that you think would enhance the user's experience. Once you've provided the text, our AI tools will process it and generate an audio file. This audio file will then be available for playback within the application, providing your users with a rich, multimedia experience. This feature is not only limited to English. Our AI tools are capable of synthesizing audio in multiple languages, making your content accessible to a wider audience. Remember, the quality of the synthesized audio greatly depends on the text input. Therefore, it's recommended to use clear and concise language for the best results.",
+      "abbrAudioInfo": "Try not to use abbreviations, as they may not be read correctly by the speech synthesizer.",
       "tryIt": "Try it",
       "listen": "Listen",
       "replay": "Replay",
       "pause": "Pause",
-      "sayIn": "Say in ...",
-      "sayInHelperText": "Insert text you want to speak in other language. It is especially useful when you want to speak surname or name of the artist in the native language.",
-      "longPause": "Long pause",
-      "longPauseHelperText": "Insert tag which will pause audio for a longer period.",
-      "customPause": "Custom pause",
-      "customPauseHelperText": "Insert tag which will pause audio for as long as you prefer.",
       "audioEditorPlaceholder": "Type here text you want to convert into audio..."
-    },
-    "uploadPhoto": {
-      "title": "Upload photos",
-      "helperTextTitle": "Add photos",
-      "helperTextSubTitle": "Drag and drop photos here or click to upload. Photos will be available in mobile app",
-      "choosePhoto": "Choose photo",
-      "uploadHelperText": "Click and add some pictures here. Pictures will be available in mobile app."
     },
     "qrCode": {
       "title": "QR code",
@@ -214,7 +195,12 @@
     },
     "languageSelect": {
       "title": "Select language",
-      "description": "Select language option for this element."
+      "description": "Select language option for this element.",
+      "langOption": {
+        "pl": "Polish",
+        "gb": "English (Great Britain)",
+        "es": "Spanish"
+      }
     },
     "removeLanguage": {
       "title": "Remove language",
@@ -237,6 +223,12 @@
     "searchText": {
       "title": "Reference name",
       "placeholder": "Search by reference name..."
+    },
+    "table": {
+      "pageSize": "Page size"
+    },
+    "imageUploader": {
+      "uploadHelperText": "Click and add some pictures here. Pictures will be available in mobile app."
     }
   },
   "common": {
@@ -262,28 +254,76 @@
     "error": "Error",
     "details": "Details",
     "loadMore": "Load more",
-    "tokenCount": "Token count"
+    "tokenCount": "Token count",
+    "qrCode": "QR code"
   },
-  "validation": {
-    "required": "This field is required.",
+  "error": {
+    "required": "This field is required",
     "maxLength": "Max length is: {{length}}.",
     "pattern": "Provided value doesn't match pattern: {{pattern}}.",
     "noLanguageOption": "You must provide at least one language for collection...",
     "noActiveExhibition": "You must have at least one active Exhibition to manage Exhibits.",
-    "languageOptionExists": "Language option already exists for this element."
-  },
-  "error": {
+    "languageOptionExists": "Language option already exists for this element.",
+    "imageTooLarge": "Image is too large. Maximum size is 2MB.",
+    "imageUploadFailed": "Image upload failed.",
+    "imageFetchingFailed": "Image fetching failed.",
+    "qrCodeFetchingFailed": "QR code fetching failed.",
     "audioGeneration": "Error during audio generation.",
+    "institutionUpdateInProgress": "Institution cannot be edited because in status: PROCESSING.",
+    "fetchingInstitutionFailed": "Fetching institution failed.",
+    "savingInstitutionFailed": "Saving institution failed.",
+    "creatingInstitutionFailed": "Creating institution failed.",
     "fetchingExhibitionsFailed": "Fetching exhibitions failed.",
     "fetchingExhibitionFailed": "Fetching exhibition failed.",
+    "savingExhibitionFailed": "Saving exhibition failed.",
+    "deletingExhibitionFailed": "Deleting exhibition failed.",
     "fetchingExhibitsFailed": "Fetching exhibits failed.",
     "fetchingExhibitFailed": "Fetching exhibit failed.",
     "savingExhibitFailed": "Saving exhibit failed.",
-    "deletingExhibitFailed": "Deleting exhibit id: {{exhibitId}} failed.",
+    "deletingExhibitFailed": "Deleting exhibit failed.",
     "fetchingCustomerDataFailed": "Fetching Customer details failed.",
     "fetchingConfigurationFailed": "Fetching application configuration failed.",
     "updatingSubscriptionFailed": "Changing subscription failed.",
     "updatingCustomerDetailsFailed": "Updating customer details failed."
+  },
+  "apiError": {
+    "invalidRequest": "Invalid request.",
+    "entriesNotUnique": "Entries are not unique.",
+    "audioCharacterLimitExceeded": "Audio character limit exceeded.",
+    "articleCharacterLimitExceeded": "Article character limit exceeded.",
+    "articleInvalidTag": "Invalid tag in article.",
+    "youtubeNoSrcAttribute": "Youtube iframe has no src attribute.",
+    "youtubeInvalidSrcAttribute": "Youtube iframe src is not a youtube url.",
+    "imageNoSrcAttribute": "Image tag has no src attribute.",
+    "imageInvalidSrcAttribute": "Image tag src is not a valid url.",
+    "imageInvalidImageId": "Invalid image id.",
+    "institutionNotActive": "Institution is not active.",
+    "exhibitionNotActive": "Exhibition is not active.",
+    "exhibitNotActive": "Exhibit is not active.",
+    "institutionNotExist": "Institution does not exist.",
+    "exhibitionNotExist": "Exhibition does not exist.",
+    "exhibitNotExist": "Exhibit does not exist.",
+    "customerAlreadyExist": "Customer already exists.",
+    "customerNoActiveSubscription": "Customer has no active subscription.",
+    "customerPlanAlreadyActive": "Selected plan is already active.",
+    "customerMaxExhibitionCountReached": "Customer has reached maximum number of exhibitions for current plan.",
+    "customerMaxExhibitCountReached": "Customer has reached maximum number of exhibits for current plan.",
+    "customerMaxLangOptionsReached": "Customer has reached maximum number of language options for current plan.",
+    "customerNotExist": "Customer does not exist, or configured incorrectly.",
+    "customerDeactivated": "Customer has been deactivated.",
+    "customerConfigurationError": "Customer configuration error.",
+    "customerNoTokensAvailable": "Customer has no tokens available.",
+    "customerInstitutionAlreadyCreate": "Customer already has an institution created.",
+    "customerSubscriptionIdMissing": "Customer subscription id is missing.",
+    "customerSubscriptionNotFound": "Customer subscription not found.",
+    "customerSubscriptionNotLocked": "Customer subscription is not locked.",
+    "configurationInvalidPlanName": "Invalid plan name.",
+    "configurationMultipleInstitutionsFound": "Multiple institutions found for customer.",
+    "audioGenerationNoApiKey": "No API key found for audio generator.",
+    "audioGenerationFailedToRetrieveApiKey": "Failed to retrieve API key",
+    "audioGenerationVoiceNotSupported": "Provided voice is not supported.",
+    "audioGenerationNoAudioGenerated": "No audio generated.",
+    "unexpectedError": "Unexpected error occurred."
   },
   "success": {
     "exhibitionCreated": "New exhibition created.",

@@ -1,5 +1,5 @@
 import axios, {AxiosError} from "axios";
-import {ApiException, isMutationError} from "./types";
+import {ApiException} from "./types";
 import {fetchAuthSession} from "aws-amplify/auth";
 
 export default axios.create({
@@ -27,17 +27,11 @@ export async function requestWrapper<T>(request: () => Promise<T>) {
     try {
         return await request()
     } catch (error) {
-        if (error instanceof AxiosError) {
-            if (error.response) {
-                console.error(`Error, status: ${error.response.status}, data: ${JSON.stringify(error.response.data)}`);
-                if (isMutationError(error.response.data)) {
-                    throw new ApiException(error.response.data.error, error.response.data.cause)
-                } else {
-                    throw new ApiException(error.response.status.toString(), error.response.data)
-                }
-            }
+        if (error instanceof AxiosError && error.response) {
+            console.error(`Error, status: ${error.response.status}, data: ${JSON.stringify(error.response.data)}`);
+            throw new ApiException(error.response.data.error, error.response.data.message)
         }
         console.error(`Unexpected error occurred: ${error}`);
-        throw new ApiException("500", "Unexpected error occurred")
+        throw new ApiException("500", "apiError.unexpectedError");
     }
 }

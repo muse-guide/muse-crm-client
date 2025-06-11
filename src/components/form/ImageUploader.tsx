@@ -11,6 +11,7 @@ import {normalizeText} from "../ComponentUtils";
 import LinearProgress from '@mui/material/LinearProgress';
 import {assetService} from "../../services/AssetService";
 import {useSnackbar} from "notistack";
+import {useHandleError} from "../../http/errorHandler";
 
 export interface ImageHolder {
     images: ImageRef[];
@@ -37,7 +38,7 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Im
         const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
         if (image.size > maxSizeInBytes) {
             setUploadInProgress(false);
-            snackbar(t("The selected image exceeds the maximum size of 2MB."), {variant: "error"})
+            snackbar(t("error.imageTooLarge"), {variant: "error"})
             return;
         }
 
@@ -71,7 +72,7 @@ export const ImageUploaderField = (props: { arrayMethods: UseFieldArrayReturn<Im
                         </Button>
                     </label>
                 </Box>
-                <Typography variant='body1'>{t("dialog.uploadPhoto.uploadHelperText")}</Typography>
+                <Typography variant='body1'>{t("component.imageUploader.uploadHelperText")}</Typography>
             </Stack>
             <List sx={{width: '100%', maxWidth: 500, pb: 0, pt: 2}} dense>
                 {props.arrayMethods.fields.map((field, index) => (
@@ -99,6 +100,7 @@ const UploadedItem = ({index, item, removeImage, tmp}: {
 }) => {
     const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
     const [imgPrevOpen, setImgPrevOpen] = useState(false);
+    const handleError = useHandleError();
 
     useEffect(() => {
         return () => setImageUrl(undefined)
@@ -109,7 +111,7 @@ const UploadedItem = ({index, item, removeImage, tmp}: {
             if (tmp) return await assetService.getAssetPreSignedUrl({assetId: id, assetType: "tmp"})
             else return await assetService.getAssetPreSignedUrl({assetId: id, assetType: "images"})
         } catch (error) {
-            console.error('Get image error: ', error);
+            handleError("error.imageFetchingFailed", error);
         }
     };
 

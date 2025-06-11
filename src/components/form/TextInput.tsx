@@ -39,19 +39,19 @@ const TextInput = ({
     if (required) {
         customValidation.required = {
             value: required,
-            message: t("validation.required")
+            message: t("error.required")
         };
     }
     if (maxLength) {
         customValidation.maxLength = {
             value: maxLength,
-            message: t("validation.maxLength", {length: maxLength})
+            message: t("error.maxLength", {length: maxLength})
         };
     }
     if (pattern) {
         customValidation.pattern = {
             value: pattern,
-            message: t("validation.pattern", {pattern: pattern})
+            message: t("error.pattern", {pattern: pattern})
         };
     }
 

@@ -4,18 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Refactor audio and image upload components to enhance user experience and improve code organization">
+    <list default="true" id="ea9ae24e-ab23-4797-9f0c-645e68000e53" name="Changes" comment="Remove phonemizer dependency to streamline package.json and reduce bundle size">
+      <change afterPath="$PROJECT_DIR$/public/locales/pl/translation.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo-circle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/http/errorHandler.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/live_preview.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/locales/gb/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/gb/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/AppDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/AppDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Breadcrumbs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Breadcrumbs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/articleEditor/ArticleEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/articleEditor/ArticleEditor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/AudioEditor.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audioEditor/AudioGeneratorDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/ImageUploader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/LanguageSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/TextInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hooks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hooks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/qrCodeDialog/QrCodeDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/QrCodeDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe1.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe2.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe3.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrCodeDialog/ScanMe3.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/configuration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/configuration.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/react-app-env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Root.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/AccountPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/account/SubscriptionsPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitionSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibit/ExhibitsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/institution/InstitutionEditPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/institution/InstitutionEditPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/institution/InstitutionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/institution/InstitutionPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,8 +48,8 @@
       <list>
         <option value="package.json" />
         <option value="CSS File" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -76,7 +96,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17.0.2&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/src/components/qrCodeDialog&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/public/locales&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -90,17 +110,18 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.3876967&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/michalpacholczyk/workspace/muse-crm-client/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/locales" />
       <recent name="$PROJECT_DIR$/src/components/qrCodeDialog" />
       <recent name="$PROJECT_DIR$/src/routes/institution" />
       <recent name="$PROJECT_DIR$/src/model" />
       <recent name="$PROJECT_DIR$/src/services" />
-      <recent name="$PROJECT_DIR$/src/components/articleEditor" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/qrCodeDialog" />
@@ -117,7 +138,7 @@
       <recent name="$PROJECT_DIR$/src/components/TabTitle.tsx" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.npm start">
+  <component name="RunManager" selected="npm.build">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -194,8 +215,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
       </set>
     </attachedChunks>
   </component>
@@ -495,7 +516,16 @@
       <workItem from="1748264955577" duration="33000" />
       <workItem from="1748459099667" duration="1638000" />
       <workItem from="1748803513473" duration="2843000" />
-      <workItem from="1748891554927" duration="3885000" />
+      <workItem from="1748891554927" duration="5509000" />
+      <workItem from="1748975564885" duration="2804000" />
+      <workItem from="1749150011291" duration="3561000" />
+      <workItem from="1749236715616" duration="2887000" />
+      <workItem from="1749322765594" duration="1192000" />
+      <workItem from="1749323971934" duration="8516000" />
+      <workItem from="1749447879142" duration="1730000" />
+      <workItem from="1749493948584" duration="3800000" />
+      <workItem from="1749583581997" duration="1941000" />
+      <workItem from="1749668691914" duration="4509000" />
     </task>
     <task id="LOCAL-00001" summary="Add exhibitions table">
       <option name="closed" value="true" />
@@ -689,7 +719,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748205082116</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Refactor QR code dialog and related components to improve usability and enhance code structure">
+      <option name="closed" value="true" />
+      <created>1748895530401</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1748895530401</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Remove phonemizer dependency to streamline package.json and reduce bundle size">
+      <option name="closed" value="true" />
+      <created>1748895823988</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1748895823988</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,8 +755,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Optimize table" />
-    <MESSAGE value="Progress" />
     <MESSAGE value="Introduce nano id" />
     <MESSAGE value="Add catch" />
     <MESSAGE value="Add exhibit page" />
@@ -734,7 +778,9 @@
     <MESSAGE value="Refactor account management and enhance token count display" />
     <MESSAGE value="Refactor InstitutionPage and ExhibitsPage to improve language options handling and enhance UI interactions" />
     <MESSAGE value="Refactor audio and image upload components to enhance user experience and improve code organization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor audio and image upload components to enhance user experience and improve code organization" />
+    <MESSAGE value="Refactor QR code dialog and related components to improve usability and enhance code structure" />
+    <MESSAGE value="Remove phonemizer dependency to streamline package.json and reduce bundle size" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove phonemizer dependency to streamline package.json and reduce bundle size" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -744,7 +790,21 @@
           <line>18</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx</url>
+          <line>60</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/routes/exhibition/ExhibitionsPage.tsx</url>
+          <line>68</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

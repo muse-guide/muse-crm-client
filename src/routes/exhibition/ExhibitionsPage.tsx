@@ -15,6 +15,7 @@ import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import {exhibitionService, ExhibitionsFilter} from "../../services/ExhibitionService";
 import {useSnackbar} from "notistack";
 import {usePagination} from "../../components/hooks";
+import {useHandleError} from "../../http/errorHandler";
 
 const links = [{
     nameKey: "menu.exhibitions",
@@ -25,6 +26,7 @@ const ExhibitionsPage = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
     const {enqueueSnackbar: snackbar} = useSnackbar();
+    const handleError = useHandleError();
 
     const [exhibitions, setExhibitions] = useState<Exhibition[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -46,8 +48,8 @@ const ExhibitionsPage = () => {
 
             setExhibitions(results.items as Exhibition[])
             if (results.nextPageKey) pagination.updatePageKeys(results.nextPageKey)
-        } catch (err) {
-            snackbar(t("error.fetchingExhibitionsFailed"), {variant: "error"})
+        } catch (error) {
+            handleError("error.fetchingExhibitionsFailed", error);
         } finally {
             setLoading(false);
         }
@@ -59,8 +61,8 @@ const ExhibitionsPage = () => {
             resetPagination()
             getExhibitionsAsync()
             snackbar(t("success.exhibitionDeleted", {exhibitionId: exhibitionId}), {variant: "success"})
-        } catch (err) {
-            snackbar(t("success.deletingExhibitionFailed", {exhibitionId: exhibitionId}), {variant: "error"})
+        } catch (error) {
+            handleError("error.deletingExhibitionFailed", error);
         }
     }
 

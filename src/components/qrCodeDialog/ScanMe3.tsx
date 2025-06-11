@@ -1,6 +1,6 @@
 import React, {forwardRef} from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import {QrCodeImage, QrCodeImageSmall} from "./QrCodeDialog";
+import {QrCodeImage} from "./QrCodeDialog";
 import HeadsetIcon from '@mui/icons-material/Headset';
 
 export const ScanMe3 = forwardRef(

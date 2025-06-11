@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
-import {useTranslation} from "react-i18next";
-import {Button, MenuItem, Stack, TextField, Typography} from "@mui/material";
+import {Trans, useTranslation} from "react-i18next";
+import {Alert, Button, MenuItem, Stack, TextField, Typography} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -16,11 +16,10 @@ import StopIcon from '@mui/icons-material/Stop';
 import {AudioPreviewRequest} from "../../model/audio";
 import {audioService} from "../../services/AudioPreviewService";
 import {assetService} from "../../services/AssetService";
-import {useSnackbar} from "notistack";
-import {AudioEditor} from "./AudioEditor";
 import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import {useApplicationContext, useTokenCount} from "../hooks";
+import {useHandleError} from "../../http/errorHandler";
 
 export const AudioGeneratorDialog = (props: {
     input: {
@@ -39,8 +38,8 @@ export const AudioGeneratorDialog = (props: {
     const [playing, setPlaying] = useState(false);
     const [loading, setLoading] = useState(false);
     const [audioUrl, setAudioUrl] = useState<string | undefined>(undefined);
-    const {t} = useTranslation();
-    const {enqueueSnackbar: snackbar} = useSnackbar();
+    const {t, i18n} = useTranslation();
+    const handleError = useHandleError();
 
     const setDefaults = useCallback(() => {
         setMarkup(props.input.markup ?? "")
@@ -53,6 +52,7 @@ export const AudioGeneratorDialog = (props: {
     useEffect(() => {
         setDefaults()
         return () => {
+            audio.pause()
             audio.removeEventListener('ended', setPlayingFalse)
         }
     }, [setDefaults])
@@ -64,6 +64,10 @@ export const AudioGeneratorDialog = (props: {
             audio.play()
         }
     }, [playing])
+
+    useEffect(() => {
+        setAudioUrl(undefined)
+    }, [markup, voice]);
 
     const setPlayingFalse = useCallback(() => {
         setPlaying(false)
@@ -83,13 +87,13 @@ export const AudioGeneratorDialog = (props: {
     audio.addEventListener('ended', setPlayingFalse)
 
     const handleMarkupChange = (content: string) => {
+        setPlaying(false)
         setMarkup(content)
-        setAudioUrl(undefined)
     }
 
     const handleVoiceChange = (voice: string) => {
+        setPlaying(false)
         setVoice(voice)
-        setAudioUrl(undefined)
     }
 
     const handleSaveAudio = useCallback(() => {
@@ -106,18 +110,20 @@ export const AudioGeneratorDialog = (props: {
     }
 
     const clickAudioButton = useCallback(async () => {
+
         if (audioUrl) {
             if (playing) setPlaying(false)
             else setPlaying(true)
         } else {
-            if (props.input.key && props.input.markup === markup) {
+            if (props.input.key && props.input.markup === markup && props.input.voice === voice) {
                 try {
                     setLoading(true)
+                    if (playing) setPlaying(false)
                     const response = await assetService.getAssetPreSignedUrl({assetId: props.input.key, assetType: "audios"})
                     setAudioUrl(response.url)
                     setPlaying(true)
                 } catch (e) {
-                    snackbar(t("error.audioGeneration"), {variant: "error"})
+                    handleError("error.audioGeneration", e)
                 } finally {
                     setLoading(false)
                 }
@@ -134,7 +140,7 @@ export const AudioGeneratorDialog = (props: {
                     setPlaying(true)
                     refreshCustomer()
                 } catch (e) {
-                    snackbar(t("error.audioGeneration"), {variant: "error"})
+                    handleError("error.audioGeneration", e)
                 } finally {
                     setLoading(false)
                 }
@@ -153,7 +159,7 @@ export const AudioGeneratorDialog = (props: {
     const AudioButtonIcon = () => {
         if (playing) {
             return (
-                <Button onClick={clickAudioButton} startIcon={<PauseIcon/>} variant="contained" disableElevation>
+                <Button onClick={() => setPlaying(false)} startIcon={<PauseIcon/>} variant="contained" disableElevation>
                     {t("dialog.audio.pause")}
                 </Button>)
         }
@@ -196,8 +202,19 @@ export const AudioGeneratorDialog = (props: {
             </DialogTitle>
             <DialogContent dividers={false}>
                 <DialogContentText>
-                    {t("dialog.audio.description")}
+                    <Stack gap={2} pb={2}>
+                        <Typography>{t("dialog.audio.description")}</Typography>
+                        <Alert severity="info">
+                            <Trans i18nKey='dialog.audio.abbrAudioInfo'/>
+                        </Alert>
+                        {i18n.language === "pl" &&
+                            <Alert severity="info">
+                                <Trans i18nKey='dialog.audio.plAudioInfo'/>
+                            </Alert>
+                        }
+                    </Stack>
                 </DialogContentText>
+
                 <Stack pt={4} gap={2}>
                     <Stack direction={"row"} display="flex" flexDirection={"row"} spacing={1} justifyContent="end">
                         <Stack direction="row" gap={3} flexGrow={1} justifyItems="start" alignItems={"center"}>
@@ -210,7 +227,34 @@ export const AudioGeneratorDialog = (props: {
                             <ReplayAudioButton/>
                         </Stack>
                     </Stack>
-                    <AudioEditor content={markup} onContentChange={handleMarkupChange}/>
+                    <Stack position="relative">
+                        <TextField
+                            multiline
+                            variant="outlined"
+                            placeholder={t("dialog.audio.audioEditorPlaceholder")}
+                            rows={10}
+                            value={markup}
+                            onChange={event => handleMarkupChange(event.target.value.slice(0, 2000))}
+                            slotProps={{
+                                htmlInput: {
+                                    maxLength: 2000
+                                }
+                            }}
+                            fullWidth
+                        />
+                        <Typography
+                            variant="caption"
+                            sx={{
+                                position: "absolute",
+                                left: 8,
+                                bottom: -24,
+                                color: "text.secondary",
+                                pointerEvents: "none"
+                            }}
+                        >
+                            {`${markup.length} / 2000`}
+                        </Typography>
+                    </Stack>
                 </Stack>
             </DialogContent>
             <DialogActions sx={{px: '24px', pb: '20px'}}>

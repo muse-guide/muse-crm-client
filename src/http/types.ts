@@ -21,13 +21,3 @@ export class ApiException extends CustomError {
         this.message = message;
     }
 }
-
-export type MutationError = {
-    error: string,
-    cause: string
-}
-
-export function isMutationError(error: any): error is MutationError {
-    return (error as MutationError).error !== undefined
-        && (error as MutationError).cause !== undefined;
-}

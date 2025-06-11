@@ -13,10 +13,10 @@ import {FullRow, Panel} from "../../components/panel";
 import {Actions, Page, PageContentContainer, PageTitle, SinglePageColumn} from "../../components/page";
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
-import {ApiException} from "../../http/types";
 import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
 import {useApplicationContext} from "../../components/hooks";
+import {useHandleError} from "../../http/errorHandler";
 
 const defaults = {
     id: "abea222c",
@@ -32,6 +32,7 @@ const ExhibitionPage = () => {
     const {t} = useTranslation();
     const {refreshCustomer} = useApplicationContext()
     const {enqueueSnackbar: snackbar} = useSnackbar();
+    const handleError = useHandleError();
 
     const [loading, setLoading] = useState<boolean>(false);
     const [processing, setProcessing] = useState<boolean>(false);
@@ -63,8 +64,8 @@ const ExhibitionPage = () => {
         try {
             const exhibition = await exhibitionService.getExhibition(exhibitionId);
             methods.reset(exhibition);
-        } catch (err) {
-            snackbar(t("error.fetchingExhibitionFailed"), {variant: "error"})
+        } catch (error) {
+            handleError("error.fetchingExhibitionFailed", error);
             navigate("/exhibitions");
         } finally {
             setLoading(false);
@@ -73,7 +74,7 @@ const ExhibitionPage = () => {
 
     const onSubmit: SubmitHandler<Exhibition> = async (data) => {
         if (langOptionMethods.fields.length < 1) {
-            snackbar(t("validation.noLanguageOption"), {variant: "error"})
+            snackbar(t("error.noLanguageOption"), {variant: "error"})
             return
         }
         setProcessing(true);
@@ -87,9 +88,8 @@ const ExhibitionPage = () => {
                 navigate("/exhibitions");
                 snackbar(t("success.exhibitionCreated"), {variant: "success"})
             }
-        } catch (err) {
-            if (err instanceof ApiException) snackbar(`Creating exhibition failed. Status: ${err.statusCode}, message: ${err.message}`, {variant: "error"})
-            else snackbar(`Creating exhibition failed.`, {variant: "error"})
+        } catch (error) {
+            handleError("error.savingExhibitionFailed", error);
         } finally {
             refreshCustomer()
             setProcessing(false);

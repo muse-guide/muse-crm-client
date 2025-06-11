@@ -16,6 +16,7 @@ import {exhibitService, ExhibitsFilter} from "../../services/ExhibitService";
 import {useSnackbar} from "notistack";
 import {ExhibitionSelect} from "./ExhibitionSelect";
 import {usePagination} from "../../components/hooks";
+import {useHandleError} from "../../http/errorHandler";
 
 const links = [{
     nameKey: "menu.exhibits",
@@ -27,6 +28,7 @@ const ExhibitsPage = () => {
     const navigate = useNavigate();
     const {enqueueSnackbar: snackbar} = useSnackbar();
     const [searchParams] = useSearchParams();
+    const handleError = useHandleError();
 
     const [exhibits, setExhibits] = useState<Exhibit[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -49,8 +51,8 @@ const ExhibitsPage = () => {
 
             setExhibits(results.items as Exhibit[]);
             if (results.nextPageKey) pagination.updatePageKeys(results.nextPageKey)
-        } catch (err) {
-            snackbar(t("error.fetchingExhibitsFailed"), {variant: "error"})
+        } catch (error) {
+            handleError("error.updatingCustomerDetailsFailed", error);
         } finally {
             setLoading(false);
         }
@@ -62,8 +64,8 @@ const ExhibitsPage = () => {
             resetPagination()
             getExhibitsAsync()
             snackbar(t("success.exhibitDeleted", {exhibitId: exhibitId}), {variant: "success"})
-        } catch (err) {
-            snackbar(t("success.deletingExhibitFailed", {exhibitId: exhibitId}), {variant: "error"})
+        } catch (error) {
+            handleError("error.deletingExhibitFailed", error);
         }
     }
 

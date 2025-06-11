@@ -26,6 +26,7 @@ import {CircleFlag} from "react-circle-flags";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import AppDialog from "./dialog/AppDialog";
 import useDialog from "./hooks";
+import {useHandleError} from "../http/errorHandler";
 
 export const BaseTable = ({children, ...props}: TableProps) => {
     return (
@@ -97,13 +98,14 @@ export const ResourceAvatar = ({referenceName, images, status}: { referenceName:
     const [imgSrc, setImgSrc] = useState<string>();
     const imageId = images[0]?.id ?? undefined
     const displayImg = !!(imageId) && status === "ACTIVE"
+    const handleError = useHandleError();
 
     const getThumbnail = useCallback(async (imageId: string) => {
         try {
             const response = await assetService.getAssetPreSignedUrl({assetId: `${imageId}_thumbnail`, assetType: "images"})
             setImgSrc(response.url)
-        } catch (e) {
-            console.error("Error fetching thumbnail: ", e)
+        } catch (error) {
+            handleError("error.imageFetchingFailed", error);
         }
     }, []);
 
@@ -174,11 +176,13 @@ export const Pagination = ({page, pageSize, keys, onNextPage, onPrevPage, onPage
     onPrevPage: () => void,
     onPageSizeChange: (pageSize: number) => void
 }) => {
+    const {t} = useTranslation();
+
     return (
         <TableRow>
             <TableCell align="right" colSpan={100} sx={{paddingY: 1}}>
                 <Stack direction="row" spacing={1} display="flex" justifyContent="end" alignItems={"center"}>
-                    <Typography variant='subtitle1' paddingRight={1}>Rows per page:</Typography>
+                    <Typography variant='subtitle1' paddingRight={1}>{t("component.table.pageSize")}:</Typography>
                     <Select
                         value={pageSize}
                         onChange={event => onPageSizeChange(+event.target.value)}

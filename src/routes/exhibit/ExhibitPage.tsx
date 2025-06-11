@@ -17,6 +17,7 @@ import {ExhibitionSelect} from "./ExhibitionSelect";
 import {LanguageTabs} from "../../components/langOptions/LanguageTabs";
 import {LanguageOptionsHolder} from "../../components/form/LanguageSelect";
 import {useApplicationContext} from "../../components/hooks";
+import {useHandleError} from "../../http/errorHandler";
 
 
 const ExhibitPage = () => {
@@ -26,6 +27,7 @@ const ExhibitPage = () => {
     const {refreshCustomer} = useApplicationContext()
     const {t} = useTranslation();
     const {enqueueSnackbar: snackbar} = useSnackbar();
+    const handleError = useHandleError();
 
     const [loading, setLoading] = useState<boolean>(false);
     const [processing, setProcessing] = useState<boolean>(false);
@@ -65,8 +67,8 @@ const ExhibitPage = () => {
         try {
             const exhibit = await exhibitService.getExhibit(exhibitId);
             methods.reset(exhibit);
-        } catch (err) {
-            snackbar(t("error.fetchingExhibitFailed"), {variant: "error"})
+        } catch (error) {
+            handleError("error.fetchingExhibitFailed", error);
             navigate("/exhibits");
         } finally {
             setLoading(false);
@@ -82,7 +84,7 @@ const ExhibitPage = () => {
 
     const onSubmit: SubmitHandler<Exhibit> = async (data) => {
         if (langOptionMethods.fields.length < 1) {
-            snackbar(t("validation.noLanguageOption"), {variant: "error"})
+            snackbar(t("error.noLanguageOption"), {variant: "error"})
             return
         }
         setProcessing(true);
@@ -94,8 +96,8 @@ const ExhibitPage = () => {
                 await exhibitService.createExhibit(data)
                 snackbar(t("success.exhibitCreated"), {variant: "success"})
             }
-        } catch (err) {
-            snackbar(t("error.savingExhibitFailed"), {variant: "error"})
+        } catch (error) {
+            handleError("error.savingExhibitFailed", error);
         } finally {
             refreshCustomer()
             setProcessing(false);

@@ -15,6 +15,7 @@ import ExhibitsPage from './routes/exhibit/ExhibitsPage';
 import AccountPage from "./routes/account/AccountPage";
 import InstitutionEditPage from "./routes/institution/InstitutionEditPage";
 import InstitutionPage from "./routes/institution/InstitutionPage";
+import {Theme} from "@aws-amplify/ui-react";
 
 const config = {
     Auth: {
@@ -91,7 +92,7 @@ export const borderColor = "#a2a3ac"
 // export const mainBackgroundColor = "#FCFCFD"
 export const mainBackgroundColor = "white"
 
-const darkTheme = createTheme({
+const muiTheme = createTheme({
         palette: {
             mode: "light",
             primary: {
@@ -117,10 +118,10 @@ const darkTheme = createTheme({
                 main: "#FDB022",
                 light: "#ffc886",
             },
-            info: {
-                main: "#36BFFA",
-                light: "#E0F2FE",
-            },
+            // info: {
+            //     main: "#a1e0ff",
+            //     light: "#E0F2FE",
+            // },
             grey: {
                 50: "#FCFCFD",
             }
@@ -233,7 +234,7 @@ const darkTheme = createTheme({
 root.render(
     <React.StrictMode>
         <React.Suspense fallback="">
-            <ThemeProvider theme={darkTheme}>
+            <ThemeProvider theme={muiTheme}>
                 <SnackbarProvider>
                     <RouterProvider router={router}/>
                 </SnackbarProvider>

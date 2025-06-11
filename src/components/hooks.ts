@@ -32,6 +32,16 @@ export function usePagination() {
     return {page, pageSize, keys, resetPagination, updatePageKeys, nextPage, prevPage, toApiPagination}
 }
 
+
+const formatTokenCount = (count: number) => {
+    if (count >= 1000000) {
+        return `${(count / 1000000).toFixed(2)}M`;
+    } else if (count >= 1000) {
+        return `${(count / 1000).toFixed(2)}k`;
+    }
+    return count.toString();
+}
+
 export const useTokenCount = () => {
     const applicationContext = useApplicationContext();
     const [tokenCount, setTokenCount] = useState<string>();
@@ -41,11 +51,13 @@ export const useTokenCount = () => {
         const currentPlanTokenCount = applicationContext.configuration.subscriptionPlans
             .find(plan => plan.type === applicationContext.customer.subscription.plan)
             ?.tokenCount;
+        const currentPlanTokenCountFormatted = formatTokenCount(currentPlanTokenCount ?? 0);
 
         const tokenCount = applicationContext.customer.subscription.tokenCount;
+        const tokenCountFormatted = formatTokenCount(tokenCount);
 
-        setCurrentPlanTokenCount(currentPlanTokenCount?.toString());
-        setTokenCount(tokenCount.toString());
+        setCurrentPlanTokenCount(currentPlanTokenCountFormatted);
+        setTokenCount(tokenCountFormatted);
     }, [applicationContext]);
 
     return {tokenCount, currentPlanTokenCount, counter: `${tokenCount} / ${currentPlanTokenCount}`};

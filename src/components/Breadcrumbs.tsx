@@ -1,6 +1,7 @@
-import {Breadcrumbs, Link, LinkProps, Typography} from "@mui/material";
+import {Box, Breadcrumbs, Link, LinkProps, Typography} from "@mui/material";
 import {Link as RouterLink,} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 interface BreadcrumbsLink {
     nameKey: string,
@@ -21,7 +22,9 @@ export const AppBreadcrumbs = ({links}: { links: BreadcrumbsLink[] }) => {
     return (
         <Breadcrumbs aria-label="breadcrumb">
             <LinkRouter to={'/'}>
-                Home
+                <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+                    <HomeOutlinedIcon fontSize={"small"}/>
+                </Box>
             </LinkRouter>
             {
                 links.map((link, index) => {

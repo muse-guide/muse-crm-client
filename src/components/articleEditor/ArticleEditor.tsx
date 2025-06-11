@@ -22,6 +22,7 @@ import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
 import {Youtube} from "@tiptap/extension-youtube";
 import {assetService} from "../../services/AssetService";
+import {useHandleError} from "../../http/errorHandler";
 
 const limit = 5000
 
@@ -93,25 +94,32 @@ export const ArticleEditor = (
 }
 
 const ArticleEditorMenu = ({editor}: { editor: Editor | null }) => {
+    const handleError = useHandleError();
+
     if (!editor) {
         return null
     }
 
     const addImageToEditor = async (event: ChangeEvent<HTMLInputElement>) => {
-        const input = event.target as HTMLInputElement;
-        if (!input.files || input.files.length < 1) return
-        editor.chain().focus().setImage({src: '/image_loading.png'}).run()
+        try {
+            const input = event.target as HTMLInputElement;
+            if (!input.files || input.files.length < 1) return
+            editor.chain().focus().setImage({src: '/image_loading.png'}).run()
 
-        const image: File = input.files[0];
-        const imageId = await assetService.uploadTmpFile(image)
-        if (!imageId) return
+            const image: File = input.files[0];
+            const imageId = await assetService.uploadTmpFile(image)
+            if (!imageId) return
 
-        const response = await assetService.getAssetPreSignedUrl({assetId: imageId, assetType: "tmp"})
-        if (!response) return
+            const response = await assetService.getAssetPreSignedUrl({assetId: imageId, assetType: "tmp"})
+            if (!response) return
 
-        input.value = ''
-        editor.chain().focus().deleteCurrentNode().run()
-        editor.chain().focus().setImage({src: response.url}).run()
+            input.value = ''
+            editor.chain().focus().deleteCurrentNode().run()
+            editor.chain().focus().setImage({src: response.url}).run()
+        }  catch (error)  {
+            handleError("error.imageUploadFailed", error);
+            return;
+        }
     }
 
     const addYoutubeVideo = () => {
